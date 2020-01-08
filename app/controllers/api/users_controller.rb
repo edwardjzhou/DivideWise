@@ -3,9 +3,11 @@ class Api::UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             login(@user)
-            render json: {hey: 'create user saved'}
+            render "api/users/show"
+
         else
-            render json: @user.errors.full_messages, status:422
+            render json: => {:name => "any name"}
+            # @user.errors.full_messages, status:422
         end
     end
 
