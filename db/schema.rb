@@ -10,10 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_07_010812) do
+ActiveRecord::Schema.define(version: 2020_01_07_171312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bills", force: :cascade do |t|
+    t.string "description", null: false
+    t.integer "lender_id", null: false
+    t.integer "borrower_id", null: false
+    t.integer "amount", null: false
+    t.boolean "settled", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["borrower_id"], name: "index_bills_on_borrower_id"
+    t.index ["lender_id"], name: "index_bills_on_lender_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "bill_id", null: false
+    t.string "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bill_id"], name: "index_comments_on_bill_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.string "user_one_id", null: false
+    t.string "user_two_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_one_id", "user_two_id"], name: "index_friendships_on_user_one_id_and_user_two_id", unique: true
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "payer_id", null: false
+    t.integer "bill_id", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bill_id"], name: "index_payments_on_bill_id"
+    t.index ["payer_id"], name: "index_payments_on_payer_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
