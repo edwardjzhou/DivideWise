@@ -31,6 +31,18 @@ class Card extends Component {
         }
     }
 
+    update(field) {
+        return e => this.setState({
+            [field]: e.currentTarget.value
+        });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const user = Object.assign({}, this.state);
+        this.props.processForm(user);
+    }
+    
     render() {
         return (
             <div>

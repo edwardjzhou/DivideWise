@@ -28,8 +28,11 @@ class Splash extends React.Component {
                     <p>Less stress when sharing expenses with anyone.</p>
                     <p>Less stress when sharing expenses with housemates.</p>
                     <p>Less stress when sharing expenses with your partner.</p>
-
-                
+                    <LoginFormContainer></LoginFormContainer>
+                    {/* <Switch>
+                    <AuthRoute path="/login" component={LoginFormContainer} /> 
+                    
+                </Switch>   */}
 
 
 
@@ -39,10 +42,7 @@ class Splash extends React.Component {
                 </div>
 
                  <Footer></Footer>
-                <Switch>
-                    <AuthRoute path="/login" component={LoginFormContainer} /> 
-                    
-                </Switch>  
+               
             </div>
             )
     }
