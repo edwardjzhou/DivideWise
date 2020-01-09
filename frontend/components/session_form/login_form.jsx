@@ -1,11 +1,10 @@
 import React from 'react';
 
-class SessionForm extends React.Component {
+class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            email: '',
             password: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,6 +39,8 @@ class SessionForm extends React.Component {
         return (
             <div className="login-form-container">
                 <form onSubmit={this.handleSubmit} className="login-form-box">
+                    <img src={`${window.logoURL}`} alt="Logo square" className="login_logo" width="200" height="200" />
+
                     <div className='welcome'>WELCOME TO DIVIDEWISE</div>
                     <br />  
                     {/* Please {this.props.formType} or {this.props.navLink} */}
@@ -78,4 +79,4 @@ class SessionForm extends React.Component {
     }
 }
 
-export default SessionForm;
+export default LoginForm;

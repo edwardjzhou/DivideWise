@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { Link, NavLink} from 'react-router-dom';
-
+import Card from './card'
 
 const NavBar = () => {
     return (
@@ -11,12 +11,17 @@ const NavBar = () => {
             </NavLink>
 
             <div className="login_links">
-                <button className="btn">
-                    <NavLink to="/login"
+                {/* <button className="btn"> */}
+
+
+                    
+                <Card></Card>
+
+                    {/* <NavLink to="/login"
                     >
                     Log in
-                    </NavLink>
-                </button>
+                    </NavLink> */}
+                {/* </button> */}
                 or
                 <button className="btn">
                     <NavLink to="/signup"

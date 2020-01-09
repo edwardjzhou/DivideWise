@@ -115,10 +115,11 @@ input[type="color"], .uneditable-input{
 }
 
 .flex_container{
-    width: 940px;
+    width: auto;
     padding: 0 10px;
     margin: 0 auto;
     position: relative;
+    padding-top: 60px;
 }
 
 h1{
