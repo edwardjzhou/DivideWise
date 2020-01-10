@@ -8,6 +8,8 @@ class LoginForm extends React.Component {
             password: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.demoFill = this.demoFill.bind(this);
+
     }
 
     update(field) {
@@ -15,6 +17,8 @@ class LoginForm extends React.Component {
             [field]: e.currentTarget.value
         });
     }
+
+
 
     handleSubmit(e) {
         e.preventDefault();
@@ -33,6 +37,16 @@ class LoginForm extends React.Component {
             </ul>
         );
     }
+
+    demoFill() {
+        this.setState({
+            username: 'DEMO_USERNAME',
+            password: 'asdjfkl;',
+        })
+       setTimeout(() => this.props.processForm(this.state), 1500);
+    }
+    
+
 
 
     render() {
@@ -55,17 +69,25 @@ class LoginForm extends React.Component {
                             />
                         </label>
                         <br />
-                            <label>Password:
-                <input type="password"
-                                    value={this.state.password}
-                                    onChange={this.update('password')}
-                                    className="login-input"
-                                />
-                            </label>
-                            <br />
-                            <input className="session-submit" type="submit" value={this.props.formType} />
+                        <label>Password:
+                            <input type="password"
+                            value={this.state.password}
+                            onChange={this.update('password')}
+                            className="login-input"
+                            />
+                        </label>
+                        <br />
+                        <input className="session-submit" type="submit" value={this.props.formType} />
                     </div>
-                </form>
+
+                    </form>
+
+
+                        <button onClick={
+                            () =>
+                                this.demoFill()
+                        }>DEMO LOGIN
+                            </button>
             </div>
         );
     }
