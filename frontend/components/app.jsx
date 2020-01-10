@@ -29,7 +29,7 @@ class App extends React.Component{
                         {/* <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} /> */}
                         {/* <Route path="/benches/:benchId" component={BenchShowContainer} /> */}
                         <Route exact path="/" component={Splash} />
-                        <ProtectedRoute path='/' component={Dashboard} />
+                        <ProtectedRoute exact path='/' component={Dashboard} />
                     </Switch>
             </div>
         );         

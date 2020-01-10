@@ -13,6 +13,14 @@ class Api::UsersController < ApplicationController
 
     private
     def user_params
-        params.require(:user).permit(:username, :email, :password, :name, :password, :password_digest, :id)
+        # params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit!
     end
 end
+
+
+# # $.ajax({
+#         method: 'POST',
+#         url: '/api/user',
+#         data: {user: {username: 'wqerqwder', password: 'asdfasdf', email: 'asdfasddfasd3f' }}
+#     })

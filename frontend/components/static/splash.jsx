@@ -18,6 +18,9 @@ import NavBar from './navbar';
 
 
 class Splash extends React.Component {
+    
+
+
     render() {
 
         return ( 
@@ -25,6 +28,12 @@ class Splash extends React.Component {
                 <NavBar></NavBar>
             
                 <div className="flex_container">
+
+
+
+
+
+
                     <p>Less stress when sharing expenses with anyone.</p>
                     <p>Less stress when sharing expenses with housemates.</p>
                     <p>Less stress when sharing expenses with your partner.</p>

@@ -50,8 +50,10 @@ class LoginForm extends React.Component {
 
 
     render() {
+
+        // let styles = {transform: 'translate(-50 %, -50 %)'}
         return (
-            <div className="login-form-container">
+            <div className="login-form-container" >
                 <form onSubmit={this.handleSubmit} className="login-form-box">
                     <img src={`${window.logoURL}`} alt="Logo square" className="login_logo" width="200" height="200" />
 
