@@ -6,9 +6,12 @@ class SignupForm extends React.Component {
         this.state = {
             username: '',
             email: '',
-            password: ''
+            password: '',
+            maxHeight: 0
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.maxFormHeight = this.maxFormHeight.bind(this);
+
     }
 
     update(field) {
@@ -35,41 +38,56 @@ class SignupForm extends React.Component {
         );
     }
 
+    maxFormHeight(){
+        this.setState({maxHeight:300})
+    }
+
 
     render() {
+        // let styles = {'max-height': this.state.maxHeight+'px'}
+        const maxHeight = { maxHeight: this.state.maxHeight };
+
+
         return (
             <div className="signup-form-container">
                 <form onSubmit={this.handleSubmit} className="signup-form-box">
                     <div className='welcome'>INTRODUCE YOURSELF</div>
                     <br />
+                   
                     {/* Please {this.props.formType} or {this.props.navLink} */}
-                    <div className="signup-form">
+                    <div className="signup-form" id="slideout">
                         <br />
                         <label>  Hi there! My name is
                             <input type="text"
                                 value={this.state.username}
                                 onChange={this.update('username')}
                                 className="signup-input"
+                                onClick={()=>this.maxFormHeight()}
                             />
                         </label>
-                        <br />
-                        <label>Here's my email address:
-                            <input type="text"
-                                value={this.state.email}
-                                onChange={this.update('email')}
-                                className="signup-input"
-                            />
-                        </label>
-                        <br />
-                        <label> And here's my password:
-                <input type="password"
-                                value={this.state.password}
-                                onChange={this.update('password')}
-                                className="signup-input"
-                            />
-                        </label>
-                        <br />
-                        <input className="session-submit" type="submit" value="Sign me up!" />
+                        <div id="slideout-inner" className="slideout" 
+                         style={maxHeight} 
+                        >
+                                <br />
+                                <label>Here's my email address:
+                                    <input type="text"
+                                        value={this.state.email}
+                                        onChange={this.update('email')}
+                                        className="signup-input"
+                                    />
+                                </label>
+
+                                <br />
+                                <label> And here's my password:
+                                    <input type="password"
+                                        value={this.state.password}
+                                        onChange={this.update('password')}
+                                        className="signup-input"
+                                    />
+                                </label>
+                                <br />
+                                <input className="session-submit" type="submit" value="Sign me up!" />
+                        </div>
                     </div>
                 </form>
             </div>

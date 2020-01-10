@@ -222,3 +222,49 @@ Position: sticky for navbar as in gets stuck
 .menu {
   position: absolute; 
 }
+
+
+
+/* https://usabilitypost.com/2011/04/19/pure-css-slideout-interface/ */
+/* #slideout {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+#slideout_inner {
+  position: fixed;
+  top: 100px;
+  left: -250px;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+#slideout:hover {
+  left: 250px;
+}
+#slideout:hover #slideout_inner {
+  left: 0;
+
+} */
+#slideout_inner {
+  overflow: hidden;
+  transition: max-height 1.7s ease-out;
+  height: auto;
+  max-height: 0;
+}
+
+.slideout {
+  overflow: hidden;
+  transition: max-height 1.7s ease-out;
+  height: auto;
+  max-height: 0;
+}
+
+.signup-form-container{
+  
+}
