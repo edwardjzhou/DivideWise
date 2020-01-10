@@ -22,7 +22,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    render json: {asdf: 'requirelogin'}
+    if !current_user
+      render json: 'YOU NEED TO LOGIN FIRST'
+    end
   end
   
 end
