@@ -266,5 +266,10 @@ Position: sticky for navbar as in gets stuck
 }
 
 .signup-form-container{
-  
+  position: relative;
+  align-content: center;
+  top: 100px;
+  left: 100px;
 }
+
+
