@@ -14,7 +14,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import SignupFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
 import Splash from './static/splash';
-
+import Dashboard from './dashboard/dashboard';
 
 class App extends React.Component{
     render(){
@@ -22,13 +22,6 @@ class App extends React.Component{
         return( 
             <div className="wrapper">
                 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
-                {/* <Switch>
-                    <AuthRoute path="/" component={Splash} />
-                    <AuthRoute exact path="/signup" component={SignupFormContainer} />
-                    <AuthRoute path="/login" component={LogInFormContainer} />
-                    <ProtectedRoute path="/" component={DashboardContainer} />
-                </Switch> */}
-
 
                     <Switch>
                         <AuthRoute exact path="/login" component={LogInFormContainer} />
@@ -36,6 +29,7 @@ class App extends React.Component{
                         {/* <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} /> */}
                         {/* <Route path="/benches/:benchId" component={BenchShowContainer} /> */}
                         <Route exact path="/" component={Splash} />
+                        <ProtectedRoute path='/' component={Dashboard} />
                     </Switch>
             </div>
         );         

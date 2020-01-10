@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 // from https://blog.campvanilla.com/reactjs-dropdown-menus-b6e06ae3a8fe
 class Card extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             showMenu: false,
+            username: '',
+            password: ''
         };
 
         this.showMenu = this.showMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     showMenu(event) {
@@ -20,6 +24,7 @@ class Card extends Component {
         });
     }
 
+    
     closeMenu(event) {
 
         if (!this.dropdownMenu.contains(event.target)) {
@@ -42,13 +47,25 @@ class Card extends Component {
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
     }
-    
+
+    renderErrors() {
+        return (
+            <ul>
+                {this.props.errors.map((error, i) => (
+                    <li key={`error-${i}`}>
+                        {error}
+                    </li>
+                ))}
+            </ul>
+        );
+    }
+
     render() {
         return (
             <div>
                 <button onClick={this.showMenu}>
                     Log in
-        </button>
+                </button>
 
                 {
                     this.state.showMenu
@@ -59,8 +76,29 @@ class Card extends Component {
                                     this.dropdownMenu = element;
                                 }}
                             >
-                                <button> Username: </button>
-                                <button> Menu item 2 </button>
+                                                    <form onSubmit={this.handleSubmit} className="login-form-box">
+                                                        <div className="login-form">
+                                                            <br />
+                                                            <label>Username:
+                                                <input type="text"
+                                                                    value={this.state.username}
+                                                                    onChange={this.update('username')}
+                                                                    className="login-input"
+                                                                />
+                                                            </label>
+                                                            <br />
+                                                            
+                                                            <label>Password:
+                                                <input type="password"
+                                                                    value={this.state.password}
+                                                                    onChange={this.update('password')}
+                                                                    className="login-input"
+                                                                />
+                                                            </label>
+                                                            <br />
+                                                            <input className="session-submit" type="submit" value={this.props.formType} />
+                                                        </div>
+                                                    </form>
                             </div>
                         )
                         : (

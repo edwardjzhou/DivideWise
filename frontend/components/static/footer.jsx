@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return(
     <div className="footer">
-    Made with :( in San Francisco, USA
+    Made with :) in San Francisco, USA
                     <a href="/jobs">Jobs</a> |
                     <a href="/calculators">Calculators</a> |
                     <a href="https://blog.splitwise.com">Blog</a> |

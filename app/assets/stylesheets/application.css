@@ -14,9 +14,66 @@
  *= require_self
  */
 
+ /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* // reset file end */
+
+
+
+
+
+
 
  * {
    font-family: 'Lato', sans-serif;
+   border: 1px solid red;
   }
 
  .header-link {
@@ -99,6 +156,7 @@ input[type="color"], .uneditable-input{
   position: absolute;
   top: 10px;
   right: 10px;
+  display: flex
 }
 
 .navbar{
@@ -106,6 +164,7 @@ input[type="color"], .uneditable-input{
   top: 0;
   left: 0;
   width: 100%;
+  height: 48px;
   background: #5bc5a7;
   z-index: 99;
   border-bottom: 1px solid #48be9d;
@@ -134,4 +193,32 @@ h1{
   min-height: 100%;
   height: auto !important;
   margin: 0 0 -114px;
+}
+
+
+
+/* 
+Display inline-block
+
+Display: flex BEST goes on container to layout children
+Flex-direction: row or column axis
+Justify-content works on the main axis
+Align-items works on cross axis
+
+Give a block div with display: block HEIGHT AND WIDTH or no point
+
+
+Position: relative; left right bottom top
+
+Position:absolute if its inside something that has a position (like  dropdown)
+Position: fixed having a footer header
+Position: sticky for navbar as in gets stuck
+
+* {Border: 1 px solid red;}
+
+ */
+
+
+.menu {
+  position: absolute; 
 }

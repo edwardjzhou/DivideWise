@@ -23,20 +23,17 @@ class Splash extends React.Component {
         return ( 
             <div>
                 <NavBar></NavBar>
-
+            
                 <div className="flex_container">
                     <p>Less stress when sharing expenses with anyone.</p>
                     <p>Less stress when sharing expenses with housemates.</p>
                     <p>Less stress when sharing expenses with your partner.</p>
                     <LoginFormContainer></LoginFormContainer>
-                    {/* <Switch>
-                    <AuthRoute path="/login" component={LoginFormContainer} /> 
-                    
-                </Switch>   */}
-
-
-
                 </div>
+            
+            
+            
+
 
                 <div className="bottompad">
                 </div>
