@@ -8,6 +8,8 @@ import {
   NavLink,
   HashRouter
 } from 'react-router-dom';
+import Modal from './modal/modal';
+
 
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
@@ -22,14 +24,14 @@ class App extends React.Component{
         return( 
             <div className="wrapper">
                 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
-
+                    <Modal />
                     <Switch>
                         <AuthRoute exact path="/login" component={LogInFormContainer} />
                         <AuthRoute exact path="/signup" component={SignupFormContainer} />
                         {/* <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} /> */}
                         {/* <Route path="/benches/:benchId" component={BenchShowContainer} /> */}
-                        <Route exact path="/" component={Splash} />
                         <ProtectedRoute exact path='/' component={Dashboard} />
+                        <Route exact path="/" component={Splash} />
                     </Switch>
             </div>
         );         

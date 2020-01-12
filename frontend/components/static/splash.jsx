@@ -28,15 +28,11 @@ class Splash extends React.Component {
                 <NavBar></NavBar>
             
                 <div className="flex_container">
-
-
-
-
-
-
-                    <p>Less stress when sharing expenses with anyone.</p>
-                    <p>Less stress when sharing expenses with housemates.</p>
-                    <p>Less stress when sharing expenses with your partner.</p>
+                    <p>Less stress when sharing expenses 
+                        <span>with anyone.</span>
+                        <span>with housemates.</span>
+                        <span>with your partner.</span>
+                    </p>
                     <LoginFormContainer></LoginFormContainer>
                 </div>
             

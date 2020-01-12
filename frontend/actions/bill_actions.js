@@ -1,48 +1,47 @@
-// import * as APIUtil from '../util/bench_api_util';
+import * as APIUtil from '../util/bill_util';
 
-// export const RECEIVE_BENCHES = 'RECEIVE_BENCHES';
-// export const RECEIVE_BENCH = 'RECEIVE_BENCH';
-// export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+export const RECEIVE_BILLS = 'RECEIVE_BENCHES';
+export const RECEIVE_BILL = 'RECEIVE_BENCH';
+export const REMOVE_BILL = 'REMOVE_BILL';
+export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
+export const RECEIVE_PAYMENT = 'RECEIVE_PAYMENT';
 
-// export const receiveBenches = benches => ({
-//     type: RECEIVE_BENCHES,
-//     benches,
-// });
+export const receiveBills = bills => {  
+    return {
+        type: RECEIVE_BILLS,
+        bills
+    }
+};
 
-// export const receiveBench = ({ bench, reviews, authors }) => ({
-//     type: RECEIVE_BENCH,
-//     bench,
-//     reviews,
-//     authors,
-// });
+export const receiveBill = bill => {
+    return {
+        type: RECEIVE_BILL,
+        bill
+    }
+};
 
-// export const receiveReview = ({ review, average_rating, author }) => ({
-//     type: RECEIVE_REVIEW,
-//     review,
-//     average_rating,
-//     author,
-// });
+export const removeBill = billId => {
+    return {
+        type: REMOVE_BILL,
+        billId
+    }
+};
 
-// export const createReview = review => dispatch => (
-//     APIUtil.createReview(review).then(review => (
-//         dispatch(receiveReview(review))
-//     ))
-// );
+export const createBill = bill => dispatch => (
+    APIUtil.createBill(bill).then(createdBill => (
+        dispatch(receiveBill(createdBill))
+    ))
+);
 
-// export const fetchBenches = filters => dispatch => (
-//     APIUtil.fetchBenches(filters).then(benches => (
-//         dispatch(receiveBenches(benches))
-//     ))
-// );
+export const fetchBill = billId => dispatch => (
+    APIUtil.fetchBill(billId).then(fetchedBill => (
+        dispatch(receiveBench(fetchedBill))
+    ))
+);
 
-// export const fetchBench = id => dispatch => (
-//     APIUtil.fetchBench(id).then(payload => (
-//         dispatch(receiveBench(payload))
-//     ))
-// );
+export const fetchBills = () => dispatch => (
+    APIUtil.fetchBills().then(fetchedBills => (
+        dispatch(receiveBench(fetchedBills))
+    ))
+);
 
-// export const createBench = bench => dispatch => (
-//     APIUtil.createBench(bench).then(bench => (
-//         dispatch(receiveBench(bench))
-//     ))
-// );

@@ -14,13 +14,10 @@ const NavBar = () => {
 
             <div className="login_links" >
                 <CardContainer></CardContainer>
-
-                or    .
+                or    
                 <button className="btn">
                     <NavLink to="/signup"
-                    activeClassName="isDisabled"
-                    activeStyle={{ cursor: 'bold' }}
-                    >
+                    activeStyle={{ cursor: 'bold' }}>
                     Sign up
                     </NavLink>
                 </button>

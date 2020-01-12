@@ -304,3 +304,8 @@ Position: sticky for navbar as in gets stuck
 .static.first, .static.second {
     transition: transform 1s ease;
 } */
+
+
+.hidden{
+  display: none;
+}

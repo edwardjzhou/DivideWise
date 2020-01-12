@@ -1,5 +1,6 @@
 class Api::FriendshipsController < ApplicationController
-
+    before_action :require_login
+    
     def create 
         @friendship = Friendship.new(friendship_params)
         if @friendship.user_one_id == @friendship.user_two_id
