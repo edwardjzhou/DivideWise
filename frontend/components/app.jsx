@@ -8,7 +8,6 @@ import {
   NavLink,
   HashRouter
 } from 'react-router-dom';
-import Modal from './modal/modal';
 
 
 
@@ -17,6 +16,7 @@ import SignupFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
 import Splash from './static/splash';
 import Dashboard from './dashboard/dashboard';
+import Modal from './modal/modal';
 
 class App extends React.Component{
     render(){

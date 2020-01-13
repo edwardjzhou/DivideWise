@@ -1,7 +1,7 @@
 import * as APIUtil from '../util/bill_util';
 
-export const RECEIVE_BILLS = 'RECEIVE_BENCHES';
-export const RECEIVE_BILL = 'RECEIVE_BENCH';
+export const RECEIVE_BILLS = 'RECEIVE_BILLS';
+export const RECEIVE_BILL = 'RECEIVE_BILL';
 export const REMOVE_BILL = 'REMOVE_BILL';
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 export const RECEIVE_PAYMENT = 'RECEIVE_PAYMENT';
@@ -35,13 +35,13 @@ export const createBill = bill => dispatch => (
 
 export const fetchBill = billId => dispatch => (
     APIUtil.fetchBill(billId).then(fetchedBill => (
-        dispatch(receiveBench(fetchedBill))
+        dispatch(receiveBill(fetchedBill))
     ))
 );
 
 export const fetchBills = () => dispatch => (
     APIUtil.fetchBills().then(fetchedBills => (
-        dispatch(receiveBench(fetchedBills))
+        dispatch(receiveBills(fetchedBills))
     ))
 );
 
