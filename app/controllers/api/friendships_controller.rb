@@ -10,6 +10,8 @@ class Api::FriendshipsController < ApplicationController
             @friendship.user_two_id, @friendship.user_one_id
         end
 
+        #check if it already exists?
+
         if @friendship.save
             render "api/friendships/show"
         else
@@ -19,9 +21,14 @@ class Api::FriendshipsController < ApplicationController
     end
         
     def destroy
+        @friendship = Friendship.find[:id]
+        @friendship.destroy!
+        redirect_to "api/friendships/index"
     end
 
     def index
+        @friendships = Friendship.where("user_one_id = ? OR user_two_id = ?", current_user.id.to_s, current_user.id.to_s)
+        render "api/friendships/index"
     end
 
     private
@@ -29,3 +36,9 @@ class Api::FriendshipsController < ApplicationController
         params.require(:friendship).permit!
     end
 end
+
+# $.ajax({
+#         method: 'POST',
+#         url: '/api/friendships',
+#         data: {friendship: {user_one_id: 1, user_two_id: 2}}
+#     })

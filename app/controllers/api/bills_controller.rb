@@ -59,3 +59,9 @@ end
 #         url: '/api/bills',
 #         data: {bill: {description: 'wqerqdwder', lender_id: 1, borrower_id: 2,amount: 2, settled: false }}
 #     })
+
+# $.ajax({
+#         method: 'POST',
+#         url: '/api/bills',
+#         data: {bill: {user_one_id: 1, user_two_id: 2}}
+#     })

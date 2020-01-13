@@ -29,9 +29,9 @@ class Splash extends React.Component {
             
                 <div className="flex_container">
                     <p>Less stress when sharing expenses 
-                        <span>with anyone.</span>
-                        <span>with housemates.</span>
-                        <span>with your partner.</span>
+                        <span id='swap-one'>with anyone.</span>
+                        <span id='swap-two'>with housemates.</span>
+                        <span id='swap-three'>with your partner.</span>
                     </p>
                     <LoginFormContainer></LoginFormContainer>
                 </div>

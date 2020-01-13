@@ -25,8 +25,26 @@ class User < ApplicationRecord
   through: :lendings,
   source: :borrower
 
-  # has_many :friendships,
-  # foreign_key: :
+  has_many :friendships_one,
+  foreign_key: :user_one_id,
+  class_name: 'Friendship'
+
+  has_many :friendships_two,
+  foreign_key: :user_two_id,
+  class_name: 'Friendship'
+
+  has_many :friends_one,
+  through: :friendships_one,
+  source: :user_one
+
+  has_many :friends_two,
+  through: :friendships_one,
+  source: :user_one
+
+  has_many :payments,
+  foreign_key: :payer_id,
+  class_name: 'Payment'
+
     
 
   def self.find_by_credentials(username,password)

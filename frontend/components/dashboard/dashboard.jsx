@@ -15,11 +15,22 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div id="asdf"> 
-            
+            <div id="dashboard">
                 asdf dashboard
-             
-        {this.props.bills.map(bill => (<p>{bill.lender_id} {bill.borrower_id} {bill.amount} </p>))}
+                <div id="YOU_OWE"> 
+                    {
+                        this.props.bills.map(bill => 
+                        (
+                            <p key={bill.id}> 
+                            {bill.lender_id} 
+                            {bill.borrower_id}
+                            {bill.amount}
+                            {bill.lender} 
+                            </p>
+                        ))
+                    }
+
+                </div>
             </div>
         );
     }
