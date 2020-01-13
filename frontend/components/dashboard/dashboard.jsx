@@ -3,6 +3,8 @@ import React from 'react';
 //import Modal from './modal'
 import { connect } from 'react-redux';
 import { fetchBills, fetchBill} from '../../actions/bill_actions'
+import { Link } from 'react-router-dom';
+
 
 class Dashboard extends React.Component {
     constructor(props){
@@ -16,17 +18,17 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div id="dashboard">
-                asdf dashboard
+                DASHBOARD:  {this.props.current_user} dropdown logout here
                 <div id="YOU_OWE"> 
                     {
                         this.props.bills.map(bill => 
                         (
-                            <p key={bill.id}> 
-                            {bill.lender_id} 
-                            {bill.borrower_id}
-                            {bill.amount}
-                            {bill.lender} 
-                            </p>
+                            <Link to={`/friends/${bill.lender_id}`}>
+                                <p key={bill.id}>
+                                        <span> {bill.created_at} {bill.borrower} owes {bill.lender} $ {bill.amount} </span>
+                                </p>
+                        
+                            </Link> 
                         ))
                     }
 
@@ -39,7 +41,9 @@ class Dashboard extends React.Component {
 
 const mSTP = (state) => {
     return {
-        bills: Object.values(state.entities.bills) 
+        bills: Object.values(state.entities.bills),
+        //user: Object.values(state.entities.users)[0].username,
+        current_user: state.entities.users[state.session.id].username
     }
 }
 
