@@ -19,7 +19,7 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+/* html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -61,7 +61,7 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}
+} */
 
 /* // reset file end */
 
@@ -306,6 +306,73 @@ Position: sticky for navbar as in gets stuck
 } */
 
 
+
+
+
 .hidden{
   display: none;
 }
+
+
+
+/* dashboard.jsx */
+#dashboard{
+  width: 100%;
+}
+
+#right-bar{
+  float:left; 
+  width: 25%;
+} 
+
+#YOU_OWE {
+  float:left; 
+  width: 50%;
+}
+
+#friends_bar{
+  float:left; 
+  width: 25%;
+}
+/* end dashboard.jsx */
+
+/* Greeting container css */
+
+ .header-link {
+   text-decoration: none;
+   color: black;
+ }
+
+ hr {
+   border-bottom: 1px solid grey;
+ }
+
+ .session-submit {
+   text-transform: capitalize;
+ }
+
+ .modal-background {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   left: 0;
+   background: rgba(0, 0, 0, 0.7);
+   z-index: 10;
+ }
+
+ .modal-child {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ }
+
+ .close-x {
+   position: absolute;
+   top: 5px;
+   right: 5px;
+   cursor: pointer;
+ }
+
+ /* greeting container */

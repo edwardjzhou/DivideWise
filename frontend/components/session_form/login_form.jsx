@@ -40,8 +40,8 @@ class LoginForm extends React.Component {
 
     demoFill() {
         this.setState({
-            username: 'DEMO_USERNAME',
-            password: 'asdjfkl;',
+            username: 'edward',
+            password: 'password',
         })
        setTimeout(() => this.props.processForm(this.state), 1500);
     }

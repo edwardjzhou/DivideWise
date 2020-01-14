@@ -17,6 +17,8 @@ import LogInFormContainer from './session_form/login_form_container';
 import Splash from './static/splash';
 import Dashboard from './dashboard/dashboard';
 import Modal from './modal/modal';
+import GreetingContainer from './greeting/greeting_container';
+
 
 class App extends React.Component{
     render(){
@@ -25,13 +27,15 @@ class App extends React.Component{
             <div className="wrapper">
                 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
                     <Modal />
+                    {/* <GreetingContainer /> */}
                     <Switch>
-                        <AuthRoute exact path="/login" component={LogInFormContainer} />
-                        <AuthRoute exact path="/signup" component={SignupFormContainer} />
+               
                         {/* <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} /> */}
                         {/* <Route path="/benches/:benchId" component={BenchShowContainer} /> */}
-                        <ProtectedRoute exact path='/' component={Dashboard} />
-                        <Route exact path="/" component={Splash} />
+                        <ProtectedRoute path='/dashboard' component={Dashboard} />
+                        <AuthRoute path="/login" component={LogInFormContainer} /> 
+                        <AuthRoute path="/signup" component={SignupFormContainer} /> 
+                        <AuthRoute path="/" component={Splash} />
                     </Switch>
             </div>
         );         

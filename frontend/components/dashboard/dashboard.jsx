@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchBills, fetchBill} from '../../actions/bill_actions'
 import { Link } from 'react-router-dom';
+import Friends from './friends'
 
 
 class Dashboard extends React.Component {
@@ -19,7 +20,12 @@ class Dashboard extends React.Component {
         return (
             <div id="dashboard">
                 DASHBOARD:  {this.props.current_user} dropdown logout here
-                <div id="YOU_OWE"> 
+
+                <div id="friends_bar">
+                    <Friends></Friends>
+                </div>
+
+                <div id="YOU_OWE" > 
                     {
                         this.props.bills.map(bill => 
                         (
@@ -32,6 +38,11 @@ class Dashboard extends React.Component {
                         ))
                     }
 
+                </div>
+
+                <div id="right-bar">
+                    SPLITWISE ON THE GO
+                    Get the free Splitwise app and add IOUs from anywhere:
                 </div>
             </div>
         );

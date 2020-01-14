@@ -23,7 +23,7 @@ class Api::FriendshipsController < ApplicationController
     def destroy
         @friendship = Friendship.find[:id]
         @friendship.destroy!
-        redirect_to "api/friendships/index"
+        # redirect_to "api/friendships/index"
     end
 
     def index
