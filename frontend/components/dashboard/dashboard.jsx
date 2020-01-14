@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div id="dashboard">
+            <div id="dashboard" className="full-height">
                 DASHBOARD:  {this.props.current_user} dropdown logout here  <button className="header-button" onClick={this.props.logout}>Log Out</button>
 
 
@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
                     <Friends></Friends>
                 </div>
 
-                <div id="YOU_OWE" > 
+                <div id="YOU_OWE" className="full-height"> 
                     {
                         this.props.bills.map(bill => 
                         (
@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
 
                 </div>
 
-                <div id="right-bar">
+                <div id="right-bar" className="full-height">
                     SPLITWISE ON THE GO
                     Get the free Splitwise app and add IOUs from anywhere:
                 </div>

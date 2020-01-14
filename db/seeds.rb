@@ -28,9 +28,9 @@ Friendship.destroy_all
 Friendship.create!(user_one_id: 1, user_two_id: 3)
 Friendship.create!(user_one_id: 1, user_two_id: 2)
 Friendship.create!(user_one_id: 2, user_two_id: 3)
-Friendship.create!(user_one_id: 3, user_two_id: 2)
+Friendship.create!(user_one_id: 2, user_two_id: 4)
 Friendship.create!(user_one_id: 4, user_two_id: 5)
-Friendship.create!(user_one_id: 5, user_two_id: 1)
+Friendship.create!(user_one_id: 1, user_two_id: 5)
 
 Payment.destroy_all
 Payment.create!(payer_id: 2, bill_id: 1, amount: 500)

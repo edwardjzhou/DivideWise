@@ -11,11 +11,24 @@ class Api::UsersController < ApplicationController
         end
     end
 
+
+    def index
+        @users = User.all.where("'id' != '#{current_user.id}'")
+        # answer = []
+        # @users.each do |user|
+            # answer.push("#{user.username}:#{user.id}")
+        # end
+        # render json: answer
+        render "api/users/index"
+
+    end
+
     private
     def user_params
         # params.require(:user).permit(:username, :email, :password)
         params.require(:user).permit!
     end
+
 end
 
 

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 import { login, signup } from './util/session_api_util';
+import { fetchFriends } from './actions/friend_actions';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         store = configureStore();
     }
-    store = configureStore();
+    //store = configureStore();
 
     const root = document.getElementById('root');
     window.getState = store.getState;
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.login = login;
     window.signup = signup;
     window.store = store;
+    window.fetchFriends = fetchFriends;
     //window.preloadedState = preloadedState
 
     ReactDOM.render(<Root store={store} />, root);

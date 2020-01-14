@@ -2,35 +2,46 @@ import React from 'react';
 // import LeftMenu from './left_menu'
 //import Modal from './modal'
 import { connect } from 'react-redux';
-import { fetchBills, fetchBill } from '../../actions/bill_actions'
+import { fetchBills, fetchBill } from '../../actions/bill_actions';
 import { Link } from 'react-router-dom';
 import { openModal, closeModal } from '../../actions/modal_actions';
-import AddFriends from './addfriends'
+import AddFriends from './addfriends';
+import { fetchFriends } from '../../actions/friend_actions';
 
 
 class Friends extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {}
+
     }
 
-    // componentDidMount() {
-    //     this.props.fetchFriends()
-    // }
+    componentDidMount() {
+        this.props.fetchFriends()
+    }
 
     render() {
+
         return (
             <div>
                 <AddFriends></AddFriends>
                 Friends List
+                {this.props.friends.map(friend => (
+                    friend.friends_name !==  this.props.current_user ?
+                        <li key={friend.id}>{friend.friends_name}</li>
+                         : null)
+                    )
+                }
+                {this.props.current_user}
             </div>
         );
     }
-
 }
+
 
 const mSTP = (state) => {
     return {
-        bills: Object.values(state.entities.bills),
+        friends: Object.values(state.entities.friends),
         //user: Object.values(state.entities.users)[0].username,
         current_user: state.entities.users[state.session.id].username
     }
@@ -45,7 +56,10 @@ const mDTP = (dispatch) => {
                 Login
             </button>
         ),
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
+
+        fetchFriends: () => dispatch(fetchFriends()),
+
     }
 }
 

@@ -7,13 +7,13 @@ const Footer = () => {
     return(
     <div className="footer">
     Made with :) in San Francisco, USA
-                    <a href="/jobs">Jobs</a> |
-                    <a href="/calculators">Calculators</a> |
-                    <a href="https://blog.splitwise.com">Blog</a> |
-                    <a href="/terms">Terms</a> |
-                    <a href="/press">Press</a> |
-                    <a href="http://dev.splitwise.com">API</a> |
-                    <a href="/contact">Contact me</a>
+                    <a href="/jobs"> Jobs</a> |
+                    <a href="/calculators"> Calculators</a> |
+                    <a href="https://blog.splitwise.com">&nbsp;Blog</a> |
+                    <a href="/terms">&nbsp;Terms</a> |
+                    <a href="/press">&#160;Press</a> |
+                    <a href="http://dev.splitwise.com">&#160;API</a> |
+                    <a href="/contact">&#160;Contact me</a>
     </div> 
     ) 
 }

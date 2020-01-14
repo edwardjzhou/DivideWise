@@ -20,17 +20,50 @@ import NavBar from './navbar';
 class Splash extends React.Component {
     constructor(props){
         super(props)
+        this.state = { 
+            seconds: 0,
+            answer: "with anyone"
+         };
+
     }
 
+    componentDidMount() {
+        this.interval = setInterval(() => this.tick(), 2000);
+    }
+
+    tick() {
+        this.setState(state => ({
+            seconds: state.seconds + 1
+            
+        }));
+        
+        let answer = "with anyone."
+        if (this.state.seconds % 3 === 0) {
+            answer = "with anyone."
+        } else if (this.state.seconds % 3 === 1) {
+            answer = "with housemates."
+        } else {
+            answer = "with your partner."
+        }
+        
+        this.setState(state => ({
+            answer: answer
+        }))
+       
+
+    }
+
+
     render() {
+
         return ( 
             <div>
                 <NavBar></NavBar>
                 <div className="flex_container">
-                    <p>Less stress when sharing expenses 
-                        {/* <span id='swap-one'>with anyone.</span>
-                        <span id='swap-two'>with housemates.</span>
-                        <span id='swap-three'>with your partner.</span> */}
+                    <p>Less stress when sharing expenses {this.state.answer}
+                        {/* <span id='swap-one'></span>
+                        <span id='swap-two'></span>
+                        <span id='swap-three'</span> */}
                     </p>
                     <LoginFormContainer></LoginFormContainer>
                 </div>

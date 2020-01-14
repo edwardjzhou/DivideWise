@@ -4,7 +4,7 @@ export const RECEIVE_FRIENDS = 'RECEIVE_FRIENDS';
 export const RECEIVE_FRIEND = 'RECEIVE_FRIEND';
 
 
-export const receiveFriends = () => {
+export const receiveFriends = (friends) => {
     return {
         type: RECEIVE_FRIENDS,
         friends
@@ -25,7 +25,8 @@ export const createFriend = friend => dispatch => (
 );
 
 export const fetchFriends = () => dispatch => (
-    APIUtil.fetchFriends().then(fetchedFriends => (
-        dispatch(receiveFriends(fetchedFriends))
-    ))
+    APIUtil.fetchFriends().then(friends => {
+        dispatch(receiveFriends(friends))
+    }
+    )
 );
