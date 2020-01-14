@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchBills, fetchBill} from '../../actions/bill_actions'
 import { Link } from 'react-router-dom';
 import Friends from './friends'
+import { logout } from '../../actions/session_actions';
 
 
 class Dashboard extends React.Component {
@@ -19,7 +20,8 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div id="dashboard">
-                DASHBOARD:  {this.props.current_user} dropdown logout here
+                DASHBOARD:  {this.props.current_user} dropdown logout here  <button className="header-button" onClick={this.props.logout}>Log Out</button>
+
 
                 <div id="friends_bar">
                     <Friends></Friends>
@@ -54,14 +56,24 @@ const mSTP = (state) => {
     return {
         bills: Object.values(state.entities.bills),
         //user: Object.values(state.entities.users)[0].username,
-        current_user: state.entities.users[state.session.id].username
+        current_user: state.entities.users[state.session.id].username,
+        // currentUser: session.currentUser
+
     }
 }
 
 const mDTP = (dispatch) => {
     return {
         fetchBills: () => dispatch(fetchBills()),
+        logout: () => dispatch(logout()),
+
     }
 }
+
+
+
+
+
+
 
 export default connect(mSTP, mDTP)(Dashboard)

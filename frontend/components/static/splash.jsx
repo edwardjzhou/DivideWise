@@ -18,28 +18,23 @@ import NavBar from './navbar';
 
 
 class Splash extends React.Component {
-    
-
+    constructor(props){
+        super(props)
+    }
 
     render() {
-
         return ( 
             <div>
                 <NavBar></NavBar>
-            
                 <div className="flex_container">
                     <p>Less stress when sharing expenses 
-                        <span id='swap-one'>with anyone.</span>
+                        {/* <span id='swap-one'>with anyone.</span>
                         <span id='swap-two'>with housemates.</span>
-                        <span id='swap-three'>with your partner.</span>
+                        <span id='swap-three'>with your partner.</span> */}
                     </p>
                     <LoginFormContainer></LoginFormContainer>
                 </div>
             
-            
-            
-
-
                 <div className="bottompad">
                 </div>
 

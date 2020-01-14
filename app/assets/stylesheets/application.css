@@ -315,28 +315,57 @@ Position: sticky for navbar as in gets stuck
 
 
 
-/* dashboard.jsx */
+/* INSIDE dashboard.jsx */
+
+
 #dashboard{
   width: 100%;
 }
-
+/* 
 #right-bar{
   float:left; 
   width: 25%;
-} 
+}  */
+
+  #YOU_OWE{
+    /* margin: 0 200px 0 200px; */
+    justify-content: center;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    min-height: 100%;
+    -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    float:left; 
+    width: 50%;
+  }
+
+
+
+  #right-bar{
+    width: 25%;
+    padding-bottom: 10px;
+    position: relative;
+    padding-top: 33px;
+    margin-right: -201px;
+    padding-left: 24px;
+    width: 176px;
+    z-index: 3;
+    float: right;
+  }
 
 #YOU_OWE {
-  float:left; 
-  width: 50%;
+
 }
 
 #friends_bar{
   float:left; 
   width: 25%;
+  z-index: 3;
 }
 /* end dashboard.jsx */
 
-/* Greeting container css */
+/* modal  css */
 
  .header-link {
    text-decoration: none;
@@ -375,4 +404,17 @@ Position: sticky for navbar as in gets stuck
    cursor: pointer;
  }
 
- /* greeting container */
+ /* end modal  */
+
+.addfriend-form{
+    padding: 20px 25px;
+    min-height: 130px;
+    box-shadow: 0 2px 5px 2px #B4B4B4;
+    padding-bottom: 20px;
+    line-height: 18px;
+    background-clip: border-box;
+    background-color: white;
+    z-index: 100;
+    width: 50%
+
+}

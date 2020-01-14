@@ -13,9 +13,9 @@ class Friends extends React.Component {
         super(props)
     }
 
-    componentDidMount() {
-        this.props.fetchBills()
-    }
+    // componentDidMount() {
+    //     this.props.fetchFriends()
+    // }
 
     render() {
         return (
@@ -38,12 +38,12 @@ const mSTP = (state) => {
 
 const mDTP = (dispatch) => {
     return {
-        fetchBills: () => dispatch(fetchBills()),
-        processForm: (user) => dispatch(signup(user)),
+        //fetchBills: () => dispatch(fetchBills()),
+        //processForm: (user) => dispatch(signup(user)),
         otherForm: (
-            <button onClick={() => dispatch(openModal('login'))}>
+            <button onClick={() => dispatch(openModal('Add'))}>
                 Login
-      </button>
+            </button>
         ),
         closeModal: () => dispatch(closeModal())
     }
