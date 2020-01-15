@@ -8,7 +8,7 @@ const AddFriends = ({ currentUser, logout, openModal }) => {
 
     const sessionLinks = () => (
         <nav className="">
-            <button onClick={() => openModal('Add')}>Add Friends</button>
+            <button onClick={() => openModal('Add')}>+</button>
         </nav>
         
     );

@@ -24,15 +24,15 @@ class Friends extends React.Component {
 
         return (
             <div>
-                <AddFriends></AddFriends>
-                Friends List
+                <span> Friends<AddFriends>  </AddFriends></span>
+
                 {this.props.friends.map(friend => (
                     friend.friends_name !==  this.props.current_user ?
                         <li key={friend.id}>{friend.friends_name}</li>
                          : null)
                     )
                 }
-                {this.props.current_user}
+                {/* {this.props.current_user} */}
             </div>
         );
     }
@@ -51,12 +51,12 @@ const mDTP = (dispatch) => {
     return {
         //fetchBills: () => dispatch(fetchBills()),
         //processForm: (user) => dispatch(signup(user)),
-        otherForm: (
-            <button onClick={() => dispatch(openModal('Add'))}>
-                Login
-            </button>
-        ),
-        closeModal: () => dispatch(closeModal()),
+        // otherForm: (
+        //     <button onClick={() => dispatch(openModal('Add'))}>
+        //         Login
+        //     </button>
+        // ),
+        // closeModal: () => dispatch(closeModal()),
 
         fetchFriends: () => dispatch(fetchFriends()),
 

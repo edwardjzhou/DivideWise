@@ -5,10 +5,10 @@ export const fetchFriends = () => (
     })
 
 );
-export const createFriend = friend => (
+export const createFriend = friendship => (
     $.ajax({
         method: 'POST',
         url: 'api/friendships',
-        data: {friend}
+        data: {friendship}
     })
 );

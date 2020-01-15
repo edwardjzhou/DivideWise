@@ -26,6 +26,10 @@ class App extends React.Component{
         return( 
             <div className="wrapper">
                 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
+                
+                {/* fade in animation */}
+                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
                     <Modal />
                     {/* <GreetingContainer /> */}
                     <Switch>

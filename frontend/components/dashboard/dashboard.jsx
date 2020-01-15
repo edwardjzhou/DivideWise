@@ -19,21 +19,21 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div id="dashboard" className="full-height">
+            <div className="row">
                 DASHBOARD:  {this.props.current_user} dropdown logout here  <button className="header-button" onClick={this.props.logout}>Log Out</button>
 
 
-                <div id="friends_bar">
-                    <Friends></Friends>
+                <div id="friends_bar" className="column">
+                    <Friends /> 
                 </div>
 
-                <div id="YOU_OWE" className="full-height"> 
+                <div id="YOU_OWE" className="column_main"> 
                     {
                         this.props.bills.map(bill => 
                         (
                             <Link to={`/friends/${bill.lender_id}`}>
                                 <p key={bill.id}>
-                                        <span> {bill.created_at} {bill.borrower} owes {bill.lender} $ {bill.amount} </span>
+                                        <span> {new Date(bill.created_at).toLocaleDateString("en-US")} <br />{bill.borrower} owes {bill.lender} $ {bill.amount/100} </span>
                                 </p>
                         
                             </Link> 
@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
 
                 </div>
 
-                <div id="right-bar" className="full-height">
+                <div id="right-bar" className="column">
                     SPLITWISE ON THE GO
                     Get the free Splitwise app and add IOUs from anywhere:
                 </div>

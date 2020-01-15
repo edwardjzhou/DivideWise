@@ -66,15 +66,10 @@ table {
 /* reset file end */
 
 
-
-
-
-
-
- * {
+* {
    font-family: 'Lato', sans-serif;
    border: 1px solid red;
-  }
+}
 
  .header-link {
  }
@@ -138,10 +133,10 @@ input[type="url"], input[type="search"], input[type="tel"],
 input[type="color"], .uneditable-input{
 
   background-color: #ffffff;
-  border: 1px solid #cccccc;
-  -webkit-border-radius: 3px;
+  /* border: 1px solid #cccccc; */
+  /* -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  border-radius: 3px;
+  border-radius: 3px; */
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
@@ -168,7 +163,7 @@ input[type="color"], .uneditable-input{
   background: #5bc5a7;
   z-index: 99;
   border-bottom: 1px solid #48be9d;
-  color: #fff;
+  /* color: #fff; */
   text-shadow: 0 -1px 0 #39a385;
   box-shadow: 0 0 3px rgba(0,0,0,0.5)
 }
@@ -194,11 +189,11 @@ h1{
   height: 114px;
 }
 
-.wrapper{
+/* .wrapper{
   min-height: 100%;
   height: auto !important;
   margin: 0 0 -114px;
-}
+} */
 
 
 
@@ -320,6 +315,7 @@ Position: sticky for navbar as in gets stuck
 
 #dashboard{
   width: 100%;
+  height: 100vh;
 }
 /* 
 #right-bar{
@@ -336,8 +332,12 @@ Position: sticky for navbar as in gets stuck
     -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.2);
     -moz-box-shadow: 0 0 12px rgba(0,0,0,0.2);
     box-shadow: 0 0 12px rgba(0,0,0,0.2);
-    float:left; 
-    width: 50%;
+    float: left; 
+    width: 40%;
+    /* display: flex; */
+    /* height: 100vh; */
+    position: relative;
+    
   }
 
 
@@ -352,15 +352,16 @@ Position: sticky for navbar as in gets stuck
     width: 176px;
     z-index: 3;
     float: right;
+    /* height: 100vh; */
   }
 
-#YOU_OWE {
 
-}
 
 #friends_bar{
+  display: flex
   float:left; 
   width: 25%;
+  height: 100vh;
   z-index: 3;
 }
 /* end dashboard.jsx */
@@ -415,6 +416,8 @@ Position: sticky for navbar as in gets stuck
     background-clip: border-box;
     background-color: white;
     z-index: 100;
-    width: 50%
+    width: 40vw;
+    height: 50vh;
+  
 
 }

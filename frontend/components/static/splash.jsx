@@ -8,6 +8,8 @@ import {
     NavLink,
     HashRouter
 } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 
 import { AuthRoute, ProtectedRoute } from '../../util/route_util';
@@ -28,13 +30,12 @@ class Splash extends React.Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.tick(), 2000);
+        this.interval = setInterval(() => this.tick(), 10000);
     }
 
     tick() {
         this.setState(state => ({
             seconds: state.seconds + 1
-            
         }));
         
         let answer = "with anyone."
@@ -49,27 +50,29 @@ class Splash extends React.Component {
         this.setState(state => ({
             answer: answer
         }))
-       
-
     }
 
 
     render() {
-
         return ( 
             <div>
                 <NavBar></NavBar>
                 <div className="flex_container">
-                    <p>Less stress when sharing expenses {this.state.answer}
+                    <p>Less stress when sharing expenses <span className="w3-animate-fading">{this.state.answer}</span>
                         {/* <span id='swap-one'></span>
                         <span id='swap-two'></span>
                         <span id='swap-three'</span> */}
                     </p>
                     <LoginFormContainer></LoginFormContainer>
+                    
+                    {/* errors from logging in  */}
+                    <span className="errors">{this.props.errors}</span>
+                    {/* end errors from logging in */}
+
                 </div>
             
-                <div className="bottompad">
-                </div>
+                {/* <div className="bottompad">
+                </div> */}
 
                  <Footer></Footer>
                
@@ -77,4 +80,16 @@ class Splash extends React.Component {
             )
     }
 }
-export default Splash
+
+const mstp = (state) => {
+    return {
+        errors: Object.values(state.errors.session)
+    }
+}
+const mdtp = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mstp,mdtp)(Splash)
