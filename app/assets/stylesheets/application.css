@@ -355,8 +355,8 @@ Position: sticky for navbar as in gets stuck
 
 
 #friends_bar{
-  display: flex
-  float:left; 
+  display: flex;
+  float: left; 
   width: 25%;
   height: 100vh;
   z-index: 3;
