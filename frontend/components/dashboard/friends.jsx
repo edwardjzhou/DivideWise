@@ -23,7 +23,8 @@ class Friends extends React.Component {
     render() {
 
         return (
-            <div>
+            <div id="friends_bar" className="column">
+                <div>
                 <span> Friends<AddFriends>  </AddFriends></span>
 
                 {this.props.friends.map(friend => (
@@ -33,6 +34,7 @@ class Friends extends React.Component {
                     )
                 }
                 {/* {this.props.current_user} */}
+                </div>
             </div>
         );
     }

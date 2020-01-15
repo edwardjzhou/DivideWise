@@ -6,7 +6,7 @@ import { fetchBills, fetchBill} from '../../actions/bill_actions'
 import { Link } from 'react-router-dom';
 import Friends from './friends'
 import { logout } from '../../actions/session_actions';
-
+import Bills from './bills'
 
 class Dashboard extends React.Component {
     constructor(props){
@@ -20,14 +20,15 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="row">
-                DASHBOARD:  {this.props.current_user} dropdown logout here  <button className="header-button" onClick={this.props.logout}>Log Out</button>
-
-
-                <div id="friends_bar" className="column">
-                    <Friends /> 
+                
+                <div id="dashboardnavbar"> DASHBOARD:  
+                    <a id="dropdown">{this.props.current_user} dropdown logout here  </a>
+                    <button className="header-button" onClick={this.props.logout}>Log Out</button>
                 </div>
 
-                <div id="YOU_OWE" className="column_main"> 
+                    <Friends /> 
+                    <Bills />
+                {/* <div id="YOU_OWE" className="column_main"> 
                     {
                         this.props.bills.map(bill => 
                         (
@@ -41,7 +42,7 @@ class Dashboard extends React.Component {
                         ))
                     }
 
-                </div>
+                </div> */}
 
                 <div id="right-bar" className="column">
                     SPLITWISE ON THE GO

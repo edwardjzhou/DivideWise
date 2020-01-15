@@ -3,8 +3,13 @@ class Api::BillsController < ApplicationController
 
     def create
         @bill = Bill.new(bill_params)
+        
         @bill.settled = true
 
+        if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
+            render json: "not a bill you're involved in"
+        end
+        
         if @bill.save
             render "api/bills/show"
         else

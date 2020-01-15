@@ -26,8 +26,10 @@ class Api::FriendshipsController < ApplicationController
         @friendship = Friendship.find[:id]
         if (current_user.id == @friendship.user_one_id || current_user.id == @friendship.user_two_id)
             @friendship.destroy!
+            render json: "destroyed friendship betwixt #{@friendship.user_one_id} and #{@friendship.user_two_id}"
+        else
+            render json: "destroy failure"
         end
-        render json: "destroyed friendship betwixt #{@friendship.user_one_id} and #{@friendship.user_two_id}"
         # redirect_to "api/friendships/index"
     end
 

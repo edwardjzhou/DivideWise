@@ -15,7 +15,7 @@ class FriendsForm extends React.Component {
     constructor(props) {
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.state = {}
+        this.state = { selectedFriend: null}
     }
 
     componentDidMount(){
@@ -45,6 +45,8 @@ class FriendsForm extends React.Component {
             user_one_id: user_one_id, 
             user_two_id: user_two_id
         })
+        
+        this.forceUpdate()
     }
 
     // $.ajax({
@@ -57,12 +59,28 @@ class FriendsForm extends React.Component {
         return (
             <div className="addfriend-form">
                 <form onSubmit={this.handleSubmit}>
-                    Add Friend
+                    <center>Add Friend</center>
                     <label> To: 
-                        <input type="text" placeholder='choose a username' value={this.state.selectedFriend} />
+
+
+                        {/* <input type="text" placeholder='choose a username' value={this.props.users[this.state.selectedFriend] === undefined ?
+                            null : 
+                            this.props.users[this.state.selectedFriend].username 
+                        } /> */}
+
+                        
+                        {this.props.users[this.state.selectedFriend] === undefined ?
+                            null :
+                            this.props.users[this.state.selectedFriend].username
+                        }
+
+
+                        {/* https://www.jondjones.com/frontend/react/components/how-to-build-a-filterable-search-bar-in-react */}
+                        {/* <select name="listbox" size="10"> */}
                             {this.props.users.map(user=>(
-                                <li onClick={this.update('selectedFriend')} value={user.id}>{user.username}</li>   
+                                <li onClick={this.update('selectedFriend')} value={user.id} key={user.id}>{user.username}</li>   
                             ))}
+                        {/* </select> */}
                         <input type="submit" value='Add Friend'/>
                     </label>
                 </form>

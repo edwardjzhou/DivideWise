@@ -47,8 +47,8 @@ div .alert-message {
 	top: auto;
 	bottom: auto;
 	right: auto;
-	left: auto;
 	float: none;
+	left: auto;
 	display: block;
 	clear: none;
 	z-index: auto;
