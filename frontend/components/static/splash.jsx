@@ -58,6 +58,8 @@ class Splash extends React.Component {
             <div>
                 <NavBar></NavBar>
                 <div className="flex_container">
+                    {/* logout notification message */}
+                    {this.props.message ? <div className="alert-message">{this.props.message}</div> : null} 
                     <p>Less stress when sharing expenses <span className="w3-animate-fading">{this.state.answer}</span>
                         {/* <span id='swap-one'></span>
                         <span id='swap-two'></span>
@@ -83,7 +85,8 @@ class Splash extends React.Component {
 
 const mstp = (state) => {
     return {
-        errors: Object.values(state.errors.session)
+        errors: Object.values(state.errors.session),
+        message: state.session.message
     }
 }
 const mdtp = (dispatch) => {

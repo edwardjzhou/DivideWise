@@ -21,7 +21,7 @@ export const logout = () => {
     })
 };
 
-
+// should get every user except current_user 
 export const getUsers = () => {
     return $.ajax({
         method: 'GET',

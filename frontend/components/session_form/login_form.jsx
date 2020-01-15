@@ -18,8 +18,6 @@ class LoginForm extends React.Component {
         });
     }
 
-
-
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
@@ -43,26 +41,20 @@ class LoginForm extends React.Component {
             username: 'edward',
             password: 'password',
         })
-       setTimeout(() => this.props.processForm(this.state), 1500);
+       setTimeout(() => this.props.processForm(this.state), 2000);
     }
     
-
-
-
     render() {
-
         // let styles = {transform: 'translate(-50 %, -50 %)'}
         return (
             <div className="login-form-container" >
                 <form onSubmit={this.handleSubmit} className="login-form-box">
-                    <img src={`${window.logoURL}`} alt="Logo square" className="login_logo" width="200" height="200" />
-
+                    <img src={`${window.logoURL}`} alt="Logo square" className="login_logo" width="600" height="300" />
                     <div className='welcome'>WELCOME TO DIVIDEWISE</div>
                     <br />  
                     {/* Please {this.props.formType} or {this.props.navLink} */}
-
                     <div className="login-form">
-                            <br />
+                        <br />
                         <label>Username:
                             <input type="text"
                             value={this.state.username}
@@ -81,15 +73,11 @@ class LoginForm extends React.Component {
                         <br />
                         <input className="session-submit" type="submit" value={this.props.formType} />
                     </div>
-
-                    </form>
-
-
-                        <button onClick={
-                            () =>
-                                this.demoFill()
-                        }>DEMO LOGIN
-                            </button>
+                </form>
+                <button onClick={ () =>
+                    this.demoFill()}> 
+                    DEMO LOGIN
+                </button>
             </div>
         );
     }

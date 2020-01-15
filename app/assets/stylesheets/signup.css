@@ -1,0 +1,84 @@
+input .btn btn-large btn-orange {
+	/* Font & Text */
+	font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	letter-spacing: normal;
+	line-height: normal;
+	text-decoration: none solid rgb(255, 255, 255);
+	text-align: center;
+	text-indent: 0px;
+	text-transform: none;
+	vertical-align: middle;
+	white-space: pre;
+	word-spacing: 0px;
+
+	/* Color & Background */
+	background-attachment: scroll;
+	background-color: rgb(255, 82, 22);
+	background-image: none;
+	background-position: 0% 0%;
+	background-repeat: repeat;
+	color: rgb(255, 255, 255);
+
+	/* Box */
+	height: 53.0682px;
+	width: 152.841px;
+	border: ;
+	border-top: 0.994318px solid rgba(0, 0, 0, 0.1);
+	border-right: 0.994318px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 0.994318px solid rgba(0, 0, 0, 0.25);
+	border-left: 0.994318px solid rgba(0, 0, 0, 0.1);
+	margin: 9px 0px 0px;
+	padding: 11px 15px;
+	max-height: none;
+	min-height: 0px;
+	max-width: none;
+	min-width: 0px;
+
+	/* Positioning */
+	position: static;
+	top: auto;
+	bottom: auto;
+	right: auto;
+	left: auto;
+	float: none;
+	display: inline-block;
+	clear: none;
+	z-index: auto;
+
+	/* List */
+	list-style-image: none;
+	list-style-type: disc;
+	list-style-position: outside;
+
+	/* Table */
+	border-collapse: separate;
+	border-spacing: 0px 0px;
+	caption-side: top;
+	empty-cells: show;
+	table-layout: auto;
+
+	/* Miscellaneous */
+	overflow: visible;
+	cursor: pointer;
+	visibility: visible;
+
+	/* Effects */
+	transform: none;
+	transition: background-position 0.1s linear 0s;
+	outline: rgb(255, 0, 0) dashed 0.909091px;
+	outline-offset: -1.81818px;
+	box-sizing: border-box;
+	resize: none;
+	text-shadow: rgb(200, 52, 0) 0px -1px 0px;
+	text-overflow: clip;
+	word-wrap: normal;
+	box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}

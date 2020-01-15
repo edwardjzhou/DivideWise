@@ -17,7 +17,8 @@ const NavBar = () => {
                 or    
                 <button className="btn">
                     <NavLink to="/signup"
-                    activeStyle={{ cursor: 'bold' }}>
+                    // activeStyle={{ cursor: 'bold' }}
+                    >
                     Sign up
                     </NavLink>
                 </button>

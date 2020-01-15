@@ -33,7 +33,8 @@ class Dashboard extends React.Component {
                         (
                             <Link to={`/friends/${bill.lender_id}`}>
                                 <p key={bill.id}>
-                                        <span> {new Date(bill.created_at).toLocaleDateString("en-US")} <br />{bill.borrower} owes {bill.lender} $ {bill.amount/100} </span>
+                                        <span> {new Date(bill.created_at).toLocaleDateString("en-US")} <br />{bill.borrower} 
+                                        &nbsp; owes {bill.lender} $ {bill.amount/100} </span>
                                 </p>
                         
                             </Link> 
