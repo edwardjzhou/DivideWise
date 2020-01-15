@@ -3,14 +3,16 @@ class Api::FriendshipsController < ApplicationController
     
     def create 
         @friendship = Friendship.new(friendship_params)
-        if @friendship.user_one_id == @friendship.user_two_id
+        if @friendship.user_one_id == @friendship.user_two_id && (current_user.id == @friendship.user_one_id || current_user.id == @friendship.user_two_id)
             render json: "cant be own friend"
-        elsif @friendship.user_one_id > @friendship.user_two_id
+        elsif @friendship.user_one_id > @friendship.user_two_id && (current_user.id == @friendship.user_one_id || current_user.id == @friendship.user_two_id)
             @friendship.user_one_id, @friendship.user_two_id = 
             @friendship.user_two_id, @friendship.user_one_id
+        else
+            render json: "friendship failed because you're trying to make someone who isn't you friends with someone who isn't you"
         end
 
-        #check if it already exists?
+        #check if it already exists? nah db validations
 
         if @friendship.save
             render "api/friendships/show"
@@ -22,7 +24,10 @@ class Api::FriendshipsController < ApplicationController
         
     def destroy
         @friendship = Friendship.find[:id]
-        @friendship.destroy!
+        if (current_user.id == @friendship.user_one_id || current_user.id == @friendship.user_two_id)
+            @friendship.destroy!
+        end
+        render json: "destroyed friendship betwixt #{@friendship.user_one_id} and #{@friendship.user_two_id}"
         # redirect_to "api/friendships/index"
     end
 

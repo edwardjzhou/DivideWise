@@ -3,6 +3,9 @@ class Api::PaymentsController < ApplicationController
 
     def create
         @payment = Payment.new(payment_params)
+        
+        if @payment.
+
         if @payment.save
             render "api/bills/show"
         else

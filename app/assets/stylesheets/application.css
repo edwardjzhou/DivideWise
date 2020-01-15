@@ -62,7 +62,7 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-} */ 
+} */
 
 /* reset file end */
 
@@ -169,18 +169,7 @@ input[type="color"], .uneditable-input{
   box-shadow: 0 0 3px rgba(0,0,0,0.5)
 }
 
-.flex_container{
-    width: auto;
-    padding: 0 10px;
-    margin: 0 auto;
-    position: relative;
-    padding-top: 60px;
-    display: inline-block;
-    position: absolute;
-    
-    right: 50%;
-    margin-left: 193px;
-}
+
 
 h1{
   font-size: 10

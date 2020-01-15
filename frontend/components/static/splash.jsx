@@ -60,7 +60,9 @@ class Splash extends React.Component {
                 <div className="flex_container">
                     {/* logout notification message */}
                     {this.props.message ? <div className="alert-message">{this.props.message}</div> : null} 
-                    <p>Less stress when sharing expenses <span className="w3-animate-fading">{this.state.answer}</span>
+                    <p id="text-swap">Less stress when dividing expenses <span className="w3-animate-fading">
+                        <dt className="text-heart">{this.state.answer}</dt>
+                        </span>
                         {/* <span id='swap-one'></span>
                         <span id='swap-two'></span>
                         <span id='swap-three'</span> */}

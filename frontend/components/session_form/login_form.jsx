@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
                     <div className="login-form">
                         <br />
                         <label>Username:
-                            <input type="text"
+                            <input type="text" id="user_session_email"
                             value={this.state.username}
                             onChange={this.update('username')}
                             className="login-input"
@@ -64,20 +64,21 @@ class LoginForm extends React.Component {
                         </label>
                         <br />
                         <label>Password:
-                            <input type="password"
+                            <input type="password" id="user_session_password"
                             value={this.state.password}
                             onChange={this.update('password')}
                             className="login-input"
                             />
                         </label>
                         <br />
-                        <input className="session-submit" type="submit" value={this.props.formType} />
+                        <input className="orangebutton" type="submit" value={this.props.formType} />
+                        <button className="orangebutton" onClick={() =>
+                            this.demoFill()}>
+                            DEMO LOGIN
+                        </button>
                     </div>
                 </form>
-                <button onClick={ () =>
-                    this.demoFill()}> 
-                    DEMO LOGIN
-                </button>
+                
             </div>
         );
     }

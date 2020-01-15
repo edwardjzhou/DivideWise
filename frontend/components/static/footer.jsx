@@ -7,13 +7,14 @@ const Footer = () => {
     return(
     <div className="footer">
     Made with :) in San Francisco, USA
-                    <a href="/jobs"> Jobs</a> |
-                    <a href="/calculators"> Calculators</a> |
-                    <a href="https://blog.splitwise.com">&nbsp;Blog</a> |
-                    <a href="/terms">&nbsp;Terms</a> |
-                    <a href="/press">&#160;Press</a> |
-                    <a href="http://dev.splitwise.com">&#160;API</a> |
-                    <a href="/contact">&#160;Contact me</a>
+                <div className="links">
+                    &nbsp;<a href="https://github.com/featurerich1/full-stack-project/wiki">My design docs</a> |
+                    &nbsp;<a href="https://github.com/featurerich1/">My Github</a> |
+                    &nbsp;<a href="https://www.linkedin.com/in/edzhou/">My Linkedin</a> |
+                    &#160;<a href="http://dev.splitwise.com">Splitwise's API</a> |
+                    &#160;<a href="mailto:edward@utexas.edu">Email me!</a>
+                </div>
+                    
     </div> 
     ) 
 }
