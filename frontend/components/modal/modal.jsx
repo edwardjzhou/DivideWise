@@ -3,6 +3,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 
 import FriendsForm from '../dashboard/friendsform'
+import BillsForm from '../dashboard/billsform'
 
 function Modal({ modal, closeModal }) {
     if (!modal) {
@@ -12,6 +13,9 @@ function Modal({ modal, closeModal }) {
     switch (modal) {
         case 'Add':
             component = <FriendsForm />;
+            break;
+        case 'BillCreate':
+            component = <BillsForm />;
             break;
         default:
             return null;

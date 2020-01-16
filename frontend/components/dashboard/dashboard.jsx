@@ -8,6 +8,9 @@ import Friends from './friends'
 import { logout } from '../../actions/session_actions';
 import Bills from './bills'
 
+
+
+
 class Dashboard extends React.Component {
     constructor(props){
         super(props)
@@ -21,7 +24,7 @@ class Dashboard extends React.Component {
         return (
             <div className="row">
                 
-                <div id="dashboardnavbar"> DASHBOARD:  
+                <div id="dashboardnavbar"> DIVIDEWISE:  
                     <a id="dropdown">{this.props.current_user} dropdown logout here  </a>
                     <button className="header-button" onClick={this.props.logout}>Log Out</button>
                 </div>

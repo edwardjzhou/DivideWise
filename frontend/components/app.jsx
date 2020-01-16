@@ -18,6 +18,7 @@ import Splash from './static/splash';
 import Dashboard from './dashboard/dashboard';
 import Modal from './modal/modal';
 import GreetingContainer from './greeting/greeting_container';
+import BillsForm from './dashboard/billsform';
 
 
 class App extends React.Component{
@@ -40,6 +41,7 @@ class App extends React.Component{
                         <AuthRoute path="/login" component={LogInFormContainer} /> 
                         <AuthRoute path="/signup" component={SignupFormContainer} /> 
                         <AuthRoute path="/" component={Splash} />
+                        {/* <ProtectedRoute path="/friends/:friendId" component={} />  */}
                     </Switch>
             </div>
         );         
