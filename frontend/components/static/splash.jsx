@@ -56,26 +56,70 @@ class Splash extends React.Component {
 
 
     render() {
+        var sectionStyle = {
+            width: "100%",
+            height: "400px",
+            backgroundImage: "url(" +  window.facets  + ")"
+        };
+
+
+
         return ( 
             <div>
-                <NavBar></NavBar>
-                <div className="flex_container">
+                {/* <div className="flex_container"> */
+                }
+
+                
+                <div className="flex-container">
+                    {/* <div className="header"> */}
+                    <NavLink to="/" className="header-link">
+                        <h2>Dividewise</h2>
+                    </NavLink>
+
+                    {/* <div className="login_links" > */}
+                    <div id="flexme">
+                            <NavLink to="/login" />
+                             
+                        }
+                    
+                        <button className="btn">
+                            <NavLink to="/signup">
+                                Sign up
+                            </NavLink>
+                        </button>
+                    </div>
+                </div>
+
+
+
+
+                <div>
                     {/* logout notification message */}
-                    {this.props.message ? <div className="alert-message">{this.props.message}</div> : null} 
-                    <p id="text-swap">Less stress when dividing expenses <span className="w3-animate-fading">
-                        <dt className="text-heart">{this.state.answer}</dt>
-                        </span>
-                        {/* <span id='swap-one'></span>
-                        <span id='swap-two'></span>
-                        <span id='swap-three'</span> */}
-                    </p>
+                    {this.props.message ? <div className="alert-message">{this.props.message}</div> : <br></br>} 
+                
                     {/* <LoginFormContainer></LoginFormContainer> */}
                      {/* {this.props.location} */}
                     {/* {window.location.href} */}
-                    {window.location.pathname} 
+                    {/* {window.location.pathname}  this is the correct one with / */}
+                    
+                    <div id="facets" style={sectionStyle}>
+                        <p id="text-swap">Less stress when dividing expenses <span className="w3-animate-fading">
+                            <dt className="text-heart">{this.state.answer}</dt>
+                        </span>
+                        
+                            {/* <span id='swap-one'></span>
+                        <span id='swap-two'></span>
+                        <span id='swap-three'</span> */}
+                        </p>
+                        <div>Keep track of your shared expenses and balances with housemates, trips, groups, friends, and family.</div>
+                        <div className="elephants">
+                            <img height="300" src={window.elephantx}></img>
+                            <img height="300" src={window.elephanty}></img>
+                            <img height="300" src={window.elephantz}></img>
+                        </div>
+                       
 
-
-                
+                    </div>
 
                 </div>
             

@@ -1,37 +1,59 @@
-input .btn btn-large btn-orange {
+#slideout_inner {
+  overflow: hidden;
+  transition: max-height 3s ease-out;
+  height: auto;
+  max-height: 0;
+}
+
+.slideout {
+  overflow: hidden;
+  transition: max-height 3s ease-out;
+  height: auto;
+  max-height: 0;
+}
+
+.signup-form-container{
+  position: relative;
+  align-content: center;
+  top: 20vh;
+  left: 100px;
+  display: grid
+}
+
+.orangebutton{
 	/* Font & Text */
 	font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 24px;
+	font-size: 18px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 400;
 	letter-spacing: normal;
 	line-height: normal;
 	text-decoration: none solid rgb(255, 255, 255);
-	text-align: center;
+	text-align: start;
 	text-indent: 0px;
 	text-transform: none;
-	vertical-align: middle;
+	vertical-align: baseline;
 	white-space: pre;
 	word-spacing: 0px;
 
 	/* Color & Background */
 	background-attachment: scroll;
-	background-color: rgb(255, 82, 22);
+	background-color: rgb(235, 92, 41);
 	background-image: none;
 	background-position: 0% 0%;
 	background-repeat: repeat;
 	color: rgb(255, 255, 255);
 
 	/* Box */
-	height: 53.0682px;
-	width: 152.841px;
+	height: 40px;
+	width: 140px;
 	border-top: 0.994318px solid rgba(0, 0, 0, 0.1);
 	border-right: 0.994318px solid rgba(0, 0, 0, 0.1);
 	border-bottom: 0.994318px solid rgba(0, 0, 0, 0.25);
 	border-left: 0.994318px solid rgba(0, 0, 0, 0.1);
-	margin: 9px 0px 0px;
-	padding: 11px 15px;
+	margin: 19px 0px 0px;
+	padding: 0px 30px 0px 20px;
 	max-height: none;
 	min-height: 0px;
 	max-width: none;
@@ -67,9 +89,9 @@ input .btn btn-large btn-orange {
 
 	/* Effects */
 	transform: none;
-	transition: background-position 0.1s linear 0s;
+	transition: all 0s ease 0s;
 	outline: rgb(255, 0, 0) dashed 0.909091px;
-	outline-offset: -1.81818px;
+	outline-offset: 0px;
 	box-sizing: border-box;
 	resize: none;
 	text-shadow: rgb(200, 52, 0) 0px -1px 0px;

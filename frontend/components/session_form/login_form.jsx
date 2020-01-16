@@ -1,4 +1,5 @@
 import React from 'react';
+import NavBar from '../static/navbar';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -47,7 +48,9 @@ class LoginForm extends React.Component {
     render() {
         // let styles = {transform: 'translate(-50 %, -50 %)'}
         return (
+            
             <div className="login-form-container" >
+                <NavBar></NavBar>
                 <form onSubmit={this.handleSubmit} className="login-form-box">
                     {/* <img src={`${window.logoURL}`} alt="Logo square" className="login_logo" width="600" height="300" /> */}
                     <div className='welcome'>WELCOME TO DIVIDEWISE</div>

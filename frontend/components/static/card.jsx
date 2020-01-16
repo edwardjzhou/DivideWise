@@ -64,7 +64,7 @@ class Card extends Component {
         return (
             <div>
                 <button onClick={this.showMenu}>
-                    Log in
+                    Log in 
                 </button>
 
                 {
@@ -96,6 +96,13 @@ class Card extends Component {
                                         </label>
                                         <br />
                                             <input className="session-submit" type="submit" value={this.props.formType} />
+                                        <ul>
+                                            {this.props.errors.map((error, i) => (
+                                            <li key={`error-${i}`}>
+                                                {error}
+                                            </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </form>
                             </div>

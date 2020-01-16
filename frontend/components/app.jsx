@@ -13,7 +13,7 @@ import {
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import SignupFormContainer from './session_form/signup_form_container';
-import LogInFormContainer from './session_form/login_form_container';
+import LoginFormContainer from './session_form/login_form_container';
 import Splash from './static/splash';
 import Dashboard from './dashboard/dashboard';
 import Modal from './modal/modal';
@@ -38,7 +38,7 @@ class App extends React.Component{
                         {/* <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} /> */}
                         {/* <Route path="/benches/:benchId" component={BenchShowContainer} /> */}
                         <ProtectedRoute path='/dashboard' component={Dashboard} />
-                        <AuthRoute path="/login" component={LogInFormContainer} /> 
+                        <AuthRoute path="/login" component={LoginFormContainer} /> 
                         <AuthRoute path="/signup" component={SignupFormContainer} /> 
                         <AuthRoute path="/" component={Splash} />
                         {/* <ProtectedRoute path="/friends/:friendId" component={} />  */}

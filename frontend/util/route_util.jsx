@@ -19,7 +19,7 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
         ) : (
                 // window.location.href.includes('signup') ?
             //  ( <Redirect to="/signup" /> ) :
-                ( <Redirect to="/signup" />)
+                ( <Redirect to="/" />)
             )
     )} />
 );

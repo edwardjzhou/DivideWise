@@ -10,16 +10,24 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree 
+//  *= require_tree 
  *= require_self
  */
 
 
 // /CSS Reset
-//  @import "base/reset.scss";
+ @import "./acssreset.scss";
 //  //Core
-//  @import "base/variables.scss";
-//  @import "base/layout.scss";
+ @import "./splash.scss";
+ @import "./dropdown.scss";
+ @import "./signup.scss";
+ @import "./dashboard.scss";
+ @import "./bills.scss";
+ @import "./loginform.scss";
+ @import "./navbar.scss";
+
+ 
+
 //  //Components
 //  @import "components/*";
 
@@ -28,15 +36,6 @@
    border: 1px solid red;
 }
 
- .header-link {
- }
- 
-.isDisabled {
-  color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none;
-}
 
 .footer {
   padding: 20px;
@@ -79,62 +78,41 @@ div {
   font-size: 16px; 
   color: #999; 
   font-weight: bold; 
-  line-height: 20px;
-  
+  line-height: 20px; 
 }
 
-textarea, input[type="text"], input[type="password"], 
-input[type="datetime"], input[type="datetime-local"], 
-input[type="date"], input[type="month"], input[type="time"], 
-input[type="week"], input[type="number"], input[type="email"], 
-input[type="url"], input[type="search"], input[type="tel"], 
-input[type="color"], .uneditable-input{
+// textarea, input[type="text"], input[type="password"], 
+// input[type="datetime"], input[type="datetime-local"], 
+// input[type="date"], input[type="month"], input[type="time"], 
+// input[type="week"], input[type="number"], input[type="email"], 
+// input[type="url"], input[type="search"], input[type="tel"], 
+// input[type="color"], .uneditable-input{
 
-  background-color: #ffffff;
-  /* border: 1px solid #cccccc; */
-  /* -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px; */
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
-  transition: border linear 0.2s, box-shadow linear 0.2s;
-}
-
-.login_links{
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex
-}
-
-.navbar{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 48px;
-  background: #5bc5a7;
-  z-index: 99;
-  border-bottom: 1px solid #48be9d;
-  /* color: #fff; */
-  text-shadow: 0 -1px 0 #39a385;
-  box-shadow: 0 0 3px rgba(0,0,0,0.5)
-}
+//   background-color: #ffffff;
+//   /* border: 1px solid #cccccc; */
+//   /* -webkit-border-radius: 3px;
+//   -moz-border-radius: 3px;
+//   border-radius: 3px; */
+//   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+//   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+//   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+//   -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+//   -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+//   -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+//   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+//   transition: border linear 0.2s, box-shadow linear 0.2s;
+// }
 
 
 
-h1{
-  font-size: 10
-}
 
-.bottompad{
-  height: 114px;
-}
+// h1{
+//   font-size: 10
+// }
+
+// .bottompad{
+//   height: 114px;
+// }
 
 /* .wrapper{
   min-height: 100%;
@@ -144,120 +122,74 @@ h1{
 
 
 
-/* 
-Display inline-block
+// /* 
+// Display inline-block
 
-Display: flex BEST goes on container to layout children
-Flex-direction: row or column axis
-Justify-content works on the main axis
-Align-items works on cross axis
+// Display: flex BEST goes on container to layout children
+// Flex-direction: row or column axis
+// Justify-content works on the main axis
+// Align-items works on cross axis
 
-Give a block div with display: block HEIGHT AND WIDTH or no point
-
-
-Position: relative; left right bottom top
-
-Position:absolute if its inside something that has a position (like  dropdown)
-Position: fixed having a footer header
-Position: sticky for navbar as in gets stuck
-
-* {Border: 1 px solid red;}
-
- */
+// Give a block div with display: block HEIGHT AND WIDTH or no point
 
 
-.menu {
-  position: absolute; 
-}
+// Position: relative; left right bottom top
 
+// Position:absolute if its inside something that has a position (like  dropdown)
+// Position: fixed having a footer header
+// Position: sticky for navbar as in gets stuck
 
+// * {Border: 1 px solid red;}
 
-/* https://usabilitypost.com/2011/04/19/pure-css-slideout-interface/ */
-/* #slideout {
-  position: fixed;
-  top: 100px;
-  left: 0;
-  -webkit-transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-}
-#slideout_inner {
-  position: fixed;
-  top: 100px;
-  left: -250px;
-  -webkit-transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-}
-#slideout:hover {
-  left: 250px;
-}
-#slideout:hover #slideout_inner {
-  left: 0;
-
-} */
-#slideout_inner {
-  overflow: hidden;
-  transition: max-height 1.7s ease-out;
-  height: auto;
-  max-height: 0;
-}
-
-.slideout {
-  overflow: hidden;
-  transition: max-height 1.7s ease-out;
-  height: auto;
-  max-height: 0;
-}
-
-.signup-form-container{
-  position: relative;
-  align-content: center;
-  top: 100px;
-  left: 100px;
-}
-
-
-/* for animation txthttps://stackoverflow.com/questions/27476283/smoothly-changing-text-with-javascript */
-/* #ubercontainer {
-    border: 1px solid #eaeaea;
-    border-radius: 2px;
-    background-color: #ffefc6;
-    width: 500px;
-    margin: 20px auto;
-    padding: 30px 0;
-}
-#container {
-    position: relative;
-    text-align: center;
-    font-family: sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    color: #4a6b82;
-    height: 78px;
-}
-.measurable {
-    position: absolute;
-    visibility: hidden;
-}
-
-.static.first, .static.second {
-    transition: transform 1s ease;
-} */
+//  */
 
 
 
 
 
-.hidden{
-  display: none;
-}
 
 
 
-/* INSIDE dashboard.jsx */
+
+
+// /* for animation txthttps://stackoverflow.com/questions/27476283/smoothly-changing-text-with-javascript */
+// /* #ubercontainer {
+//     border: 1px solid #eaeaea;
+//     border-radius: 2px;
+//     background-color: #ffefc6;
+//     width: 500px;
+//     margin: 20px auto;
+//     padding: 30px 0;
+// }
+// #container {
+//     position: relative;
+//     text-align: center;
+//     font-family: sans-serif;
+//     font-size: 32px;
+//     font-weight: 800;
+//     color: #4a6b82;
+//     height: 78px;
+// }
+// .measurable {
+//     position: absolute;
+//     visibility: hidden;
+// }
+
+// .static.first, .static.second {
+//     transition: transform 1s ease;
+// } */
+
+
+
+
+
+// .hidden{
+//   display: none;
+// }
+
+
+
+// /* INSIDE dashboard.jsx */
 
 
 #dashboard{
@@ -361,6 +293,4 @@ Position: sticky for navbar as in gets stuck
     z-index: 100;
     width: 40vw;
     height: 50vh;
-  
-
-}
+ }
