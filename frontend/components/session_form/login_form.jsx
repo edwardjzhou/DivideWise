@@ -49,7 +49,7 @@ class LoginForm extends React.Component {
         return (
             <div className="login-form-container" >
                 <form onSubmit={this.handleSubmit} className="login-form-box">
-                    <img src={`${window.logoURL}`} alt="Logo square" className="login_logo" width="600" height="300" />
+                    {/* <img src={`${window.logoURL}`} alt="Logo square" className="login_logo" width="600" height="300" /> */}
                     <div className='welcome'>WELCOME TO DIVIDEWISE</div>
                     <br />  
                     {/* Please {this.props.formType} or {this.props.navLink} */}
@@ -76,6 +76,11 @@ class LoginForm extends React.Component {
                             this.demoFill()}>
                             DEMO LOGIN
                         </button>
+                        {/* errors from logging in  */}
+                        { this.props.errors === undefined ? null : 
+                        <span className="errors">{this.props.errors.map(error => error)}</span>
+                        }   
+                        {/* end errors from logging in */}
                     </div>
                 </form>
                 

@@ -26,7 +26,7 @@ class SignupForm extends React.Component {
         delete user.maxHeight
         this.props.processForm(user).then(
             this.props.history.push("/dashboard"),
-            this.renderErrors()
+            // this.renderErrors()
         )
     }
 
@@ -61,7 +61,7 @@ class SignupForm extends React.Component {
                     {/* Please {this.props.formType} or {this.props.navLink} */}
                     <div className="signup-form" id="slideout">
                         <br />
-                        <label>  Hi there! My name is
+                        <label>  Hi there! My name is 
                             <input type="text"
                                 value={this.state.username}
                                 onChange={this.update('username')}
@@ -91,6 +91,17 @@ class SignupForm extends React.Component {
                                 </label>
                                 <br />
                                 <input className="session-submit" type="submit" value="Sign me up!" />
+                            <ul>
+                                {/* {this.props.errors.map((error, i) => (
+                                    <li key={`error-${i}`}>
+                                        {error}
+                                    </li>
+                                ))} */}
+                                {this.props.errors === undefined ? null :
+                                    <span className="errors">{this.props.errors.map(error => error)}</span>
+                                }   
+                                {/* {this.props.errors} */}
+                            </ul>
                         </div>
                     </div>
                 </form>

@@ -20,6 +20,7 @@ class Bills extends React.Component {
         this.props.fetchBills()
         setTimeout(() => this.calculateTotalYouOwe(), 200)
         // this.calculateTotalYouOwe()
+        this.forceUpdate()
     }
     
   
@@ -68,18 +69,18 @@ class Bills extends React.Component {
                     <div id="total_balances">
 
                         {this.state.allin < 0 ?
-                            <div style={red}>total balance<br/>{this.state.allin}</div> :
-                            <div style={green}>total balance<br/>{this.state.allin}</div>
+                            <div style={red}>total balance<br/>${this.state.allin/100}</div> :
+                            <div style={green}>total balance<br/>${this.state.allin/100}</div>
                         }
                         {this.state.owes > 0 ?
-                            <div style={red}>you owe<br/>{this.state.owes}</div> :
-                            <div style={green}>you owe<br />{this.state.owes}</div>
+                            <div style={red}>you owe<br/>${this.state.owes/100}</div> :
+                            <div style={green}>you owe<br />${this.state.owes/100}</div>
                         }
                     
                         
                         {this.state.owed < 0 ?
-                            <div style={red}>you are owed<br />{this.state.owed}</div> :
-                            <div style={green}>you are owed<br />{this.state.owed}</div>
+                            <div style={red}>you are owed<br />{this.state.owed/100}</div> :
+                            <div style={green}>you are owed<br />{this.state.owed/100}</div>
                         }
                         
                     </div>

@@ -9,6 +9,8 @@ import {
     HashRouter
 } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
+
 
 
 
@@ -67,11 +69,13 @@ class Splash extends React.Component {
                         <span id='swap-two'></span>
                         <span id='swap-three'</span> */}
                     </p>
-                    <LoginFormContainer></LoginFormContainer>
-                    
-                    {/* errors from logging in  */}
-                    <span className="errors">{this.props.errors}</span>
-                    {/* end errors from logging in */}
+                    {/* <LoginFormContainer></LoginFormContainer> */}
+                     {/* {this.props.location} */}
+                    {/* {window.location.href} */}
+                    {window.location.pathname} 
+
+
+                
 
                 </div>
             
@@ -97,4 +101,4 @@ const mdtp = (dispatch) => {
     }
 }
 
-export default connect(mstp,mdtp)(Splash)
+export default connect(mstp,mdtp)(Splash);
