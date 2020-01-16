@@ -60,29 +60,29 @@ class FriendsForm extends React.Component {
             <div className="addfriend-form">
                 <form onSubmit={this.handleSubmit}>
                     <center>Add Friend</center>
-                    <label> To: 
+                    {/* <label> To:  */}
 
 
-                        {/* <input type="text" placeholder='choose a username' value={this.props.users[this.state.selectedFriend] === undefined ?
+                        <input type="text" placeholder='choose a username' value={this.props.users[this.state.selectedFriend] === undefined ?
                             null : 
                             this.props.users[this.state.selectedFriend].username 
-                        } /> */}
+                        } />
 
-                        
+{/*                         
                         {this.props.users[this.state.selectedFriend] === undefined ?
                             null :
                             this.props.users[this.state.selectedFriend].username
-                        }
+                        } */}
 
-
+{/* name="listbox" */}
                         {/* https://www.jondjones.com/frontend/react/components/how-to-build-a-filterable-search-bar-in-react */}
-                        {/* <select name="listbox" size="10"> */}
+                        <select  size="10">
                             {this.props.users.map(user=>(
-                                <li onClick={this.update('selectedFriend')} value={user.id} key={user.id}>{user.username}</li>   
+                                <option onClick={this.update('selectedFriend')} value={user.id} key={user.id}>{user.username}</option>   
                             ))}
-                        {/* </select> */}
+                        </select>
                         <input type="submit" value='Add Friend'/>
-                    </label>
+                    {/* </label> */}
                 </form>
 
 

@@ -25,22 +25,22 @@ class SignupForm extends React.Component {
         const user = Object.assign({}, this.state);
         delete user.maxHeight
         this.props.processForm(user).then(
-            this.props.history.push("/dashboard"),
+            this.props.history.push("/signup"),
             // this.renderErrors()
         )
     }
 
-    renderErrors() {
-        return (
-            <ul>
-                {this.props.errors.map((error, i) => (
-                    <li key={`error-${i}`}>
-                        {error}
-                    </li>
-                ))}
-            </ul>
-        );
-    }
+    // renderErrors() {
+    //     return (
+    //         <ul>
+    //             {this.props.errors.map((error, i) => (
+    //                 <li key={`error-${i}`}>
+    //                     {error}
+    //                 </li>
+    //             ))}
+    //         </ul>
+    //     );
+    // }
 
     maxFormHeight(){
         this.setState({maxHeight:300})
@@ -62,9 +62,10 @@ class SignupForm extends React.Component {
                     <div className="signup-form" id="slideout">
                         <br />
                         {this.props.errors === undefined ? null :
-                            <span className="errors">{this.props.errors.map(error => error)} </span>
+                            <span className="errors">{this.props.errors.map((error,i) => <li key={`error-${i}`}>{error}</li>)} </span>
                         }   
-
+                        
+                        <img src={window.logo}></img>
                         <br></br>
                         <label>  Hi there! My name is 
                             <input type="text"
