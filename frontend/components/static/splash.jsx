@@ -98,28 +98,33 @@ class Splash extends React.Component {
                     {/* logout notification message */}
                     {this.props.message ? <div className="alert-message">{this.props.message}</div> : <br></br>} 
                 
-                    {/* <LoginFormContainer></LoginFormContainer> */}
-                     {/* {this.props.location} */}
-                    {/* {window.location.href} */}
+
                     {/* {window.location.pathname}  this is the correct one with / */}
                     
                     <div id="facets" style={sectionStyle}>
-                        <p id="text-swap">Less stress when dividing expenses <span className="w3-animate-fading">
-                            <dt className="text-heart">{this.state.answer}</dt>
-                        </span>
-                        
-                            {/* <span id='swap-one'></span>
-                        <span id='swap-two'></span>
-                        <span id='swap-three'</span> */}
-                        </p>
-                        <div>Keep track of your shared expenses and balances with housemates, trips, groups, friends, and family.</div>
-                        <div className="elephants">
-                            <img height="300" src={window.elephantx}></img>
-                            <img height="300" src={window.elephanty}></img>
-                            <img height="300" src={window.elephantz}></img>
+                        <div>
+                            <p id="text-swap">Less stress when dividing expenses
+                                <span className="w3-animate-fading">
+                                    <dt className="text-heart">{this.state.answer}</dt>
+                                </span>
+                            </p>
+
+                            <div>Keep track of your shared expenses and balances with housemates, trips, groups, friends, and family.</div>
+                        </div>
+                        <div>
+                            <img src={window.heart} height='50' className="filter-red"></img>
+                            <img src={window.plane} height='50' className="filter-blue"></img>
+                            <img src={window.house} height='50' className="filter-green"></img>
+
                         </div>
                        
 
+                    </div>
+
+                    <div className="elephants">
+                        <img height="300" src={window.elephantx} className="cellphone"></img>
+                        <img height="300" src={window.elephanty} className="cellphone"></img>
+                        <img height="300" src={window.elephantz} className="cellphone"></img>
                     </div>
 
                 </div>

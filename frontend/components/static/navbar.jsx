@@ -19,12 +19,8 @@ const NavBar = () => {
 
             {/* <div className="login_links" > */}
             <div id="flexme">
-                {window.location.pathname != "/" ? 
-                    <CardContainer></CardContainer> :
-                    <NavLink to="/login">
-                        Log in
-                    </NavLink> 
-                }
+                {/* {window.location.pathname != "/login" ?  */}
+                    <CardContainer></CardContainer> 
                 or &nbsp;   
                 <button className="btn">
                     <NavLink to="/signup">

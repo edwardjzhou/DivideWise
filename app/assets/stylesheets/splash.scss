@@ -272,13 +272,13 @@ span .text-heart {
 #facets{
 	// background-image: url(/assets/images/facets.png);
 	background-position: center 0px;
-	background-size: 1000px;
+	background-size: 1150px;
 	background-repeat: repeat;
-	height: 800px;
+	height: 900px;
 	position: relative;
 	// justify-content: center;
-
-	display: flexbox
+	display: flexbox;
+	justify-content: space-between;
 }
 
 .elephants{
@@ -292,8 +292,8 @@ span .text-heart {
 	display: flex !important;
 	position: static;
 	justify-content: space-between;
-	height: 88px;
-	width: 1280px;
+	height: 19%;
+	width: 70%;
 	// width: 100%;
 	margin: 0 auto;
 	padding: 20px 32px 20px 32px;
@@ -430,9 +430,39 @@ span .text-heart {
 	text-shadow: none;
 	text-overflow: clip;
 	word-wrap: normal;
-	box-shadow: none;
+	// box-shadow: none;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+	
+	//for that slight shadow effect
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.8);
+	transition: box-shadow 0.3s ease-in-out;
+}
+
+
+
+.tealsignup:hover {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+ .filter-green{
+        filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+	}
+	
+.filter-red{
+	filter: invert(13%) sepia(92%) saturate(5165%) hue-rotate(9deg) brightness(116%) contrast(133%);
+}
+
+.filter-blue{
+	filter: invert(9%) sepia(100%) saturate(6533%) hue-rotate(247deg) brightness(94%) contrast(146%);
+}
+
+.cellphone{
+	//   margin: 0 auto;
+	padding: 50px
+}
+.cellphone:hover{
+	transform: scale(3);
 }

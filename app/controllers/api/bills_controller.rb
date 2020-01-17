@@ -58,13 +58,16 @@ class Api::BillsController < ApplicationController
             @bill.destroy!
             render json: ["Destroyed bill #{@bill.id} about #{@bill.description}"]
         end
-
+    end
+    
     private
     def bill_params
         # params.require(:bill).permit(:description, :lender_id, :borrower_id, :amount, :settled)
         params.require(:bill).permit!
     end
 end
+
+
 # $.ajax({
 #         method: 'POST',
 #         url: '/api/bills',
