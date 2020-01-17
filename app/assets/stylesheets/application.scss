@@ -31,10 +31,10 @@
 //  //Components
 //  @import "components/*";
 
-* {
-  //  font-family: 'Lato', sans-serif;
-  //  border: 1px solid red;
-}
+// * {
+//   //  font-family: 'Lato', sans-serif;
+//   //  border: 1px solid red;
+// }
 
 
 .footer {
@@ -165,9 +165,10 @@ div {
 #friends_bar{
   display: flex;
   float: left; 
-  width: 25%;
+  width: 13%;
   height: 100vh;
   z-index: 3;
+  margin-left: 15%;
 }
 /* end dashboard.jsx */
 

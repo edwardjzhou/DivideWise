@@ -77,7 +77,8 @@
 	right: auto;
 	left: auto;
 	float: none;
-	display: flexbox;
+	display: flex;
+	justify-content: space-evenly;
 	clear: none;
 	z-index: auto;
 
@@ -203,3 +204,7 @@
 .dashboardnavbar{
 	
 }
+
+
+//friends form
+

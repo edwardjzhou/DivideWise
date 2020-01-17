@@ -9,7 +9,9 @@ Things you may want to cover:
 
 * System dependencies
 
-* Configuration
+* Configuration / Discussion of technologies used
+
+
 
 * Database creation
 
@@ -22,3 +24,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+Brief explanation of what the app is and does
+Link to live site
+Delve deep into ~2 features that show off your technical abilities. Discuss both the challenges faced and your brilliant solutions.
+Code snippets to highlight your best code (markdown code snippets, NOT screenshots)

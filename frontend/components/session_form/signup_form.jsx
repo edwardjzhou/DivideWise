@@ -53,21 +53,24 @@ class SignupForm extends React.Component {
 
 
         return (
+            
             <div className="signup-form-container">
+                <div><img src={window.logo} height="200"></img></div>
+                
+                <div>
+                <div className='welcome'>INTRODUCE YOURSELF</div>
                 <form onSubmit={this.handleSubmit} className="signup-form-box">
-                    <div className='welcome'>INTRODUCE YOURSELF</div>
-                    <br />
+                    
                    
                     {/* Please {this.props.formType} or {this.props.navLink} */}
+
                     <div className="signup-form" id="slideout">
                         <br />
                         {this.props.errors === undefined ? null :
                             <span className="errors">{this.props.errors.map((error,i) => <li key={`error-${i}`}>{error}</li>)} </span>
                         }   
                         
-                        <img src={window.logo}></img>
-                        <br></br>
-                        <label>  Hi there! My name is 
+                        <label>  Hi there! My name is <br></br>
                             <input type="text"
                                 value={this.state.username}
                                 onChange={this.update('username')}
@@ -78,8 +81,8 @@ class SignupForm extends React.Component {
                         <div id="slideout-inner" className="slideout" 
                          style={maxHeight} 
                         >
-                                <br />
-                                <label>Here's my email address:
+                                <br /><br />
+                                <label>Here's my email address: <br></br>
                                     <input type="text"
                                         value={this.state.email}
                                         onChange={this.update('email')}
@@ -87,14 +90,15 @@ class SignupForm extends React.Component {
                                     />
                                 </label>
 
-                                <br />
-                                <label> And here's my password:
+                                <br /><br />
+                                <label> And here's my password: <br></br>
                                     <input type="password"
                                         value={this.state.password}
                                         onChange={this.update('password')}
                                         className="signup-input"
                                     />
                                 </label>
+                                <br />
                                 <br />
                                 <input id="orangebutton" type="submit" value="Sign me up!" />
                             <ul>
@@ -108,7 +112,9 @@ class SignupForm extends React.Component {
                             </ul>
                         </div>
                     </div>
+                    
                 </form>
+                </div>
             </div>
         );
     }
