@@ -96,7 +96,7 @@ class SignupForm extends React.Component {
                                     />
                                 </label>
                                 <br />
-                                <input className="orangebutton" type="submit" value="Sign me up!" />
+                                <input id="orangebutton" type="submit" value="Sign me up!" />
                             <ul>
                                 {/* {this.props.errors.map((error, i) => (
                                     <li key={`error-${i}`}>

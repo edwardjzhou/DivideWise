@@ -2,11 +2,11 @@ class Api::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            p 'good'
+            p 'good login attempt'
             login(@user)
             render "api/users/show"
         else
-            p 'bad'
+            p 'bad login attempt'
             render json: @user.errors.full_messages, status:422
         end
     end

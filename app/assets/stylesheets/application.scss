@@ -52,7 +52,7 @@
 }
 
 div {
-    display: block;
+    display: flexbox;
 }
 
 .login_logo{
@@ -70,7 +70,8 @@ div {
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
   background: #ff652f;
   color: #fff;
-  text-shadow: 0 -1px 0 #c83400
+  text-shadow: 0 -1px 0 #c83400;
+  width: 160px;
 }
 
 .welcome {
@@ -80,28 +81,6 @@ div {
   font-weight: bold; 
   line-height: 20px; 
 }
-
-// textarea, input[type="text"], input[type="password"], 
-// input[type="datetime"], input[type="datetime-local"], 
-// input[type="date"], input[type="month"], input[type="time"], 
-// input[type="week"], input[type="number"], input[type="email"], 
-// input[type="url"], input[type="search"], input[type="tel"], 
-// input[type="color"], .uneditable-input{
-
-//   background-color: #ffffff;
-//   /* border: 1px solid #cccccc; */
-//   /* -webkit-border-radius: 3px;
-//   -moz-border-radius: 3px;
-//   border-radius: 3px; */
-//   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-//   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-//   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-//   -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-//   -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
-//   -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
-//   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
-//   transition: border linear 0.2s, box-shadow linear 0.2s;
-// }
 
 
 
@@ -152,50 +131,14 @@ div {
 
 
 
-// /* for animation txthttps://stackoverflow.com/questions/27476283/smoothly-changing-text-with-javascript */
-// /* #ubercontainer {
-//     border: 1px solid #eaeaea;
-//     border-radius: 2px;
-//     background-color: #ffefc6;
-//     width: 500px;
-//     margin: 20px auto;
-//     padding: 30px 0;
-// }
-// #container {
-//     position: relative;
-//     text-align: center;
-//     font-family: sans-serif;
-//     font-size: 32px;
-//     font-weight: 800;
-//     color: #4a6b82;
-//     height: 78px;
-// }
-// .measurable {
-//     position: absolute;
-//     visibility: hidden;
-// }
-
-// .static.first, .static.second {
-//     transition: transform 1s ease;
-// } */
 
 
 
 
-
-// .hidden{
-//   display: none;
-// }
 
 
 
 // /* INSIDE dashboard.jsx */
-
-
-#dashboard{
-  width: 100%;
-  height: 100vh;
-}
 
 
   #YOU_OWE{
@@ -282,15 +225,15 @@ div {
 
  /* end modal  */
 
-.addfriend-form{
-    padding: 20px 25px;
-    min-height: 130px;
-    box-shadow: 0 2px 5px 2px #B4B4B4;
-    padding-bottom: 20px;
-    line-height: 18px;
-    background-clip: border-box;
-    background-color: white;
-    z-index: 100;
-    width: 40vw;
-    height: 50vh;
- }
+// .addfriend-form{
+//     padding: 20px 25px;
+//     min-height: 130px;
+//     box-shadow: 0 2px 5px 2px #B4B4B4;
+//     padding-bottom: 20px;
+//     line-height: 18px;
+//     background-clip: border-box;
+//     background-color: white;
+//     z-index: 100;
+//     width: 40vw;
+//     height: 50vh;
+//  }

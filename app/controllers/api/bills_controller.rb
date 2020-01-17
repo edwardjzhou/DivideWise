@@ -3,14 +3,11 @@ class Api::BillsController < ApplicationController
 
     def create
         @bill = Bill.new(bill_params)
-        
         @bill.settled = true
 
         if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
             render json: ["not a bill you're involved in"]
-        end
-
-        if @bill.save
+        elsif @bill.save
             render "api/bills/show"
         else
             render json: @bill.errors.full_messages, status:422
@@ -31,13 +28,9 @@ class Api::BillsController < ApplicationController
 
     def show
         @bill = Bill.find(params[:id])
-         if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
+        if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
             render json: ["not a bill you're involved in"]
-        end
-
-        @bill.settled = true
-
-        if @bill.save
+        elsif @bill.save
             render "api/bills/show"
         else
             render json: @bill.errors.full_messages, status:422
@@ -46,13 +39,12 @@ class Api::BillsController < ApplicationController
 
     def update
         @bill = Bill.find(params[:id])
-         if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
+        if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
             render json: ["not a bill you're involved in"]
-        end
-
-        if @bill.update(bill_params)
+        elsif @bill.update(bill_params)
             render "api/bills/show"
         else
+            render json: @bill.errors.full_messages, status: 422
         end
     end
 
@@ -60,14 +52,12 @@ class Api::BillsController < ApplicationController
         @bill = Bill.find(params[:id])
         if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
             render json: ["not a bill you're involved in"]
-        end
-        if @bill.payments != null 
+        elsif @bill.payments != null 
             render json: ["cant delete a bill with payments already made to it"]
+        else
+            @bill.destroy!
+            render json: ["Destroyed bill #{@bill.id} about #{@bill.description}"]
         end
-
-        @bill.destroy!
-        render json: ["Destroyed bill #{@bill.id} about #{@bill.description}"]
-    end
 
     private
     def bill_params

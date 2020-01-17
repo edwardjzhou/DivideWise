@@ -15,6 +15,7 @@ class Api::SessionsController < ApplicationController
     @user = current_user
     if @user
       logout
+      render json: ["You destroyed your session!"]
       # render "api/users/show"
       # render "static_pages/root.html.erb"
     else

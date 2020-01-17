@@ -58,7 +58,7 @@ class Splash extends React.Component {
     render() {
         var sectionStyle = {
             width: "100%",
-            height: "400px",
+            height: "600px",
             backgroundImage: "url(" +  window.facets  + ")"
         };
 
@@ -70,23 +70,24 @@ class Splash extends React.Component {
                 }
 
                 
-                <div className="flex-container">
-                    {/* <div className="header"> */}
-                    <NavLink to="/" className="header-link">
-                        <h2>Dividewise</h2>
-                    </NavLink>
+                <div id="topbar-container">
+                    <div>
+                        <NavLink to="/">
+                            Dividewise
+                        </NavLink>
+                    </div>
 
-                    {/* <div className="login_links" > */}
-                    <div id="flexme">
-                            <NavLink to="/login" />
-                             
-                        }
-                    
-                        <button className="btn">
-                            <NavLink to="/signup">
+                    <div id="rightsidediv">
+                        <div>
+                            <NavLink className="whitelogin" to="/login">
+                                Log in
+                            </NavLink>
+                        </div>
+                        <div>
+                            <NavLink className="tealsignup" to="/signup">
                                 Sign up
                             </NavLink>
-                        </button>
+                        </div>
                     </div>
                 </div>
 

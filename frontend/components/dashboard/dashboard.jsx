@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
                 </div>
 
                     <Friends /> 
-                    <Bills />
+                    <Bills/>
                 {/* <div id="YOU_OWE" className="column_main"> 
                     {
                         this.props.bills.map(bill => 
@@ -47,10 +47,10 @@ class Dashboard extends React.Component {
 
                 </div> */}
 
-                <div id="right-bar" className="column">
+                {/* <div id="right-bar" className="column">
                     SPLITWISE ON THE GO
                     Get the free Splitwise app and add IOUs from anywhere:
-                </div>
+                </div> */}
             </div>
         );
     }
