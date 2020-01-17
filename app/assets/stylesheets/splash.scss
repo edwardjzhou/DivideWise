@@ -274,16 +274,19 @@ span .text-heart {
 	background-position: center 0px;
 	background-size: 1150px;
 	background-repeat: repeat;
-	height: 900px;
+	height: 70%;
 	position: relative;
 	// justify-content: center;
-	display: flexbox;
+	display: flex;
 	justify-content: space-between;
+	
 }
 
 .elephants{
 	position: absolute; 
-	bottom:0
+	bottom:0;
+	display: inline-flexbox;
+	justify-content: space-between;
 }
 
 
@@ -461,8 +464,20 @@ span .text-heart {
 
 .cellphone{
 	//   margin: 0 auto;
-	padding: 50px
+	padding: 20px;
+	// float: left;
+	float: left;
 }
 .cellphone:hover{
 	transform: scale(3);
+	float: right;
+}
+
+
+.transformingtext{
+	width: 70%;
+	margin-top: 6%;
+	margin-left: 20%;
+	// margin: 20%
+	font-size: 40
 }

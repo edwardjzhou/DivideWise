@@ -73,7 +73,8 @@ class Splash extends React.Component {
                 <div id="topbar-container">
                     <div>
                         <NavLink to="/">
-                            Dividewise
+                            {/* Dividewise */}
+                            <img src={window.logoURL} height="60"></img>
                         </NavLink>
                     </div>
 
@@ -102,14 +103,14 @@ class Splash extends React.Component {
                     {/* {window.location.pathname}  this is the correct one with / */}
                     
                     <div id="facets" style={sectionStyle}>
-                        <div>
-                            <p id="text-swap">Less stress when dividing expenses
+                        <div className="transformingtext">
+                            <p id="text-swap">Less stress when<br/> dividing expenses&nbsp;<br/>
                                 <span className="w3-animate-fading">
                                     <dt className="text-heart">{this.state.answer}</dt>
                                 </span>
                             </p>
 
-                            <div>Keep track of your shared expenses and balances with housemates, trips, groups, friends, and family.</div>
+                            <div>Keep track of your shared expenses and balances <br></br>with housemates, trips, groups, friends, and family.</div>
                         </div>
                         <div>
                             <img src={window.heart} height='50' className="filter-red"></img>

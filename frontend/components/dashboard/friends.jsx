@@ -27,15 +27,15 @@ class Friends extends React.Component {
             <div id="friends_bar" className="column">
                 <div>
                 <span> Friends<AddFriends>  </AddFriends></span>
-
+                    {/* <img src={window.user}></img>  */}
                 {this.props.friends.map(friend => (
                     friend.friends_name !==  this.props.current_user ?
-                        <li key={friend.id}>{friend.friends_name}</li>
-                         : null)
+                         (<li key={friend.id}>{friend.friends_name}</li>)
+                        : null) 
                     )
                 }
-                {/* {this.props.current_user} */}
-                </div>
+                    <br></br>             
+                    </div>
             </div>
         );
     }

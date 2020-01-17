@@ -79,8 +79,8 @@ class Bills extends React.Component {
                     
                         
                         {this.state.owed < 0 ?
-                            <div style={red}>you are owed<br />{this.state.owed/100}</div> :
-                            <div style={green}>you are owed<br />{this.state.owed/100}</div>
+                            <div style={red}>you are owed<br />${this.state.owed/100}</div> :
+                            <div style={green}>you are owed<br />${this.state.owed/100}</div>
                         }
                         
                     </div>
