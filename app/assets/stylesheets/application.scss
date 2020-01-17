@@ -40,15 +40,16 @@
 .footer {
   padding: 20px;
   min-height: 74px;
-  position: relative;
-  z-index: 1;
+  position: static;
+  z-index: 50;
   background: #666;
   color: #fff;
   font-size: 14px;
   text-shadow: 0 -1px 0 #000000;
-  position: fixed;
+  // position: fixed;
   bottom: 0;
   width: 100%;
+
 }
 
 div {
@@ -205,7 +206,7 @@ div {
    bottom: 0;
    right: 0;
    left: 0;
-   background: rgba(0, 0, 0, 0.7);
+   background: rgba(0, 0, 0, .2);
    z-index: 10;
  }
 
@@ -225,15 +226,14 @@ div {
 
  /* end modal  */
 
-// .addfriend-form{
-//     padding: 20px 25px;
-//     min-height: 130px;
-//     box-shadow: 0 2px 5px 2px #B4B4B4;
-//     padding-bottom: 20px;
-//     line-height: 18px;
-//     background-clip: border-box;
-//     background-color: white;
-//     z-index: 100;
-//     width: 40vw;
-//     height: 50vh;
-//  }
+.addfriend-form{
+    min-height: 130px;
+    box-shadow: 0 2px 5px 2px #B4B4B4;
+    line-height: 18px;
+    // background-clip: border-box;
+    box-sizing: border-box;
+    background-color: teal;
+    z-index: 100;
+    width: 40vw;
+    height: 50vh;
+ }

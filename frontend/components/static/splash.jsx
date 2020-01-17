@@ -132,8 +132,8 @@ class Splash extends React.Component {
                                 <br/>
                                 Keep track of your shared expenses <br></br>and balances with housemates, trips,<br></br>groups, friends, and family.<br />
                                 <div>
-                                <NavLink className="tealsignup2" to="/signup">
-                                        Sign up
+                                    <NavLink className={["tealsignup2",this.state.classname].join(' ')} to="/signup">
+                                            Sign up
                                 </NavLink>
                                 </div>
                             </div>
@@ -149,23 +149,41 @@ class Splash extends React.Component {
                        
 
                     </div>
-{/* 
-                    <div className="elephants">
-                            <img height="300" src={window.elephantx} className="cellphone"></img>
-                        
-                        <img height="300" src={window.elephanty} className="cellphone"></img>
-                        <img height="300" src={window.elephantz} className="cellphone"></img>
-                    </div> */}
+
 
                 </div>
                     
+                <div className="boxparent">
+                    
+                    <div className="boxbro" style={Object.assign({backgroundColor: "gray"},sectionStyle)}>
+                        <h3>Track balances</h3>    
+                        <p>Keep track of shared expenses, balances, and who owes who.</p>
+                        <img height="500" src={window.elephantx} className="cellphone"></img>
+                   </div>
 
-                <div className="boxbro">
-                    asdfjilsadfkdsaf
-                    sadfjlkdsakfkjsadlf
-                    <p>dsafjkl</p>
+                    <div className="boxbro" style={Object.assign({ backgroundColor: "teal" }, sectionStyle)}>
+                        <h3>Organize expenses</h3>  
+                        <p>Split expenses with any group: trips, housemates, friends, and family.</p>
+                        <img height="500" src={window.elephanty} className="cellphone"></img>
+                    </div>
+                </div>  
+
+
+                <div className="boxparent">
+
+                    <div className="boxbro" style={Object.assign({ backgroundColor: "orange" }, sectionStyle)}>
+                        <h3>Add expenses easily</h3>
+                        <p>Quickly add expenses on the go before you forget who paid.</p>
+                        <img height="500" src={window.elephantz} className="cellphone"></img>
+                    </div>
+                    
+                    <div className="boxbro" style={Object.assign({ backgroundColor: "gray" }, sectionStyle)}>
+                        <h3>Pay friends back</h3>
+                        <p>Settle up with a friend and record any cash or online payment.</p>
+                        <img height="500" src={window.elephanta} className="cellphone"></img>
+
+                    </div>  
                 </div>
-
                  <Footer></Footer>
                
             </div>

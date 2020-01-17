@@ -309,7 +309,7 @@ span .text-heart {
 	text-align: center;
 	vertical-align: baseline;
 	
-	height: 18%;
+	height: 20%;
 	width: 180px;
 	margin: 0px;
 	padding: 0px;
@@ -465,16 +465,26 @@ span .text-heart {
 	filter: invert(9%) sepia(100%) saturate(6533%) hue-rotate(247deg) brightness(94%) contrast(146%);
 }
 
+
+
 .cellphone{
-	//   margin: 0 auto;
-	padding: 20px;
-	// float: left;
-	float: left;
+	position: absolute;
+	// bottom: 0;
+	transform: translate(-50%, 5%);
+	z-index: 0;
+	margin: 0 0 0 0;
+	// right: 30%;
 }
-.cellphone:hover{
-	transform: scale(3);
-	float: right;
-}
+// .cellphone{
+// 	//   margin: 0 auto;
+// 	padding: 20px;
+// 	// float: left;
+// 	float: left;
+// }
+// .cellphone:hover{
+// 	transform: scale(3);
+// 	float: right;
+// }
 
 
 .transformingtext{
@@ -518,10 +528,12 @@ span .text-heart {
 	white-space: normal;
 	word-spacing: 0px;
 	
+	
 
 	/* Color & Background */
 	background-attachment: scroll;
-	background-color: rgb(28, 194, 159);
+	// background-color: rgb(28, 194, 159);
+	background-color: blue;
 	background-image: none;
 	background-position: 0% 0%;
 	background-repeat: repeat;
@@ -604,3 +616,33 @@ span .text-heart {
 	line-height: 120%;
 
 }
+
+.boxbro{
+	// width: 600px;
+	width: 48%;
+	height: 48%;
+	background-position: center 0px;
+	background-size: 1150px;
+	background-repeat: repeat;
+	height: 70%;
+	position: relative;
+	justify-content: center;
+	display: block;
+	justify-content: center;
+	text-align: center;
+	color: white;
+	margin: auto;	
+
+}
+
+.boxparent{
+	display: flex !important;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	margin: auto;	
+}
+
+// .cellphoneimg{
+// 	right: 40%
+// }
