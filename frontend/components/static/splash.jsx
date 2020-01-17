@@ -123,13 +123,24 @@ class Splash extends React.Component {
                                 </span>
                             </p>
 
-                            <div id="subtext">Keep track of your shared expenses <br></br>and balances with housemates, trips,<br></br>groups, friends, and family.<br/>
-                               <img src={window.heart} height='50' className="filter-red"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <div id="subtext">
+                                <img src={window.heart} height='50' className="filter-red"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                                 <img src={window.plane} height='50' className="filter-blue"></img>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <img src={window.house} height='50' className="filter-green"></img>
+
+
+                                <br/>
+                                Keep track of your shared expenses <br></br>and balances with housemates, trips,<br></br>groups, friends, and family.<br />
+                                <div>
+                                <NavLink className="tealsignup2" to="/signup">
+                                        Sign up
+                                </NavLink>
+                                </div>
                             </div>
+                      
                         </div>
-                        <div className="w3-animate-fading">
+                      
+                        <div className="w3-animate-fading asdf">
                             <img src={this.state.url} height='350' className={this.state.classname}></img>
                             {/* <img src={window.plane} height='350' className="filter-blue"></img>
                             <img src={window.house} height='350' className="filter-green"></img> */}
@@ -138,17 +149,22 @@ class Splash extends React.Component {
                        
 
                     </div>
-
+{/* 
                     <div className="elephants">
-                        <img height="300" src={window.elephantx} className="cellphone"></img>
+                            <img height="300" src={window.elephantx} className="cellphone"></img>
+                        
                         <img height="300" src={window.elephanty} className="cellphone"></img>
                         <img height="300" src={window.elephantz} className="cellphone"></img>
-                    </div>
+                    </div> */}
 
                 </div>
-            
-                {/* <div className="bottompad">
-                </div> */}
+                    
+
+                <div className="boxbro">
+                    asdfjilsadfkdsaf
+                    sadfjlkdsakfkjsadlf
+                    <p>dsafjkl</p>
+                </div>
 
                  <Footer></Footer>
                
