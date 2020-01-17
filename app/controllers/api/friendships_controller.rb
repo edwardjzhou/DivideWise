@@ -5,8 +5,8 @@ class Api::FriendshipsController < ApplicationController
         @friendship = Friendship.new(friendship_params)
         if @friendship.user_one_id == @friendship.user_two_id 
             render json: ["cant be own friend"]
-        elsif current_user.id != @friendship.user_one_id and current_user.id != @friendship.user_two_id
-            render json: ["friendship failed because you're trying to make someone who isn't you friends with someone who isn't you"]
+        # elsif (current_user.id != @friendship.user_one_id && current_user.id != @friendship.user_two_id)
+            # render json: ["friendship failed because you're trying to make someone who isn't you friends with someone who isn't you"]
         elsif @friendship.user_one_id == nil or @friendship.user_two_id==nil
             render json: ["one of the friends is a nil user"]
         elsif @friendship.user_one_id > @friendship.user_two_id #&& (current_user.id == @friendship.user_one_id || current_user.id == @friendship.user_two_id)

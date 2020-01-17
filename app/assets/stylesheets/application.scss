@@ -32,8 +32,8 @@
 //  @import "components/*";
 
 * {
-   font-family: 'Lato', sans-serif;
-   border: 1px solid red;
+  //  font-family: 'Lato', sans-serif;
+  //  border: 1px solid red;
 }
 
 
@@ -64,7 +64,6 @@ div {
 .btn {
   display: inline-block;
   text-align: center;
-  vertical-align: middle;
   border: 1px solid #cccccc;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.05);
   order-radius: 5px;
@@ -72,7 +71,7 @@ div {
   background: #ff652f;
   color: #fff;
   text-shadow: 0 -1px 0 #c83400;
-  width: 160px;
+  width: 70px;
 }
 
 .welcome {
@@ -86,19 +85,6 @@ div {
 
 
 
-// h1{
-//   font-size: 10
-// }
-
-// .bottompad{
-//   height: 114px;
-// }
-
-/* .wrapper{
-  min-height: 100%;
-  height: auto !important;
-  margin: 0 0 -114px;
-} */
 
 
 

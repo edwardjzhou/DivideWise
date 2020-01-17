@@ -14,7 +14,7 @@ const NavBar = () => {
         <div className="flex-container">
             {/* <div className="header"> */}
             <NavLink to="/" className="header-link">
-                <h2>Dividewise</h2>
+                <h3>dividewise</h3>
             </NavLink>
 
             {/* <div className="login_links" > */}

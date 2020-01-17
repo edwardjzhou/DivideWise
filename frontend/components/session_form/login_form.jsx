@@ -54,11 +54,10 @@ class LoginForm extends React.Component {
                 <form onSubmit={this.handleSubmit} className="login-form-box">
                     {/* <img src={`${window.logoURL}`} alt="Logo square" className="login_logo" width="600" height="300" /> */}
                     <div className='welcome'>WELCOME TO DIVIDEWISE</div>
-                    <br />  
                     {/* Please {this.props.formType} or {this.props.navLink} */}
-                    <div className="login-form">
+                    <div className="login-form higherup">
                         <br />
-                        <label>Username:
+                        <label>Username:<br/>
                             <input type="text" id="user_session_email"
                             value={this.state.username}
                             onChange={this.update('username')}
@@ -66,7 +65,7 @@ class LoginForm extends React.Component {
                             />
                         </label>
                         <br />
-                        <label>Password:
+                        <label>Password:<br/>
                             <input type="password" id="user_session_password"
                             value={this.state.password}
                             onChange={this.update('password')}
@@ -74,12 +73,15 @@ class LoginForm extends React.Component {
                             />
                         </label>
                         <br />
+                        <br />
+
                         <input className="orangebutton" type="submit" value={this.props.formType} />
                         <button className="orangebutton" onClick={() =>
                             this.demoFill()}>
                             DEMO LOGIN
                         </button>
                         {/* errors from logging in  */}
+                        <br></br>
                         { this.props.errors === undefined ? null : 
                         <span className="errors">{this.props.errors.map(error => error)}</span>
                         }   

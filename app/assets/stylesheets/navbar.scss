@@ -6,19 +6,28 @@
 
 
 .flex-container > div {
-  background-color: #f1f1f1;
-  width: 100px;
-  margin: 10px;
+  background-color: #5BC5A7;
+  width: 300px;
+  // margin: 10px;
   text-align: center;
   line-height: 20px;
   font-size: 30px;
-  display: block;
+  display: inline-flex;
 }
 
 .flex-container > #flexme {
-    display: flex;
+    display: flexbox;
+    vertical-align: baseline;
+
 }
 
 .menu {
   position: absolute; 
+}
+
+
+.login-form2{
+  font-size: 18px;
+  text-align: left;
+  display: flexbox;
 }

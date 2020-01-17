@@ -15,9 +15,13 @@
 .signup-form-container{
   position: relative;
   align-content: center;
-  top: 20vh;
-  left: 100px;
-  display: grid
+  top: 10vh;
+  left: 40%;
+  display: flexbox;
+}
+.signup-form-box{
+	// left: 500px;
+
 }
 
 #orangebutton{

@@ -63,7 +63,7 @@ class Card extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.showMenu}>
+                <button className="btn" onClick={this.showMenu}>
                     Log in 
                 </button>
 
@@ -75,8 +75,8 @@ class Card extends Component {
                                     this.dropdownMenu = element;
                                 }}
                             >
-                                <form onSubmit={this.handleSubmit} className="login-form-box">
-                                    <div className="login-form">
+                                <form onSubmit={this.handleSubmit} className="login-form-box2">
+                                    <div className="login-form2">
                                         <br />
                                         <label>Username:
                                             <input type="text"
