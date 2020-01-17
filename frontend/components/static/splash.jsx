@@ -26,7 +26,9 @@ class Splash extends React.Component {
         super(props)
         this.state = { 
             seconds: 0,
-            answer: "with anyone"
+            answer: "with anyone",
+            url: window.plane,
+            classname: "filter-blue"
          };
 
     }
@@ -41,16 +43,26 @@ class Splash extends React.Component {
         }));
         
         let answer = "with anyone."
+        let url=window.plane
+        let classname="filter-blue"
         if (this.state.seconds % 3 === 0) {
             answer = "with anyone."
+            url = window.plane
+            classname="filter-blue"
         } else if (this.state.seconds % 3 === 1) {
             answer = "with housemates."
+            url = window.house
+            classname="filter-green"
         } else {
             answer = "with your partner."
+            url= window.heart
+            classname="filter-red"
         }
         
         this.setState(state => ({
-            answer: answer
+            answer: answer,
+            url:url,
+            classname:classname
         }))
     }
 
@@ -59,7 +71,8 @@ class Splash extends React.Component {
         var sectionStyle = {
             width: "100%",
             height: "600px",
-            backgroundImage: "url(" +  window.facets  + ")"
+            backgroundImage: "url(" +  window.facets  + ")",
+            // backgroundColor: "gray"
         };
 
 
@@ -74,7 +87,7 @@ class Splash extends React.Component {
                     <div>
                         <NavLink to="/">
                             {/* Dividewise */}
-                            <img src={window.logoURL} height="60"></img>
+                            <img src={window.logoURL} height="75"></img>
                         </NavLink>
                     </div>
 
@@ -97,7 +110,7 @@ class Splash extends React.Component {
 
                 <div>
                     {/* logout notification message */}
-                    {this.props.message ? <div className="alert-message">{this.props.message}</div> : <br></br>} 
+                    {this.props.message ? <div className="alert-message">{this.props.message}</div> : null} 
                 
 
                     {/* {window.location.pathname}  this is the correct one with / */}
@@ -106,16 +119,20 @@ class Splash extends React.Component {
                         <div className="transformingtext">
                             <p id="text-swap">Less stress when<br/> dividing expenses&nbsp;<br/>
                                 <span className="w3-animate-fading">
-                                    <dt className="text-heart">{this.state.answer}</dt>
+                                    <dt className={["text-heart",this.state.classname].join(' ')}>{this.state.answer}</dt>
                                 </span>
                             </p>
 
-                            <div>Keep track of your shared expenses and balances <br></br>with housemates, trips, groups, friends, and family.</div>
+                            <div id="subtext">Keep track of your shared expenses <br></br>and balances with housemates, trips,<br></br>groups, friends, and family.<br/>
+                               <img src={window.heart} height='50' className="filter-red"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                <img src={window.plane} height='50' className="filter-blue"></img>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <img src={window.house} height='50' className="filter-green"></img>
+                            </div>
                         </div>
-                        <div>
-                            <img src={window.heart} height='50' className="filter-red"></img>
-                            <img src={window.plane} height='50' className="filter-blue"></img>
-                            <img src={window.house} height='50' className="filter-green"></img>
+                        <div className="w3-animate-fading">
+                            <img src={this.state.url} height='350' className={this.state.classname}></img>
+                            {/* <img src={window.plane} height='350' className="filter-blue"></img>
+                            <img src={window.house} height='350' className="filter-green"></img> */}
 
                         </div>
                        

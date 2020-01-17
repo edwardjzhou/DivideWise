@@ -53,7 +53,7 @@ class Api::BillsController < ApplicationController
         if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
             render json: ["not a bill you're involved in"]
         elsif @bill.payments != null 
-            render json: ["cant delete a bill with payments already made to it"]
+            render json: ["cant delete a bill with payments already made to it-- payments must be atomic"]
         else
             @bill.destroy!
             render json: ["Destroyed bill #{@bill.id} about #{@bill.description}"]
