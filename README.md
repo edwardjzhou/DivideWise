@@ -10,7 +10,7 @@
 1. React for the frontend 
 2. Redux as the store
 3. PostgreSQL for the database
-4. Ruby on the rails for handling the API backend
+4. Ruby on rails for handling the API backend and MVC
 
 ## 2 Notable Features
 1. I was using Postman to try to hit my database and I managed to make a user make two other users who weren't him/her friends. So I put in a controller validation for that with current_user, to think ahead about potential abuse of my API backend.
