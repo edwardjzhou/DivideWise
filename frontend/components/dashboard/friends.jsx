@@ -52,10 +52,9 @@ const mSTP = (state) => {
 
 const mDTP = (dispatch) => {
     return {
-        //fetchBills: () => dispatch(fetchBills()),
-        //processForm: (user) => dispatch(signup(user)),
-        // otherForm: (
-        //     <button onClick={() => dispatch(openModal('Add'))}>
+        processForm: (user) => dispatch(signup(user)),
+        otherForm: (
+        //  <button onClick={() => dispatch(openModal('Add'))}>
         //         Login
         //     </button>
         // ),

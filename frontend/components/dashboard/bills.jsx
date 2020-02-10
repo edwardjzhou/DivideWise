@@ -18,12 +18,15 @@ class Bills extends React.Component {
 
     componentDidMount() {
         this.props.fetchBills()
-        // setTimeout(() => this.calculateTotalYouOwe(), 200)
         this.calculateTotalYouOwe()
-        // this.forceUpdate()
     }
     
-  
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.pokemons !== this.state.pokemons) {
+    //         console.log('pokemons state has changed.')
+    //     }
+    // }
+    
     calculateTotalYouOwe() {
         let owes = null;
         let owed = null;
@@ -35,8 +38,8 @@ class Bills extends React.Component {
             }
         })
         this.setState(
-            owes: owes
-            owed: owed
+            owes: owes,
+            owed: owed,
             allin: owed - owes
         )
     }
@@ -75,8 +78,8 @@ class Bills extends React.Component {
                                 (
                                     <Link to={`/friends/${bill.lender_id}`}>
                                         <p key={bill.id}>
-                                            <span> {new Date(bill.created_at).toLocaleDateString("en-US")} <br />{bill.borrower}
-                                                &nbsp;owes {bill.lender} ${bill.amount / 100} </span>
+                                            <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
+                                                &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
                                         </p>
                                     </Link>
                                 ))
