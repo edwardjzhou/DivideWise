@@ -26,7 +26,7 @@ class Bills extends React.Component {
     //         console.log('pokemons state has changed.')
     //     }
     // }
-    
+
     calculateTotalYouOwe() {
         let owes = null;
         let owed = null;
@@ -37,10 +37,11 @@ class Bills extends React.Component {
                 owed += bill.amount
             }
         })
-        this.setState(
+        this.setState({
             owes: owes,
             owed: owed,
             allin: owed - owes
+        }
         )
     }
 
