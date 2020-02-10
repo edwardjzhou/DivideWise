@@ -18,9 +18,9 @@ class Bills extends React.Component {
 
     componentDidMount() {
         this.props.fetchBills()
-        setTimeout(() => this.calculateTotalYouOwe(), 200)
-        // this.calculateTotalYouOwe()
-        this.forceUpdate()
+        // setTimeout(() => this.calculateTotalYouOwe(), 200)
+        this.calculateTotalYouOwe()
+        // this.forceUpdate()
     }
     
   
@@ -28,20 +28,17 @@ class Bills extends React.Component {
         let owes = null;
         let owed = null;
         this.props.bills.forEach((bill) => {
-            // console.log(this.props.current_user.id)
-            // console.log(bill.borrower_id)
-
-        if (this.props.current_user.id === bill.borrower_id) {
-             owes += bill.amount
-        } else{
-            owed += bill.amount
-        }
-    })
-        // console.log(owes)
-        this.state.owes = owes
-        this.state.owed = owed
-        this.state.allin = owed - owes
-        this.forceUpdate()
+            if (this.props.current_user.id === bill.borrower_id) {
+                owes += bill.amount
+            } else{
+                owed += bill.amount
+            }
+        })
+        this.setState(
+            owes: owes
+            owed: owed
+            allin: owed - owes
+        )
     }
 
 
@@ -56,16 +53,6 @@ class Bills extends React.Component {
         return (
                 <div id="YOU_OWE" className="column_main">
                 <div><AddBills></AddBills></div>
-
-{/* 
-                <div>            
-                    
-                    <nav className="">                    <button onClick={() => openModal('BillCreate')}>Add an expense</button>
-                    </nav>
-                </div>
- */}
-
-
                     <div id="total_balances">
 
                         {this.state.allin < 0 ?
@@ -76,8 +63,6 @@ class Bills extends React.Component {
                             <div style={red}>you owe<br/>${this.state.owes/100}</div> :
                             <div style={green}>you owe<br />${this.state.owes/100}</div>
                         }
-                    
-                        
                         {this.state.owed < 0 ?
                             <div style={red}>you are owed<br />${this.state.owed/100}</div> :
                             <div style={green}>you are owed<br />${this.state.owed/100}</div>
@@ -91,9 +76,8 @@ class Bills extends React.Component {
                                     <Link to={`/friends/${bill.lender_id}`}>
                                         <p key={bill.id}>
                                             <span> {new Date(bill.created_at).toLocaleDateString("en-US")} <br />{bill.borrower}
-                                                &nbsp; owes {bill.lender} ${bill.amount / 100} </span>
+                                                &nbsp;owes {bill.lender} ${bill.amount / 100} </span>
                                         </p>
-
                                     </Link>
                                 ))
                         }

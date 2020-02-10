@@ -59,7 +59,7 @@ class FriendsForm extends React.Component {
         return (
             <div className="addfriend-form">
                 <form onSubmit={this.handleSubmit}>
-                    <center>Add Friend</center>
+                    Add Friend
                     {/* <label> To:  */}
 
 
