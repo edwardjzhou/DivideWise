@@ -15,7 +15,8 @@ class Api::FriendshipsController < ApplicationController
             if @friendship.save
                 render "api/friendships/show"
             else 
-                render json: @friendship.errors.full_messages, status:422
+                # render json: @friendship.errors.full_messages, status:422
+                render json: ["This friendship already exists"]
             end
         elsif @friendship.save
             render "api/friendships/show"
