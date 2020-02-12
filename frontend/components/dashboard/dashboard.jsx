@@ -38,9 +38,9 @@ class Dashboard extends React.Component {
 const mSTP = (state) => {
     return {
         bills: Object.values(state.entities.bills),
-        user: Object.values(state.entities.users)[0].username,
+        // user: Object.values(state.entities.users)[0].username,
         current_user: state.entities.users[state.session.id].username,
-        currentUser: session.currentUser
+        // currentUser: session.currentUser
 
     }
 }
