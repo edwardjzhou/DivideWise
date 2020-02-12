@@ -9,7 +9,6 @@ const NavBar = () => {
 
 
    
-    
     return (
         <div className="flex-container">
             {/* <div className="header"> */}

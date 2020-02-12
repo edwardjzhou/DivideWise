@@ -5,7 +5,7 @@ class Api::BillsController < ApplicationController
         @bill = Bill.new(bill_params)
         @bill.settled = true
 
-        if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
+        if current_user.id != @bill.lender_id and current_user.id != @bill.borrower_id
             render json: ["not a bill you're involved in"]
         elsif @bill.save
             render "api/bills/show"
@@ -28,7 +28,7 @@ class Api::BillsController < ApplicationController
 
     def show
         @bill = Bill.find(params[:id])
-        if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
+        if current_user.id != @bill.lender_id and current_user.id != @bill.borrower_id
             render json: ["not a bill you're involved in"]
         elsif @bill.save
             render "api/bills/show"
@@ -39,7 +39,7 @@ class Api::BillsController < ApplicationController
 
     def update
         @bill = Bill.find(params[:id])
-        if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
+        if current_user.id != @bill.lender_id and current_user.id != @bill.borrower_id
             render json: ["not a bill you're involved in"]
         elsif @bill.update(bill_params)
             render "api/bills/show"
@@ -50,7 +50,7 @@ class Api::BillsController < ApplicationController
 
     def destroy
         @bill = Bill.find(params[:id])
-        if current_user.id != @bill.lender_id || current_user.id != @bill.borrower_id
+        if current_user.id != @bill.lender_id and current_user.id != @bill.borrower_id
             render json: ["not a bill you're involved in"]
         elsif @bill.payments != null 
             render json: ["cant delete a bill with payments already made to it-- payments must be atomic"]

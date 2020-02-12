@@ -13,12 +13,17 @@ class Friends extends React.Component {
     constructor(props) {
         super(props)
         this.state = {}
-    
-
     }
 
     componentDidMount() {
         this.props.fetchFriends()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.friends !== this.props.friends) {
+            console.log('friends props has changed.')
+            this.forceUpdate()
+        }
     }
 
     render() {
@@ -26,11 +31,13 @@ class Friends extends React.Component {
         return (
             <div id="friends_bar" className="column">
                 <div>
-                <span> Friends<AddFriends>  </AddFriends></span>
+                <div className="header"> FRIENDS<AddFriends>  </AddFriends></div>
                     {/* <img src={window.user}></img>  */}
                 {this.props.friends.map(friend => (
                     friend.friends_name !==  this.props.current_user ?
-                         (<li key={friend.id}>{friend.friends_name}</li>)
+                         (<div className='friendItem' tabIndex="-1" key={friend.id}>
+                            <img height="25" src={window.user} ></img>
+                             {friend.friends_name}</div>)
                         : null) 
                     )
                 }

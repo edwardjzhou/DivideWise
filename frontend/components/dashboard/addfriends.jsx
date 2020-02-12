@@ -4,12 +4,9 @@ import { openModal } from '../../actions/modal_actions';
 
 
 
-const AddFriends = ({ currentUser, logout, openModal }) => {
-
+const AddFriends = ({ openModal }) => {
     const sessionLinks = () => (
-        <nav className="">
-            <button onClick={() => openModal('Add')}>+</button>
-        </nav>
+            <a className='addfriends' onClick={() => openModal('Add')}>+add</a>
         
     );
     
