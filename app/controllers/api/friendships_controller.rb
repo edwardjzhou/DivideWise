@@ -4,7 +4,7 @@ class Api::FriendshipsController < ApplicationController
     def create 
         @friendship = Friendship.new(friendship_params)
 
-        if current_user.id.to_s != @friendship.user_one_id and current_user.id.to_s != @friendship.user_two_id
+        if current_user.id.to_s != @friendship.user_one_id.to_s and current_user.id.to_s != @friendship.user_two_id.to_s
             render json: ["dont make friendships for people who arent you"]
         elsif @friendship.user_one_id == @friendship.user_two_id 
             render json: ["cant be own friend"]
@@ -31,7 +31,7 @@ class Api::FriendshipsController < ApplicationController
         
     def destroy
         @friendship = Friendship.find[:id]
-        if (current_user.id == @friendship.user_one_id || current_user.id == @friendship.user_two_id)
+        if (current_user.id.to_s == @friendship.user_one_id.to_s || current_user.id.to_s == @friendship.user_two_id.to_s)
             @friendship.destroy!
             render json: ["destroyed friendship betwixt #{@friendship.user_one_id} and #{@friendship.user_two_id}"]
         else
