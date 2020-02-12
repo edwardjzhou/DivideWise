@@ -68,7 +68,7 @@ input #user_session_email {
 	/* Effects */
 	transform: none;
 	transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
-	outline: rgb(255, 0, 0) dashed 0.909091px;
+	// outline: rgb(255, 0, 0) dashed 0.909091px;
 	outline-offset: -1.81818px;
 	box-sizing: content-box;
 	resize: none;
@@ -152,7 +152,7 @@ input #user_session_password {
 	/* Effects */
 	transform: none;
 	transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
-	outline: rgb(255, 0, 0) dashed 0.909091px;
+	// outline: rgb(255, 0, 0) dashed 0.909091px;
 	outline-offset: -1.81818px;
 	box-sizing: content-box;
 	resize: none;
@@ -238,7 +238,7 @@ input #user_session_password {
 	/* Effects */
 	transform: none;
 	transition: all 0s ease 0s;
-	outline: rgb(255, 0, 0) dashed 0.909091px;
+	// outline: rgb(255, 0, 0) dashed 0.909091px;
 	outline-offset: 0px;
 	box-sizing: content-box;
 	resize: none;
@@ -323,7 +323,7 @@ div .input {
 	/* Effects */
 	transform: none;
 	transition: all 0s ease 0s;
-	outline: rgb(255, 0, 0) dashed 0.909091px;
+	// outline: rgb(255, 0, 0) dashed 0.909091px;
 	outline-offset: 0px;
 	box-sizing: content-box;
 	resize: none;
@@ -426,7 +426,7 @@ input[type=text]:focus, textarea:focus {
 	/* Effects */
 	transform: none;
 	transition: background-position 0.1s linear 0s;
-	outline: rgb(255, 0, 0) dashed 0.909091px;
+	// outline: rgb(255, 0, 0) dashed 0.909091px;
 	outline-offset: 0px;
 	box-sizing: border-box;
 	resize: none;
@@ -511,7 +511,7 @@ input[type=text]:focus, textarea:focus {
 	/* Effects */
 	transform: none;
 	transition: background-position 0.1s linear 0s;
-	outline: rgb(255, 0, 0) dashed 1px;
+	// outline: rgb(255, 0, 0) dashed 1px;
 	outline-offset: 0px;
 	box-sizing: content-box;
 	resize: none;

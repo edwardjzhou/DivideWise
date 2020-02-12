@@ -133,7 +133,7 @@ div {
     justify-content: center;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
-    min-height: 100%;
+    min-height: 90%;
     -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.2);
     -moz-box-shadow: 0 0 12px rgba(0,0,0,0.2);
     box-shadow: 0 0 12px rgba(0,0,0,0.2);
@@ -141,7 +141,7 @@ div {
     width: 40%;
     /* display: flex; */
     /* height: 100vh; */
-    position: relative;
+    // position: relative;
     
   }
 
@@ -166,9 +166,10 @@ div {
   display: flex;
   float: left; 
   width: 13%;
-  height: 100vh;
+  height: 95vh;
   z-index: 3;
   margin-left: 15%;
+  white-space: nowrap;
 }
 /* end dashboard.jsx */
 
@@ -202,6 +203,16 @@ div {
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+
+    text-overflow: clip;
+    word-wrap: normal;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    list-style-type: none;
+    list-style: none;
  }
 
  .close-x {

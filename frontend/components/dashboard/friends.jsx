@@ -31,8 +31,7 @@ class Friends extends React.Component {
         return (
             <div id="friends_bar" className="column">
                 <div>
-                <div className="header"> FRIENDS<AddFriends>  </AddFriends></div>
-                    {/* <img src={window.user}></img>  */}
+                <div className="header"> FRIENDS<AddFriends></AddFriends></div>
                 {this.props.friends.map(friend => (
                     friend.friends_name !==  this.props.current_user ?
                          (<div className='friendItem' tabIndex="-1" key={friend.id}>

@@ -56,8 +56,12 @@ class Bills extends React.Component {
         };
         return (
                 <div id="YOU_OWE" className="column_main">
-                <div><AddBills></AddBills></div>
-                    <div id="total_balances">
+                <div style={{ borderBottom: `1px solid #DDDDDD`, backgroundColor: `#EEEEEE`, display:'flex',
+            fontWeight:`700`,lineHeight:`38px`,fontSize:`24px`, fontFamily:`Lato`, padding: `0 0 0 5px` }}>
+                    Dashboard
+                    <AddBills></AddBills>
+                    </div>
+                    <div id="total_balances" style={{backgroundColor:`#EEEEEE`}}>
 
                         {this.state.allin < 0 ?
                             <div style={red}>total balance<br/>${this.state.allin/100}</div> :

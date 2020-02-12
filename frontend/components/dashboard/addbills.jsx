@@ -8,7 +8,7 @@ const AddBills = ({ currentUser, logout, openModal }) => {
 
     const sessionLinks = () => (
         <nav className="">
-            <button onClick={() => openModal('BillCreate')}>+</button>
+            <button className='orangebutton' onClick={() => openModal('BillCreate')}>Add an Expense</button>
         </nav>
 
     );
