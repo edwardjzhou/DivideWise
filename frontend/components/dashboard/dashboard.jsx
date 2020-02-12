@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
         return (
             <div className="row">
                 <div id="dashboardnavbar"> DIVIDEWISE:  
-                    <div><a id="dropdown">{this.props.current_user} dropdown logout here  </a>
+                    <div><a id="dropdown">Hey, {this.props.current_user}!  </a>
                     <button className="header-button" onClick={this.props.logout}>Log Out</button></div>
                 </div>
                     <Friends /> 
