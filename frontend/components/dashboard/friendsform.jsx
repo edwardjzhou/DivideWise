@@ -1,21 +1,18 @@
 import React from 'react';
-// import LeftMenu from './left_menu'
-//import Modal from './modal'
 import { connect } from 'react-redux';
-import { fetchBills, fetchBill } from '../../actions/bill_actions'
-import { Link } from 'react-router-dom';
-import Friends from './friends'
-import { logout } from '../../actions/session_actions';
 import { getUsers } from '../../actions/session_actions'
-import { createFriend } from '../../actions/friend_actions'
-
-
+import { createFriend , fetchFriends } from '../../actions/friend_actions'
 
 class FriendsForm extends React.Component {
     constructor(props) {
         super(props)
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.state = { selectedFriend: null}
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = { 
+            selectedFriend: null,
+            searchString: '',
+        }
+        this.renderList = this.renderList.bind(this);
+        this.update = this.update.bind(this);
     }
 
     componentDidMount(){
@@ -28,9 +25,8 @@ class FriendsForm extends React.Component {
         }))
     }
 
-    handleSubmit() {
-        // console.log(this.state.selectedFriend)
-        // console.log(this.props.current_user_id)
+    handleSubmit(e) {
+        e.preventDefault()
         let user_one_id
         let user_two_id
         if (this.state.selectedFriend > this.props.current_user_id){
@@ -45,8 +41,9 @@ class FriendsForm extends React.Component {
             user_one_id: user_one_id, 
             user_two_id: user_two_id
         })
+
+        this.props.fetchFriends()
         
-        this.forceUpdate()
     }
 
     // $.ajax({
@@ -55,37 +52,44 @@ class FriendsForm extends React.Component {
     //     data: { friendship: { user_one_id: 3, user_two_id: 7} }
     // })
 
+    renderList() {
+        return this.props.users
+            .filter(user => {
+                return (user.username.includes(this.state.searchString) || user.email.includes(this.state.searchString) )
+            })
+            .filter(user => {
+                return !this.props.friends.map(friend => friend.friends_name).includes(user.username)
+            })
+            .map(user => {
+                if (this.props.current_user != user ) {
+                    return (
+                        <p onClick={this.update('selectedFriend')} value={user.id} key={user.id}>{user.username}</p>
+                    )
+                }
+            })
+    };
+
+    onChange(e) {
+        this.setState({
+            searchString: e.target.value
+        });
+    }
+
     render(){
         return (
             <div className="addfriend-form">
                 <form onSubmit={this.handleSubmit}>
                     Add Friend
-                    {/* <label> To:  */}
+                    Search for Friends (by username or email)! : &nbsp;
+                        <input
+                        type="text"
+                        value={this.state.searchString}
+                        onChange={this.onChange.bind(this)}
+                    />
 
-
-                        <input type="text" placeholder='choose a username' value={this.props.users[this.state.selectedFriend] === undefined ?
-                            null : 
-                            this.props.users[this.state.selectedFriend].username 
-                        } />
-
-{/*                         
-                        {this.props.users[this.state.selectedFriend] === undefined ?
-                            null :
-                            this.props.users[this.state.selectedFriend].username
-                        } */}
-
-{/* name="listbox" */}
-                        {/* https://www.jondjones.com/frontend/react/components/how-to-build-a-filterable-search-bar-in-react */}
-                        <select  size="10">
-                            {this.props.users.map(user=>(
-                                <option onClick={this.update('selectedFriend')} value={user.id} key={user.id}>{user.username}</option>   
-                            ))}
-                        </select>
-                        <input type="submit" value='Add Friend'/>
-                    {/* </label> */}
+                    {this.renderList()}
+                    <input type="submit" value='Add Friend'/>
                 </form>
-
-
             </div>
         )
     }
@@ -94,19 +98,18 @@ class FriendsForm extends React.Component {
 const mSTP = (state) => {
     return {
         friends: Object.values(state.entities.friends),
-        //user: Object.values(state.entities.users)[0].username,
-        current_user: state.entities.users[state.session.id].username,
+        current_user: state.entities.users[state.session.id],
         current_user_id: state.entities.users[state.session.id].id,
-        users: Object.values(state.entities.users)
+        users: Object.values(state.entities.users),
     }
-}
+};
 
 const mDTP = (dispatch) => {
     return {
         createFriend: (friend) => dispatch(createFriend(friend)),
         getUsers: () => dispatch(getUsers()),
-
+        fetchFriends: () => dispatch(fetchFriends()),
     }
-}
+};
 
 export default connect(mSTP,mDTP)(FriendsForm)

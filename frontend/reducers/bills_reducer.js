@@ -16,12 +16,6 @@ const billsReducer = (state = {}, action) => {
         case RECEIVE_BILL:
             const newBill = { [action.bill.id]: action.bill };
             return merge({}, state, newBill);
-        // case RECEIVE_REVIEW:
-        //     const { review, average_rating } = action;
-        //     const newState = merge({}, state);
-        //     newState[review.bench_id].reviewIds.push(review.id);
-        //     newState[review.bench_id].average_rating = average_rating;
-        //     return newState;
         case REMOVE_BILL:
             delete newState[billId];
             return newState;

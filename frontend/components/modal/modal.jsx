@@ -23,6 +23,7 @@ function Modal({ modal, closeModal }) {
     return (
         <div className="modal-background" onClick={closeModal}>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
+                <a style={{float:'right'}} onClick={closeModal}>X</a>
                 {component}
             </div>
         </div>
