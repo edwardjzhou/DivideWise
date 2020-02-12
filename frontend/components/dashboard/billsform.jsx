@@ -55,7 +55,7 @@ class BillsForm extends React.Component {
         return (
             <div className="addfriend-form"> Add an Expense
                 <form onSubmit={this.handleSubmit}>
-                With you and {this.state.friendId}
+                With you and&nbsp;
                 <select onChange={this.selectedFriend.bind(this)}>
                         {this.props.friends.map(friend => (
                             friend.friends_name !== this.props.current_user ?
@@ -64,8 +64,12 @@ class BillsForm extends React.Component {
                         )
                         }
                 </select>
-
-                <input type="submit"></input>
+                    <br />
+                <img src={window.check}></img>
+                <input type='text' style={{height:`24px`, width:`180px`, padding:`4px 3px 2px 3px`, display: `inline-block`,
+                        fontSize: `20px`,  boxShadow: `none`,
+                        border: `none`, borderBottom: `1px dashed #CCCCCC`}} placeholder='Enter a description'></input>
+                <input type="submit" value="Save"></input>
                 </form>
             </div>
         );
