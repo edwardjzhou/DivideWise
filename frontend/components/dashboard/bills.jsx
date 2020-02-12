@@ -51,32 +51,81 @@ class Bills extends React.Component {
 
     render() {
         const red = {
-            color: 'red'
+            color: 'red',
+            borderStyle: `solid`,
+            width: `32%`,
+            borderColor: `#DDDDDD`,
+            display: `inline-block`,
+            margin: `0 0 0 0`,
+            padding: `0 0 0 0`,
+            position: `relative`,
+            top: `50%`,
+            transform: `translateY(-50%)`
+
         };
 
         const green = {
-            color: 'green'
+            color: 'green',
+            borderStyle: `solid`,
+            width: `30%`,
+            borderColor: `#DDDDDD`,
+            display: `inline-block`,
+            margin: `0 0 0 0`,
+            padding: `0 0 0 0`,
+            textAlign: `center`,
+            position: `relative`,
+            top: `50%`,
+            transform: `translateY(-50%)`
+
+        };
+
+        const redlazy = {
+            color: 'red',
+            borderStyle: `outset`,
+            width: `30%`,
+            display: `inline-block`,
+            margin: `0 0 0 0`,
+            padding: `0 0 0 0`,
+            textAlign: `center`,
+            position: `relative`,
+            top: `50%`,
+            transform: `translateY(-50%)`
+
+        };
+
+        const greenlazy = {
+            color: 'green',
+            borderStyle: `outset`,
+            width: `30%`,
+            display: `inline-block`,
+            margin: `0 0 0 0`,
+            padding: `0 0 0 0`,
+            position: `relative`,
+            top: `50%`,
+            transform: `translateY(-50%)`
+
         };
         return (
-                <div id="YOU_OWE" className="column_main">
+                <div id="YOU_OWE" className="column_main" style={{margin: `0px`, padding: `0 0 0 0`}}>
                 <div style={{ borderBottom: `1px solid #DDDDDD`, backgroundColor: `#EEEEEE`, display:'flex',
-            fontWeight:`700`,lineHeight:`38px`,fontSize:`24px`, fontFamily:`Lato`, padding: `0 0 0 5px` }}>
+                    fontWeight: `700`, lineHeight: `38px`, fontSize: `24px`, fontFamily: `Lato`, padding: `5% 0 0 5%`,}}>
                     Dashboard
                     <AddBills></AddBills>
                     </div>
-                    <div id="total_balances" style={{backgroundColor:`#EEEEEE`}}>
+                <div id="total_balances" style={{
+                    backgroundColor: `#EEEEEE`, display: `block`}}>
 
                         {this.state.allin < 0 ?
-                            <div style={red}>total balance<br/>${this.state.allin/100}</div> :
-                            <div style={green}>total balance<br/>${this.state.allin/100}</div>
+                            <div style={Object.assign(red, {borderWidth: `0 1px 0 0`})}>total balance<br/>${this.state.allin/100}</div> :
+                            <div style={Object.assign(green, { borderWidth: `0 1px 0 0` })}>total balance<br/>${this.state.allin/100}</div>
                         }
                         {this.state.owes > 0 ?
                             <div style={red}>you owe<br/>${this.state.owes/100}</div> :
                             <div style={green}>you owe<br />${this.state.owes/100}</div>
                         }
                         {this.state.owed < 0 ?
-                            <div style={red}>you are owed<br />${this.state.owed/100}</div> :
-                            <div style={green}>you are owed<br />${this.state.owed/100}</div>
+                            <div style={redlazy}>you are owed<br />${this.state.owed/100}</div> :
+                            <div style={greenlazy}>you are owed<br />${this.state.owed/100}</div>
                         }
                         
                     </div>

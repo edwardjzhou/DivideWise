@@ -14,39 +14,58 @@ class BillsForm extends React.Component {
             lender_id: null,
             borrower_id: null,
             settled: null,
-            friendId: null,
+            friend: null,
 
         }
         this.selectedFriend = this.selectedFriend.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount() {
-        this.props.fetchBills()
-        // setTimeout(() => this.calculateTotalYouOwe(), 200)
-        // // this.calculateTotalYouOwe()
+        // this.props.fetchBills()
+
     }
 
-    selectedFriend(friendId){
-        this.setState({friendId: friendId})
+    selectedFriend(e){
+        this.setState({friend: e.target.value})
+        // console.log(this.state)
+    }
+    
+    handleSubmit(e) {
+        e.preventDefault()
+        this.props.createBill({
+            description: 'descriplmao',
+            lender_id: `60`, 
+            borrower_id: `1`,
+            amount: `500`,
+            settled: `false`,
+        })
+        // this.props.fetchBills() 
+    }
+
+    update(field) {
         console.log(this.state)
+        return e => this.setState({
+            [field]: e.target.value
+        })
     }
-
-
 
     render() {
 
         return (
-            <div> bills form 
-                <form>
-                {this.state.friendId}
-                <select onChange={()=>this.selectedFriend(this.value)}>
+            <div className="addfriend-form"> Add an Expense
+                <form onSubmit={this.handleSubmit}>
+                With you and {this.state.friendId}
+                <select onChange={this.selectedFriend.bind(this)}>
                         {this.props.friends.map(friend => (
                             friend.friends_name !== this.props.current_user ?
-                                <option value={friend.id} key={friend.id}>{friend.friends_name}</option>
+                                <option value={Object.values(friend)} key={friend.id}>{friend.friends_name}</option>
                                 : null)
                         )
                         }
                 </select>
+
+                <input type="submit"></input>
                 </form>
             </div>
         );
@@ -66,7 +85,7 @@ const mDTP = (dispatch) => {
     return {
         fetchBills: () => dispatch(fetchBills()),
         // openModal: modal => dispatch(openModal(modal))
-        createBill: (bill) => dispatch(createBill()),
+        createBill: (bill) => dispatch(createBill(bill)),
         fetchFriends: () => dispatch(fetchFriends()),
     }
 }

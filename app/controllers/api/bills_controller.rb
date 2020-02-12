@@ -3,9 +3,10 @@ class Api::BillsController < ApplicationController
 
     def create
         @bill = Bill.new(bill_params)
-        @bill.settled = true
-
-        if current_user.id != @bill.lender_id and current_user.id != @bill.borrower_id
+       if !Friendship.where("user_one_id = ? OR user_two_id = ?", @bill.lender_id.to_s, @bill.lender_id.to_s)
+            .where("user_one_id = ? OR user_two_id = ?", @bill.borrower_id.to_s, @bill.borrower_id.to_s)
+            render json: ["become friends first before creating a bill with others"]
+        elsif current_user.id.to_s != @bill.lender_id.to_s and current_user.id.to_s != @bill.borrower_id.to_s
             render json: ["not a bill you're involved in"]
         elsif @bill.save
             render "api/bills/show"

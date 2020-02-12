@@ -40,15 +40,15 @@ class FriendsForm extends React.Component {
         
 
         
-        debounce( () => 
-        {
+        // debounce( () => 
+        // {
             this.props.createFriend({
                 user_one_id: user_one_id, 
                 user_two_id: user_two_id
             })
             this.props.fetchFriends() 
-        }
-        , 50)
+        // }
+        // , 50)
     }
 
     // $.ajax({

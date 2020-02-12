@@ -7,8 +7,8 @@ import { openModal } from '../../actions/modal_actions';
 const AddBills = ({ currentUser, logout, openModal }) => {
 
     const sessionLinks = () => (
-        <nav className="">
-            <button className='orangebutton' onClick={() => openModal('BillCreate')}>Add an Expense</button>
+        <nav>
+            <button className='orangebutton' style={{}} onClick={() => openModal('BillCreate')}>Add an Expense</button>
         </nav>
 
     );

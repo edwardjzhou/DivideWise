@@ -3,23 +3,25 @@ class Api::FriendshipsController < ApplicationController
     
     def create 
         @friendship = Friendship.new(friendship_params)
-        if @friendship.user_one_id == @friendship.user_two_id 
+
+        if current_user.id.to_s != @friendship.user_one_id and current_user.id.to_s != @friendship.user_two_id
+            render json: ["dont make friendships for people who arent you"]
+        elsif @friendship.user_one_id == @friendship.user_two_id 
             render json: ["cant be own friend"]
-        # elsif (current_user.id != @friendship.user_one_id && current_user.id != @friendship.user_two_id)
-            # render json: ["friendship failed because you're trying to make someone who isn't you friends with someone who isn't you"]
         elsif @friendship.user_one_id == nil or @friendship.user_two_id==nil
             render json: ["one of the friends is a nil user"]
-        elsif @friendship.user_one_id > @friendship.user_two_id #&& (current_user.id == @friendship.user_one_id || current_user.id == @friendship.user_two_id)
+        elsif @friendship.user_one_id.to_i > @friendship.user_two_id.to_i
             @friendship.user_one_id, @friendship.user_two_id = 
             @friendship.user_two_id, @friendship.user_one_id
             if @friendship.save
                 render "api/friendships/show"
             else 
-                # render json: @friendship.errors.full_messages, status:422
-                render json: ["This friendship already exists"]
+                render json: @friendship.errors.full_messages, status:422
+                # render json: ["This friendship already exists"]
             end
         elsif @friendship.save
             render "api/friendships/show"
+            p 'asdfsdfasdf'
         else
             render json: @friendship.errors.full_messages, status:422
         end
