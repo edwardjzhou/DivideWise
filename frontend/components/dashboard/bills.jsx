@@ -14,6 +14,7 @@ class Bills extends React.Component {
             owed: null,
             allin: null,
         }
+        this.calculateTotalYouOwe = this.calculateTotalYouOwe.bind(this)
     }
 
     componentDidMount() {
@@ -21,11 +22,13 @@ class Bills extends React.Component {
         this.calculateTotalYouOwe()
     }
     
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevState.pokemons !== this.state.pokemons) {
-    //         console.log('pokemons state has changed.')
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState){
+        if (prevProps.bills !== this.props.owes) {
+            console.log('billsz props has changed.')
+            this.calculateTotalYouOwe()
+        }
+    }
+  
 
     calculateTotalYouOwe() {
         let owes = null;

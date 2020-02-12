@@ -21,7 +21,7 @@ class BillsForm extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchFriends()
+        this.props.fetchBills()
         // setTimeout(() => this.calculateTotalYouOwe(), 200)
         // // this.calculateTotalYouOwe()
     }
@@ -64,7 +64,7 @@ const mSTP = (state) => {
 
 const mDTP = (dispatch) => {
     return {
-        // fetchBills: () => dispatch(fetchBills()),
+        fetchBills: () => dispatch(fetchBills()),
         // openModal: modal => dispatch(openModal(modal))
         createBill: (bill) => dispatch(createBill()),
         fetchFriends: () => dispatch(fetchFriends()),

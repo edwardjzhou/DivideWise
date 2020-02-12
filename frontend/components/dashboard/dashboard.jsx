@@ -16,9 +16,7 @@ class Dashboard extends React.Component {
         super(props)
     }
 
-    componentDidMount(){
-        this.props.fetchBills()
-    }
+
 
     render() {
         return (
