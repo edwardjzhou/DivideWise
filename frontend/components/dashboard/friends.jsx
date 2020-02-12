@@ -58,7 +58,7 @@ const mDTP = (dispatch) => {
         //         Login
         //     </button>
         // ),
-        // closeModal: () => dispatch(closeModal()),
+        closeModal: () => dispatch(closeModal()),
 
         fetchFriends: () => dispatch(fetchFriends()),
 
