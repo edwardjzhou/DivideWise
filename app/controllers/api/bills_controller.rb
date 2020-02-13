@@ -5,18 +5,22 @@ class Api::BillsController < ApplicationController
         @bill = Bill.new(bill_params)
        if !Friendship.where("user_one_id = ? OR user_two_id = ?", @bill.lender_id.to_s, @bill.lender_id.to_s)
             .where("user_one_id = ? OR user_two_id = ?", @bill.borrower_id.to_s, @bill.borrower_id.to_s)
+            p 'asdf'
             render json: ["become friends first before creating a bill with others"]
         elsif current_user.id.to_s != @bill.lender_id.to_s and current_user.id.to_s != @bill.borrower_id.to_s
+            p 'fml'
             render json: ["not a bill you're involved in"]
         elsif @bill.save
+            p 'asdfasdf'
             render "api/bills/show"
         else
+            p 'asdfsadlkjfsdkfsadjfk'
             render json: @bill.errors.full_messages, status:422
         end
     end
 
     def index  
-        @bills = Bill.all.where("settled = 'true'").where("lender_id = #{current_user.id.to_s} OR borrower_id = #{current_user.id.to_s}" )
+        @bills = Bill.all.where("lender_id = #{current_user.id.to_s} OR borrower_id = #{current_user.id.to_s}" )
         render "api/bills/index"
         #[{"id":1,"description":"good mongkok",
         # "lender_id":1,"borrower_id":2,"amount":1000,
