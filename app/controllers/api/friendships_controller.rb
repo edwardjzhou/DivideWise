@@ -21,7 +21,6 @@ class Api::FriendshipsController < ApplicationController
             end
         elsif @friendship.save
             render "api/friendships/show"
-            p 'asdfsdfasdf'
         else
             render json: @friendship.errors.full_messages, status:422
         end

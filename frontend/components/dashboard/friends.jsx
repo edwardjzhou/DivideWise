@@ -31,6 +31,10 @@ class Friends extends React.Component {
         return (
             <div id="friends_bar" className="column">
                 <div>
+                    {location.href.includes('dashboard') ? <span style={{color:`#5BC5A7`,
+                        borderLeft: `8px solid #5BC5A7`
+                    }}>Dashboard</span> : <span>Dashboard</span>}
+
                 <div className="header"> FRIENDS<AddFriends></AddFriends></div>
                 {this.props.friends.map(friend => (
                     friend.friends_name !==  this.props.current_user ?
@@ -41,6 +45,7 @@ class Friends extends React.Component {
                     )
                 }
                     <br></br>             
+
                     </div>
             </div>
         );
@@ -58,16 +63,8 @@ const mSTP = (state) => {
 
 const mDTP = (dispatch) => {
     return {
-        // processForm: (user) => dispatch(signup(user)),
-        //  otherForm: (
-        //     <button onClick={() => dispatch(openModal('Add'))}>
-        //         Login
-        //     </button>
-        // ),
         closeModal: () => dispatch(closeModal()),
-
         fetchFriends: () => dispatch(fetchFriends()),
-
     }
 }
 

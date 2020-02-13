@@ -78,31 +78,30 @@ class Card extends Component {
                                 <form onSubmit={this.handleSubmit} className="login-form-box2">
                                     <div className="login-form2">
                                         <br />
-                                        <label>Username:
+                            
                                             <input type="text"
+                                                placeholder="Email address"
                                                 value={this.state.username}
                                                 onChange={this.update('username')}
                                                 className="login-input"
                                             />
-                                        </label>
                                         <br />
                                                             
-                                        <label>Password:
                                             <input type="password"
+                                                placeholder="Password"
                                                 value={this.state.password}
                                                 onChange={this.update('password')}
                                                 className="login-input"
                                             />
-                                        </label>
                                         <br />
                                             <input className="session-submit" type="submit" value={this.props.formType} />
-                                        <ul>
+                                        {/* <ul>
                                             {this.props.errors.map((error, i) => (
                                             <li key={`error-${i}`}>
                                                 {error}
                                             </li>
                                             ))}
-                                        </ul>
+                                        </ul> */}
                                     </div>
                                 </form>
                             </div>

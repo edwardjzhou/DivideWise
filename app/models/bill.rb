@@ -1,5 +1,4 @@
 class Bill < ApplicationRecord
-#   after_initialize :ensure_session_token
 
     validates :description, :lender_id, :borrower_id, :amount, presence: true
     validates :settled, :inclusion => { :in => [true, false] }

@@ -55,7 +55,7 @@ class BillsForm extends React.Component {
         if(prevProps.bills != this.props.bills){
             this.props.closeModal()
         }
-        if(prevState.friend != this.state.friend || prevState.selfDebtor != this.state.selfDebtor){
+        if(prevState.friend != this.state.friend || (prevState.selfDebtor != this.state.selfDebtor && this.state.friend != null)){
             if (this.state.selfDebtor === true){
                 this.setState({
                     borrower_id: this.props.current_user.id
@@ -113,9 +113,9 @@ class BillsForm extends React.Component {
             this.state.lender_id != null &&
             this.state.borrower_id != null &&
             this.state.amount != null) {    
-                   return (<input type="submit" value="Save" ></input>)
+                   return (<input className='greenbutton' type="submit" value="Save" ></input>)
         }else{
-            return (<input type="submit" value="Save" disabled="true"></input>)
+            return (<input className='greenbutton disabled' type="submit" value="Save" disabled="true"></input>)
         }
 
     }
@@ -149,11 +149,11 @@ class BillsForm extends React.Component {
                     }} placeholder='0.00'></input>
                 </div>  
                 {this.state.selfDebtor === false ?
-                        <p onClick={()=>this.meTheDebtor()}> Paid by you, so he/she owes you ${this.state.amount ? this.state.amount : 0.00}</p>
+                        <p onClick={()=>this.meTheDebtor()}> Paid by <span className='STRONG'>YOU</span>, so he/she owes you ${this.state.amount ? this.state.amount : 0.00}</p>
                         :
-                        <p onClick={() => this.theyTheDebtor()}> Paid by him/he, so you owe him/her ${this.state.amount ? this.state.amount : 0.00}</p>
+                        <p onClick={() => this.theyTheDebtor()}> Paid by <span className='STRONG'>FRIEND</span>, so you owe him/her ${this.state.amount ? this.state.amount : 0.00}</p>
                 }
-                    <button onClick={this.props.closeModal}>Cancel</button> 
+                    <button className='cancel' onClick={this.props.closeModal}>Cancel</button> 
                     {this.allowSubmit()}
                 </form>
             </div>

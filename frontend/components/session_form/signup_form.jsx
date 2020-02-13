@@ -67,23 +67,23 @@ class SignupForm extends React.Component {
                     <div className="signup-form" id="slideout">
                         <br />
                         {this.props.errors === undefined ? null :
-                            <span className="errors">{this.props.errors.map((error,i) => <li key={`error-${i}`}>{error}</li>)} </span>
+                            <span className="errors">{this.props.errors.map((error,i) => <li key={`error-${i}`}>{error}</li>)} </span> 
                         }   
                         
-                        <label>  Hi there! My name is <br></br>
-                            <input type="text"
+                            <span style={{ fontSize: '24px', fontFamily: `Lato, "Helvetica Neue", Helvetica, Arial, sans-serif`}}>  Hi there! My name is 
+                            </span><br/>
+                            <input type="text" style={{fontSize:`32px`}}
                                 value={this.state.username}
                                 onChange={this.update('username')}
                                 className="signup-input"
                                 onClick={()=>this.maxFormHeight()}
                             />
-                        </label>
                         <div id="slideout-inner" className="slideout" 
                          style={maxHeight} 
                         >
-                                <br /><br />
+                                <br />
                                 <label>Here's my email address: <br></br>
-                                    <input type="text"
+                                    <input type="text" style={{ fontSize: `18px`, fontFamily: `Lato, "Helvetica Neue", Helvetica, Arial, sans-serif` }}
                                         value={this.state.email}
                                         onChange={this.update('email')}
                                         className="signup-input"
@@ -92,7 +92,7 @@ class SignupForm extends React.Component {
 
                                 <br /><br />
                                 <label> And here's my password: <br></br>
-                                    <input type="password"
+                                    <input type="password" style={{ fontSize: `18px`, fontFamily: `Lato, "Helvetica Neue", Helvetica, Arial, sans-serif` }}
                                         value={this.state.password}
                                         onChange={this.update('password')}
                                         className="signup-input"
