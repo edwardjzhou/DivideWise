@@ -53,9 +53,9 @@ class BillsForm extends React.Component {
     render() {
 
         return (
-            <div className="addfriend-form"> Add an Expense
+            <div className="addfriend-form"> <div id="formheader">Add an Expense</div>
                 <form onSubmit={this.handleSubmit}>
-                With you and&nbsp;
+                    <span style={{ left: `10px`, position: `absolute` }}>With <span className='STRONG'>you</span> and&nbsp;
                 <select onChange={this.selectedFriend.bind(this)}>
                         {this.props.friends.map(friend => (
                             friend.friends_name !== this.props.current_user ?
@@ -63,13 +63,23 @@ class BillsForm extends React.Component {
                                 : null)
                         )
                         }
-                </select>
+                        </select></span>
                     <br />
-                <img src={window.check}></img>
-                <input type='text' style={{height:`24px`, width:`180px`, padding:`4px 3px 2px 3px`, display: `inline-block`,
-                        fontSize: `20px`,  boxShadow: `none`,
-                        border: `none`, borderBottom: `1px dashed #CCCCCC`}} placeholder='Enter a description'></input>
+
+                <div style={{margin: `5px 33px 5px 33px`, position: 'relative', display: `block`}}>  
+                    <img src={window.check} style={{margin:'10px 16px 10px 0', display: `block`, verticalAlign:`middle`}}></img>
+                    <input className="unfocus" type='text' style={{height:`20%`, width:`40%`, padding:`4px 3px 2px 3px`, display: `inline-block`,
+                            fontSize: `25px`,  boxShadow: `none`,
+                            border: `none`, borderBottom: `1px dashed #CCCCCC`}} placeholder='Enter a description'></input>
+                    $<input className="unfocus" type='text' style={{
+                        width: `40%`, padding: `4px 3px 2px 3px`, display: `inline-block`,
+                        fontSize: `40px`, boxShadow: `none`,
+                        border: `none`, borderBottom: `1px dashed #CCCCCC`
+                    }} placeholder='0.00'></input>
+                </div>  
+                <p> Paid by you, so he/she owes you ($0.00)</p>
                 <input type="submit" value="Save"></input>
+                <button>Cancel</button>
                 </form>
             </div>
         );
