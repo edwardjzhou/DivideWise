@@ -20,8 +20,8 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className="row">
-                <div id="dashboardnavbar"> DIVIDEWISE:  
+            <div className="row" style={{height:`50px`}}>
+                <div id="dashboardnavbar" > <img src={window.logoURL} style={{ height: `50px` }}></img>
                     <div><a id="dropdown">Hey, {this.props.current_user}!  </a>
                     <button className="header-button" onClick={this.props.logout}>Log Out</button></div>
                 </div>

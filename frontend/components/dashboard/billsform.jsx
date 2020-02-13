@@ -15,32 +15,31 @@ class BillsForm extends React.Component {
             borrower_id: null,
             settled: null,
             friend: null,
-
+            selfDebtor: false,
         }
         this.selectedFriend = this.selectedFriend.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.update = this.update.bind(this)
     }
 
     componentDidMount() {
-        // this.props.fetchBills()
 
     }
 
     selectedFriend(e){
         this.setState({friend: e.target.value})
-        // console.log(this.state)
     }
     
     handleSubmit(e) {
         e.preventDefault()
         this.props.createBill({
-            description: 'descriplmao',
-            lender_id: `60`, 
-            borrower_id: `1`,
-            amount: `500`,
-            settled: `false`,
+            description: this.state.description,
+            lender_id: this.state.lender_id, 
+            borrower_id: this.state.borrower_id,
+            amount: this.state.amount*100,
+            settled: this.state.settled,
         })
-        // this.props.fetchBills() 
+        this.props.fetchBills() 
     }
 
     update(field) {
@@ -68,18 +67,18 @@ class BillsForm extends React.Component {
 
                 <div style={{margin: `5px 33px 5px 33px`, position: 'relative', display: `block`}}>  
                     <img src={window.check} style={{margin:'10px 16px 10px 0', display: `block`, verticalAlign:`middle`}}></img>
-                    <input className="unfocus" type='text' style={{height:`20%`, width:`40%`, padding:`4px 3px 2px 3px`, display: `inline-block`,
+                    <input className="unfocus" onChange={this.update(`amount`)} type='text' style={{height:`20%`, width:`40%`, padding:`4px 3px 2px 3px`, display: `inline-block`,
                             fontSize: `25px`,  boxShadow: `none`,
                             border: `none`, borderBottom: `1px dashed #CCCCCC`}} placeholder='Enter a description'></input>
-                    $<input className="unfocus" type='text' style={{
+                    $<input className="unfocus" onChange={this.update(`amount`)} type='text' style={{
                         width: `40%`, padding: `4px 3px 2px 3px`, display: `inline-block`,
                         fontSize: `40px`, boxShadow: `none`,
                         border: `none`, borderBottom: `1px dashed #CCCCCC`
                     }} placeholder='0.00'></input>
                 </div>  
-                <p> Paid by you, so he/she owes you ($0.00)</p>
+                <p> Paid by you, so he/she owes you ${this.state.amount ? this.state.amount : 0.00}</p>
                 <input type="submit" value="Save"></input>
-                <button>Cancel</button>
+                <button>Cancel</button> 
                 </form>
             </div>
         );
