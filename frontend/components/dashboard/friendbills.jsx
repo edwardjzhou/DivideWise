@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchBills, fetchBill } from '../../actions/bill_actions'
-import { Link } from 'react-router-dom';
+import { Link, match } from 'react-router-dom';
 import { openModal } from '../../actions/modal_actions';
 import AddBills from './addbills';
 
 
 class Friendbills extends React.Component {
-    constructor(props) {
+    constructor(props, {match}) {
         super(props)
         this.state = {
 
         }
+        console.log(this.props.match.params.friendId)
     }
 
     componentDidMount() {
@@ -21,9 +22,8 @@ class Friendbills extends React.Component {
     render(){
         return (
             <div style={{width: `50%`, marginLeft: `30%`}}>
-                asdf
-                                    <AddBills></AddBills>
-
+                FRIEND BILLS ````````````````
+                <AddBills></AddBills>
             </div>
         )
     }

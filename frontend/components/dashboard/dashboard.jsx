@@ -3,11 +3,11 @@ import React from 'react';
 //import Modal from './modal'
 import { connect } from 'react-redux';
 import { fetchBills, fetchBill} from '../../actions/bill_actions'
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, Route } from 'react-router-dom';
 import Friends from './friends'
 import { logout } from '../../actions/session_actions';
 import Bills from './bills'
-
+import Friendbills from './friendbills'
 
 
 
@@ -26,7 +26,8 @@ class Dashboard extends React.Component {
                     <button className="header-button" onClick={this.props.logout}>Log Out</button></div>
                 </div>
                     <Friends /> 
-                    <Bills/>
+                    <Route path="/dashboard" component={Bills}/> 
+                    <Route path="/friends/:friendId" component={Friendbills}/>
             </div>
         );
     }

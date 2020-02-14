@@ -3,7 +3,7 @@ import React from 'react';
 //import Modal from './modal'
 import { connect } from 'react-redux';
 import { fetchBills, fetchBill} from '../../actions/bill_actions'
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, Switch } from 'react-router-dom';
 import Friends from './friends'
 import { logout } from '../../actions/session_actions';
 import Bills from './bills'

@@ -118,6 +118,8 @@ class PaymentsForm extends React.Component {
         return (
             <div className="addfriend-form"> <div id="formheader">Settle up</div>
                 <form onSubmit={this.handleSubmit}>
+                    
+                    
                     <span style={{ left: `10px`, position: `absolute` }}>With <span className='STRONG'>you</span> and&nbsp;
                     <select onChange={this.selectedFriend.bind(this)}>
                             <option value={null}>Choose a user</option>
@@ -129,7 +131,12 @@ class PaymentsForm extends React.Component {
                             }
                         </select></span>
                     <br />
-
+                    <img src={window.arrow} style={{height: `50px`}}></img>
+  <img src={window.orangedude} style={{height: `50px`}}></img>
+  <img src={window.greendude} style={{height: `50px`}}></img>
+                  
+                  
+                  
                     <div style={{ margin: `5px 33px 5px 33px`, position: 'relative', display: `block` }}>
                         <img src={window.check} style={{ margin: '10px 16px 10px 0', display: `block`, verticalAlign: `middle` }}></img>
 

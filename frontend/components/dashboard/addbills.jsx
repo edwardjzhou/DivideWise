@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter, match } from 'react-router-dom'
 import { openModal } from '../../actions/modal_actions';
 
 
 
-const AddBills = ({ currentUser, logout, openModal }) => {
+const AddBills = ({ currentUser, openModal, match }) => {
 
     const sessionLinks = () => (
         <nav style={{ marginLeft: `40%`, display:`flex`}}>
@@ -31,7 +32,7 @@ const mapDispatchToProps = dispatch => ({
     openModal: modal => dispatch(openModal(modal))
 });
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(AddBills);
+)(AddBills));
