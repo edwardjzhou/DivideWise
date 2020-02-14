@@ -63,7 +63,7 @@ class Card extends Component {
     render() {
         return (
             <div>
-                <button className="btn" onClick={this.showMenu}>
+                <button className="orangebutton" style={{backgroundColor:`#48BE9D`}} onClick={this.showMenu}>
                     Log in 
                 </button>
 

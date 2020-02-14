@@ -383,7 +383,7 @@ input[type=text]:focus, textarea:focus {
 
 	/* Box */
 	height: 41.7898px;
-	width: 140px;
+	width: auto;
 	border-top: 0.994318px solid rgba(0, 0, 0, 0.1);
 	border-right: 0.994318px solid rgba(0, 0, 0, 0.1);
 	border-bottom: 0.994318px solid rgba(0, 0, 0, 0.25);
@@ -437,8 +437,14 @@ input[type=text]:focus, textarea:focus {
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+	opacity: .85;
+	&:hover {
+	//   background-color: #52a58e;
+	  opacity: 1;
+    }
 }
 
+  
 .btn{
 	/* Font & Text */
 	font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;

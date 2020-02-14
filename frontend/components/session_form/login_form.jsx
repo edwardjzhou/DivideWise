@@ -93,6 +93,7 @@ class LoginForm extends React.Component {
                             value={this.state.username}
                             onChange={this.update('username')}
                             className="login-input"
+                            style={{ fontSize: '24px' }}
                             />
                         </label>
                         <br />
@@ -101,15 +102,18 @@ class LoginForm extends React.Component {
                             value={this.state.password}
                             onChange={this.update('password')}
                             className="login-input"
+                            style={{ fontSize: '24px' }}
+
                             />
                         </label>
                         <br />
                         <br />
 
-                        <input className="orangebutton" type="submit" value={this.props.formType} />
-                        <button className="orangebutton" onClick={() =>
+                        <input className="orangebutton" type="submit" value="Log in" />
+                        {/* {this.props.formType} */} &nbsp;
+                        <button className="orangebutton" style={{backgroundColor: `green`}} onClick={() =>
                             this.demoFill()}>
-                            DEMO LOGIN
+                            Demo Log in
                         </button>
                         
                     </div>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import FriendsForm from '../dashboard/friendsform'
 import BillsForm from '../dashboard/billsform'
+import PaymentsForm from '../dashboard/paymentsform'
 
 function Modal({ modal, closeModal }) {
     if (!modal) {
@@ -17,6 +18,8 @@ function Modal({ modal, closeModal }) {
         case 'BillCreate':
             component = <BillsForm />;
             break;
+        case 'PaymentCreate':
+            component = <PaymentsForm />;
         default:
             return null;
     }

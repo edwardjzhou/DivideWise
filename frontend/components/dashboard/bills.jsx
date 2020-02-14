@@ -133,8 +133,8 @@ class Bills extends React.Component {
                         {
                             this.props.bills.map(bill =>
                                 (
-                                    <Link to={`/friends/${bill.lender_id}`}>
-                                        <p key={bill.id}>
+                                    <Link to={`/friends/${bill.lender_id}`} style={{ textDecoration: `none` }}>
+                                        <p key={bill.id} >
                                             <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
                                                 &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
                                         </p>

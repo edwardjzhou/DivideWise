@@ -7,8 +7,11 @@ import { openModal } from '../../actions/modal_actions';
 const AddBills = ({ currentUser, logout, openModal }) => {
 
     const sessionLinks = () => (
-        <nav style={{ marginLeft: `40%`}}>
-            <button style={{width: `100%`}}className='orangebutton'  onClick={() => openModal('BillCreate')}>Add an Expense</button>
+        <nav style={{ marginLeft: `40%`, display:`flex`}}>
+            <button style={{width: `auto`}}className='orangebutton'  onClick={() => openModal('BillCreate')}>Add an Expense</button>
+            &nbsp;
+            <button style={{ width: `auto`,backgroundColor:`#48be9d` }} className='orangebutton' onClick={() => openModal('PaymentCreate')}>Settle up</button>
+
         </nav>
 
     );
