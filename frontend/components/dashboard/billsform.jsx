@@ -149,9 +149,9 @@ class BillsForm extends React.Component {
                     }} placeholder='0.00'></input>
                 </div>  
                 {this.state.selfDebtor === false ?
-                        <p onClick={()=>this.meTheDebtor()}> Paid by <span className='STRONG'>YOU</span>, so he/she owes you ${this.state.amount ? this.state.amount : 0.00}</p>
+                        <p onClick={()=>this.meTheDebtor()}> Paid by <span className='STRONG graycircle'>YOU</span>, so he/she owes you ${this.state.amount ? this.state.amount : 0.00}</p>
                         :
-                        <p onClick={() => this.theyTheDebtor()}> Paid by <span className='STRONG'>FRIEND</span>, so you owe him/her ${this.state.amount ? this.state.amount : 0.00}</p>
+                        <p onClick={() => this.theyTheDebtor()}> Paid by <span className='STRONG graycircle' style={{width:`auto`}}>FRIEND</span>, so you owe him/her ${this.state.amount ? this.state.amount : 0.00}</p>
                 }
                     <button className='cancel' onClick={this.props.closeModal}>Cancel</button> 
                     {this.allowSubmit()}

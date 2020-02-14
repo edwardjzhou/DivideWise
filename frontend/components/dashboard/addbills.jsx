@@ -11,7 +11,7 @@ const AddBills = ({ currentUser, logout, openModal }) => {
             <button style={{width: `auto`}}className='orangebutton'  onClick={() => openModal('BillCreate')}>Add an Expense</button>
             &nbsp;
             <button style={{ width: `auto`,backgroundColor:`#48be9d` }} className='orangebutton' onClick={() => openModal('PaymentCreate')}>Settle up</button>
-
+            &nbsp;
         </nav>
 
     );

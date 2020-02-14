@@ -19,6 +19,8 @@ import Dashboard from './dashboard/dashboard';
 import Modal from './modal/modal';
 import GreetingContainer from './greeting/greeting_container';
 import BillsForm from './dashboard/billsform';
+import Dashboardfriend from './dashboard/dashboardfriend';
+
 
 
 class App extends React.Component{
@@ -38,11 +40,13 @@ class App extends React.Component{
                         {/* <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} /> */}
                         {/* <Route path="/benches/:benchId" component={BenchShowContainer} /> */}
                         <ProtectedRoute path='/dashboard' component={Dashboard} />
+                        <ProtectedRoute path="/friends/:friendId" component={Dashboardfriend} /> 
+
                         <AuthRoute path="/login" component={LoginFormContainer} /> 
                         <AuthRoute path="/signup" component={SignupFormContainer} /> 
                         <AuthRoute path="/" component={Splash} />
-                        {/* <ProtectedRoute path="/friends/:friendId" component={} />  */}
                     </Switch>
+
             </div>
         );         
     }

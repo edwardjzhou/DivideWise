@@ -7,7 +7,7 @@ import { NavLink, Link } from 'react-router-dom';
 import Friends from './friends'
 import { logout } from '../../actions/session_actions';
 import Bills from './bills'
-
+import Friendbills from './friendbills'
 
 
 
@@ -26,7 +26,7 @@ class Dashboard extends React.Component {
                     <button className="header-button" onClick={this.props.logout}>Log Out</button></div>
                 </div>
                     <Friends /> 
-                    <Bills/>
+                    <Friendbills />
             </div>
         );
     }

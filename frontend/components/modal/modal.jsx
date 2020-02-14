@@ -20,13 +20,14 @@ function Modal({ modal, closeModal }) {
             break;
         case 'PaymentCreate':
             component = <PaymentsForm />;
+            break;
         default:
             return null;
     }
     return (
         <div className="modal-background" onClick={closeModal}>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
-                <a style={{float:'right'}} onClick={closeModal}>x</a>
+                <a style={{float:'right', fontSize: `25px`, color:`white`, margin: `0 5px 0 0`}} onClick={closeModal}>X</a>
                 {component}
             </div>
         </div>

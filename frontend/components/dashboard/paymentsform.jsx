@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createBill, fetchBill, fetchBills } from '../../actions/bill_actions'
+import { createPayment } from '../../actions/bill_actions'
 import { Link } from 'react-router-dom';
 import { fetchFriends } from '../../actions/friend_actions';
 import { closeModal } from '../../actions/modal_actions';
@@ -23,15 +23,8 @@ class PaymentsForm extends React.Component {
         this.update = this.update.bind(this)
         this.theyTheDebtor = this.theyTheDebtor.bind(this)
         this.meTheDebtor = this.meTheDebtor.bind(this)
+        
 
-    }
-
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-        // this.props.fetchBills()
     }
 
     selectedFriend(e) {
@@ -123,7 +116,7 @@ class PaymentsForm extends React.Component {
     render() {
 
         return (
-            <div className="addfriend-form"> <div id="formheader">Add an Expense</div>
+            <div className="addfriend-form"> <div id="formheader">Settle up</div>
                 <form onSubmit={this.handleSubmit}>
                     <span style={{ left: `10px`, position: `absolute` }}>With <span className='STRONG'>you</span> and&nbsp;
                     <select onChange={this.selectedFriend.bind(this)}>
@@ -139,22 +132,14 @@ class PaymentsForm extends React.Component {
 
                     <div style={{ margin: `5px 33px 5px 33px`, position: 'relative', display: `block` }}>
                         <img src={window.check} style={{ margin: '10px 16px 10px 0', display: `block`, verticalAlign: `middle` }}></img>
-                        <input className="unfocus" onChange={this.update(`description`)} type='text' style={{
-                            height: `20%`, width: `40%`, padding: `4px 3px 2px 3px`, display: `inline-block`,
-                            fontSize: `25px`, boxShadow: `none`,
-                            border: `none`, borderBottom: `1px dashed #CCCCCC`
-                        }} placeholder='Enter a description'></input>
+
                         $<input className="unfocus" onChange={this.update(`amount`)} type='text' style={{
                             width: `40%`, padding: `4px 3px 2px 3px`, display: `inline-block`,
                             fontSize: `40px`, boxShadow: `none`,
                             border: `none`, borderBottom: `1px dashed #CCCCCC`
                         }} placeholder='0.00'></input>
                     </div>
-                    {this.state.selfDebtor === false ?
-                        <p onClick={() => this.meTheDebtor()}> Paid by <span className='STRONG'>YOU</span>, so he/she owes you ${this.state.amount ? this.state.amount : 0.00}</p>
-                        :
-                        <p onClick={() => this.theyTheDebtor()}> Paid by <span className='STRONG'>FRIEND</span>, so you owe him/her ${this.state.amount ? this.state.amount : 0.00}</p>
-                    }
+
                     <button className='cancel' onClick={this.props.closeModal}>Cancel</button>
                     {this.allowSubmit()}
                 </form>

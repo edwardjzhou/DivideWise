@@ -53,15 +53,15 @@ class Bills extends React.Component {
         const red = {
             color: 'red',
             borderStyle: `solid`,
-            width: `32%`,
+            width: `30%`,
             borderColor: `#DDDDDD`,
             display: `inline-block`,
             margin: `0 0 0 0`,
             padding: `0 0 0 0`,
             position: `relative`,
             top: `50%`,
-            transform: `translateY(-50%)`
-
+            transform: `translateY(-50%)`,
+            borderWidth: `0 1px 0 0`
         };
 
         const green = {
@@ -75,13 +75,13 @@ class Bills extends React.Component {
             textAlign: `center`,
             position: `relative`,
             top: `50%`,
-            transform: `translateY(-50%)`
-
+            transform: `translateY(-50%)`,
+            borderWidth: `0 1px 0 0`
         };
 
         const redlazy = {
             color: 'red',
-            borderStyle: `outset`,
+            borderStyle: `solid`,
             width: `30%`,
             display: `inline-block`,
             margin: `0 0 0 0`,
@@ -95,7 +95,7 @@ class Bills extends React.Component {
 
         const greenlazy = {
             color: 'green',
-            borderStyle: `outset`,
+            borderStyle: `solid`,
             width: `30%`,
             display: `inline-block`,
             margin: `0 0 0 0`,
@@ -116,8 +116,8 @@ class Bills extends React.Component {
                     backgroundColor: `#EEEEEE`, display: `block`}}>
 
                         {this.state.allin < 0 ?
-                            <div style={Object.assign(red, {borderWidth: `0 1px 0 0`})}>total balance<br/>${this.state.allin/100}</div> :
-                            <div style={Object.assign(green, { borderWidth: `0 1px 0 0` })}>total balance<br/>${this.state.allin/100}</div>
+                            <div style={red}>total balance<br/>${this.state.allin/100}</div> :
+                            <div style={green}>total balance<br/>${this.state.allin/100}</div>
                         }
                         {this.state.owes > 0 ?
                             <div style={red}>you owe<br/>${this.state.owes/100}</div> :
@@ -129,18 +129,46 @@ class Bills extends React.Component {
                         }
                         
                     </div>
+                        <div style={{display:`flex`, flexWrap:`wrap`}}>
+                                <div style={{
+                                width: `50%` }}>YOU OWE</div>
+                                <div style={{
+                                    width: `50%`
+                                }}>YOU ARE OWED</div>
 
-                        {
-                            this.props.bills.map(bill =>
-                                (
-                                    <Link to={`/friends/${bill.lender_id}`} style={{ textDecoration: `none` }}>
-                                        <p key={bill.id} >
-                                            <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
-                                                &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
-                                        </p>
-                                    </Link>
-                                ))
-                        }
+                            <div style={{width: `47%`, borderRight: `1px solid gray`, marginLeft: `3%`}}>
+                                {
+                                    this.props.bills.map(bill =>
+                                        (
+                                            bill.borrower_id === this.props.current_user_id ? 
+                                            <Link to={`/friends/${bill.lender_id}`} style={{ textDecoration: `none` }}>
+                                                <p key={bill.id} >
+                                                    <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
+                                                        &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
+                                                </p>
+                                            </Link>
+                                            : null
+                                        ))
+                                }
+                            </div>
+                        
+                            <div style={{ width: `50%` }}>
+                                {
+                                    this.props.bills.map(bill =>
+                                        (
+                                            bill.lender_id === this.props.current_user_id ? 
+                                            <Link to={`/friends/${bill.lender_id}`} style={{ textDecoration: `none` }}>
+                                                <p key={bill.id} >
+                                                    <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br />{bill.borrower}
+                                                        &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
+                                                </p>
+                                            </Link>
+                                            : null
+
+                                        ))
+                                }
+                            </div>
+                        </div>
                 </div>
         );
     }
@@ -150,7 +178,8 @@ class Bills extends React.Component {
 const mSTP = (state) => {
     return {
         bills: Object.values(state.entities.bills),
-        current_user: state.entities.users[state.session.id]
+        current_user: state.entities.users[state.session.id],
+        current_user_id: state.session.id
     }
 }
 

@@ -31,9 +31,9 @@ class Friends extends React.Component {
         return (
             <div id="friends_bar" className="column">
                 <div>
-                    {location.href.includes('dashboard') ? <span style={{color:`#5BC5A7`,
-                        borderLeft: `8px solid #5BC5A7`
-                    }}>Dashboard</span> : <span>Dashboard</span>}
+                    {location.href.includes('dashboard') ? <Link to="/" style={{color:`#5BC5A7`, fontSize: `30`, 
+                        borderLeft: `8px solid #5BC5A7`, textDecoration: `none`
+                    }}>Dashboard</Link> : <Link to="/" style={{textDecoration: `none`, color: "gray", fontSize: "30"}}>Dashboard</Link>}
 
                 <div className="header"> FRIENDS<AddFriends></AddFriends></div>
                 {this.props.friends.map(friend => (
