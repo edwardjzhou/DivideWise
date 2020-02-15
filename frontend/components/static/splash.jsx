@@ -59,11 +59,11 @@ class Splash extends React.Component {
             classname="filter-red"
         }
         
-        this.setState(state => ({
+        this.setState({
             answer: answer,
             url:url,
             classname:classname
-        }))
+        })
     }
 
 
@@ -132,7 +132,7 @@ class Splash extends React.Component {
                                 <br/>
                                 Keep track of your shared expenses <br></br>and balances with housemates, trips,<br></br>groups, friends, and family.<br />
                                 <div>
-                                    <NavLink className={["tealsignup2",this.state.classname].join(' ')} to="/signup">
+                                    <NavLink className={["tealsignup2",this.state.classname].join(' ')} style={{width:`50%`}} to="/signup">
                                             Sign up
                                 </NavLink>
                                 </div>

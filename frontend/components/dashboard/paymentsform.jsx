@@ -2,44 +2,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createPayment } from '../../actions/bill_actions'
 import { Link } from 'react-router-dom';
-import { fetchFriends } from '../../actions/friend_actions';
 import { closeModal } from '../../actions/modal_actions';
-
 
 class PaymentsForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             amount: null,
-            description: null,
-            lender_id: null,
-            borrower_id: null,
-            settled: false,
-            friend: null,
-            selfDebtor: false,
+            payer_id: null, //user foreign key
+            bill_id: null, // bill foreign key
+
         }
-        this.selectedFriend = this.selectedFriend.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)
-        this.theyTheDebtor = this.theyTheDebtor.bind(this)
-        this.meTheDebtor = this.meTheDebtor.bind(this)
-        
-
+        this.selectedBill = this.selectedBill.bind(this)
     }
 
-    selectedFriend(e) {
-        this.setState({ friend: e.target.value })
+    selectedBill(e) {
+        this.setState({ bill_id: e.target.value,
+            
+        })
     }
 
     handleSubmit(e) {
         e.preventDefault()
 
-        this.props.createBill({
-            description: this.state.description,
-            lender_id: this.state.lender_id,
-            borrower_id: this.state.borrower_id,
+        this.props.createPayment({
+            payer_id: this.state.payer_id,
+            bill_id: this.state.bill_id,
             amount: this.state.amount * 100,
-            settled: this.state.settled,
         })
         // this.props.fetchBills() 
     }
@@ -48,37 +39,6 @@ class PaymentsForm extends React.Component {
         if (prevProps.bills != this.props.bills) {
             this.props.closeModal()
         }
-        if (prevState.friend != this.state.friend || (prevState.selfDebtor != this.state.selfDebtor && this.state.friend != null)) {
-            if (this.state.selfDebtor === true) {
-                this.setState({
-                    borrower_id: this.props.current_user.id
-                })
-                if (this.props.current_user.id != this.state.friend.split(',')[0]) {
-                    this.setState({
-                        lender_id: this.state.friend.split(',')[0]
-                    })
-                } else if (this.props.current_user.id != this.state.friend.split(',')[1]) {
-                    this.setState({
-                        lender_id: this.state.friend.split(',')[1]
-                    })
-                }
-
-            } else if (this.state.selfDebtor === false) {
-                this.setState({
-                    lender_id: this.props.current_user.id
-                })
-                if (this.props.current_user.id != this.state.friend.split(',')[0]) {
-                    this.setState({
-                        borrower_id: this.state.friend.split(',')[0]
-                    })
-                } else if (this.props.current_user.id != this.state.friend.split(',')[1]) {
-                    this.setState({
-                        borrower_id: this.state.friend.split(',')[1]
-                    })
-                }
-            }
-        }
-        console.log(this.state)
     }
 
     update(field) {
@@ -88,29 +48,21 @@ class PaymentsForm extends React.Component {
         })
     }
 
-    theyTheDebtor() {
-        this.setState({
-            selfDebtor: false
-        })
-    }
-
-    meTheDebtor() {
-        this.setState({
-            selfDebtor: true
-        })
-    }
 
     allowSubmit() {
 
-        if (this.state.description != null &&
-            this.state.lender_id != null &&
-            this.state.borrower_id != null &&
-            this.state.amount != null) {
+        if (this.state.amount != null &&
+            this.state.payer_id != null &&
+            this.state.bill_id != null ) {
             return (<input className='greenbutton' type="submit" value="Save" ></input>)
         } else {
             return (<input className='greenbutton disabled' type="submit" value="Save" disabled="true"></input>)
         }
 
+    }
+
+    componentDidMount(){
+        this.props.fetchBills()
     }
 
     render() {
@@ -121,19 +73,18 @@ class PaymentsForm extends React.Component {
                     
                     
                     <span style={{ left: `10px`, position: `absolute` }}>With <span className='STRONG'>you</span> and&nbsp;
-                    <select onChange={this.selectedFriend.bind(this)}>
+                    <select onChange={this.selectedBill.bind(this)}>
                             <option value={null}>Choose a user</option>
-                            {this.props.friends.map(friend => (
-                                friend.friends_name !== this.props.current_user ?
-                                    <option value={Object.values(friend)} key={friend.id}>{friend.friends_name}</option>
-                                    : null)
+                            {this.props.bills.map(bill => (
+                                    <option value={bill.bill_id} key={bill.bill_id}>{bill.bill_id}</option>
+                                )
                             )
                             }
                         </select></span>
                     <br />
                     <img src={window.arrow} style={{height: `50px`}}></img>
-  <img src={window.orangedude} style={{height: `50px`}}></img>
-  <img src={window.greendude} style={{height: `50px`}}></img>
+                    <img src={window.orangedude} style={{height: `50px`}}></img>
+                    <img src={window.greendude} style={{height: `50px`}}></img>
                   
                   
                   
@@ -160,15 +111,13 @@ const mSTP = (state) => {
     return {
         bills: Object.values(state.entities.bills),
         current_user: state.entities.users[state.session.id],
-        friends: Object.values(state.entities.friends) //actual users though
     }
 }
 
 const mDTP = (dispatch) => {
     return {
         fetchBills: () => dispatch(fetchBills()),
-        createBill: (bill) => dispatch(createBill(bill)),
-        fetchFriends: () => dispatch(fetchFriends()),
+        createPayment: (payment) => dispatch(createPayment(payment)),
         closeModal: () => dispatch(closeModal())
     }
 }

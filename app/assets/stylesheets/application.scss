@@ -133,16 +133,20 @@ div {
     justify-content: center;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
-    min-height: 90%;
+    min-height: 100vh;
+    height:100%;
     -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.2);
     -moz-box-shadow: 0 0 12px rgba(0,0,0,0.2);
     box-shadow: 0 0 12px rgba(0,0,0,0.2);
-    float: left; 
+    // float: left; 
     width: 40%;
     /* display: flex; */
     /* height: 100vh; */
     // position: relative;
-    
+      // display: flex;
+  // flex-direction: colum n;
+  // flex-grow: 1;
+  // justify-content: space-around;
   }
 
 

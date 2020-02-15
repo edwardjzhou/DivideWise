@@ -29,6 +29,13 @@ export const createPayment = payment => (
         // processData: false
     })
 );
+export const fetchPayments = () => (
+    $.ajax({
+        method: 'GET',
+        url: 'api/bills'
+    })
+);
+
 export const createComment = comment => (
     $.ajax({
         method: 'POST',
