@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+  class User < ApplicationRecord
   
   attr_reader :password
   after_initialize :ensure_session_token

@@ -20,10 +20,10 @@ export const createBill = bill => (
     })
 );
 
-export const createPayment = payment => (
+export const createPayment = (payment, bill_id) => (
     $.ajax({
         method: 'POST',
-        url: `api/bills/${payment[bill_id]}/payments`,
+        url: `api/bills/${bill_id}/payments`,
         data: {payment},
         // contentType: false,
         // processData: false

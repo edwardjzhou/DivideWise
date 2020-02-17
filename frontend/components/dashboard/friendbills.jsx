@@ -10,7 +10,6 @@ class Friendbills extends React.Component {
     constructor(props, {match}) {
         super(props)
         this.state = {
-
         }
         console.log(this.props.match.params.friendId)
     }

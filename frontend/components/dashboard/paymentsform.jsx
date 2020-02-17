@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPayment } from '../../actions/bill_actions'
+import { createPayment, fetchBills } from '../../actions/bill_actions'
 import { Link } from 'react-router-dom';
 import { closeModal } from '../../actions/modal_actions';
 
@@ -11,6 +11,8 @@ class PaymentsForm extends React.Component {
             amount: null,
             payer_id: null, //user foreign key
             bill_id: null, // bill foreign key
+            lender: null,
+            borrower: null,
 
         }
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -19,25 +21,29 @@ class PaymentsForm extends React.Component {
     }
 
     selectedBill(e) {
-        this.setState({ bill_id: e.target.value,
+        this.setState({ 
+            bill_id: e.target.value,
+            payer_id: this.props.bills[e.target.value].borrower_id,
+            lender: this.props.bills[e.target.value].lender,
+            borrower: this.props.bills[e.target.value].borrower
             
         })
     }
 
     handleSubmit(e) {
         e.preventDefault()
-
+        
         this.props.createPayment({
             payer_id: this.state.payer_id,
             bill_id: this.state.bill_id,
             amount: this.state.amount * 100,
-        })
+        }, this.state.bill_id)
         // this.props.fetchBills() 
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.bills != this.props.bills) {
-            this.props.closeModal()
+            // this.props.closeModal()
         }
     }
 
@@ -72,24 +78,24 @@ class PaymentsForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     
                     
-                    <span style={{ left: `10px`, position: `absolute` }}>With <span className='STRONG'>you</span> and&nbsp;
+                    <span style={{ left: `10px`, position: `absolute` }}>Find a bill <span className='STRONG'>YOU</span> are in&nbsp;
                     <select onChange={this.selectedBill.bind(this)}>
-                            <option value={null}>Choose a user</option>
+                            <option value={null}>Choose a bill</option>
                             {this.props.bills.map(bill => (
-                                    <option value={bill.bill_id} key={bill.bill_id}>{bill.bill_id}</option>
+                                    <option value={bill.id} key={bill.id}>{bill.lender} lent ${bill.amount/100} to {bill.borrower}</option>
                                 )
                             )
                             }
-                        </select></span>
+                        </select>
+                        </span>
                     <br />
-                    <img src={window.arrow} style={{height: `50px`}}></img>
                     <img src={window.orangedude} style={{height: `50px`}}></img>
+                    <img src={window.arrow} style={{ height: `50px` }}></img>
                     <img src={window.greendude} style={{height: `50px`}}></img>
                   
                   
                   
                     <div style={{ margin: `5px 33px 5px 33px`, position: 'relative', display: `block` }}>
-                        <img src={window.check} style={{ margin: '10px 16px 10px 0', display: `block`, verticalAlign: `middle` }}></img>
 
                         $<input className="unfocus" onChange={this.update(`amount`)} type='text' style={{
                             width: `40%`, padding: `4px 3px 2px 3px`, display: `inline-block`,

@@ -70,6 +70,8 @@ export const createPayment = payment => dispatch => (
     ))
 );
 
+
+
 export const fetchPayments = () => dispatch => (
     APIUtil.fetchPayments().then(fetchedPayments => (
         dispatch(receivePayments(fetchedPayments))

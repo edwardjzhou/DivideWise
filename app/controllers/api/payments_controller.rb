@@ -4,7 +4,7 @@ class Api::PaymentsController < ApplicationController
     def create
         @payment = Payment.new(payment_params)
 
-        # if current_user.id.to_s != @payment.payer_id.to_s and current_user.id.to_s != @payment._id.to_s
+        # if current_user.id.to_s != @payment.payer_id.to_s and current_user.id.to_s != @payment.b_id.to_s
         #     render json: ["not a bill you're involved in"]
         # elsif @bill.save
         #     render "api/bills/show"
@@ -20,7 +20,19 @@ class Api::PaymentsController < ApplicationController
     end
 
     def index
-        @payments = Payment.all.where("payer_id = #{current_user.id.to_s} OR bill_id = #{current_user.lendings.id.to_s}" )
+        # @payments = Payment.all.where("payer_id = #{current_user.id.to_s} or bill_id in cu")
+        # p params[:bill_id]
+         billids=[]
+         bills = current_user.lendings.to_a
+         bills.each do |bill|
+            billids.push(bill.id)   
+         end
+         @payments=[]
+         billids.each do |billid|
+            payment = Payment.find_by(bill_id:billid)
+            @payments.push(payment) if payment != nil
+         end
+        # render json: answer
         render "api/payments/index"
     end
     
