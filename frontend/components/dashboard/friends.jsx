@@ -3,7 +3,7 @@ import React from 'react';
 //import Modal from './modal'
 import { connect } from 'react-redux';
 import { fetchBills, fetchBill } from '../../actions/bill_actions';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import AddFriends from './addfriends';
 import { fetchFriends } from '../../actions/friend_actions';
@@ -22,6 +22,7 @@ class Friends extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.friends !== this.props.friends) {
             console.log('friends props has changed.')
+            console.log(this.props.location.pathname)
             this.forceUpdate()
         }
     }
@@ -38,12 +39,20 @@ class Friends extends React.Component {
                 <div className="header"> FRIENDS<AddFriends></AddFriends></div>
                 {this.props.friends.map(friend => (
                     friend.friends_name !==  this.props.current_user ?
-                         (<div className='friendItem' tabIndex="-1" key={friend.id}>
-                            <img height="25" src={window.user} ></img>
-                             {friend.friends_name}</div>)
-                        : null) 
-                    )
-                }
+                         (
+                            this.props.location.pathname[this.props.location.pathname.split('/').length - 1] !== friend.id ?
+                            <Link to={`/friends/` + friend.id} style={{ textDecoration: `none` }}> 
+                                <div className='friendItem' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
+                                    {friend.friends_name} </div></Link>
+                                    : 
+                                <Link to={`/friends/` + friend.id} style={{ textDecoration: `none`, color: `#5BC5A7`, 
+                                borderLeft: `8px solid #5BC5A7` }}>
+                                    <div className='friendItem' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
+                                        {friend.friends_name} </div></Link> 
+                                    ) 
+         : null) 
+     )
+ }
                     <br></br>             
 
                     </div>
@@ -68,4 +77,4 @@ const mDTP = (dispatch) => {
     }
 }
 
-export default connect(mSTP, mDTP)(Friends)
+export default withRouter(connect(mSTP, mDTP)(Friends))

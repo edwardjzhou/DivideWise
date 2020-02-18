@@ -21,7 +21,7 @@ class Friendbills extends React.Component {
     render(){
         return (
             <div style={{width: `50%`, marginLeft: `30%`}}>
-                FRIEND BILLS ````````````````
+                FRIEND BILLS 
                 <AddBills></AddBills>
             </div>
         )
