@@ -4,6 +4,8 @@ import { fetchBills, fetchBill } from '../../actions/bill_actions'
 import { Link } from 'react-router-dom';
 import { openModal } from '../../actions/modal_actions';
 import AddBills from './addbills';
+import { select } from '../../actions/ui_actions'
+
 
 
 
@@ -178,7 +180,9 @@ class Bills extends React.Component {
                                     this.props.bills.map(bill =>
                                         (
                                             bill.borrower_id === this.props.current_user_id ? 
-                                            <Link to={`/friends/${this.findFriendship(bill.lender)}`} style={{ textDecoration: `none` }}>
+                                            <Link to={`/friends/${this.findFriendship(bill.lender)}`} 
+                                                    onClick={() => this.props.select(this.findFriendship(bill.lender))}
+                                            style={{ textDecoration: `none` }}>
                                                 <p key={bill.id} >
                                                     <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
                                                         &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
@@ -194,7 +198,9 @@ class Bills extends React.Component {
                                     this.props.bills.map(bill =>
                                         (
                                             bill.lender_id === this.props.current_user_id ? 
-                                            <Link to={`/friends/${this.findFriendship(bill.borrower)}`} className='greyhover' style={{ textDecoration: `none` }}>
+                                            <Link to={`/friends/${this.findFriendship(bill.borrower)}`} 
+                                                    onClick={() => this.props.select(this.findFriendship(bill.borrower))}
+                                            className='greyhover' style={{ textDecoration: `none` }}>
                                                 <p key={bill.id} >
                                                     <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br />{bill.borrower}
                                                         &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
@@ -224,7 +230,8 @@ const mSTP = (state) => {
 const mDTP = (dispatch) => {
     return {
         fetchBills: () => dispatch(fetchBills()),
-        openModal: modal => dispatch(openModal(modal))
+        openModal: modal => dispatch(openModal(modal)),
+        select: friendshipId => dispatch(select(friendshipId))
 
     }
 }

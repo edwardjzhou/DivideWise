@@ -13,7 +13,7 @@ class Friends extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+            // loc : location.href
         }
     }
 
@@ -22,10 +22,11 @@ class Friends extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.friends !== this.props.friends) {
+        if (prevProps.friends !== this.props.friends || prevProps.selectedFriendshipid !== this.props.selectedFriendshipid)  {
             // console.log('friends props has changed.')
             // console.log(this.props.location.pathname)
             this.forceUpdate()
+            return true
         }
     }
 
@@ -34,6 +35,8 @@ class Friends extends React.Component {
         return (
             <div id="friends_bar" className="column">
                 <div>
+                    {console.log(this.props.selectedFriendshipid)}
+                    {console.log(this.props.location.pathname)}
                     {location.href.includes('dashboard') ? <Link to="/" style={{color:`#5BC5A7`, fontSize: `30`, 
                         borderLeft: `8px solid #5BC5A7`, textDecoration: `none`
                     }}>Dashboard</Link> : <Link to="/" style={{textDecoration: `none`, color: "gray", fontSize: "30"}}>Dashboard</Link>}
@@ -43,17 +46,24 @@ class Friends extends React.Component {
                     friend.friends_name !==  this.props.current_user ?
                          (
                             // this.props.location.pathname[this.props.location.pathname.split('/').length - 1] !== friend.id ?
-                            location.href.split('/')[location.href.split('/').length-1] !==friend.id ?
-                            
-                            <Link to={`/friends/` + friend.id} style={{ textDecoration: `none` }}> 
-                                <div className='friendItem' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
-                                    {friend.friends_name} </div></Link>
+                            //this.state.loc.split('/')[location.href.split('/').length-1]
+                            this.props.selectedFriendshipid == friend.id && !this.props.location.pathname.includes("dashboard")? 
+                            //  && this.props.location.pathname[this.props.location.pathname.split('/').length - 1] == friend.id ?
+                            //
+                                <Link to={`/friends/` + friend.id} style={{
+                                    textDecoration: `none`, color: `#5BC5A7`,
+                                    // borderLeft: `8px solid #5BC5A7`
+                                }}>
+
+                                    <div className='friendItem showLeft' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
+                                        {friend.friends_name} </div>
+                                        </Link> 
+                        
                                     : 
-                                <Link to={`/friends/` + friend.id} style={{ textDecoration: `none`, color: `#5BC5A7`, 
-                                borderLeft: `8px solid #5BC5A7` }}>
- 
+                                <Link to={`/friends/` + friend.id} style={{ textDecoration: `none` }}>
                                     <div className='friendItem' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
-                                        {friend.friends_name} </div></Link> 
+                                        {friend.friends_name} </div>
+                                        </Link>
                                     ) 
          : null) 
      )
@@ -71,7 +81,8 @@ const mSTP = (state) => {
     return {
         friends: Object.values(state.entities.friends),
         //user: Object.values(state.entities.users)[0].username,
-        current_user: state.entities.users[state.session.id].username
+        current_user: state.entities.users[state.session.id].username,
+        selectedFriendshipid: Object.values(state.ui.friendSelectReducer)[0]
     }
 }
 
