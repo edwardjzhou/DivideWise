@@ -36,7 +36,7 @@ class Friends extends React.Component {
             <div id="friends_bar" className="column">
                 <div>
                     {console.log(this.props.selectedFriendshipid)}
-                    {console.log(this.props.location.pathname)}
+                    {console.log(this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1])}
                     {location.href.includes('dashboard') ? <Link to="/" style={{color:`#5BC5A7`, fontSize: `30`, 
                         borderLeft: `8px solid #5BC5A7`, textDecoration: `none`
                     }}>Dashboard</Link> : <Link to="/" style={{textDecoration: `none`, color: "gray", fontSize: "30"}}>Dashboard</Link>}
@@ -47,7 +47,8 @@ class Friends extends React.Component {
                          (
                             // this.props.location.pathname[this.props.location.pathname.split('/').length - 1] !== friend.id ?
                             //this.state.loc.split('/')[location.href.split('/').length-1]
-                            this.props.selectedFriendshipid == friend.id && !this.props.location.pathname.includes("dashboard")? 
+                            this.props.selectedFriendshipid == friend.id && !this.props.location.pathname.includes("dashboard")
+                            && this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1] == friend.id ?
                             //  && this.props.location.pathname[this.props.location.pathname.split('/').length - 1] == friend.id ?
                             //
                                 <Link to={`/friends/` + friend.id} style={{

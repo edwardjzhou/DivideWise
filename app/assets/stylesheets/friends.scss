@@ -24,3 +24,10 @@
         border-left: 8px solid #5BC5A7;
 
 }
+
+:focus {
+    outline: 0;
+    outline-color: 0;
+    outline-style: 0;
+    outline-width: 0;
+}
