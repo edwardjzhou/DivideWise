@@ -12,12 +12,9 @@ class Friendbills extends React.Component {
         super(props)
         this.state = {
         }
-        // console.log(this.props.match.params.friendId)
-
         this.findTheBorrowedBills = this.findTheBorrowedBills.bind(this)
         this.findFriendId = this.findFriendId.bind(this)
         this.iBorrowed = []
-
     }
 
     componentDidMount() {
@@ -31,7 +28,6 @@ class Friendbills extends React.Component {
         }else{
             this.friendUserId = this.props.friends[this.props.match.params.friendId].user_two_id
         }
-        // return this.friendUserId
         return null
     }
 
@@ -43,31 +39,42 @@ class Friendbills extends React.Component {
                 answer.push(this.props.bills[key])   
             }
         }
-        
         this.iBorrowed = answer
         return null
-        
     }
 
     render(){
         return (
-            <div style={{ width: `50%`, marginLeft: `30%`, boxShadow: `5px 10px`}}>
+            <div style={{ width: `50%`, marginLeft: `30%`, boxShadow: `-1 0 12px rgba(0, 0, 0, 0.2)`}}>
                 <AddBills></AddBills>
                 
-                {this.props.friends[this.props.match.params.friendId] === undefined ? "STILL LOADING" : 
+                {this.props.friends[this.props.match.params.friendId] === undefined ? "This isn't a valid friendship page" : 
                 <div>
                     "FRIEND BILLS "
                     {this.findFriendId()}
                     {this.findTheBorrowedBills()}
+                    {this.iBorrowed.length===0 ? "There are no bills with this friend yet!" : null}
                     {this.iBorrowed.map( (bill) => {
-                        return (<div>
-                            <p>{new Date(bill.created_at).toLocaleDateString("en-US")+" "+ bill.description+" "}</p>
+                        return (<div style={{position:`relative`,borderBottom: `1px solid #eee`, display:`block`,
+                            lineheight: `18px`, color: `#333333`, fontSize: `13px`}}>
+                            <div style={{cursor:`pointer`, display: `inline-block`, padding: `9px 5px 6px 68px`, position:
+                        `relative`, }}>
+                                {new Date(bill.created_at).toLocaleDateString("en-US")+" "} 
+                                <span> {bill.description+" "}</span>
+
+
+                            <span>{bill.lender_id==this.props.current_user_id ? "you lent "+bill.amount+"to "+bill.borrower :
+                                bill.borrower+ " lent you " + bill.amount } </span>
+                            </div>
                                 {bill.payments.map( payment=> {
                                         return (
-                                        <p>{JSON.stringify(payment)}
-                                        
-                                        
-                                        </p>)
+                                        <div style={{ position: `relative`, borderBottom: `1px solid #eee`, display: `block` }}>
+                                            <p>
+                                                {/* {JSON.stringify(payment)} */}
+                                                {Object.values(payment)[0].amount + " "}
+                                                {new Date(Object.values(payment)[0].created_at).toLocaleDateString("en-US")}
+                                            </p>
+                                        </div> )
                                     }
                                 )}
                         </div>)
@@ -101,10 +108,7 @@ const mDTP = (dispatch) => {
         fetchBills: () => dispatch(fetchBills()),
         openModal: modal => dispatch(openModal(modal)),
         fetchFriends: () => dispatch(fetchFriends()),
-
     }
 }
 
 export default connect(mSTP, mDTP)(Friendbills)
-
-

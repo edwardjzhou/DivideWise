@@ -61,7 +61,13 @@ class Bills extends React.Component {
             position: `relative`,
             top: `50%`,
             transform: `translateY(-50%)`,
-            borderWidth: `0 1px 0 0`
+            borderWidth: `0 1px 0 0`,
+	        color: `#ff652f`,
+            textAlign: `center`,
+            fontSize: `13px`,
+            lineHeight: `16px`,
+            fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important`,
+            textRendering: `optimizeLegibility`,
         };
 
         const green = {
@@ -76,7 +82,13 @@ class Bills extends React.Component {
             position: `relative`,
             top: `50%`,
             transform: `translateY(-50%)`,
-            borderWidth: `0 1px 0 0`
+            borderWidth: `0 1px 0 0`,
+            color: `#5bc5a7`,
+            textAlign: `center`,
+            fontSize: `13px`,
+            lineHeight: `16px`,
+            fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important`,
+            textRendering: `optimizeLegibility`,
         };
 
         const redlazy = {
@@ -89,7 +101,14 @@ class Bills extends React.Component {
             textAlign: `center`,
             position: `relative`,
             top: `50%`,
-            transform: `translateY(-50%)`
+            transform: `translateY(-50%)`,
+            color: `#ff652f`,
+            textAlign: `center`,
+            fontSize: `13px`,
+            lineHeight: `16px`,
+            fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important`,
+            textRendering: `optimizeLegibility`,
+            
 
         };
 
@@ -102,7 +121,13 @@ class Bills extends React.Component {
             padding: `0 0 0 0`,
             position: `relative`,
             top: `50%`,
-            transform: `translateY(-50%)`
+            transform: `translateY(-50%)`,
+            color: `#5bc5a7`,
+            textAlign: `center`,
+            fontSize: `13px`,
+            lineHeight: `16px`,
+            fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important`,
+            textRendering: `optimizeLegibility`,
 
         };
         return (
@@ -116,16 +141,16 @@ class Bills extends React.Component {
                     backgroundColor: `#EEEEEE`, display: `block`}}>
 
                         {this.state.allin < 0 ?
-                            <div style={red}>total balance<br/>${this.state.allin/100}</div> :
-                            <div style={green}>total balance<br/>${this.state.allin/100}</div>
+                            <div style={red}><span className="blackme">total balance</span>${this.state.allin/100}</div> :
+                            <div style={green}><span className="blackme">total balance</span>${this.state.allin/100}</div>
                         }
                         {this.state.owes > 0 ?
-                            <div style={red}>you owe<br/>${this.state.owes/100}</div> :
-                            <div style={green}>you owe<br />${this.state.owes/100}</div>
+                            <div style={red}><span className="blackme">you owe</span>${this.state.owes/100}</div> :
+                            <div style={green}><span className="blackme">you owe</span>${this.state.owes/100}</div>
                         }
                         {this.state.owed < 0 ?
-                            <div style={redlazy}>you are owed<br />${this.state.owed/100}</div> :
-                            <div style={greenlazy}>you are owed<br />${this.state.owed/100}</div>
+                            <div style={redlazy}><span className="blackme">you are owed</span>${this.state.owed/100}</div> :
+                            <div style={greenlazy}><span className="blackme">you are owed</span>${this.state.owed/100}</div>
                         }
                         
                     </div>

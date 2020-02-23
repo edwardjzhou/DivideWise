@@ -25,7 +25,7 @@
 	color: rgb(0, 0, 0);
 
 	/* Box */
-	height: 10%;
+	height: 6%;
 	width: 100%;
 	border: 0px none rgb(0, 0, 0);
 	border-top: 0px none rgb(0, 0, 0);
@@ -90,4 +90,34 @@
 
 .greyhover :hover{
 	background-color: #999999;
+}
+
+.blackme{
+	color: #999999;
+	text-align: center;
+	display:block;
+	font-size: 13px;
+	line-height: 16px;
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+	    text-rendering: optimizeLegibility;
+}
+
+.tealme{
+	color: #5bc5a7;
+	text-align: center;
+	display:block;
+	font-size: 13px;
+	line-height: 16px;
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+	text-rendering: optimizeLegibility;
+}
+
+.orangeme{
+	color: #ff652f;
+	text-align: center;
+	display:block;
+	font-size: 13px;
+	line-height: 16px;
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+	text-rendering: optimizeLegibility;
 }
