@@ -12,7 +12,9 @@ import { fetchFriends } from '../../actions/friend_actions';
 class Friends extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            
+        }
     }
 
     componentDidMount() {
@@ -21,8 +23,8 @@ class Friends extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.friends !== this.props.friends) {
-            console.log('friends props has changed.')
-            console.log(this.props.location.pathname)
+            // console.log('friends props has changed.')
+            // console.log(this.props.location.pathname)
             this.forceUpdate()
         }
     }
@@ -40,13 +42,16 @@ class Friends extends React.Component {
                 {this.props.friends.map(friend => (
                     friend.friends_name !==  this.props.current_user ?
                          (
-                            this.props.location.pathname[this.props.location.pathname.split('/').length - 1] !== friend.id ?
+                            // this.props.location.pathname[this.props.location.pathname.split('/').length - 1] !== friend.id ?
+                            location.href.split('/')[location.href.split('/').length-1] !==friend.id ?
+                            
                             <Link to={`/friends/` + friend.id} style={{ textDecoration: `none` }}> 
                                 <div className='friendItem' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
                                     {friend.friends_name} </div></Link>
                                     : 
                                 <Link to={`/friends/` + friend.id} style={{ textDecoration: `none`, color: `#5BC5A7`, 
                                 borderLeft: `8px solid #5BC5A7` }}>
+ 
                                     <div className='friendItem' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
                                         {friend.friends_name} </div></Link> 
                                     ) 

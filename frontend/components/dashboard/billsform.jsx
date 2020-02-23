@@ -85,11 +85,11 @@ class BillsForm extends React.Component {
                 }
             } 
         }
-        console.log(this.state)
+        // console.log(this.state)
     }
 
     update(field) {
-        console.log(this.state)
+        // console.log(this.state)
         return e => this.setState({
             [field]: e.target.value
         })

@@ -24,7 +24,7 @@ class Bills extends React.Component {
     
     componentDidUpdate(prevProps, prevState){
         if (prevProps.bills !== this.props.bills) {
-            console.log('billsz props has changed.')
+            // console.log('billsz props has changed.')
             this.calculateTotalYouOwe()
         }
     }
