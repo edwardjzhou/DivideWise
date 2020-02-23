@@ -28,6 +28,8 @@ class Friendbills extends React.Component {
         }else{
             this.friendUserId = this.props.friends[this.props.match.params.friendId].user_two_id
         }
+        this.friendsName = this.props.friends[this.props.match.params.friendId].friends_name
+
         return null
     }
 
@@ -45,14 +47,16 @@ class Friendbills extends React.Component {
 
     render(){
         return (
-            <div style={{ width: `50%`, marginLeft: `30%`, boxShadow: `-1 0 12px rgba(0, 0, 0, 0.2)`}}>
+            <div className="YOU_OWE column_main">
                 <AddBills></AddBills>
-                
-                {this.props.friends[this.props.match.params.friendId] === undefined ? "This isn't a valid friendship page" : 
+                {/* <div  style={{ margin: `0px`, padding: `0 0 0 0` }}> */}
+                {/* style={{ width: `50%`, marginLeft: `30%`, boxShadow: `-1 0 12px rgba(0, 0, 0, 0.2)` }} */}
+
+                {this.props.friends[this.props.match.params.friendId] === undefined ? "This isn't a valid friendship page or there is trouble fetching friends lists from server" : 
                 <div>
-                    "FRIEND BILLS "
                     {this.findFriendId()}
                     {this.findTheBorrowedBills()}
+                        <h1>{this.friendsName}</h1>
                     {this.iBorrowed.length===0 ? "There are no bills with this friend yet!" : null}
                     {this.iBorrowed.map( (bill) => {
                         return (<div style={{position:`relative`,borderBottom: `1px solid #eee`, display:`block`,

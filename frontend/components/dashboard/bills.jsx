@@ -6,6 +6,7 @@ import { openModal } from '../../actions/modal_actions';
 import AddBills from './addbills';
 
 
+
 class Bills extends React.Component {
     constructor(props) {
         super(props)
@@ -48,6 +49,17 @@ class Bills extends React.Component {
         )
     }
 
+    findFriendship(nameOfFriend){
+        // console.log(this.props.friends.length)
+        // console.log(nameOfFriend)
+        // for (let i = 0; i < this.props.friends.length; i++){
+        //     console.log(this.props.friends[i].friends_name == nameOfFriend)
+        // }
+       return this.props.friends.filter( friend=> {
+           return nameOfFriend === friend.friends_name
+        }).map(friend => friend.id)[0]
+        
+    }
 
     render() {
         const red = {
@@ -131,10 +143,10 @@ class Bills extends React.Component {
 
         };
         return (
-                <div id="YOU_OWE" className="column_main" style={{margin: `0px`, padding: `0 0 0 0`}}>
+                <div className="YOU_OWE column_main" style={{margin: `0px`, padding: `0 0 0 0`}}>
                 <div style={{ borderBottom: `1px solid #DDDDDD`, backgroundColor: `#EEEEEE`, display:'flex',
                     fontWeight: `700`, lineHeight: `38px`, fontSize: `24px`, fontFamily: `Lato`, padding: `5% 0 0 5%`,}}>
-                    Dashboard
+                    <h1>Dashboard</h1>
                     <AddBills></AddBills>
                     </div>
                 <div id="total_balances" style={{
@@ -166,7 +178,7 @@ class Bills extends React.Component {
                                     this.props.bills.map(bill =>
                                         (
                                             bill.borrower_id === this.props.current_user_id ? 
-                                            <Link to={`/friends/${bill.lender_id}`} style={{ textDecoration: `none` }}>
+                                            <Link to={`/friends/${this.findFriendship(bill.lender)}`} style={{ textDecoration: `none` }}>
                                                 <p key={bill.id} >
                                                     <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
                                                         &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
@@ -182,7 +194,7 @@ class Bills extends React.Component {
                                     this.props.bills.map(bill =>
                                         (
                                             bill.lender_id === this.props.current_user_id ? 
-                                            <Link to={`/friends/${bill.lender_id}`} className='greyhover' style={{ textDecoration: `none` }}>
+                                            <Link to={`/friends/${this.findFriendship(bill.borrower)}`} className='greyhover' style={{ textDecoration: `none` }}>
                                                 <p key={bill.id} >
                                                     <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br />{bill.borrower}
                                                         &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
@@ -204,7 +216,8 @@ const mSTP = (state) => {
     return {
         bills: Object.values(state.entities.bills),
         current_user: state.entities.users[state.session.id],
-        current_user_id: state.session.id
+        current_user_id: state.session.id,
+        friends: Object.values(state.entities.friends)
     }
 }
 
