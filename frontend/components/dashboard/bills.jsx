@@ -146,8 +146,9 @@ class Bills extends React.Component {
         };
         return (
                 <div className="YOU_OWE column_main" style={{margin: `0px`, padding: `0 0 0 0`}}>
-                <div style={{ borderBottom: `1px solid #DDDDDD`, backgroundColor: `#EEEEEE`, display:'flex',
-                    fontWeight: `700`, lineHeight: `38px`, fontSize: `24px`, fontFamily: `Lato`, padding: `5% 0 0 5%`,}}>
+                <div style={{ borderBottom: `1px solid #DDDDDD`, backgroundColor: `#EEEEEE`, display:'flex', 
+                    justifyContent: `space-between`,
+                    fontWeight: `700`, lineHeight: `38px`, fontSize: `24px`, fontFamily: `Lato`, padding: `2.5% 0 2.5% 5%`,}}>
                     <h1>Dashboard</h1>
                     <AddBills></AddBills>
                     </div>

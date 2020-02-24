@@ -11,8 +11,8 @@
   float: left;
   width: 40%;
   padding: 10px;
-  height: 100vh; /* Should be removed. Only for demonstration */
-  min-height: 100vh;
+  height: 90vh; /* Should be removed. Only for demonstration */
+  min-height: 90vh;
 //   display: flex;
 //   flex-direction: column;
 //   flex-grow: 1;
@@ -24,7 +24,7 @@
   float: left;
   width: 15%;
   padding: 10px;
-  height: 100vh; /* Should be removed. Only for demonstration */
+  height: 90vh; /* Should be removed. Only for demonstration */
   margin: 0 50px 0 50px;
 }
 
@@ -225,7 +225,8 @@
 }
 
 .parentHover:hover {
-	background-color: 48BE9D;
+	background-color: #48BE9D;
+	opacity: .5;
 }
 
 
@@ -269,3 +270,12 @@
 // // 	opacity: .9;
 // // display:none;
 // }
+
+.dashcard{
+	color: black !important;
+	 background-color: white !important; 
+}
+.dashcard:hover{
+	color: white !important;
+	background-color: #48BE9D !important;
+}
