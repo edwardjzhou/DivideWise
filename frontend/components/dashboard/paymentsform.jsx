@@ -21,6 +21,7 @@ class PaymentsForm extends React.Component {
     }
 
     selectedBill(e) {
+        console.log(e.target.value)
         this.setState({ 
             bill_id: e.target.value,
             payer_id: this.props.bills[e.target.value].borrower_id,
@@ -38,22 +39,23 @@ class PaymentsForm extends React.Component {
             bill_id: this.state.bill_id,
             amount: this.state.amount * 100,
         }, this.state.bill_id)
-        // this.props.fetchBills() 
+        this.props.fetchBills() 
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.bills != this.props.bills) {
-            // this.props.closeModal()
-        }
-    }
+  
 
     update(field) {
-        // console.log(this.state)
+        console.log(this.state)
         return e => this.setState({
             [field]: e.target.value
         })
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.bills != this.props.bills) {
+            this.props.closeModal()
+        }
+    }
 
     allowSubmit() {
 
@@ -81,6 +83,7 @@ class PaymentsForm extends React.Component {
                     <span style={{ left: `10px`, position: `absolute` }}>Find a bill <span className='STRONG'>YOU</span> are in&nbsp;
                     <select onChange={this.selectedBill.bind(this)}>
                             <option value={null}>Choose a bill</option>
+                            {console.log(this.props.bills)}
                             {this.props.bills.map(bill => (
                                     <option value={bill.id} key={bill.id}>{bill.lender} lent ${bill.amount/100} to {bill.borrower}</option>
                                 )

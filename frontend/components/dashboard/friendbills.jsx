@@ -70,7 +70,7 @@ class Friendbills extends React.Component {
                             <span>{bill.lender_id==this.props.current_user_id ? "you lent "+bill.amount+"to "+bill.borrower :
                                 bill.borrower+ " lent you " + bill.amount } </span>
                             </div>
-                                {bill.payments.map( payment=> {
+                                {bill.payments != undefined && bill.payments.length != 0 ? bill.payments.map( payment=> {
                                         return (
                                         <div style={{ position: `relative`, borderBottom: `1px solid #eee`, display: `block` }}>
                                             <p>
@@ -80,7 +80,7 @@ class Friendbills extends React.Component {
                                             </p>
                                         </div> )
                                     }
-                                )}
+                                ): null }
                         </div>)
                     })
                     }
