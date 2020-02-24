@@ -212,13 +212,7 @@ class Bills extends React.Component {
                                 }
                             </div>
                         </div>
-                {fetch('http://www.edwardpa.pythonanywhere.com/')
-                    .then((response) => {
-                        return response.json();
-                    })
-                    .then((myJson) => {
-                        console.log(myJson);
-                    })}
+               
                 </div>
         );
     }

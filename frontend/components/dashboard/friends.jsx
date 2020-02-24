@@ -35,13 +35,17 @@ class Friends extends React.Component {
         return (
             <div id="friends_bar" className="column">
                 <div>
-                    {console.log(this.props.selectedFriendshipid)}
-                    {console.log(this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1])}
-                    {location.href.includes('dashboard') ? <Link to="/" 
-                    className="greyhover" style={{color:`#5BC5A7`, fontSize: `30`, 
+                    {/* {console.log(this.props.selectedFriendshipid)} */}
+                    {/* {console.log(this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1])} */}
+                    <div className="greyhover">{location.href.includes('dashboard') ? <Link to="/" 
+                        style={{ color: `#5BC5A7`, fontSize: `40`, fontWeight: `bold`,
                         borderLeft: `8px solid #5BC5A7`, textDecoration: `none`
-                    }}>Dashboard</Link> : <Link to="/" style={{textDecoration: `none`, color: "gray", fontSize: "30"}}>Dashboard</Link>}
-
+                        }}>Dashboard
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </Link> : <Link to="/" style={{ textDecoration: `none`, color: "gray", fontSize: "40",fontWeight: `bold`}}>Dashboard
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </Link>}
+                    </div>
                 <div className="header"> FRIENDS<AddFriends></AddFriends></div>
                 {this.props.friends.map(friend => (
                     friend.friends_name !==  this.props.current_user ?

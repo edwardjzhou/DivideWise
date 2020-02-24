@@ -93,8 +93,8 @@ class Card extends Component {
                                                 onChange={this.update('password')}
                                                 className="login-input"
                                             />
-                                        <br />
-                                            <input className="session-submit" type="submit" value={this.props.formType} />
+                                        <br/>
+                                        <input style={{transform: `scale(0.75)`, margin: `0 0 0 0`}} className="session-submit orangebutton" type="submit" value={this.props.formType} />
                                         {/* <ul>
                                             {this.props.errors.map((error, i) => (
                                             <li key={`error-${i}`}>
