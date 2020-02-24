@@ -24,6 +24,7 @@ class Dashboard extends React.Component {
                 <div id="dashboardnavbar" > <NavLink to="/"><img src={window.logoURL} style={{ height: `50px` }}></img></NavLink>
                     {/* <div><a id="dropdown">Hey, {this.props.current_user}!  </a> </div> */}
                     {/* <button className="header-button" onClick={this.props.logout}>Log Out</button></div> */}
+                    <div></div>
                     <LogoutCard name={this.props.current_user} logout={this.props.logout}></LogoutCard>
                 </div>
                     <Friends /> 

@@ -80,7 +80,7 @@ class Card extends Component {
                                         <br />
                             
                                             <input type="text"
-                                                placeholder="Email address"
+                                                placeholder="Username"
                                                 value={this.state.username}
                                                 onChange={this.update('username')}
                                                 className="login-input"
