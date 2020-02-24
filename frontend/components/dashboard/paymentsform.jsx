@@ -69,9 +69,9 @@ class PaymentsForm extends React.Component {
 
     }
 
-    componentDidMount(){
-        this.props.fetchBills()
-    }
+    // componentDidMount(){
+    //     this.props.fetchBills()
+    // }
 
     render() {
 
