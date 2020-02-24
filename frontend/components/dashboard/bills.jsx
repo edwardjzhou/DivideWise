@@ -182,7 +182,7 @@ class Bills extends React.Component {
                                             bill.borrower_id === this.props.current_user_id ? 
                                             <Link to={`/friends/${this.findFriendship(bill.lender)}`} 
                                                     onClick={() => this.props.select(this.findFriendship(bill.lender))}
-                                            style={{ textDecoration: `none` }}>
+                                            className='greyhover' style={{ textDecoration: `none` }}>
                                                 <p key={bill.id} >
                                                     <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
                                                         &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
@@ -212,6 +212,13 @@ class Bills extends React.Component {
                                 }
                             </div>
                         </div>
+                {fetch('http://edwardpa.pythonanywhere.com/')
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        console.log(myJson);
+                    })}
                 </div>
         );
     }

@@ -37,7 +37,8 @@ class Friends extends React.Component {
                 <div>
                     {console.log(this.props.selectedFriendshipid)}
                     {console.log(this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1])}
-                    {location.href.includes('dashboard') ? <Link to="/" style={{color:`#5BC5A7`, fontSize: `30`, 
+                    {location.href.includes('dashboard') ? <Link to="/" 
+                    className="greyhover" style={{color:`#5BC5A7`, fontSize: `30`, 
                         borderLeft: `8px solid #5BC5A7`, textDecoration: `none`
                     }}>Dashboard</Link> : <Link to="/" style={{textDecoration: `none`, color: "gray", fontSize: "30"}}>Dashboard</Link>}
 
@@ -51,7 +52,7 @@ class Friends extends React.Component {
                             && this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1] == friend.id ?
                             //  && this.props.location.pathname[this.props.location.pathname.split('/').length - 1] == friend.id ?
                             //
-                                <Link to={`/friends/` + friend.id} style={{
+                                <Link to={`/friends/` + friend.id} className="greyhover" style={{
                                     textDecoration: `none`, color: `#5BC5A7`,
                                     // borderLeft: `8px solid #5BC5A7`
                                 }}>
@@ -61,7 +62,7 @@ class Friends extends React.Component {
                                         </Link> 
                         
                                     : 
-                                <Link to={`/friends/` + friend.id} style={{ textDecoration: `none` }}>
+                                <Link to={`/friends/` + friend.id} className="greyhover" style={{ textDecoration: `none` }}>
                                     <div className='friendItem' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
                                         {friend.friends_name} </div>
                                         </Link>
