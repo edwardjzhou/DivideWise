@@ -179,7 +179,7 @@ class Splash extends React.Component {
                     
                     <div className="boxbro" style={Object.assign({ backgroundColor: "gray" }, sectionStyle)}>
                         <h3>Pay friends back</h3>
-                        <p>Settle up with a friend and record any cash or online payment.</p>
+                        <p> with a friend and record any cash or online payment.</p>
                         <img height="500" src={window.elephanta} className="cellphone"></img>
 
                     </div>  

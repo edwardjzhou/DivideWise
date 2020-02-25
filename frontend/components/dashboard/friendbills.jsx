@@ -131,13 +131,13 @@ class Friendbills extends React.Component {
                                                         {Object.values(payment)[0].payer_id == this.props.current_user_id ?
                                                         this.props.current_user.username + " paid " + bill.lender :
                                                         bill.borrower + " paid " + this.props.current_user.username}
-                                                    ${Object.values(payment)[0].amount + " " / 100}
+                                                    ${Object.values(payment)[0].amount/100 + " " }
                                                     </div>
                                                 <div style={{ display: ``, paddingLeft: `0` }}>
                                                         {Object.values(payment)[0].payer_id  == this.props.current_user_id ?
                                                         "you paid ":
                                                             "you received " } 
-                                                        ${Object.values(payment)[0].amount + " " / 100}
+                                                        ${Object.values(payment)[0].amount/100 + " "}
                                                 </div>
 
 

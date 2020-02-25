@@ -160,8 +160,8 @@
 	padding: 0px 0px 0px 5px;
 	max-height: none;
 	min-height: 0px;
-	max-width: 270px;
-	min-width: 0px;
+	// max-width: 270px;
+	min-width: 33%;
 
 	/* Positioning */
 	position: static;
@@ -198,13 +198,14 @@
 	box-sizing: content-box;
 	resize: none;
 	text-shadow: none;
-	text-overflow: ellipsis;
+	// text-overflow: ellipsis;
 	word-wrap: normal;
 	box-shadow: none;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
+	z-index:100;
 }
 
 .friendbills{

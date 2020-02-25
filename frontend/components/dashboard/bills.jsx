@@ -169,11 +169,11 @@ class Bills extends React.Component {
                         }
                         
                     </div>
-                        <div style={{display:`flex`, flexWrap:`wrap`}}>
+                        <div style={{display:`flex`, flexWrap:`wrap`, }}>
                                 <div style={{
-                                width: `50%`}}>YOU OWE</div>
+                        width: `50%`, textAlign: `left`,}}>YOU OWE</div>
                                 <div style={{
-                                    width: `50%`
+                        width: `50%`, textAlign: `right`
                                 }}>YOU ARE OWED</div>
                            
 

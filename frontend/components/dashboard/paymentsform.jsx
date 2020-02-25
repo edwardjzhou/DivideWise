@@ -21,16 +21,16 @@ class PaymentsForm extends React.Component {
     }
 
     selectedBill(e) {
-        console.log(this.props.bills[e.target.value])
+        let answer = this.props.bills.filter( billObject => {
+            return billObject.id == e.target.value
+        })
         this.setState({ 
             bill_id: e.target.value,
-            payer_id: this.props.bills.filter( billObject => {
-                return billObject.id === e.target.value
-            })[0].borrower_id,
-            lender: this.props.bills[e.target.value].lender,
-            borrower: this.props.bills[e.target.value].borrower
-            
-        })
+            lender: answer[0].lender,
+            borrower: answer[0].borrower,
+            payer_id: answer[0].borrower_id
+        }) 
+        // GOT RANDOM RECEIVAL INSIDE MY SLICE OF STATES CONFUSED WITH THE ACUTAL BILL WITH THAT ID
     }
 
     handleSubmit(e) {
@@ -39,7 +39,7 @@ class PaymentsForm extends React.Component {
         this.props.createPayment({
             payer_id: this.state.payer_id,
             bill_id: this.state.bill_id,
-            amount: this.state.amount * 100,
+            amount: this.state.amount*100,
         }, this.state.bill_id)
         this.props.fetchBills() 
     }
@@ -47,7 +47,7 @@ class PaymentsForm extends React.Component {
   
 
     update(field) {
-        // console.log(this.state)
+        console.log(this.state)
         return e => this.setState({
             [field]: e.target.value
         })
@@ -63,7 +63,7 @@ class PaymentsForm extends React.Component {
 
         if (this.state.amount != null &&
             this.state.payer_id != null &&
-            this.state.bill_id != null ) {
+            this.state.bill_id != null && !isNaN(this.state.amount)) {
             return (<input className='greenbutton' type="submit" value="Save" ></input>)
         } else {
             return (<input className='greenbutton disabled' type="submit" value="Save" disabled="true"></input>)
