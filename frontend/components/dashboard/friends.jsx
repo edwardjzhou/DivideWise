@@ -7,6 +7,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import AddFriends from './addfriends';
 import { fetchFriends } from '../../actions/friend_actions';
+import { select } from '../../actions/ui_actions'
 
 
 class Friends extends React.Component {
@@ -59,14 +60,15 @@ class Friends extends React.Component {
                                 <Link to={`/friends/` + friend.id} className="greyhover" style={{
                                     textDecoration: `none`, color: `#5BC5A7`,
                                     // borderLeft: `8px solid #5BC5A7`
-                                }}>
+                                }} onClick={() => this.props.select(friend.id)}>
 
                                     <div className='friendItem showLeft' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
                                         {friend.friends_name} </div>
                                         </Link> 
                         
                                     : 
-                                <Link to={`/friends/` + friend.id} className="greyhover" style={{ textDecoration: `none` }}>
+                                <Link to={`/friends/` + friend.id} className="greyhover" style={{ textDecoration: `none` }}
+                                    onClick={() => this.props.select(friend.id)}>
                                     <div className='friendItem' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
                                         {friend.friends_name} </div>
                                         </Link>
@@ -96,6 +98,8 @@ const mDTP = (dispatch) => {
     return {
         closeModal: () => dispatch(closeModal()),
         fetchFriends: () => dispatch(fetchFriends()),
+        select: friendshipId => dispatch(select(friendshipId))
+
     }
 }
 

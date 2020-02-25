@@ -30,9 +30,9 @@ class BillsForm extends React.Component {
 
     }
 
-    componentWillUnmount(){
-        // this.props.fetchBills()
-    }
+    // componentWillUnmount(){
+    //     // this.props.fetchBills()
+    // }
 
     selectedFriend(e){
         this.setState({friend: e.target.value})
