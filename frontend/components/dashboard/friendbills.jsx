@@ -48,7 +48,7 @@ class Friendbills extends React.Component {
     render(){
         return (
             <div className="YOU_OWE column_main">
-                <AddBills></AddBills>
+
                 {/* <div  style={{ margin: `0px`, padding: `0 0 0 0` }}> */}
                 {/* style={{ width: `50%`, marginLeft: `30%`, boxShadow: `-1 0 12px rgba(0, 0, 0, 0.2)` }} */}
 
@@ -56,7 +56,15 @@ class Friendbills extends React.Component {
                 <div>
                     {this.findFriendId()}
                     {this.findTheBorrowedBills()}
-                        <h1>{this.friendsName}</h1>
+                        <div style={{
+                            borderBottom: `1px solid #DDDDDD`, backgroundColor: `#EEEEEE`, display: 'flex',
+                            justifyContent: `space-between`,
+                            fontWeight: `700`, lineHeight: `38px`, fontSize: `24px`, fontFamily: `Lato`, padding: `2.5% 0 2.5% 5%`,
+                        }}>
+                            <h1>{this.friendsName}</h1>
+                            <AddBills></AddBills>
+                        </div>
+                        {/* <h1>{this.friendsName}</h1> */}
                     {this.iBorrowed.length===0 ? "There are no bills with this friend yet!" : null}
                     {this.iBorrowed.map( (bill) => {
                         return (<div style={{position:`relative`,borderBottom: `1px solid #eee`, display:`block`,
@@ -64,11 +72,14 @@ class Friendbills extends React.Component {
                             <div style={{cursor:`pointer`, display: `inline-block`, padding: `9px 5px 6px 68px`, position:
                         `relative`, }}>
                                 {new Date(bill.created_at).toLocaleDateString("en-US")+" "} 
+                                <img src={window.check} style={{
+                                 width: `auto`, height:`100%`, margin: '10px 16px 10px 0', display: `inline-block`, verticalAlign: `middle` }}></img>
+
                                 <span> {bill.description+" "}</span>
 
 
-                            <span>{bill.lender_id==this.props.current_user_id ? "you lent "+bill.amount+"to "+bill.borrower :
-                                bill.borrower+ " lent you " + bill.amount } </span>
+                            <span>{bill.lender_id==this.props.current_user_id ? "you lent $"+bill.amount/100+" to "+bill.borrower :
+                                bill.borrower+ " lent you $" + bill.amount/100 } </span>
                             </div>
                                 {bill.payments != undefined && bill.payments.length != 0 ? bill.payments.map( payment=> {
                                         return (

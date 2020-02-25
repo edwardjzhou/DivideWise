@@ -112,7 +112,7 @@ class BillsForm extends React.Component {
         if(this.state.description != null && 
             this.state.lender_id != null &&
             this.state.borrower_id != null &&
-            this.state.amount != null) {    
+            this.state.amount != null && !isNaN(this.state.amount)) {    
                    return (<input className='greenbutton' type="submit" value="Save" ></input>)
         }else{
             return (<input className='greenbutton disabled' type="submit" value="Save" disabled="true"></input>)
