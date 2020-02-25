@@ -149,7 +149,7 @@ class Bills extends React.Component {
                 <div style={{ borderBottom: `1px solid #DDDDDD`, backgroundColor: `#EEEEEE`, display:'flex', 
                     justifyContent: `space-between`,
                     fontWeight: `700`, lineHeight: `38px`, fontSize: `24px`, fontFamily: `Lato`, padding: `2.5% 0 2.5% 5%`,}}>
-                    <h1>Dashboard</h1>
+                    <h1 style={{fontWeight:`700`}}>Dashboard</h1>
                     <AddBills></AddBills>
                     </div>
                 <div id="total_balances" style={{
@@ -171,10 +171,11 @@ class Bills extends React.Component {
                     </div>
                         <div style={{display:`flex`, flexWrap:`wrap`}}>
                                 <div style={{
-                                width: `50%` }}>YOU OWE</div>
+                                width: `50%`}}>YOU OWE</div>
                                 <div style={{
                                     width: `50%`
                                 }}>YOU ARE OWED</div>
+                           
 
                             <div style={{width: `47%`, borderRight: `1px solid gray`, marginLeft: `3%`}}>
                                 {

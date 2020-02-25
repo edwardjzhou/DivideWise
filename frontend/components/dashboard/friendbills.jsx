@@ -45,14 +45,35 @@ class Friendbills extends React.Component {
         return null
     }
 
+    renderNoFriend(){
+        return(
+            <div>
+                {/* <div>"This isn't a valid friendship page or there is trouble fetching friends lists from server" </div> */}
+                Whoops – you don't have permission to view this friend or group! Make sure you're logged into the correct Splitwise account. Sorry! :(
+            </div>
+        )
+    }
+
+    renderNoExpensesYet(){
+        return(
+        <div>
+            <div>You have not added any expenses yet
+                To add a new expense, click the orange “Add an expense” button.
+            </div>
+            <img src={window.sorry}></img>
+        </div>
+        )
+    }
+
     render(){
         return (
-            <div className="YOU_OWE column_main">
+            <div className="YOU_OWE column_main" style={{ margin: `0px`, padding: `0 0 0 0` }} >
 
                 {/* <div  style={{ margin: `0px`, padding: `0 0 0 0` }}> */}
                 {/* style={{ width: `50%`, marginLeft: `30%`, boxShadow: `-1 0 12px rgba(0, 0, 0, 0.2)` }} */}
 
-                {this.props.friends[this.props.match.params.friendId] === undefined ? "This isn't a valid friendship page or there is trouble fetching friends lists from server" : 
+                {this.props.friends[this.props.match.params.friendId] === undefined ? this.renderNoFriend()
+                : 
                 <div>
                     {this.findFriendId()}
                     {this.findTheBorrowedBills()}
@@ -60,12 +81,13 @@ class Friendbills extends React.Component {
                             borderBottom: `1px solid #DDDDDD`, backgroundColor: `#EEEEEE`, display: 'flex',
                             justifyContent: `space-between`,
                             fontWeight: `700`, lineHeight: `38px`, fontSize: `24px`, fontFamily: `Lato`, padding: `2.5% 0 2.5% 5%`,
+                            
                         }}>
-                            <h1>{this.friendsName}</h1>
+                            <h1 style={{ fontWeight: `700` }}>{this.friendsName}</h1>
                             <AddBills></AddBills>
                         </div>
                         {/* <h1>{this.friendsName}</h1> */}
-                    {this.iBorrowed.length===0 ? "There are no bills with this friend yet!" : null}
+                    {this.iBorrowed.length===0 ? this.renderNoExpensesYet() : null}
                     {this.iBorrowed.map( (bill) => {
                         return (<div style={{position:`relative`,borderBottom: `1px solid #eee`, display:`block`,
                             lineheight: `18px`, color: `#333333`, fontSize: `13px`}}>
@@ -81,10 +103,11 @@ class Friendbills extends React.Component {
                             <span>{bill.lender_id==this.props.current_user_id ? "you lent $"+bill.amount/100+" to "+bill.borrower :
                                 bill.borrower+ " lent you $" + bill.amount/100 } </span>
                             </div>
+                                {/* PAYMENTS HERE */}
                                 {bill.payments != undefined && bill.payments.length != 0 ? bill.payments.map( payment=> {
                                         return (
                                         <div style={{ position: `relative`, borderBottom: `1px solid #eee`, display: `block` }}>
-                                            <p>
+                                            <p> <img src={window.payment}></img>
                                                 {/* {JSON.stringify(payment)} */}
                                                 {Object.values(payment)[0].amount + " "}
                                                 {new Date(Object.values(payment)[0].created_at).toLocaleDateString("en-US")}
@@ -92,6 +115,7 @@ class Friendbills extends React.Component {
                                         </div> )
                                     }
                                 ): null }
+
                         </div>)
                     })
                     }
