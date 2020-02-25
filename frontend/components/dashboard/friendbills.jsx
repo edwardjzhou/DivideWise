@@ -108,7 +108,7 @@ class Friendbills extends React.Component {
                                 <img src={window.check} style={{
                                  width: `35px`, height:`35px`, margin: '10px 16px 10px 0', display: `inline-block`, verticalAlign: `middle` }}></img>
 
-                                <span className="friendbills">{bill.description}</span>
+                                <div className="friendbills">{bill.description}</div>
                                     </div>
                                 <div style={{display: `inline-block`, paddingLeft: `0`}}>
                                     <div>{bill.lender_id==this.props.current_user_id ? 
@@ -121,11 +121,28 @@ class Friendbills extends React.Component {
                                 {bill.payments != undefined && bill.payments.length != 0 ? bill.payments.map( payment=> {
                                         return (
                                         <div style={{ position: `relative`, borderBottom: `1px solid #eee`, display: `block` }}>
-                                            <p> <img src={window.payment}></img>
-                                                {/* {JSON.stringify(payment)} */}
-                                                {Object.values(payment)[0].amount + " "}
-                                                {new Date(Object.values(payment)[0].created_at).toLocaleDateString("en-US")}
-                                            </p>
+                                                <div style={{
+                                                    cursor: `pointer`, display: `flex`, padding: `9px 5px 6px 10px`, position:
+                                                        `relative`, justifyContent: `space-between`, marginLeft: ``, marginRight: `50px`
+                                                }} >
+                                                     <div><img height="19px" width="19px" style={{margin: `0 0 0 0`}} src={window.payment}></img>
+                                                        {/* {JSON.stringify(payment)} */}
+                                                        {new Date(Object.values(payment)[0].created_at).toLocaleDateString("en-US")}
+                                                        {Object.values(payment)[0].payer_id == this.props.current_user_id ?
+                                                        this.props.current_user.username + " paid " + bill.lender :
+                                                        bill.borrower + " paid " + this.props.current_user.username}
+                                                    ${Object.values(payment)[0].amount + " " / 100}
+                                                    </div>
+                                                <div style={{ display: ``, paddingLeft: `0` }}>
+                                                        {Object.values(payment)[0].payer_id  == this.props.current_user_id ?
+                                                        "you paid ":
+                                                            "you received " } 
+                                                        ${Object.values(payment)[0].amount + " " / 100}
+                                                </div>
+
+
+                                                
+                                            </div>
                                         </div> )
                                     }
                                 ): null }

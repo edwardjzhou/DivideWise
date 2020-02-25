@@ -49,6 +49,7 @@ class BillsForm extends React.Component {
             settled: this.state.settled,
         })
         // this.props.fetchBills() 
+        setTimeout(this.props.fetchBills, 1000)
     }
 
     componentDidUpdate(prevProps, prevState){

@@ -63,7 +63,7 @@ class LogoutCard extends Component {
                             >
 
                                 <input style={{ 
-                                width: `auto`, transform: `scale(0.65)`, margin: `0 0 0 0` , padding: `0 30px 0 30px`, zIndex: `100`,
+                                width: `auto`, transform: `scale(0.75)`, margin: `-3px -10px 0 -25px` , padding: `0 35px 0 30px`, zIndex: `100`,
                                  }} className="session-submit orangebutton dashcard" 
                                 type="submit" value="Log out" onClick={this.props.logout} />
                                 </div>
