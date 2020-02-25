@@ -48,7 +48,7 @@ class BillsForm extends React.Component {
             amount: this.state.amount*100,
             settled: this.state.settled,
         })
-        this.props.fetchBills() 
+        // this.props.fetchBills() 
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -84,7 +84,10 @@ class BillsForm extends React.Component {
                     })
                 }
             } 
+            
         }
+        // this.props.fetchBills() 
+
         // console.log(this.state)
     }
 

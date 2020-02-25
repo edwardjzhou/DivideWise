@@ -454,15 +454,26 @@ span .text-heart {
 }
 
  .filter-green{
-        filter: invert(38%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+		filter: invert(38%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+		//   transform: rotate3d(0, 1, 0, 60deg);
+		//   transition: transform 10000ms ease-in-out;
+
 	}
 	
 .filter-red{
 	filter: invert(13%) sepia(92%) saturate(5165%) hue-rotate(9deg) brightness(116%) contrast(133%);
+	//   transform: rotate2d(0, 1, 0, 60deg);
+	//   		  transition: transform 10000ms ease-in-out;
+
+
 }
 
 .filter-blue{
 	filter: invert(9%) sepia(100%) saturate(6533%) hue-rotate(247deg) brightness(94%) contrast(146%);
+	//   transform: rotate3d(0, 1, 0, 60deg);
+	//   		  transition: transform 10000ms ease-in-out;
+
+
 }
 
 

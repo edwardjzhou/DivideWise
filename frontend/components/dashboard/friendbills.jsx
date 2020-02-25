@@ -22,6 +22,12 @@ class Friendbills extends React.Component {
         this.props.fetchBills()
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.bills !== this.props.bills) {
+            this.forceUpdate()
+        }
+    }
+
     findFriendId(){
         if (this.props.friends[this.props.match.params.friendId].user_one_id != this.props.current_user_id){
             this.friendUserId = this.props.friends[this.props.match.params.friendId].user_one_id
@@ -56,11 +62,13 @@ class Friendbills extends React.Component {
 
     renderNoExpensesYet(){
         return(
-        <div>
-            <div>You have not added any expenses yet
-                To add a new expense, click the orange “Add an expense” button.
-            </div>
-            <img src={window.sorry}></img>
+        <div style={{display: `flex`, marginLeft: `10%`, marginTop: `10%`, marginRight: `50px`}}>
+            <img style={{ display: `inline-block` }} src={window.sorry}></img>
+
+            <p style={{display: `inline-block`, }}>
+                    <h2 style={{ textOverflow: `initial`, fontWeight:`700`}}>You have not added any expenses yet</h2>
+                    <p>To add a new expense, click the orange “Add an expense” button.</p>
+            </p>
         </div>
         )
     }
@@ -87,22 +95,28 @@ class Friendbills extends React.Component {
                             <AddBills></AddBills>
                         </div>
                         {/* <h1>{this.friendsName}</h1> */}
+
+
+
                     {this.iBorrowed.length===0 ? this.renderNoExpensesYet() : null}
                     {this.iBorrowed.map( (bill) => {
                         return (<div style={{position:`relative`,borderBottom: `1px solid #eee`, display:`block`,
                             lineheight: `18px`, color: `#333333`, fontSize: `13px`}}>
-                            <div style={{cursor:`pointer`, display: `inline-block`, padding: `9px 5px 6px 68px`, position:
-                        `relative`, }}>
-                                {new Date(bill.created_at).toLocaleDateString("en-US")+" "} 
+                            <div style={{cursor:`pointer`, display: `flex`, padding: `9px 5px 6px 10px`, position:
+                        `relative`, justifyContent: `space-between`, marginLeft: `20px`, marginRight: `50px`}}>
+                                <div>{new Date(bill.created_at).toLocaleDateString("en-US")+" "} 
                                 <img src={window.check} style={{
-                                 width: `auto`, height:`100%`, margin: '10px 16px 10px 0', display: `inline-block`, verticalAlign: `middle` }}></img>
+                                 width: `35px`, height:`35px`, margin: '10px 16px 10px 0', display: `inline-block`, verticalAlign: `middle` }}></img>
 
-                                <span> {bill.description+" "}</span>
-
-
-                            <span>{bill.lender_id==this.props.current_user_id ? "you lent $"+bill.amount/100+" to "+bill.borrower :
-                                bill.borrower+ " lent you $" + bill.amount/100 } </span>
-                            </div>
+                                <span className="friendbills">{bill.description}</span>
+                                    </div>
+                                <div style={{display: `inline-block`, paddingLeft: `0`}}>
+                                    <div>{bill.lender_id==this.props.current_user_id ? 
+                                            "you lent " + bill.borrower  :
+                                            bill.lender + " lent you"} </div> 
+                                            <div>${bill.amount/100}</div>
+                                    </div>
+                                </div>
                                 {/* PAYMENTS HERE */}
                                 {bill.payments != undefined && bill.payments.length != 0 ? bill.payments.map( payment=> {
                                         return (

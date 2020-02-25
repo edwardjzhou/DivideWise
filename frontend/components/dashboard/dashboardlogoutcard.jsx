@@ -34,8 +34,13 @@ class LogoutCard extends Component {
 
     render() {
         return (
-            <div style={{marginTop : `10px`}}>
-                <a className="parentHover" style={{ marginTop: `8px`, backgroundColor: ``, margin: `0 0 0 0`, padding: `0 0 0 0` }} onClick={this.showMenu}>
+            <div>
+            <div className="parentHover" style={{ paddingTop: `0px`, paddingBottom: `0`, height:`100%`, }} onClick={this.showMenu}>
+                <a style={{ marginTop: `16px`, backgroundColor: ``, margin: `0 0 0 0`, padding: `0 0 0 0` ,
+                 position: `relative`,
+                bottom: `-25%`,
+                transform: `translateY(-50%)`
+               }} >
                     <img style={{width: `22px`,
                     height: `22px`,
                     border: `1px solid #3eaf8f`,
@@ -47,7 +52,7 @@ class LogoutCard extends Component {
                     </img> 
                     {this.props.name} <span class="caret"></span>
                 </a>
-
+            </div>
                 {
                     this.state.showMenu
                         ? (
