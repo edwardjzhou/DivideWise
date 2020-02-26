@@ -122,16 +122,19 @@ class Friendbills extends React.Component {
                                         return (
                                         <div style={{ position: `relative`, borderBottom: `1px solid #eee`, display: `block` }}>
                                                 <div style={{
-                                                    cursor: `pointer`, display: `flex`, padding: `9px 5px 6px 10px`, position:
+                                                    cursor: `pointer`, display: `flex`, padding: `9px 5px 6px 9px`, position:
                                                         `relative`, justifyContent: `space-between`, marginLeft: ``, marginRight: `50px`
                                                 }} >
-                                                     <div><img height="19px" width="19px" style={{margin: `0 0 0 0`}} src={window.payment}></img>
+                                                     <div style={{display: `flex`}}>
+                                                        <img height="19px" width="19px" style={{margin: `0 0 0 0`}} src={window.payment}></img>
                                                         {/* {JSON.stringify(payment)} */}
-                                                        {new Date(Object.values(payment)[0].created_at).toLocaleDateString("en-US")}
+                                                        &nbsp;
+                                                        <div>{new Date(Object.values(payment)[0].created_at).toLocaleDateString("en-US")}</div>
+                                                        <div style={{minWidth:"51px"}}> &nbsp;</div>
                                                         {Object.values(payment)[0].payer_id == this.props.current_user_id ?
                                                         this.props.current_user.username + " paid " + bill.lender :
                                                         bill.borrower + " paid " + this.props.current_user.username}
-                                                    ${Object.values(payment)[0].amount/100 + " " }
+                                                        ${Object.values(payment)[0].amount/100 + " " }
                                                     </div>
                                                 <div style={{ display: ``, paddingLeft: `0` }}>
                                                         {Object.values(payment)[0].payer_id  == this.props.current_user_id ?

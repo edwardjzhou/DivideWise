@@ -78,7 +78,7 @@ class PaymentsForm extends React.Component {
     render() {
 
         return (
-            <div className="addfriend-form"> <div id="formheader">Settle up</div>
+            <div className="addfriend-form centerme"> <div id="formheader">Settle up</div>
                 <form onSubmit={this.handleSubmit}>
                     
                     
@@ -94,6 +94,8 @@ class PaymentsForm extends React.Component {
                         </select>
                         </span>
                     <br />
+                    {/* {[1, 2, 3]} */}
+
                     <img src={window.orangedude} style={{height: `50px`}}></img>
                     <img src={window.arrow} style={{ height: `50px` }}></img>
                     <img src={window.greendude} style={{height: `50px`}}></img>
