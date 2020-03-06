@@ -57,6 +57,7 @@ class Friends extends React.Component {
                             && this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1] == friend.id ?
                             //  && this.props.location.pathname[this.props.location.pathname.split('/').length - 1] == friend.id ?
                             //
+                            <div className="greyhover">
                                 <Link to={`/friends/` + friend.id} className="greyhover" style={{
                                     textDecoration: `none`, color: `#5BC5A7`,
                                     // borderLeft: `8px solid #5BC5A7`
@@ -65,13 +66,15 @@ class Friends extends React.Component {
                                     <div className='friendItem showLeft' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
                                         {friend.friends_name} </div>
                                         </Link> 
-                        
+                                </div>
                                     : 
+                                    <div>
                                 <Link to={`/friends/` + friend.id} className="greyhover" style={{ textDecoration: `none` }}
                                     onClick={() => this.props.select(friend.id)}>
                                     <div className='friendItem' tabIndex="-1" key={friend.id}><img height="25" src={window.user} ></img>
                                         {friend.friends_name} </div>
                                         </Link>
+                                        </div>
                                     ) 
          : null) 
      )

@@ -54,7 +54,7 @@ class PaymentsForm extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.bills != this.props.bills) {
+        if (Object.values(prevProps.bills).length < Object.values(this.props.bills).length) {
             this.props.closeModal()
         }
     }

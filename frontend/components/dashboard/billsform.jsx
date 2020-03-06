@@ -53,7 +53,7 @@ class BillsForm extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-        if(prevProps.bills != this.props.bills){
+        if(Object.values(prevProps.bills).length < Object.values(this.props.bills).length){
             this.props.closeModal()
         }
         if(prevState.friend != this.state.friend || (prevState.selfDebtor != this.state.selfDebtor && this.state.friend != null)){

@@ -144,6 +144,7 @@ class Bills extends React.Component {
             textRendering: `optimizeLegibility`,
 
         };
+
         return (
                 <div className="YOU_OWE column_main" style={{margin: `0px`, padding: `0 0 0 0`}}>
                 <div style={{ borderBottom: `1px solid #DDDDDD`, backgroundColor: `#EEEEEE`, display:'flex', 
@@ -168,28 +169,42 @@ class Bills extends React.Component {
                             <div style={greenlazy}><span className="blackme">you are owed</span>${this.state.owed/100}</div>
                         }
                         
+
+
+
+
+
+                        
                     </div>
                         <div style={{display:`flex`, flexWrap:`wrap`, }}>
                                 <div style={{
-                        width: `50%`, textAlign: `left`,}}>YOU OWE</div>
+                        width: `50%`, textAlign: `center`, margin: `0 auto`}} className='columnheaders'>YOU OWE</div>
                                 <div style={{
-                        width: `50%`, textAlign: `right`
-                                }}>YOU ARE OWED</div>
+                        width: `50%`, textAlign: `center`, margin: `0 auto`
+                    }} className='columnheaders'>YOU ARE OWED</div>
                            
 
-                            <div style={{width: `47%`, borderRight: `1px solid gray`, marginLeft: `3%`}}>
+                    <div style={{
+                        width: `47%`, borderRight: `1px solid`, borderColor: `#DDDDDD`}}>
                                 {
                                     this.props.bills.map(bill =>
                                         (
                                             bill.borrower_id === this.props.current_user_id ? 
-                                            <Link to={`/friends/${this.findFriendship(bill.lender)}`} 
-                                                    onClick={() => this.props.select(this.findFriendship(bill.lender))}
-                                            className='greyhover' style={{ textDecoration: `none` }}>
-                                                <p key={bill.id} >
-                                                    <span>{new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
-                                                        &nbsp;owes {bill.lender} ${bill.amount / 100}</span>
-                                                </p>
-                                            </Link>
+                                            <div className='greyhover' style={{ display: `flexbox`, minWidth: `100%`}}>
+
+                                                <Link to={`/friends/${this.findFriendship(bill.lender)}`} 
+                                                        onClick={() => this.props.select(this.findFriendship(bill.lender))}
+                                                 style={{ textDecoration: `none`, }}>
+                                                        <img src={window.eval(`avatar` + this.findFriendship(bill.lender)%7)} style={{
+                                                            width: `35px`, height: `35px`, margin: '10px 16px 10px 0', display: `inline-block`, verticalAlign: `middle`
+                                                        }}></img>
+                                                    <div key={bill.id} style={{display:`inline-block`}} >
+                                                        {new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
+                                                            &nbsp;owes {bill.lender} ${bill.amount / 100}
+                                                    </div>
+                                                </Link>
+                                        
+                                            </div>
                                             : null
                                         ))
                                 }

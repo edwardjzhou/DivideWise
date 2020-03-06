@@ -88,8 +88,13 @@
 	background-color: #999999
 }
 
+.greyhover:hover{
+	// background-color: #f8f8f8;
+	background-color: #EEEEEE;
+}
+
 .greyhover :hover{
-	background-color: #f8f8f8;
+		background-color: #EEEEEE;
 }
 
 .blackme{
@@ -287,4 +292,17 @@
 	// border-top-right-radius: 0px;
 	// border-bottom-left-radius: 0px;
 	// border-bottom-right-radius: 0px;
+}
+
+
+.columnheaders{
+	color: #999999;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 36px;
+	text-decoration: none solid rgb(153,153,153);
+	word-spacing: 0px;
+
+
 }
