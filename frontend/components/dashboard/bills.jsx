@@ -57,6 +57,7 @@ class Bills extends React.Component {
         // for (let i = 0; i < this.props.friends.length; i++){
         //     console.log(this.props.friends[i].friends_name == nameOfFriend)
         // }
+        if(this.props.friends.length==0) return 1
        return this.props.friends.filter( friend=> {
            return nameOfFriend === friend.friends_name
         }).map(friend => friend.id)[0]
@@ -195,9 +196,18 @@ class Bills extends React.Component {
                                                 <Link to={`/friends/${this.findFriendship(bill.lender)}`} 
                                                         onClick={() => this.props.select(this.findFriendship(bill.lender))}
                                                  style={{ textDecoration: `none`, }}>
-                                                        <img src={window.eval(`avatar` + this.findFriendship(bill.lender)%7)} style={{
-                                                            width: `35px`, height: `35px`, margin: '10px 16px 10px 0', display: `inline-block`, verticalAlign: `middle`
-                                                        }}></img>
+
+                                                        {(eval(`avatar` + this.findFriendship(bill.lender) % 7)) != "avatarNaN" ? 
+                                                            <img src={window.eval(`avatar` + this.findFriendship(bill.lender) % 7)} style={{
+                                                                width: `35px`, height: `35px`, margin: '10px 16px 10px 0', display: `inline-block`, verticalAlign: `middle`
+                                                            }}></img>
+                                                            : null
+                                                        }
+                                                 
+
+
+
+                                                        
                                                     <div key={bill.id} style={{display:`inline-block`}} >
                                                         {new Date(bill.created_at).toLocaleDateString("en-US")}<br/>{bill.borrower}
                                                             &nbsp;owes {bill.lender} ${bill.amount / 100}
