@@ -30,8 +30,7 @@ class Dashboard extends React.Component {
                     <Friends /> 
                     <Route path="/dashboard" component={Bills}/> 
                     <Route path="/friends/:friendId" component={Friendbills}/>
-                    test
-                    <div> laksdjflkasdfjklsadfljksdafjkl </div>
+                    
             </div>
         );
     }
