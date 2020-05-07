@@ -1,31 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { openModal } from '../../actions/modal_actions';
-
-
+import React from "react";
+import { connect } from "react-redux";
+import { openModal } from "../../actions/modal_actions";
 
 const AddFriends = ({ openModal }) => {
-    const sessionLinks = () => (
-            <a className='addfriends' onClick={() => openModal('Add')}>+add</a>
-        
-    );
-    
+  const sessionLinks = () => (
+    <a className="addfriends" onClick={() => openModal("Add")}>
+      +add
+    </a>
+  );
 
-    return (
-            sessionLinks()
-    );
+  return sessionLinks();
 };
 
-
 const mapStateToProps = ({ session }) => ({
-    currentUser: session.currentUser
+  currentUser: session.currentUser,
 });
 
-const mapDispatchToProps = dispatch => ({
-    openModal: modal => dispatch(openModal(modal))
+const mapDispatchToProps = (dispatch) => ({
+  openModal: (modal) => dispatch(openModal(modal)),
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AddFriends);
+export default connect(mapStateToProps, mapDispatchToProps)(AddFriends);

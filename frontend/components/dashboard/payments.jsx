@@ -5,7 +5,6 @@
 // import { fetchBills, fetchBill } from '../../actions/bill_actions'
 // import { Link } from 'react-router-dom';
 
-
 // class Payment extends React.Component {
 //     constructor(props) {
 //         super(props)

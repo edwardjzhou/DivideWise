@@ -14,19 +14,16 @@
  *= require_self
  */
 
-
 // /CSS Reset
- @import "./acssreset.scss";
+@import "./acssreset.scss";
 //  //Core
- @import "./splash.scss";
- @import "./dropdown.scss";
- @import "./signup.scss";
- @import "./dashboard.scss";
- @import "./bills.scss";
- @import "./loginform.scss";
- @import "./navbar.scss";
-
- 
+@import "./splash.scss";
+@import "./dropdown.scss";
+@import "./signup.scss";
+@import "./dashboard.scss";
+@import "./bills.scss";
+@import "./loginform.scss";
+@import "./navbar.scss";
 
 //  //Components
 //  @import "components/*";
@@ -35,7 +32,6 @@
 //   //  font-family: 'Lato', sans-serif;
 //   //  border: 1px solid red;
 // }
-
 
 .footer {
   padding: 20px;
@@ -49,25 +45,25 @@
   // position: fixed;
   bottom: 0;
   width: 100%;
-
 }
 
 div {
-    display: flexbox;
+  display: flexbox;
 }
 
-.login_logo{
-    float: left; 
-    margin-right: 25px;
+.login_logo {
+  float: left;
+  margin-right: 25px;
 }
 
 .btn {
   display: inline-block;
   text-align: center;
   border: 1px solid #cccccc;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.05);
   order-radius: 5px;
-  border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   background: #ff652f;
   color: #fff;
   text-shadow: 0 -1px 0 #c83400;
@@ -75,20 +71,14 @@ div {
 }
 
 .welcome {
-  text-transform: uppercase; 
-  font-size: 16px; 
-  color: #999; 
-  font-weight: bold; 
-  line-height: 20px; 
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #999;
+  font-weight: bold;
+  line-height: 20px;
 }
 
-
-
-
-
-
-
-// /* 
+// /*
 // Display inline-block
 
 // Display: flex BEST goes on container to layout children
@@ -97,7 +87,6 @@ div {
 // Align-items works on cross axis
 
 // Give a block div with display: block HEIGHT AND WIDTH or no point
-
 
 // Position: relative; left right bottom top
 
@@ -109,66 +98,45 @@ div {
 
 //  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // /* INSIDE dashboard.jsx */
 
-
-  .YOU_OWE{
-    /* margin: 0 200px 0 200px; */
-    justify-content: center;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    min-height: 95vh;
-    height:100%;
-    -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0 0 12px rgba(0,0,0,0.2);
-    box-shadow: 0 0 12px rgba(0,0,0,0.2);
-    // float: left; 
-    width: 40%;
-    /* display: flex; */
-    /* height: 100vh; */
-    // position: relative;
-      // display: flex;
+.YOU_OWE {
+  /* margin: 0 200px 0 200px; */
+  justify-content: center;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  min-height: 95vh;
+  height: 100%;
+  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  // float: left;
+  width: 40%;
+  /* display: flex; */
+  /* height: 100vh; */
+  // position: relative;
+  // display: flex;
   // flex-direction: colum n;
   // flex-grow: 1;
   // justify-content: space-around;
-  }
+}
 
+#right-bar {
+  width: 25%;
+  padding-bottom: 10px;
+  position: relative;
+  padding-top: 33px;
+  margin-right: -201px;
+  padding-left: 24px;
+  width: 176px;
+  z-index: 3;
+  float: right;
+  /* height: 100vh; */
+}
 
-
-  #right-bar{
-    width: 25%;
-    padding-bottom: 10px;
-    position: relative;
-    padding-top: 33px;
-    margin-right: -201px;
-    padding-left: 24px;
-    width: 176px;
-    z-index: 3;
-    float: right;
-    /* height: 100vh; */
-  }
-
-
-
-#friends_bar{
+#friends_bar {
   display: flex;
-  float: left; 
+  float: left;
   width: 13%;
   height: 95vh;
   z-index: 3;
@@ -179,55 +147,55 @@ div {
 
 /* modal  css */
 
- .header-link {
-   text-decoration: none;
-   color: black;
- }
+.header-link {
+  text-decoration: none;
+  color: black;
+}
 
- hr {
-   border-bottom: 1px solid grey;
- }
+hr {
+  border-bottom: 1px solid grey;
+}
 
- .session-submit {
-   text-transform: capitalize;
- }
+.session-submit {
+  text-transform: capitalize;
+}
 
- .modal-background {
-   position: fixed;
-   top: 0;
-   bottom: 0;
-   right: 0;
-   left: 0;
-   background: rgba(0, 0, 0, .2);
-   z-index: 10;
- }
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
 
- .modal-child {
-   position: fixed;
-   top: 43%;
-   left: 50%;
-   transform: translate(-50%, -50%);
+.modal-child {
+  position: fixed;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-    text-overflow: clip;
-    word-wrap: normal;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px 0px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    list-style-type: none;
-    list-style: none;
- }
+  text-overflow: clip;
+  word-wrap: normal;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  list-style-type: none;
+  list-style: none;
+}
 
- .close-x {
-   position: absolute;
-   top: 5px;
-   right: 5px;
-   cursor: pointer;
- }
+.close-x {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
 
- /* end modal  */
+/* end modal  */
 
-*{
-  	font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+* {
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

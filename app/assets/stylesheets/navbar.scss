@@ -1,12 +1,11 @@
-.flex-container{
-    display: flex;
-    justify-content: space-around;
-    background-color: #5BC5A7;
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #5bc5a7;
 }
 
-
 .flex-container > div {
-  background-color: #5BC5A7;
+  background-color: #5bc5a7;
   width: 300px;
   // margin: 10px;
   text-align: center;
@@ -16,17 +15,15 @@
 }
 
 .flex-container > #flexme {
-    display: flexbox;
-    vertical-align: baseline;
-
+  display: flexbox;
+  vertical-align: baseline;
 }
 
 .menu {
-  position: absolute; 
+  position: absolute;
 }
 
-
-.login-form2{
+.login-form2 {
   font-size: 18px;
   text-align: left;
   display: flexbox;
