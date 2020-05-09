@@ -17,7 +17,34 @@ class Api::BillsController < ApplicationController
 
     def index  
         @bills = Bill.all.where("lender_id = #{current_user.id.to_s} OR borrower_id = #{current_user.id.to_s}" )
-        render "api/bills/index"
+        render json: [params, current_user, session]
+        
+        #testing for:
+        #yes params can take in a query string
+        #yes you can call model classes obviously
+        #yes puts show up in rails server
+        #yes session is the object thing with id 
+
+        #http://localhost:3000/api/bills?asdf=32
+        #{"asdf":"32","format":"json","controller":"api/bills","action":"index"}
+        # puts 'SADJFKUYDSFDSF'
+        # render json: Bill.involved
+        # render "api/bills/index"
+
+
+        #testing
+
+        # render json: params # {"format":"json","controller":"api/bills","action":"index"}
+
+        # url    = 'http://www.foo.com?id=4&empid=6'
+        # uri    = URI.parse(url)
+        # params = CGI.parse(uri.query)
+        # # params is now {"id"=>["4"], "empid"=>["6"]}
+
+        # id     = params['id'].first
+        # render json: [url, uri, params,id] #["http://www.foo.com?id=4\u0026empid=6","http://www.foo.com?id=4\u0026empid=6",{"id":["4"],"empid":["6"]},"4"]
+        
+        # render "api/bills/index"
         #[{"id":1,"description":"good mongkok",
         # "lender_id":1,"borrower_id":2,"amount":1000,
         # "settled":true,"created_at":"2020-01-10T21:39:15.985Z",

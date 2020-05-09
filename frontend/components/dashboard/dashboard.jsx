@@ -17,24 +17,30 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="row" style={{ height: `100%` }}>
+    //   <div className="row" style={{ height: `100%` }}>
+          <div style={{
+              display: `flex`, 
+              flexWrap: `wrap`,
+              alignItems: `stretch`,
+              height: `auto`,
+              width: `100%`, }}>
         {/* marginBottom: `-99999px`, paddingBottom: `99999px`, overflow:`hidden`}}> */}
+        
         <div id="dashboardnavbar">
-          {" "}
+          {/* {" "} */}
           <NavLink to="/">
             <img src={window.logoURL} style={{ height: `50px` }}></img>
           </NavLink>
-          {/* <div><a id="dropdown">Hey, {this.props.current_user}!  </a> </div> */}
-          {/* <button className="header-button" onClick={this.props.logout}>Log Out</button></div> */}
-          {/* <div></div> */}
           <LogoutCard
             name={this.props.current_user}
             logout={() => this.props.logout()}
           ></LogoutCard>
         </div>
 
-        <Friends />
+        {/* friends stays mounted on the left */}
+        <Friends /> 
 
+        {/* center section that changes depending on if we're in Dashboard or not */}
         <Switch>
           <Route path="/dashboard" component={Bills} />
           <Route path="/friends/:friendId" component={Friendbills} />

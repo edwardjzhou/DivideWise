@@ -13,12 +13,11 @@ class Friends extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // loc : location.href
     };
+    this.props.fetchFriends();
   }
 
   componentDidMount() {
-    this.props.fetchFriends();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -35,11 +34,13 @@ class Friends extends React.Component {
 
   render() {
     return (
-      <div id="friends_bar" className="column">
-        <div>
+      <div id="friends_bar" className="">
+            {/* <div id="friends_bar" className="column"> */}
+
+        {/* <div> */}
           {/* {console.log(this.props.selectedFriendshipid)} */}
           {/* {console.log(this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1])} */}
-          <div className="greyhover">
+          <div className="greyhover" style={{clear:`both`}}>
             {location.href.includes("dashboard") ? (
               <Link
                 to="/"
@@ -124,7 +125,7 @@ class Friends extends React.Component {
             ) : null
           )}
           <br></br>
-        </div>
+        {/* </div> */}
       </div>
     );
   }

@@ -1,12 +1,12 @@
 import React from "react";
 import { Provider } from "react-redux";
 import {
-  Route,
-  Redirect,
+//   Route,
+//   Redirect,
   Switch,
-  Link,
-  NavLink,
-  HashRouter,
+//   Link,
+//   NavLink,
+//   HashRouter,
 } from "react-router-dom";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
@@ -20,16 +20,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <link
-          href="https://fonts.googleapis.com/css?family=Lato&display=swap"
-          rel="stylesheet"
-        />
-
-        {/* fade in animation */}
-        <link
-          rel="stylesheet"
-          href="https://www.w3schools.com/w3css/4/w3.css"
-        />
         <Modal />
         <Switch>
           <ProtectedRoute path="/dashboard" component={Dashboard} />

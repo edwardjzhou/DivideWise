@@ -1,3 +1,7 @@
+/* eslint-disable react/prop-types */
+// Remember: constructor run -> render runs -> componentDIDMount
+
+
 import React from "react";
 import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
@@ -13,10 +17,10 @@ class Bills extends React.Component {
       owes: null,
       owed: null,
       allin: null,
-      height: `100px`,
+    //   height: `100px`,
     };
     this.calculateTotalYouOwe = this.calculateTotalYouOwe.bind(this);
-    this.getHeight = this.getHeight.bind(this);
+    // this.getHeight = this.getHeight.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +40,7 @@ class Bills extends React.Component {
 
   componentWillUnmount() {
     console.log(5234234);
+    //   componentWillUnmount() reactdom.unmountcompponentatnode
   }
 
   calculateTotalYouOwe() {
@@ -79,7 +84,6 @@ class Bills extends React.Component {
   render() {
     // this.getHeight()
     const red = {
-      color: "red",
       borderStyle: `solid`,
       width: `30%`,
       borderColor: `#DDDDDD`,
@@ -99,7 +103,6 @@ class Bills extends React.Component {
     };
 
     const green = {
-      color: "green",
       borderStyle: `solid`,
       width: `30%`,
       borderColor: `#DDDDDD`,
@@ -112,7 +115,6 @@ class Bills extends React.Component {
       transform: `translateY(-50%)`,
       borderWidth: `0 1px 0 0`,
       color: `#5bc5a7`,
-      textAlign: `center`,
       fontSize: `13px`,
       lineHeight: `16px`,
       fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important`,
@@ -120,7 +122,6 @@ class Bills extends React.Component {
     };
 
     const redlazy = {
-      color: "red",
       borderStyle: `solid`,
       width: `30%`,
       display: `inline-block`,
@@ -131,7 +132,6 @@ class Bills extends React.Component {
       top: `50%`,
       transform: `translateY(-50%)`,
       color: `#ff652f`,
-      textAlign: `center`,
       fontSize: `13px`,
       lineHeight: `16px`,
       fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important`,
@@ -139,7 +139,6 @@ class Bills extends React.Component {
     };
 
     const greenlazy = {
-      color: "green",
       borderStyle: `solid`,
       width: `30%`,
       display: `inline-block`,
@@ -160,8 +159,13 @@ class Bills extends React.Component {
 
     return (
       <div
-        className="column YOU_OWE column_main"
+        // className="column YOU_OWE column_main"
+        //you_owe gives it a border
+        //column main unfloats it 
+        className="YOU_OWE column_main"
+
         style={{ margin: `0px`, padding: `0 0 0 0`, height: `` }}
+        //this is necesary otherwise theres padding for the Dashboard top gray panel
       >
         <div
           style={{
@@ -176,7 +180,10 @@ class Bills extends React.Component {
             padding: `2.5% 0 2.5% 5%`,
           }}
         >
-          <h1 style={{ fontWeight: `700` }}>Dashboard</h1>
+          {/* <h1 style={{ fontWeight: `700` }}>Dashboard</h1> */}
+                <h1 style={{
+                    fontSize: `2.2vw`, fontWeight: `700` }}>Dashboard</h1>
+
           <AddBills></AddBills>
         </div>
         <div
@@ -241,6 +248,8 @@ class Bills extends React.Component {
             YOU ARE OWED
           </div>
 
+
+            {/* MOSTLY WRITTEN LEFT SIDE that needs margin on the left image */}
           <div
             style={{
               height: `${this.state.height}`,
@@ -289,6 +298,8 @@ class Bills extends React.Component {
               ) : null
             )}
           </div>
+            
+            {/* RIGHT SIDE */}
 
           <div style={{ width: `50%` }}>
             {this.props.bills.map((bill) =>
