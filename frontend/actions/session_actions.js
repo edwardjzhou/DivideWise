@@ -21,8 +21,9 @@ export const receiveCurrentUser = (currentUser) => ({
   currentUser,
 });
 
-export const logoutCurrentUser = () => ({
+export const logoutCurrentUser = (user) => ({
   type: LOGOUT_CURRENT_USER,
+  user
 });
 
 export const receiveErrors = (errors) => ({
@@ -48,4 +49,8 @@ export const login = (user) => (dispatch) =>
   );
 
 export const logout = () => (dispatch) =>
-  APIUtil.logout().then((user) => dispatch(logoutCurrentUser()));
+  APIUtil.logout().then(
+    (user) => {
+    // console.log(user)
+    dispatch(logoutCurrentUser(user))  
+  });

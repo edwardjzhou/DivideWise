@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
   skip_before_action :verify_authenticity_token
 
-  #credits: https://stackoverflow.com/questions/22752777/how-do-you-manually-execute-sql-commands-in-ruby-on-rails-using-nuodb
+  # https://stackoverflow.com/questions/22752777/how-do-you-manually-execute-sql-commands-in-ruby-on-rails-using-nuodb
   def execute_statement(sql)
-    # results = ActiveRecord::Base.connection.execute(sql)
-    # asdf = ActiveRecord::Base.connection.execute("SELECT * FROM friendships JOIN users ON users.id=CAST(friendships.user_one_id AS int)").values
+    results = ActiveRecord::Base.connection.execute(sql)
+    # results = ActiveRecord::Base.connection.execute("SELECT * FROM friendships JOIN users ON users.id=CAST(friendships.user_one_id AS int)").values
 
     if results.present?
       return results.values
@@ -44,6 +44,8 @@ class ApplicationController < ActionController::Base
 
   def logout
     session[:session_token] = nil
+    @current_user.reset_session_token! #reset_Session_token resets the session token and puts it in the db but we dont have it anymore so current_user should return a niled @current_user for logged_in? and require_login
+    @current_user = nil 
   end
 
   def require_login

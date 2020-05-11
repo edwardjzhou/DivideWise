@@ -65,7 +65,8 @@ class LoginForm extends React.Component {
     );
   }
 
-  demoFill() {
+  demoFill(e) {
+    e.preventDefault()
     this.setState({
       username: "edward",
       password: "password",

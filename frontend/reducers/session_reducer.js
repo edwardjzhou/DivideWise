@@ -12,10 +12,11 @@ const sessionReducer = (state = _nullUser, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       // return Object.assign({}, state, { [action.currentUser.id]: action.currentUser });
+      // if (action.currentUser.updated_at)
       return Object.assign({}, state, { id: action.currentUser.id });
     case LOGOUT_CURRENT_USER:
       return Object.assign({}, _nullUser, {
-        message: "You have successfully logged off!",
+        message: `You, ${action.user.username}, have successfully logged off! `,
       });
     default:
       return state;
