@@ -8,7 +8,7 @@
 
 User.destroy_all
 User.create!(username: 'demousername', email: 'demo@demo.com', password: 'demopassword')
-User.create!(username: 'test', email: 'test', password: 'testtest')
+User.create!(username: 'test', email: 'test@test', password: 'testtest')
 User.create!(username: 'edward', email: 'edward@edward.com', password: 'password')
 User.create!(username: 'yin', email: 'yin@yin.com', password: 'password')
 User.create!(username: 'Oliver', email: 'Oliver@oliver.com', password: 'password')

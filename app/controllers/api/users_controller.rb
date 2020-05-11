@@ -2,27 +2,16 @@ class Api::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            p 'good signup attempt'
             login(@user)
             render "api/users/show"
         else
-            p 'bad signup attempt'
             render json: @user.errors.full_messages, status:422
         end
     end
 
-
-    # def index
-    #     @users = User.all.where("'id' != '#{current_user.id}'")
-    #     # @users = User.find(current_user.id)
-    #     # answer = []
-    #     # @users.each do |user|
-    #         # answer.push("#{user.username}:#{user.id}")
-    #     # end
-    #     # render json: answer
-    #     render "api/users/index"
-
-    # end
+    def index
+        # render all users last updated_at within 24 hrs for funs
+    end
 
     private
     def user_params
