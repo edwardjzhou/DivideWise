@@ -1,5 +1,9 @@
   class User < ApplicationRecord
   
+ # How to deal with capitalization in a username? 1. save it with caps to DB but model doesnt consider case different strings difeferent so no username AND USERNAME
+ # 2. find by credentials has to find it lowercased
+ 
+
   attr_reader :password
   after_initialize :ensure_session_token
 
@@ -13,10 +17,10 @@
   # \Z anchors at the end of the string or before the last newline, if the string ends with a newline. So, if the string ends with a newline, \Z anchors before that last newline and \z anchors after.
   validates :username, :password_digest, :session_token, :email, presence: true, allow_blank: false
   # validates :username, :email, uniqueness: true
-  validates :username, :email, :uniqueness => {:case_sensitive => false}
+  validates :username, :email, uniqueness: { case_sensitive: false }
 
-  validates :username, format: { with: /\A[a-zA-Z0-9]+\z/, message: "username only allows letters and numbers"}
-  validates :email, format: { with: /\A.+@.+\z/, message: "email must be anything then @ then anything" } 
+  validates :username, format: { with: /\A[a-zA-Z0-9]+\z/, message: "must only be letters and numbers"}
+  validates :email, format: { with: /\A.+@.+\z/, message: "must be of x@x format where x are anything" } 
   
   validates :password, length: { minimum: 8 }, allow_nil: true
 
@@ -80,10 +84,11 @@
     #   temp.each do 
 
     # end
-  
 
-  def self.find_by_credentials(username,password)
-    user = User.find_by(username: username)
+
+  def self.find_by_credentials(username, password)
+    # user = User.find_by(username: username)
+    user = User.where("LOWER(username) = LOWER(?)", username).first
     if user and user.is_valid_password?(password)
       return user
     else

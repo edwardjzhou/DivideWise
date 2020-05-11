@@ -14,16 +14,13 @@ class ApplicationController < ActionController::Base
   #credits: https://stackoverflow.com/questions/22752777/how-do-you-manually-execute-sql-commands-in-ruby-on-rails-using-nuodb
   def execute_statement(sql)
     # results = ActiveRecord::Base.connection.execute(sql)
-        asdf = ActiveRecord::Base.connection.execute("SELECT * FROM friendships JOIN users ON users.id=CAST(friendships.user_one_id AS int)").values
+    # asdf = ActiveRecord::Base.connection.execute("SELECT * FROM friendships JOIN users ON users.id=CAST(friendships.user_one_id AS int)").values
 
-    # asdf = ActiveRecord::Base.connection.execute("SELECT * FROM users JOIN friendships ON friendships.user_one_id=users.id WHERE users.id=2").values
-    p asdf
-    return asdf
-    # if results.present?
-    #   return results.values
-    # else
-    #   return nil
-    # end
+    if results.present?
+      return results.values
+    else
+      return nil
+    end
   end
 
   def current_user
