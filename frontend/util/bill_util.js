@@ -9,6 +9,7 @@ export const fetchBill = (id) =>
     method: "GET",
     url: `api/bill/${id}`,
   });
+  
 export const createBill = (bill) =>
   $.ajax({
     method: "POST",

@@ -38,3 +38,10 @@ class Bill < ApplicationRecord
 
 
 end
+
+#User.create().errors
+##<ActiveModel::Errors:0x00007fad94df8448 @base=#<User id: 
+# nil, username: nil, email: nil, password_digest: nil, session_token:
+#  "9sno-bxSZHqTq4rQwGEKkg", created_at: nil, updated_at: nil>, 
+#  @messages={:username=>["can't be blank", "only allows letters"], :password_digest=>["can't be blank"], :email=>["can't be blank", "must be anything then @ then anything"]}, @details={:username=>[{:error=>:blank}, 
+# {:error=>:invalid, :value=>nil}], :password_digest=>[{:error=>:blank}], :email=>[{:error=>:blank}, {:error=>:invalid, :value=>nil}]}>

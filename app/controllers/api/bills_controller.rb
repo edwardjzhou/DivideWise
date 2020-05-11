@@ -1,9 +1,60 @@
+# I've been told controllers should be cleaner/skinnier and all the verifying shoudl take place in model classes
+# but model classes have no access to current_user which is set in app controller
+
+# But you can still create scope like that, just pass the parameter to it from the controller:
+
+# scope :instanceprojects, lambda { |user|
+#     where("projects.instance_id = ?", user.instance_id)
+# } 
+# Now you can call it in the controller:
+
+# Model.instanceprojects(current_user)
+
+
+
+# also Ive been told not to mess with the session object so how do we figure out who the current_user is
+# because my desired function finds friends that are a fucntion of current_user, anmely they are current_user's freinds
+
+
+# you want the whole record/row to be invalid so add error to :base
+# class Person < ApplicationRecord
+#   def a_method_used_for_validation_purposes
+#     errors[:base] << "This person is invalid because ..."
+#   end
+# end
+
+#else if you want an atribute to be invalid
+
+# class Person < ApplicationRecord
+#   def a_method_used_for_validation_purposes
+#     errors.add(:name, "cannot contain the characters !@#%*()_-+=")
+#   end
+# end
+ 
+# person = Person.create(name: "!@#")
+ 
+# person.errors[:name]
+#  # => ["cannot contain the characters !@#%*()_-+="]
+ 
+# person.errors.full_messages
+#  # => ["Name cannot contain the characters !@#%*()_-+="]
+
+
+# In development, the default behavior is for the class to be reloaded on each request,
+#  thereby resetting your class variable. In production, however, the class is initialized once and so the class variable will persist across multiple requests and multiple sessions.
+# TBfiguredout: but the controller objects are still destroyed after 1 request right???
+
+# You should move to a proper caching technique as soon as you can. 
+# You cannot, obviously, persist the value beyond the reloading of the class when the application is restarted. 
+# Furthermore, if the web server is multi-threaded (as it is likely to be), 
+# it may be running multiple instances of the application on different threads which do not share the class variables, potentially creating inconsistencies between requests.
+# Puma is a Rack-based web server with both Sinatra and Rails integration. It was designed specifically for concurrent applications, and supports full multi-threading when run on a fully-threaded Ruby interpreter.
 class Api::BillsController < ApplicationController
     before_action :require_login
 
     def create
         @bill = Bill.new(bill_params)
-       if !Friendship.where("user_one_id = ? OR user_two_id = ?", @bill.lender_id.to_s, @bill.lender_id.to_s)
+        if !Friendship.where("user_one_id = ? OR user_two_id = ?", @bill.lender_id.to_s, @bill.lender_id.to_s)
             .where("user_one_id = ? OR user_two_id = ?", @bill.borrower_id.to_s, @bill.borrower_id.to_s)
             render json: ["become friends first before creating a bill with others"]
         elsif current_user.id.to_s != @bill.lender_id.to_s and current_user.id.to_s != @bill.borrower_id.to_s
@@ -16,8 +67,14 @@ class Api::BillsController < ApplicationController
     end
 
     def index  
-        @bills = Bill.all.where("lender_id = #{current_user.id.to_s} OR borrower_id = #{current_user.id.to_s}" )
-        render json: [params, current_user, session]
+        #  render json: execute_statement(`SELECT  "users".* FROM "users" INNER JOIN "bills" ON "users"."id" = "bills"."lender_id" WHERE "bills"."borrower_id" = $1 LIMIT $2`)
+        p execute_statement(`Select * From users Where users.id=1`)
+         render json: execute_statement(`SELECT * FROM users`)
+
+        # OLD + CORRECT: @bills = Bill.all.where("lender_id = #{current_user.id.to_s} OR borrower_id = #{current_user.id.to_s}" )
+        # render json: [params, current_user, session]
+        # render json: [@current_user]
+        # render json: current_user
         
         #testing for:
         #yes params can take in a query string

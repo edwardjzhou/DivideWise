@@ -83,6 +83,7 @@ class Splash extends React.Component {
             <div>
               <NavLink className="tealsignup" to="/signup">
                 Sign up
+
               </NavLink>
             </div>
           </div>
