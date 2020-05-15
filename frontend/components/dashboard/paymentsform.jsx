@@ -112,13 +112,7 @@ class PaymentsForm extends React.Component {
           <img src={window.arrow} style={{ height: `50px` }}></img>
           <img src={window.greendude} style={{ height: `50px` }}></img>
 
-          <div
-            style={{
-              margin: `5px 33px 5px 33px`,
-              position: "relative",
-              display: `block`,
-            }}
-          >
+          <div style={{ margin: `5px 33px 5px 33px`, position: "relative", display: `block`}}>
             $
             <input
               className="unfocus"

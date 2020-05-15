@@ -1,9 +1,3 @@
-    # FUNDAMENTAL QUESTIONS ABOUT RAILS I HAVE TODAY 5/9/2020
-    # https://guides.rubyonrails.org/active_record_querying.html
-    # WHY have instance variables @ if a controller instance has a short lifespan of just 1 ajax request ? Just to signify sometihng prefixed w/ @ is for rendering? 
-    # are all rows in all tables loaded into memory as long as rails server is turned on ? or only when called? Probably when called like User.find(1).bills
-    # i forgot again that sesison token IS SAVED into db should i erase it on log out
-
     # HOWTO:
     # Update just one field for example use update_all
 
@@ -31,7 +25,7 @@ class Api::CommentsController < ApplicationController
 
     def create 
         @comment = Comment.new(comment_params)
-        if @bill.save
+        if @comment.save
             render "api/comments/show"
         else
             render json: @comment.errors.full_messages, status:422

@@ -55,3 +55,4 @@ end
 #         url: '/api/friendships',
 #         data: {friendship: {user_one_id: 1, user_two_id: 2}}
 #     })
+

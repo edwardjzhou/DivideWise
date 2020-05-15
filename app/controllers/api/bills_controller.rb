@@ -50,7 +50,14 @@
 # it may be running multiple instances of the application on different threads which do not share the class variables, potentially creating inconsistencies between requests.
 # Puma is a Rack-based web server with both Sinatra and Rails integration. It was designed specifically for concurrent applications, and supports full multi-threading when run on a fully-threaded Ruby interpreter.
 class Api::BillsController < ApplicationController
-    before_action :require_login
+    before_action :require_login # THIS RUNS inherited current_user setting a @current_user
+
+
+    def friendshipExist? 
+        # IF NOT EXISTS ( SELECT 1 FROM MyTable WHERE ... )
+        execute_statement("SELECT * FROM USERS")
+
+    end
 
     def create
         @bill = Bill.new(bill_params)
@@ -68,10 +75,22 @@ class Api::BillsController < ApplicationController
 
     def index  
         #  render json: execute_statement(`SELECT  "users".* FROM "users" INNER JOIN "bills" ON "users"."id" = "bills"."lender_id" WHERE "bills"."borrower_id" = $1 LIMIT $2`)
-        p execute_statement(`Select * From users Where users.id=1`)
-         render json: execute_statement(`SELECT * FROM users`)
+        # p execute_statement(`Select * From users Where users.id=1`)
+        #  render json: execute_statement(`SELECT * FROM users`)
+        
+        # order of checking is model validations
+        # THEN db validations
+        #failure on DB validation should be a full blown error message 
+        #ERROR:  duplicate key value violates unique constraint "index_friendships_on_user_one_id_and_user_two_id"
+        #... must exist means an association ive written in models requires that foreign key to be there
 
-        # OLD + CORRECT: @bills = Bill.all.where("lender_id = #{current_user.id.to_s} OR borrower_id = #{current_user.id.to_s}" )
+        # answer = Friendship.create(user_one_id:5,user_two_id:2)
+        # render json: [answer.errors, answer.errors.full_messages]
+
+        # OLD + CORRECT: 
+        @bills = Bill.all.where("lender_id = #{current_user.id.to_s} OR borrower_id = #{current_user.id.to_s}" )
+        # render json: @current_user
+        render "api/bills/show"
         # render json: [params, current_user, session]
         # render json: [@current_user]
         # render json: current_user

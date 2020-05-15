@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 // Remember: constructor run -> render runs -> componentDIDMount
 
+// every MAP() function needs a key database id or index id
+// have a listitem = props => const {val} = this.props
+//<li> that is used everytime you map
 
 import React from "react";
 import { connect } from "react-redux";
@@ -348,3 +351,7 @@ const mDTP = (dispatch) => {
 };
 
 export default connect(mSTP, mDTP)(Bills);
+
+// something in mdtp is called with the callback with dispatch in it only after that dispatch is called then is map state to props called which is an update
+// that will call componentdidupdate
+// then render is called then child components get a updated prop if they do then they get rerendered

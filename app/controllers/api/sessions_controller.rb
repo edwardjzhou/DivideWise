@@ -13,7 +13,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-    @user = current_user
+    @user = current_user #by calling current_user which we inherited from application controller we now have an instance variable @current_user
     if @user
       logout
       # render json: ["You destroyed your session!"]

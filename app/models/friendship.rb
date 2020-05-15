@@ -1,14 +1,19 @@
 class Friendship < ApplicationRecord
     #https://stackoverflow.com/questions/11400160/validation-condition-on-friendships-in-rails-3
-    validates :user_one_id, :user_two_id, presence: true #, unless: Friendship.friendship_exists?(:user_one_id, :user_two_id)
+    # validates :user_one_id, :user_two_id, presence: true #, unless: Friendship.friendship_exists?(:user_one_id, :user_two_id)
     
+    validates :user_one_id, numericality: ( greater_than: user_two_id )  # TESTING
+    
+
     belongs_to :user_one,
     foreign_key: :user_one_id,
     class_name: 'User'
 
-    belongs_to :user_two,
-    foreign_key: :user_two_id,
-    class_name: 'User'
+
+    
+    # belongs_to :user_two,
+    # foreign_key: :user_two_id,
+    # class_name: 'User'
     
     # validates :friend, :presence => true, :unless => :friend_is_self
     # validates [:user_one_id, :user_two_id], uniqueness: { scope: [:user_two_id, :user_one_id],
