@@ -10,6 +10,7 @@ import Bills from "./bills";
 import Friendbills from "./friendbills";
 import LogoutCard from "./dashboardlogoutcard";
 
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -17,8 +18,8 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-    //   <div className="row" style={{ height: `100%` }}>
-          <div style={{
+      // <div className="row" style={{ height: `100%` }}>
+      <div style={{
               display: `flex`, 
               flexWrap: `wrap`,
               alignItems: `stretch`,
@@ -40,7 +41,7 @@ class Dashboard extends React.Component {
         {/* friends stays mounted on the left */}
         <Friends /> 
 
-        {/* center section that changes depending on if we're in Dashboard or not */}
+        {/* center section that changes depending on if we're in /#/Dashboard or /#/Friends or not */}
         <Switch>
           <Route path="/dashboard" component={Bills} />
           <Route path="/friends/:friendId" component={Friendbills} />

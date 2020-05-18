@@ -15,7 +15,6 @@ class LogoutCard extends Component {
 
   showMenu(event) {
     event.preventDefault();
-
     this.setState({ showMenu: true }, () => {
       document.addEventListener("click", this.closeMenu);
     });
@@ -67,6 +66,8 @@ class LogoutCard extends Component {
             {this.props.name} <span class="caret"></span>
           </a>
         </div>
+
+        {/* MENU IS DROPPED DOWN */}
         {this.state.showMenu ? (
           <div
             className="menu"
@@ -89,6 +90,9 @@ class LogoutCard extends Component {
             />
           </div>
         ) : null}
+      {/* END MENU DROPPED DOWN */}
+
+
       </div>
     );
   }

@@ -86,18 +86,20 @@ const rotate = keyframes`
   to {
     transform: rotate(360deg);
   }
-`;
+`
 
-const Rotate = styled.div`
-  display: inline-block;
-  animation: ${rotate} 2s linear infinite;
-  padding: 2rem 1rem;
-  font-size: 1.2rem;
-`;
+const Rotate = styled.a`
+  animation: ${rotate} 3s linear infinite;
+  margin-left: 2rem;
+  color: ${props => props.color ? props.color : "palevioletred"};
+  background-color: ${props => props.background ? props.background : "palevioletred"};
+  
+`
 
-const styles = css`
-  animation: ${rotate} 2s linear infinite;
-`;
+// const styles = css`
+//   animation: ${rotate} 2s linear infinite;
+// `
+
 // const Link = ({ className, children }) => (
 //   <a className={className}>
 //     {children}
@@ -114,13 +116,27 @@ const styles = css`
 //     <StyledLink>Styled, exciting Link</StyledLink>
 //   </div>
 // );
+
+const Footerwrapper = styled.div`
+  padding: 20px;
+  min-height: 74px;
+  position: static;
+  z-index: 50;
+  background: #666;
+  color: #fff;
+  font-size: 14px;
+  text-shadow: 0 -1px 0 #000000;
+  // position: fixed;
+  bottom: 0;
+  width: 100%;
+`
+
 const Footer = () => {
 
-
-
   return (
-    <div className="footer">
+    <Footerwrapper>
       Made with 🤣 in San Francisco, USA
+
       <div className="links">
         &nbsp;
         <a href="https://github.com/featurerich1/full-stack-project/wiki">
@@ -132,12 +148,14 @@ const Footer = () => {
         <a href="mailto:edward@utexas.edu">Email me!</a>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> 
-        <Rotate>
-          &lt; <a href="#" className="fa fa-angellist" /> <a href="#" className="fa fa-angellist" />  &gt;
-        </Rotate>
+        <Rotate color={`white`} background={`black`} href={`https://angel.co/u/edward-zhou-7`} className="fa fas fa-angellist fa-5x" target="_blank" rel="noopener" />
+        <Rotate color={`white`} background={`blue`} href={`https://linkedin.com/edzhou/`} className="fa fa-linkedin fas fa-5x" target="_blank" rel="noopener" />
+        <Rotate color={`black`} background={`white`} href={`https://github.com/featurerich1/`} className="fa fa-github fas fa-5x" target="_blank" rel="noopener" /> 
+
+
       </div>
-    </div>
-    
+
+    </Footerwrapper >
   );
 };
 

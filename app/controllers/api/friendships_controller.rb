@@ -4,7 +4,7 @@ class Api::FriendshipsController < ApplicationController
     def create 
         @friendship = Friendship.new(friendship_params)
 
-        if current_user.id.to_s != @friendship.user_one_id.to_s and current_user.id.to_s != @friendship.user_two_id.to_s
+        if @current_user.id.to_s != @friendship.user_one_id.to_s and @current_user.id.to_s != @friendship.user_two_id.to_s
             render json: ["dont make friendships for people who arent you"]
         elsif @friendship.user_one_id == @friendship.user_two_id 
             render json: ["cant be own friend"]
@@ -13,19 +13,13 @@ class Api::FriendshipsController < ApplicationController
         elsif @friendship.user_one_id.to_i > @friendship.user_two_id.to_i
             @friendship.user_one_id, @friendship.user_two_id = 
             @friendship.user_two_id, @friendship.user_one_id
-            if @friendship.save
-                render "api/friendships/show"
-            else 
-                render json: @friendship.errors.full_messages, status:422
-                # render json: ["This friendship already exists"]
-            end
-        elsif @friendship.save
+        end 
+
+        if @friendship.save
             render "api/friendships/show"
-        else
+        else 
             render json: @friendship.errors.full_messages, status:422
         end
-
-        #check if it already exists? nah db validations
     end
         
     def destroy
@@ -47,6 +41,8 @@ class Api::FriendshipsController < ApplicationController
     private
     def friendship_params
         params.require(:friendship).permit!
+
+        # params.require(:friendship).permit(:user_one_id, :user_two_id)
     end
 end
 

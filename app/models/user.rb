@@ -308,8 +308,11 @@ end
       return nil
     end
   end
-
-  def password=(password)
+  # order of operations
+  # User.new  model setter methods are run and bad params like password are dropped out of the user object but re-attached as a attr reader
+  # User.save  every validation is run and errors are set. password is checked for length i guess
+  def password=(password) #all setter methods are auto run upon User.new(username: 'hi', email: 'hi@hi', password:'asdf') RAILS magic
+    ##<User id: nil, username: "hi", email: "hi@hi", password_digest: "$2a$12$Hrj03heTed4BLhhqbefHqupbHRYYPS6ZOSMSIAdXtS1...", session_token: "DG25uoswxItn_REQFrKQjQ", created_at: nil, updated_at: nil>
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end

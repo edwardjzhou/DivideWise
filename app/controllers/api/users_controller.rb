@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
-        if @user.save #the second you tryt to save validations are run
+        if @user.save #the second you tryt to save model validations are run
             login(@user)
             render "api/users/show"
         else

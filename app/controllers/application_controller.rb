@@ -6,9 +6,11 @@ class ApplicationController < ActionController::Base
   def execute_statement(sql)
     results = ActiveRecord::Base.connection.execute(sql)
     # results = ActiveRecord::Base.connection.execute("SELECT * FROM friendships JOIN users ON users.id=CAST(friendships.user_one_id AS int)").values
-
+    # ActiveRecord::Base.connection.execute("SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS").values
+    #ActiveRecord::Base.connection.exec_query('...').rows
     if results.present?
-      return results.values
+      # return results.values
+      return results
     else
       return nil
     end

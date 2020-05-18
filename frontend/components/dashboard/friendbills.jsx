@@ -65,7 +65,7 @@ class Friendbills extends React.Component {
       <div>
         {/* <div>"This isn't a valid friendship page or there is trouble fetching friends lists from server" </div> */}
         Whoops – you don't have permission to view this friend or group! Make
-        sure you're logged into the correct Splitwise account. Sorry! :(
+        sure you're logged into the correct Dividewise account. Sorry! :(
       </div>
     );
   }

@@ -34,6 +34,7 @@ class Api::PaymentsController < ApplicationController
          end
         # render json: answer
         render "api/payments/index"
+        
     end
     
     private

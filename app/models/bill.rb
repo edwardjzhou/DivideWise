@@ -20,7 +20,9 @@ class Bill < ApplicationRecord
 #  scope :red, -> { where(color: 'red') }
 #   scope :dry_clean_only, -> { joins(:washing_instructions).where('washing_instructions.dry_clean_only = ?', true) }
     # https://api.rubyonrails.org/classes/ActiveRecord/Scoping/Named/ClassMethods.html
-    def self.involved
+    def self.users_involved(current_user)
+        current_user
+
     #    if !Friendship.where("user_one_id = ? OR user_two_id = ?", @bill.lender_id.to_s, @bill.lender_id.to_s)
     #         .where("user_one_id = ? OR user_two_id = ?", @bill.borrower_id.to_s, @bill.borrower_id.to_s)
     #         render json: ["become friends first before creating a bill with others"]
