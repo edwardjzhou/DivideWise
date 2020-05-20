@@ -71,6 +71,7 @@ class Card extends Component {
             ref={(element) => {
               this.dropdownMenu = element;
             }}
+            style= {{backgroundColor: `black`}}
           >
             <form onSubmit={this.handleSubmit} className="login-form-box2">
               <div className="login-form2">

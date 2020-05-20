@@ -50,10 +50,10 @@ class Friends extends React.Component {
                   fontWeight: `bold`,
                   borderLeft: `8px solid #5BC5A7`,
                   textDecoration: `none`,
+                  boxSizing: `border-box`
                 }}
               >
                 Dashboard
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </Link>
             ) : (
               <Link
@@ -66,14 +66,17 @@ class Friends extends React.Component {
                 }}
               >
                 Dashboard
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </Link>
             )}
           </div>
+
           <div className="header">
             {" "}
             FRIENDS<AddFriends></AddFriends>
           </div>
+
+
+
           {this.props.friends.map((friend) =>
             friend.friends_name !== this.props.current_user ? (
               // this.props.location.pathname[this.props.location.pathname.split('/').length - 1] !== friend.id ?
@@ -85,7 +88,7 @@ class Friends extends React.Component {
               ] == friend.id ? (
                 //  && this.props.location.pathname[this.props.location.pathname.split('/').length - 1] == friend.id ?
                 //
-                <div className="greyhover">
+                <div className="greyhover" key={`FRIEND->${friend.id}`}>
                   <Link
                     to={`/friends/` + friend.id}
                     className="greyhover"
@@ -110,6 +113,7 @@ class Friends extends React.Component {
               ) : (
                 <div>
                   <Link
+                    key={`FRIEND->${friend.id}`}
                     to={`/friends/` + friend.id}
                     className="greyhover"
                     style={{ textDecoration: `none` }}

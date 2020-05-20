@@ -1,6 +1,4 @@
 import React from "react";
-// import LeftMenu from './left_menu'
-//import Modal from './modal'
 import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
 import { NavLink, Link, Route, Switch } from "react-router-dom";
@@ -20,9 +18,9 @@ class Dashboard extends React.Component {
     return (
       // <div className="row" style={{ height: `100%` }}>
       <div style={{
-              display: `flex`, 
-              flexWrap: `wrap`,
-              alignItems: `stretch`,
+              display: `flex`, //flex is the same as flexbox which is kinda deprecated
+              flexWrap: `wrap`, //nowrap is forced into one line
+             alignItems: `stretch`, // (default): stretch to fill the container (still respect min-width/max-width)
               height: `auto`,
               width: `100%`, }}>
         {/* marginBottom: `-99999px`, paddingBottom: `99999px`, overflow:`hidden`}}> */}

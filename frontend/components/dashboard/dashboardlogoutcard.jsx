@@ -63,7 +63,7 @@ class LogoutCard extends Component {
               width="auto"
               height="100%"
             ></img>
-            {this.props.name} <span class="caret"></span>
+            {this.props.name} <span className="caret"></span>
           </a>
         </div>
 

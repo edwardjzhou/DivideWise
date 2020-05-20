@@ -79,21 +79,25 @@ import styled, { css, keyframes } from "styled-components";
 // Footer the functional component is what is exported. It forms a closure with const rotate... const Rotate etc. 
 // I hope these objects get auto garbage collected on dismount
 const rotate = keyframes` 
-  from {
-    transform: rotate(0deg);
-  }
+	0% {transform:rotate(16deg) scale(1.2);}
+	50% {transform:rotate(-16deg) scale(1.4);}
+	100% {transform:rotate(16deg) scale(1.3);}
+  // from {
+  //   transform: rotate(-60deg);
+  // }
 
-  to {
-    transform: rotate(360deg);
-  }
+  // to {
+  //   transform: rotate(60deg);
+  // }
 `
 
 const Rotate = styled.a`
-  animation: ${rotate} 3s linear infinite;
-  margin-left: 2rem;
   color: ${props => props.color ? props.color : "palevioletred"};
   background-color: ${props => props.background ? props.background : "palevioletred"};
-  
+  &:hover {
+    color: #5BC5A7;
+    animation: ${rotate} 1s ease-in infinite;
+  }
 `
 
 // const styles = css`
@@ -126,18 +130,27 @@ const Footerwrapper = styled.div`
   color: #fff;
   font-size: 14px;
   text-shadow: 0 -1px 0 #000000;
-  // position: fixed;
-  bottom: 0;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
 `
+const Links = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+`
+
 
 const Footer = () => {
 
   return (
     <Footerwrapper>
-      Made with 🤣 in San Francisco, USA
 
-      <div className="links">
+      <Links>
+        Made with 🤣 in San Francisco, USA <br/><br/>
+
         &nbsp;
         <a href="https://github.com/featurerich1/full-stack-project/wiki">
           My design docs
@@ -148,13 +161,11 @@ const Footer = () => {
         <a href="mailto:edward@utexas.edu">Email me!</a>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> 
-        <Rotate color={`white`} background={`black`} href={`https://angel.co/u/edward-zhou-7`} className="fa fas fa-angellist fa-5x" target="_blank" rel="noopener" />
-        <Rotate color={`white`} background={`blue`} href={`https://linkedin.com/edzhou/`} className="fa fa-linkedin fas fa-5x" target="_blank" rel="noopener" />
-        <Rotate color={`black`} background={`white`} href={`https://github.com/featurerich1/`} className="fa fa-github fas fa-5x" target="_blank" rel="noopener" /> 
+      </Links>
 
-
-      </div>
-
+      <Rotate color={`white`} background={`#666`} href={`https://angel.co/u/edward-zhou-7`} className="fa fas fa-angellist fa-3x" target="_blank" rel="noopener" />
+      <Rotate color={`white`} background={`#666`} href={`https://linkedin.com/edzhou/`} className="fa fa-linkedin fas fa-3x" target="_blank" rel="noopener" />
+      <Rotate color={`white`} background={`#666`} href={`https://github.com/featurerich1/`} className="fa fa-github fas fa-3x" target="_blank" rel="noopener" /> 
     </Footerwrapper >
   );
 };

@@ -16,7 +16,7 @@ const AddBills = ({ currentUser, openModal, match }) => {
         margin: `0 10px 0 50px`,
         paddingRight: `3%`,
         display: `inline-block`,
-        position: `static`,
+        // position: `static`,
       }}
     >
       {/* //right:`30%`, top: `5%`, position: `absolute`, */}

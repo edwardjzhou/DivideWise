@@ -45,6 +45,111 @@ export default Root;
 
 
 
+
+
+
+//the biggest rule is that if setstate is called w no arg OR just passed previousstate
+// no render of hte parent happens
+
+
+// class Parent extends React.Component {
+//   constructor(props) { 
+//     super(props)
+//   }
+//   handle() {
+//     // this.setState({asdf:5})
+//     // this.setState({
+//     //   bye:324
+//     // })
+//     // this.setState(prevState => {
+//     //   return prevState
+//     // })
+
+//     this.setState(prevstate => { return {...prevstate}})
+//     // }) //=> setstate called with an arg it renders parent and children 
+//     // this.setState()  // => WHEN setstate is called with no args it only re-renders parent
+//     console.log(`parent handled`)
+//   }
+
+//   render(){
+//     console.log('parent rendered ')
+
+//     return <><div onClick={this.handle.bind(this)}> im the parent </div> 
+//        CLICK ME <Middle  /> </>
+
+//   }
+// }
+// pass a function that controls a variable that i pass down as props so that a child can force his own props to update?
+// CustomButton.defaultProps = {
+//   color: 'blue'
+// };
+
+// class Middle extends React.Component {
+//   constructor(props){
+//     super(props)
+//     // this.state = {hi:5}
+//     this.idk = 5
+//     this.state = {}
+//     this.changeprops = this.changeprops.bind(this)
+//   }
+
+//   changeprops(){
+//     ++this.idk
+//   }
+
+//   handle(){
+//     // this.setState({asdf:5})
+//     // this.setState({
+//     //   bye:324
+//     // })
+//     // this.setState(prevState => {
+//     //   return prevState
+//     // })
+
+//     // this.props = {[Date.now()]:Date.now()}
+//     this.setState(prevstate=> prevstate)
+//     // }) //=> setstate called with an arg it renders parent and children 
+//     // this.setState()  // => WHEN setstate is called with no args OR the state POJO is the same by reference it is a no-op
+//     console.log(`middle handled`)
+//   }
+
+//   render (){
+//     console.log('middle rendered ')
+//     return <> <div onClick={this.handle.bind(this)}> MIDDLE HERE </div> <Child value={ this.idk } change={this.changeprops}> testing </Child> </>
+
+//     // return <div onClick={this.handle.bind(this)}> <Child value={Date.now()} > testing </Child>> </div>
+//   }
+// }
+
+// class Child extends React.Component {
+//   constructor(props){
+//     super(props)
+//   }
+
+//   // shouldComponentUpdate(nextprop,nextstate){
+//   //   console.log("SHOULDUPDATE")
+//   //   if (nextprop.value == this.props.value ) return false
+//   //   return true
+//   //   // return false
+//   // }
+
+//   render(){
+//     console.log('child updated' + this.props.value)
+//     return (  <div onClick={this.props.change}> CHILD HERE {this.props.value}
+//       {/* {Object.values(this.props.value)} */}
+//       {/* {this.props.value} */}
+//       {/* {this.props.children} */}
+//       </div>
+//     )
+//   }
+
+// }
+
+// export default Middle 
+
+
+
+
 // //https://stackoverflow.com/questions/50053064/react-do-children-always-rerender-when-the-parent-component-rerenders
 // import React from "react";
 

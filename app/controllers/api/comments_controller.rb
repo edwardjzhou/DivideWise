@@ -159,8 +159,8 @@ class Api::CommentsController < ApplicationController
     #get (ALL COMMENTS) from (ALL BILLS where currentuser is bill.lender_id or bill_borrower_id)
     #im nested under a bill/bill_id. To get a comment it has to be created by me or be a bill im in 
 
-    def index  
-        # ActiveRecord::Base.connection.execute(sql)
+    def index
+        answer = params[:bill_id]
         sql = <<-SQL
         SELECT * 
         FROM comments 
@@ -168,19 +168,36 @@ class Api::CommentsController < ApplicationController
         IN (SELECT bills.id 
             FROM bills 
             WHERE bills.lender_id = #{@current_user.id} OR bills.borrower_id = #{@current_user.id}
-            )
+            ) AND  #{params[:bill_id]} = comments.bill_id 
         SQL
         answer = execute_statement(sql)
             
         render json: answer
-        # render json: [@current_user, answer, answer.values]
-
-        #function (bill_id)
-        # do i have access to this bill? (currentuser = lender_id or borrower_id)
-        # then get all comments with bill_id = this bill_id
-        # render json: Bill.involved(@current_user)
-        # render "api/comments/index"
     end
+
+    # def index  
+    #     #THIS GETS ALL COMMENTS INVOLVING BILLS CURRENT_USER IS ON
+    #     # ActiveRecord::Base.connection.execute(sql)
+    #     sql = <<-SQL
+    #     SELECT * 
+    #     FROM comments 
+    #     WHERE comments.bill_id 
+    #     IN (SELECT bills.id 
+    #         FROM bills 
+    #         WHERE bills.lender_id = #{@current_user.id} OR bills.borrower_id = #{@current_user.id}
+    #         )
+    #     SQL
+    #     answer = execute_statement(sql)
+            
+    #     render json: answer
+    #     # render json: [@current_user, answer, answer.values]
+
+    #     #function (bill_id)
+    #     # do i have access to this bill? (currentuser = lender_id or borrower_id)
+    #     # then get all comments with bill_id = this bill_id
+    #     # render json: Bill.involved(@current_user)
+    #     # render "api/comments/index"
+    # end
 
     def show
         @comment = Comment.find(params[:id])

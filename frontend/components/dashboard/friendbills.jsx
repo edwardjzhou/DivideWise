@@ -1,3 +1,4 @@
+// note to self: forceUpdate only re-renders own component NOT all mounted components
 import React from "react";
 import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
@@ -5,14 +6,20 @@ import { Link, match } from "react-router-dom";
 import { openModal } from "../../actions/modal_actions";
 import AddBills from "./addbills";
 import { fetchFriends } from "../../actions/friend_actions";
+import Comments from './comments';
 
 class Friendbills extends React.Component {
   constructor(props, { match }) {
     super(props);
-    this.state = {};
+    this.state = {
+      visibleBills: {}
+    };
     this.findTheBorrowedBills = this.findTheBorrowedBills.bind(this);
     this.findFriendId = this.findFriendId.bind(this);
     this.iBorrowed = [];
+    
+    this.handleVisibility = this.handleVisibility.bind(this);
+    
   }
 
   componentDidMount() {
@@ -20,11 +27,12 @@ class Friendbills extends React.Component {
     this.props.fetchBills();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) { //this technically is default behavior
     if (prevProps.bills !== this.props.bills) {
       this.forceUpdate();
     }
   }
+  //componentwillreceiveprops can make sure if props are different i can make it NOT render
 
   findFriendId() {
     if (
@@ -43,7 +51,6 @@ class Friendbills extends React.Component {
       this.props.match.params.friendId
     ].friends_name;
 
-    return null;
   }
 
   findTheBorrowedBills() {
@@ -57,7 +64,6 @@ class Friendbills extends React.Component {
       }
     }
     this.iBorrowed = answer;
-    return null;
   }
 
   renderNoFriend() {
@@ -92,14 +98,34 @@ class Friendbills extends React.Component {
     );
   }
 
+  handleVisibility(billId){
+    // experimenting with OBJECT STATE variables
+    // no non null assertions in obejcts??
+    // re: state merging
+    // The merging is shallow, so this.setState({ comments }) leaves this.state.posts intact, but completely replaces this.state.comments.
+
+
+    let newVisibility = !this.state.visibleBills[`${billId}`]
+    // problems with mutating state FOUND OUT best practice is to just use prevState in a CB that returns a new obj {state.property: function of prevstate } 
+    this.setState( (prevState) => ({
+      visibleBills: {                   // state object that we want to update
+        ...prevState.visibleBills,    // keep all other key-value pairs
+        [billId]: newVisibility     // update the value of specific key
+      },
+      // newguy: 5 // can add in new this.state.PROPERTY anytime with setstate
+
+    }))
+    // this.setState( { visibleBills: newObject } )
+    console.log(this.state)
+  }
+
   render() {
     return (
       <div
         className="YOU_OWE column_main"
-        style={{ margin: `0px`, padding: `0 0 0 0` }}
+        style={{ margin: `0px`, padding: `0px` }}
       >
-        {/* <div  style={{ margin: `0px`, padding: `0 0 0 0` }}> */}
-        {/* style={{ width: `50%`, marginLeft: `30%`, boxShadow: `-1 0 12px rgba(0, 0, 0, 0.2)` }} */}
+
 
         {this.props.friends[this.props.match.params.friendId] === undefined ? (
           this.renderNoFriend()
@@ -123,19 +149,26 @@ class Friendbills extends React.Component {
               <h1 style={{ fontWeight: `700` }}>{this.friendsName}</h1>
               <AddBills></AddBills>
             </div>
-            {/* <h1>{this.friendsName}</h1> */}
 
+              {/* START BILLS LIST  */}
             {this.iBorrowed.length === 0 ? this.renderNoExpensesYet() : null}
             {this.iBorrowed.map((bill) => {
               return (
                 <div
+                // ON CLICK SET THE CLICKED ON BILL TO SHOW ITS COMMENTS
+                  onClick = { () => this.handleVisibility(bill.id)}  // i think it creates a new anon function / bill so it would be better if i had a separate method for this
+                  // ON CLICK SET THE CLICKED ON BILL TO SHOW ITS COMMENTS
+
+                  key= {`BILL->${bill.id}`}
                   style={{
+                    backgroundColor: ``,
                     position: `relative`,
                     borderBottom: `1px solid #eee`,
                     display: `block`,
                     lineheight: `18px`,
                     color: `#333333`,
                     fontSize: `13px`,
+                    overflow:`hidden`
                   }}
                 >
                   <div
@@ -173,12 +206,23 @@ class Friendbills extends React.Component {
                       </div>
                       <div>${bill.amount / 100}</div>
                     </div>
+                 
                   </div>
+                  {/* COMMENTS COMPONENT RENDERED HERE */}
+
+                  <Comments billId={bill.id} isVisible={false || this.state.visibleBills[bill.id]} />
+
+                  {/* COMMENTS COMPONENT RENDERED HERE */}
+
+                  {/* END BILL */}
+
+
                   {/* PAYMENTS HERE */}
                   {bill.payments != undefined && bill.payments.length != 0
                     ? bill.payments.map((payment) => {
                         return (
                           <div
+                          key= {`PAYMENT->${payment.id}`}
                             style={{
                               position: `relative`,
                               borderBottom: `1px solid #eee`,
@@ -196,21 +240,25 @@ class Friendbills extends React.Component {
                                 marginRight: `50px`,
                               }}
                             >
+
                               <div style={{ display: `flex` }}>
+                                
                                 <img
                                   height="19px"
                                   width="19px"
                                   style={{ margin: `0 0 0 0` }}
                                   src={window.payment}
-                                ></img>
-                                {/* {JSON.stringify(payment)} */}
+                                />
                                 &nbsp;
+                                
                                 <div>
                                   {new Date(
                                     Object.values(payment)[0].created_at
                                   ).toLocaleDateString("en-US")}
                                 </div>
+
                                 <div style={{ minWidth: "51px" }}> &nbsp;</div>
+
                                 {Object.values(payment)[0].payer_id ==
                                 this.props.current_user_id
                                   ? this.props.current_user.username +
@@ -220,7 +268,9 @@ class Friendbills extends React.Component {
                                     " paid " +
                                     this.props.current_user.username}
                                 ${Object.values(payment)[0].amount / 100 + " "}
+
                               </div>
+
                               <div style={{ display: ``, paddingLeft: `0` }}>
                                 {Object.values(payment)[0].payer_id ==
                                 this.props.current_user_id
@@ -228,10 +278,16 @@ class Friendbills extends React.Component {
                                   : "you received "}
                                 ${Object.values(payment)[0].amount / 100 + " "}
                               </div>
+
                             </div>
+
+                          
+
                           </div>
+
                         );
-                      })
+                      }) 
+
                     : null}
                 </div>
               );
