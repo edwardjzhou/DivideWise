@@ -32,6 +32,12 @@ class LoginForm extends React.Component {
 // like can i @user = User.find_by(username: response.profileObj.email) @user.password = jsonwebtoken 
 // then try to log him in 
 
+
+// WHAT IF we let the user login to google and we get this frontend response.profileObj.JWT thing from that putative login
+// we send that to our rails server which makes a get request from google to make sure its real
+// then we find the user from our db with the the email from our rails get and set his pw to the 
+// id_token or jwt token value and let the putative frontend google account guy try to login wiht his jwt id
+
   responseGoogle(response) {
     window.response = response
     this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
@@ -52,7 +58,7 @@ class LoginForm extends React.Component {
     // if no user then i do a signup with his username: response.profileObj.email and email the same then just give him a session token? 
     // no jwt no nothing
     // https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=eyJhiJSUzI1NiIsImtpZCI6Ijk2
-    {
+    // {
       // "iss": "accounts.google.com",
       //   "azp": ", // my client id
       //     "aud": "", //my client id
