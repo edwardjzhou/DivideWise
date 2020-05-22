@@ -160,7 +160,6 @@ class Api::CommentsController < ApplicationController
     #im nested under a bill/bill_id. To get a comment it has to be created by me or be a bill im in 
 
     def index
-        answer = params[:bill_id]
         sql = <<-SQL
         SELECT * 
         FROM comments 

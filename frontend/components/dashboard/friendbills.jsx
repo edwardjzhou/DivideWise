@@ -1,4 +1,4 @@
-//eventpropagation: big parent has a onclick event handler. when a child is clicked the event handlers callback has to call e.stoppropgation
+//eventpropagation: big parent has a onclick event handler. YOU WANT child to have access to parents. when a child is clicked the event handlers callback has to call e.stoppropgation if you want stop
 //The currentTarget refers to the element the event handler has been attached, as opposed to target, which identifies the element on which the event occurred and which may be its descendant.
 // REASONING: children are dnyamically generated list items or something after docuemnt load
 // parents were there all along thus attahc event listener to parent and its chidlren also get the same thing attached to them kinda

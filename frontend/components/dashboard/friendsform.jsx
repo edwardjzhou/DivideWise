@@ -6,11 +6,12 @@ import { createFriend, fetchFriends } from "../../actions/friend_actions";
 class FriendsForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       selectedFriend: null,
       searchString: "",
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.renderList = this.renderList.bind(this);
     this.update = this.update.bind(this);
   }
@@ -20,7 +21,6 @@ class FriendsForm extends React.Component {
   }
 
   update(field) {
-    // console.log(this.state)
     return (e) =>
       this.setState({
         [field]: e.target.value,
@@ -129,24 +129,24 @@ const mDTP = (dispatch) => {
 export default connect(mSTP, mDTP)(FriendsForm);
 
 //https://levelup.gitconnected.com/debounce-in-javascript-improve-your-applications-performance-5b01855e086
-function debounce(func, wait, immediate) {
-  let timeout;
+// function debounce(func, wait, immediate) {
+//   let timeout;
 
-  return function executedFunction() {
-    let context = this;
-    let args = arguments;
+//   return function executedFunction() {
+//     let context = this;
+//     let args = arguments;
 
-    let later = function () {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
+//     let later = function () {
+//       timeout = null;
+//       if (!immediate) func.apply(context, args);
+//     };
 
-    let callNow = immediate && !timeout;
+//     let callNow = immediate && !timeout;
 
-    clearTimeout(timeout);
+//     clearTimeout(timeout);
 
-    timeout = setTimeout(later, wait);
+//     timeout = setTimeout(later, wait);
 
-    if (callNow) func.apply(context, args);
-  };
-}
+//     if (callNow) func.apply(context, args);
+//   };
+// }

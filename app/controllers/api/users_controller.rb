@@ -9,9 +9,12 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    # // fetchUsers() in users API util uses this
     def index
-        current_user
-        render json: @current_user
+        @users = User.all
+        render "api/users/index"
+        # current_user
+        # render json: @current_user
     end
 
     #     # render all users last updated_at within 24 hrs for funs

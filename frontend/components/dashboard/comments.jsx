@@ -13,58 +13,20 @@ import { fetchComments } from "../../actions/comment_actions";
 import styled, { css, keyframes } from "styled-components";
 
 
-// const rotate = keyframes` 
-//     0% {transition: height:300px;}
-// 	50% {transition: height:200px;}
-//     100% {transition: height:0px;}
-    
+// Parent Component: friendbills
+// we receive billId as a prop from it
 
-
-// 	// 0% {transform:rotate(16deg) scale(1.2);}
-// 	// 50% {transform:rotate(-16deg) scale(1.4);}
-// 	// 100% {transform:rotate(16deg) scale(1.3);}
-// //   from {
-// //     transition: max-height 0.5s ease-in-out;
-// //   }
-
-// //   to {
-// //     transition: rotate(60deg);
-// //   }
-// `
-
-// const Rotate = styled.a`
-//     height: auto;
-//     transform: scaleY(1);
-//     transform-origin: bottom;
-//     transition: transform 0.26s ease;
-//     &:hover {
-//         transform: scaleY(.1);
-//     }
-//     `
-
-
-
-
-
-// #menu #list {
-//     max - height: 0;
-//     transition: max - height 0.15s ease - out;
-//     overflow: hidden;
-//     background: #d5d5d5;
-// }
-
-// #menu: hover #list {
-//     max - height: 500px;
-//     transition: max - height 0.25s ease -in;
-// }
+// from Connect
+// we subscribe to fetchcomments from actions as a prop (it is a thunk action creator function)
+// we subscribe to state.entities.comments as props.comments (it is an object of comment objects)
 
 function Comments ( props ) {
-    // function Comments({ fetchComments, comments, isVisible, billId, ...props }) {
-
+    
 
     React.useEffect( ()=>{
         props.fetchComments(props.billId)
-    }, [props.billId] )
+    }, [props.billId] ) // if stuff in [] hasn't changed then DONT run the useEffect
+    
     // React.useEffect(() => { 
         // maybe some handle status change 
         // like api calls here
@@ -79,15 +41,18 @@ function Comments ( props ) {
 
     //style = {{ display: props.isVisible ? `block` : `none` }
     return (
-        <div className="section collapsible" style={{ overflow: `hidden`, transition: `height 0.5s ease-out`, height:`auto` }} id={`comments${props.billId}`}  >{JSON.stringify(props.comments)}</div>
-
+        <div className="section collapsible" style={{ overflow: `hidden`, transition: `height 0.5s ease-out`, height:`auto` }} id={`comments${props.billId}`}>
+            {/* {JSON.stringify(props.comments)} */}
+            {props.comments.map( (comment) => <CommentItem data = {comment}>  </CommentItem> )}
+            
+        </div>
     )
 } 
 
 const mSTP = (state) => {
     return {
-        comments: state.entities.comments,
-
+        comments: Object.values(state.entities.comments),  // state.entities.comments is an array with eles pointing to other objects { billId1 : {id: 1,user_id,bill_id, body,}}}
+        friends: Object.values(state.entities.friends) // state.entities.friends is an object with each key being a friendship_id. after object.values its an array of objects
     };
 };
 
@@ -99,3 +64,25 @@ const mDTP = (dispatch) => {
 
 export default connect(mSTP, mDTP)(Comments)
 
+
+const Item = styled.div`
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 6px 8px;
+    background: #fff;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+`
+
+function CommentItem ( {data} ){
+    const {user_id, body, created_at} = data
+    return <Item> 
+        
+        {user_id} 
+        {created_at}
+        {body}
+    
+     </Item>
+}

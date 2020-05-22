@@ -7,7 +7,7 @@ import { logout } from "../../actions/session_actions";
 import Bills from "./bills";
 import Friendbills from "./friendbills";
 import LogoutCard from "./dashboardlogoutcard";
-
+import styled from 'styled-components';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
           ></LogoutCard>
         </div>
 
-        {/* friends stays mounted on the left */}
+        {/* friends stays mounted to the left */}
         <Friends /> 
 
         {/* center section that changes depending on if we're in /#/Dashboard or /#/Friends or not */}
