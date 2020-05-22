@@ -160,7 +160,6 @@ const Footer = () => {
         &#160;<a href="http://dev.splitwise.com">Splitwise's API</a> | &#160;
         <a href="mailto:edward@utexas.edu">Email me!</a>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> 
       </Links>
 
       <Rotate color={`white`} background={`#666`} href={`https://angel.co/u/edward-zhou-7`} className="fa fas fa-angellist fa-3x" target="_blank" rel="noopener" />

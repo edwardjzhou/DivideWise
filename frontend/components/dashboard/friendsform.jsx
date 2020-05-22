@@ -8,24 +8,26 @@ class FriendsForm extends React.Component {
     super(props);
     this.state = {
       selectedFriend: null,
-      searchString: "",
+      // searchString: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderList = this.renderList.bind(this);
-    this.update = this.update.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+
+    // this.renderList = this.renderList.bind(this);
+    // this.update = this.update.bind(this);
   }
 
   componentDidMount() {
     this.props.getUsers();
   }
 
-  update(field) {
-    return (e) =>
-      this.setState({
-        [field]: e.target.value,
-      });
-  }
+  // update(field) {
+  //   return (e) =>
+  //     this.setState({
+  //       [field]: e.target.value,
+  //     });
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -56,58 +58,91 @@ class FriendsForm extends React.Component {
   //     data: { friendship: { user_one_id: 3, user_two_id: 7} }
   // })
 
-  renderList() {
-    return this.props.users
-      .filter((user) => {
-        return (
-          user.username.includes(this.state.searchString) ||
-          user.email.includes(this.state.searchString)
-        );
-      })
-      .filter((user) => {
-        return !this.props.friends
-          .map((friend) => friend.friends_name)
-          .includes(user.username);
-      })
-      .map((user) => {
-        if (this.props.current_user != user) {
-          return (
-            <li
-              onClick={this.update("selectedFriend")}
-              value={user.id}
-              key={user.id}
-              tabIndex="-1"
-            >
-              {user.username}
-            </li>
-          );
-        }
-      });
-  }
+  // renderList() {
+  //   return this.props.users
+  //     .filter((user) => {
+  //       return (
+  //         user.username.includes(this.state.searchString) ||
+  //         user.email.includes(this.state.searchString)
+  //       );
+  //     })
+  //     .filter((user) => {
+  //       return !this.props.friends
+  //         .map((friend) => friend.friends_name)
+  //         .includes(user.username);
+  //     })
+  //     .map((user) => {
+  //       if (this.props.current_user != user) {
+  //         return (
+  //           <li
+  //             onClick={this.update("selectedFriend")}
+  //             value={user.id}
+  //             key={user.id}
+  //             tabIndex="-1"
+  //           >
+  //             {user.username}
+  //           </li>
+  //         );
+  //       }
+  //     });
+  // }
 
-  onChange(e) {
-    this.setState({
-      searchString: e.target.value,
-    });
+  // onChange(e) {
+  //   this.setState({
+  //     searchString: e.target.value,
+  //   });
+  // }
+
+  handleChange (e){
+    this.setState( {
+      selectedFriend: e.target.value
+    })
   }
 
   render() {
     return (
-      <div className="addfriend-form">
-        <form onSubmit={this.handleSubmit}>
-          Add Friend Search for Friends (by username or email)! : &nbsp;
-          <input
-            type="text"
-            value={this.state.searchString}
-            onChange={this.onChange.bind(this)}
-          />
-          {this.renderList()}
-          <input type="submit" value="Add Friend" />
-        </form>
-      </div>
+
+      <div className="addfriend-form centerme">
+        {" "}
+        <div id="formheader">Add Friends</div>
+
+            Find a <span className="STRONG">friend</span>&nbsp;
+
+
+            <select onChange={this.handleChange } value={this.state.selectedFriend}>
+              <option value={null}>users</option>
+              {this.props.users.map((user) => (
+                <option value={user.id} key={user.id}>
+                  {user.username}
+                </option>
+              ))}
+            </select>
+          <br />
+
+          <img src={window.orangedude} style={{ height: `50px` }}></img>
+          <p>{this.state.selectedFriend}</p>
+        </div>
+
+
+
+
     );
   }
 }
+
+
+      // <div className="addfriend-form">
+      //   <form onSubmit={this.handleSubmit}>
+      //     Add Friend Search for Friends (by username or email)! : &nbsp;
+      //     <input
+      //       type="text"
+      //       value={this.state.searchString}
+      //       onChange={this.onChange.bind(this)}
+      //     />
+      //     {this.renderList()}
+      //     <input type="submit" value="Add Friend" />
+      //   </form>
+      // </div>
 
 const mSTP = (state) => {
   return {

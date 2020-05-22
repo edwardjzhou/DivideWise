@@ -50,7 +50,7 @@ class Friends extends React.Component {
                   fontWeight: `bold`,
                   borderLeft: `8px solid #5BC5A7`,
                   textDecoration: `none`,
-                  boxSizing: `border-box`
+                  boxSizing: `content-box`
                 }}
               >
                 Dashboard

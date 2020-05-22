@@ -8,10 +8,6 @@ const friendSelectReducer = (state = {}, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case SELECT_FRIENDSHIP:
-      console.log(newState);
-      // if (Object.values(newState.ui.friendSelectReducer.length) > 0){
-      //     delete newState.ui.friendSelectReducer
-      // }
       const newSelect = { [action.friendshipId]: action.friendshipId };
       return merge({}, newSelect);
     default:

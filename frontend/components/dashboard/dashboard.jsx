@@ -9,6 +9,9 @@ import Friendbills from "./friendbills";
 import LogoutCard from "./dashboardlogoutcard";
 import styled from 'styled-components';
 
+
+
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +35,7 @@ class Dashboard extends React.Component {
           </NavLink>
           <LogoutCard
             name={this.props.current_user}
-            logout={() => this.props.logout()}
+            logout={this.props.logout}
           ></LogoutCard>
         </div>
 
@@ -52,9 +55,7 @@ class Dashboard extends React.Component {
 const mSTP = (state) => {
   return {
     bills: Object.values(state.entities.bills),
-    // user: Object.values(state.entities.users)[0].username,
     current_user: state.entities.users[state.session.id].username,
-    // currentUser: session.currentUser
   };
 };
 

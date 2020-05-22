@@ -159,8 +159,10 @@ hr {
 }
 
 .modal-child {
+  width: 40%;
+
   position: fixed;
-  top: 43%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 
