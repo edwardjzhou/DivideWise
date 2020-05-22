@@ -2,7 +2,8 @@ import React from "react";
 import NavBar from "../static/navbar";
 import { GoogleLogin } from 'react-google-login';
 
-
+import { fetchOAUTH } from './oauthsession.js'
+import { signup } from "../../actions/session_actions";
 
 
 
@@ -20,8 +21,58 @@ class LoginForm extends React.Component {
   }
 
 
+  //LITTLE PROOF OF CONCEPT: this is unsafe since anyone can figure out the user's googleId 
+// THIS PROBABLY ISNT SECURE IM JUST TESTING
+// i dont want to do devise omniauth2 in rails
+// is there any way i can 
+
+// if this oauth token info confirmed email is in the users database as a username
+// pretend we're in rails and from rails i send a get to the ooauth token info at googleapis.com
+// can i just say we';re confiremd at this point and force change that user's password to nothing for a brief instant for login
+// like can i @user = User.find_by(username: response.profileObj.email) @user.password = jsonwebtoken 
+// then try to log him in 
+
   responseGoogle(response) {
+    window.response = response
     this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
+    console.log(response)
+    // console.log(fetchOAUTH(response.tokenObj.id_token).then(res => res)  )
+   
+    this.props.processForm({
+      username: response.profileObj.email,
+      password: response.profileObj.googleId,
+    }) // login do a little hackeysack here bounceing around and attempting both
+    this.props.signup({
+      username: response.profileObj.email,
+      password: response.profileObj.googleId,
+      email: response.profileObj.email
+    })  // signup
+    // response.profileObj.tokenId do a GET to google website to confirm this guy
+    // then I look up the user by email wiuth a normal login()
+    // if no user then i do a signup with his username: response.profileObj.email and email the same then just give him a session token? 
+    // no jwt no nothing
+    // https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=eyJhiJSUzI1NiIsImtpZCI6Ijk2
+    {
+      // "iss": "accounts.google.com",
+      //   "azp": ", // my client id
+      //     "aud": "", //my client id
+      //       "sub": "", //google id
+      //         "email": "@gmail.com",
+      //           "email_verified": "true",
+      //             "at_hash": "5Njg",
+      //               "name": "edward",
+      //                 "picture": "",
+      //                   "given_name": "Edward",
+      //                     "family_name": "",
+      //                       "locale": "en",
+      //                         "iat": "same as exp",
+      //                           "exp": "same as iat",
+      //                             "jti": "json web token here",
+      //                               "alg": "RS256",
+      //                                 "kid": "key id header parameter hint",
+      //                                   "typ": "JWT"
+    // }
+
   };
 
   update(field) {

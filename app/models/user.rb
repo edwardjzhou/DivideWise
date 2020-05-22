@@ -152,7 +152,7 @@ class User < ApplicationRecord
 
   validates :username, :password_digest, :session_token, :email, presence: true, allow_blank: false
   validates :username, :email, uniqueness: { case_sensitive: false }
-  validates :username, format: { with: /\A[a-zA-Z0-9]+\z/, message: "must only be letters and numbers" }
+  validates :username, format: { with: /\A[a-zA-Z0-9@.]+\z/, message: "must only be letters and numbers" }  #cheat a little with a "@" and "." for google OAUTH
   validates :email, format: { with: /\A.+@.+\z/, message: "must be of x@x format where x are anything" } 
   validates :password, length: { minimum: 8 }, allow_nil: true
 #SELECT COUNT(DISTINCT date) FROM records
