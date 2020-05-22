@@ -3,9 +3,7 @@ import NavBar from "../static/navbar";
 import { GoogleLogin } from 'react-google-login';
 
 
-const responseGoogle = (response) => {
-  console.log(response);
-}
+
 
 
 
@@ -22,7 +20,7 @@ class LoginForm extends React.Component {
   }
 
 
-  responseGoogle = response => {
+  responseGoogle(response) {
     this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
   };
 
@@ -118,6 +116,7 @@ class LoginForm extends React.Component {
               Demo Log in
             </button>
             <hr></hr>
+            Or login with Facebook/
             <GoogleLogin
               clientId="23767328561-ndo3b9lpk03lr9kfind7ur4srslp3qrr.apps.googleusercontent.com"
               buttonText="Google"
