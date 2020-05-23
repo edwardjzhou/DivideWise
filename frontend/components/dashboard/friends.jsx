@@ -31,16 +31,17 @@ class Friends extends React.Component {
       return true;
     }
   }
+  //         <div id="friends_bar" className="column">
 
+  // <div>
+  //   {console.log(this.props.selectedFriendshipid)}
+  //   {console.log(this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1])}
+  //   <div id="friends_bar" className="">
   render() {
     return (
-      <div id="friends_bar" className="">
-            {/* <div id="friends_bar" className="column"> */}
+      <div className={this.props.className} style={{marginRight: `10px`}}> 
 
-        {/* <div> */}
-          {/* {console.log(this.props.selectedFriendshipid)} */}
-          {/* {console.log(this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1])} */}
-          <div className="greyhover" style={{clear:`both`}}>
+          <div className="greyhover">
             {location.href.includes("dashboard") ? (
               <Link
                 to="/"
@@ -50,7 +51,8 @@ class Friends extends React.Component {
                   fontWeight: `bold`,
                   borderLeft: `8px solid #5BC5A7`,
                   textDecoration: `none`,
-                  boxSizing: `content-box`
+                  boxSizing: `content-box`,
+                  display: `block`
                 }}
               >
                 Dashboard
@@ -63,6 +65,7 @@ class Friends extends React.Component {
                   color: "gray",
                   fontSize: "40",
                   fontWeight: `bold`,
+                  display:`block`,
                 }}
               >
                 Dashboard

@@ -1,6 +1,6 @@
 // TBD:
 // 1. use the SVGs from the real splitwise in my splash
-// 2. add comments iwth the display none dropdown
+// 2. add comments iwth the display none accordion
 // 3. fix friends component from overflowing outside of its box so i can get a better height matching from all columns overflow:scroll?
 // 4. finish add friends form with <datalist id="ice-cream-flavors">
 {/* <option value="Chocolate">
@@ -23,10 +23,12 @@
 
 
 
+
 import React from "react";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
 import App from "./app";
+
 
 const Root = ({ store }) => (
   <Provider store={store}>

@@ -192,14 +192,13 @@ class Friendbills extends React.Component {
     console.log(this.state)
   }
 
+//   <div
+//   className="YOU_OWE column_main"
+//   style={{ margin: `0px`, padding: `0px` }}
+// >
   render() {
     return (
-      <div
-        className="YOU_OWE column_main"
-        style={{ margin: `0px`, padding: `0px` }}
-      >
-
-
+      <div className={this.props.className}>  
         {this.props.friends[this.props.match.params.friendId] === undefined ? (
           this.renderNoFriend()
         ) : (

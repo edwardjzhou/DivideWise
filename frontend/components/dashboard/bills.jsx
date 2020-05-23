@@ -31,7 +31,7 @@ class Bills extends React.Component {
     this.calculateTotalYouOwe();
 
     // console.log(this.state.height)
-    this.getHeight();
+    // this.getHeight();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -42,7 +42,7 @@ class Bills extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log(5234234);
+    // console.log(5234234);
     //   componentWillUnmount() reactdom.unmountcompponentatnode
   }
 
@@ -77,12 +77,12 @@ class Bills extends React.Component {
       .map((friend) => friend.id)[0];
   }
 
-  getHeight() {
-    console.log(this.state.height);
-    this.setState({
-      height: $(document).height() + "px",
-    });
-  }
+  // getHeight() {
+  //   console.log(this.state.height);
+  //   this.setState({
+  //     height: $(document).height() + "px",
+  //   });
+  // }
 
   render() {
     // this.getHeight()
@@ -120,8 +120,7 @@ class Bills extends React.Component {
       color: `#5bc5a7`,
       fontSize: `13px`,
       lineHeight: `16px`,
-      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important`,
-      textRendering: `optimizeLegibility`,
+      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif`
     };
 
     const redlazy = {
@@ -137,8 +136,7 @@ class Bills extends React.Component {
       color: `#ff652f`,
       fontSize: `13px`,
       lineHeight: `16px`,
-      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important`,
-      textRendering: `optimizeLegibility`,
+      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif`
     };
 
     const greenlazy = {
@@ -154,22 +152,22 @@ class Bills extends React.Component {
       textAlign: `center`,
       fontSize: `13px`,
       lineHeight: `16px`,
-      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !important`,
-      textRendering: `optimizeLegibility`,
+      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif `
     };
     // console.log(window.screen.height)
     // console.log(this.state.height)
 
-    return (
-      <div
-        // className="column YOU_OWE column_main"
-        //you_owe gives it a border
-        //column main unfloats it 
-        className="YOU_OWE column_main"
+    // <div
+    //   // className="column YOU_OWE column_main"
+    //   //you_owe gives it a border
+    //   //column main unfloats it 
+    //   className="YOU_OWE column_main"
 
-        style={{ margin: `0px`, padding: `0 0 0 0`, height: `` }}
-        //this is necesary otherwise theres padding for the Dashboard top gray panel
-      >
+    //   style={{ margin: `0px`, padding: `0 0 0 0`, height: `` }}
+    // //this is necesary otherwise theres padding for the Dashboard top gray panel
+    // >
+    return (
+      <div className= {this.props.className}>
         <div
           style={{
             borderBottom: `1px solid #DDDDDD`,
@@ -187,7 +185,7 @@ class Bills extends React.Component {
                 <h1 style={{
                     fontSize: `2.2vw`, fontWeight: `700` }}>Dashboard</h1>
 
-          <AddBills></AddBills>
+          <AddBills/>
         </div>
         <div
           id="total_balances"
@@ -230,24 +228,24 @@ class Bills extends React.Component {
           )}
         </div>
         <div style={{ display: `flex`, flexWrap: `wrap`, height: `` }}>
-          <div
-            style={{
-              width: `50%`,
-              textAlign: `center`,
-              margin: `0 auto`,
-            }}
-            className="columnheaders"
-          >
-            YOU OWE
-          </div>
-          <div
-            style={{
-              width: `50%`,
-              textAlign: `center`,
-              margin: `0 auto`,
-            }}
-            className="columnheaders"
-          >
+            <div
+              style={{
+                width: `50%`,
+                textAlign: `center`,
+                margin: `0 auto`,
+              }}
+              className="columnheaders"
+            >
+              YOU OWE
+            </div>
+            <div
+              style={{
+                width: `50%`,
+                textAlign: `center`,
+                margin: `0 auto`,
+              }}
+              className="columnheaders"
+            >
             YOU ARE OWED
           </div>
 
@@ -264,6 +262,7 @@ class Bills extends React.Component {
             {this.props.bills.map((bill) =>
               bill.borrower_id === this.props.current_user_id ? (
                 <div
+                  key={bill.id}
                   className="greyhover"
                   style={{ display: `flexbox`, minWidth: `100%` }}
                 >
@@ -272,7 +271,7 @@ class Bills extends React.Component {
                     onClick={() =>
                       this.props.select(this.findFriendship(bill.lender))
                     }
-                    style={{ textDecoration: `none` }}
+                    style={{ textDecoration: `none`, display: `block` }}
                   >
                     {eval(`avatar` + (this.findFriendship(bill.lender) % 7)) !=
                     "avatarNaN" ? (

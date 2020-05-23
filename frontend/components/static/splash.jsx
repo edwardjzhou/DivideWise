@@ -73,17 +73,17 @@ class Splash extends React.Component {
           </div>
 
           <div id="rightsidediv">
-            <div>
-              <NavLink className="whitelogin" to="/login">
+            {/* <div> */}
+              <NavLink style={{display:`block`}} className="whitelogin" to="/login">
                 Log in
               </NavLink>
-            </div>
-            <div>
-              <NavLink className="tealsignup" to="/signup">
+            {/* </div> */}
+            {/* <div> */}
+              <NavLink style={{ display: `block` }} className="tealsignup" to="/signup">
                 Sign up
 
               </NavLink>
-            </div>
+            {/* </div> */}
           </div>
         </div>
 

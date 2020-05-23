@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   
   namespace :api, defaults: {format: :json} do
+    post :googleauth, to: "users#googleauth"
     resources :users, only: [:create, :index]
     resource :session, only: [:create, :destroy]
     resources :bills do

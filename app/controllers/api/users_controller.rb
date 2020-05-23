@@ -9,14 +9,32 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    # before_action :require_login
     # // fetchUsers() in users API util uses this
     def index
+
+               
         @users = User.all
         render "api/users/index"
         # current_user
         # render json: @current_user
     end
 
+
+    def googleauth
+        require 'net/http'
+        id_token = auth_params[:id_token]
+        email = auth_params[:email]
+
+        
+        url = URI.parse(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{id_token}`)
+        req = Net::HTTP::Get.new(url.to_s)
+        res = Net::HTTP.start(url.host, url.port) {|http| http.request(req)}
+        puts res.body
+        render json: res
+
+        # render json: auth_params
+    end
     #     # render all users last updated_at within 24 hrs for funs
     #     @users = User.order(updated_at: :desc).pluck(:updated_at)
     #     # @users = User.where('updated_at: (Time.now.midnight - 1.day})..Time.now.midnight')
@@ -72,8 +90,12 @@ class Api::UsersController < ApplicationController
 
     private
     def user_params
-        params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password, :id_token)
         # params.require(:user).permit!
+    end
+
+    def auth_params
+        params.require(:user).permit(:id_token, :email)
     end
 
 end

@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../static/navbar";
 import { GoogleLogin } from 'react-google-login';
 
-import { fetchOAUTH } from './oauthsession.js'
+import { fetchOAUTH, verifyOAUTH } from './oauthsession.js'
 import { signup } from "../../actions/session_actions";
 
 
@@ -39,20 +39,52 @@ class LoginForm extends React.Component {
 // id_token or jwt token value and let the putative frontend google account guy try to login wiht his jwt id
 
   responseGoogle(response) {
+    // let putativeJWT = null
     window.response = response
-    this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
+    // this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
     console.log(response)
-    // console.log(fetchOAUTH(response.tokenObj.id_token).then(res => res)  )
-   
-    this.props.processForm({
-      username: response.profileObj.email,
-      password: response.profileObj.googleId,
-    }) // login do a little hackeysack here bounceing around and attempting both
-    this.props.signup({
-      username: response.profileObj.email,
-      password: response.profileObj.googleId,
-      email: response.profileObj.email
-    })  // signup
+
+    //i tried to get the user to get his own jwt from ajaxing google auth but its cors policy 
+    // so maybe i just set intiial pw of a new account to user's token id ? and i just check with rails that that user token is that email and then set database user pw to that token id
+    // seems relatively secure to me
+
+    // fetchOAUTH(response.tokenId).then(res => {
+    //   putativeJWT = res
+    //   console.log(putativeJWT)
+      // console.log(JSON.parse(putativeJWT))
+
+    // })
+    let answer 
+    verifyOAUTH(response.tokenId, response.profileObj.email).then(res => {
+      answer = res
+      console.log(res)
+    }) 
+
+    // https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow#oauth-2.0-endpoints_2
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('GET',
+    //   'https://www.googleapis.com/drive/v3/about?fields=user&' +
+    //   'access_token=' + params['access_token']);
+    // xhr.onreadystatechange = function (e) {
+    //   console.log(xhr.response);
+    // };
+    // xhr.send(null);
+    
+    //promise object returned thats resolved
+
+
+    // this.props.processForm({
+    //   username: response.profileObj.email,
+    //   password: response.profileObj.googleId,
+    // }) // login do a little hackeysack here bounceing around and attempting both
+    // this.props.signup({
+    //   username: response.profileObj.email,
+    //   password: response.profileObj.googleId,
+    //   email: response.profileObj.email
+    // }) 
+
+
+     // signup
     // response.profileObj.tokenId do a GET to google website to confirm this guy
     // then I look up the user by email wiuth a normal login()
     // if no user then i do a signup with his username: response.profileObj.email and email the same then just give him a session token? 
@@ -180,7 +212,8 @@ class LoginForm extends React.Component {
               onSuccess={this.responseGoogle}
               onFailure={this.responseGoogle}
               cookiePolicy={'single_host_origin'}
-            />
+               
+            /> IMPORTANT: works but is not secure yet
 
           </div>
         </form>

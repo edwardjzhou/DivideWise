@@ -121,7 +121,7 @@ span .text-heart {
 }
 
 #topbar-container {
-  display: flex !important;
+  display: flex;
   position: static;
   justify-content: space-between;
   height: 18%;
@@ -135,93 +135,63 @@ span .text-heart {
   text-align: center;
   vertical-align: baseline;
 
-  height: 20%;
-  width: 180px;
+  height: 100%;
+  width: 300px;
   margin: 0px;
   padding: 0px;
   display: flex;
 }
 
 .whitelogin {
-  /* Font & Text */
-  font-family: Montserrat;
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
+  text-align: center;
+  display: block;
+  margin-top: 10px;
+  width: 40%;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: normal;
   line-height: 21px;
   text-decoration: none solid rgb(28, 194, 159);
-  text-align: start;
-  text-indent: 0px;
-  text-transform: none;
-  vertical-align: middle;
-  white-space: normal;
-  word-spacing: 0px;
-
-  /* Color & Background */
-  background-attachment: scroll;
-  background-color: rgba(0, 0, 0, 0);
-  background-image: none;
-  background-position: 0% 0%;
-  background-repeat: repeat;
+  padding: 20px;
   color: rgb(28, 194, 159);
 
   /* Box */
-  height: 21px;
-  width: 76.5625px;
-  border: 0px solid rgb(28, 194, 159);
-  border-top: 0px solid rgb(28, 194, 159);
-  border-right: 0px solid rgb(28, 194, 159);
-  border-bottom: 0px solid rgb(28, 194, 159);
-  border-left: 0px solid rgb(28, 194, 159);
+  height: 50px;
   margin: 0px;
-  padding: 0px 16px;
-  max-height: none;
-  min-height: 0px;
-  max-width: none;
-  min-width: 0px;
+  // padding: 0px 16px;
+
 }
 
 .tealsignup {
   /* Font & Text */
-  font-family: Montserrat;
-  font-size: 14px;
+  margin-top: 5px;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
   font-style: normal;
   font-variant: normal;
   font-weight: 600;
   letter-spacing: normal;
   line-height: 21px;
   text-decoration: none solid rgb(255, 255, 255);
-  text-align: start;
-  text-indent: 0px;
+
   text-transform: none;
   vertical-align: baseline;
-  white-space: normal;
-  word-spacing: 0px;
+
 
   /* Color & Background */
-  background-attachment: scroll;
   background-color: rgb(28, 194, 159);
-  background-image: none;
-  background-position: 0% 0%;
-  background-repeat: repeat;
   color: rgb(255, 255, 255);
 
   /* Box */
   height: 45px;
-  width: 95.1719px;
+  width: 40%;
   border: 0px solid rgb(255, 255, 255);
   border-top: 0px solid rgb(255, 255, 255);
   border-right: 0px solid rgb(255, 255, 255);
   border-bottom: 0px solid rgb(255, 255, 255);
   border-left: 0px solid rgb(255, 255, 255);
-  margin: 2px 0px -2px;
+  margin: 8px 0px -2px;
   padding: 12px 20px;
-  max-height: none;
-  min-height: auto;
-  max-width: none;
-  min-width: auto;
 
   /* Positioning */
   position: static;
@@ -319,8 +289,7 @@ span .text-heart {
 .transformingtext {
   width: 40%;
   margin-top: 7%;
-  margin-left: 25%;
-  // margin: 20%
+  margin-left: 20%;
   font-size: 44;
   letter-spacing: 1px;
 }
