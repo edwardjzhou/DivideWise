@@ -1,5 +1,11 @@
 #total_balances {
   /* Font & Text */
+
+  overflow: hidden;
+  white-space: nowrap;
+  position:relative;
+
+
   justify-content: space-between;
   font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 25px;
@@ -16,16 +22,7 @@
   white-space: normal;
   word-spacing: 0px;
 
-  /* Color & Background */
-  background-attachment: scroll;
-  background-color: rgba(0, 0, 0, 0);
-  background-image: none;
-  background-position: 0% 0%;
-  background-repeat: repeat;
-  color: rgb(0, 0, 0);
-
-  /* Box */
-  height: 6%;
+  height: min(4rem, 150px);
   width: 100%;
   border: 0px none rgb(0, 0, 0);
   border-top: 0px none rgb(0, 0, 0);
@@ -39,49 +36,29 @@
   max-width: none;
   min-width: 0px;
 
-  /* Positioning */
-  position: static;
-  top: auto;
-  bottom: auto;
-  right: auto;
-  left: auto;
-  float: none;
-  display: flex;
-  clear: none;
-  z-index: auto;
+ 
 
-  /* List */
-  list-style-image: none;
-  list-style-type: disc;
-  list-style-position: outside;
-
-  /* Table */
-  border-collapse: separate;
-  border-spacing: 0px 0px;
-  caption-side: top;
-  empty-cells: show;
-  table-layout: auto;
 
   /* Miscellaneous */
-  overflow: visible;
-  cursor: auto;
-  visibility: visible;
+  // overflow: visible;
+  // cursor: auto;
+  // visibility: visible;
 
   /* Effects */
-  transform: none;
-  transition: all 0s ease 0s;
+  // transform: none;
+  // transition: all 0s ease 0s;
   // outline: rgb(255, 0, 0) dashed 1px;
-  outline-offset: 0px;
+  // outline-offset: 0px;
   box-sizing: border-box;
-  resize: none;
-  text-shadow: none;
-  text-overflow: clip;
-  word-wrap: normal;
-  box-shadow: none;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+  // resize: none;
+  // text-shadow: none;
+  // text-overflow: clip;
+  // word-wrap: normal;
+  // box-shadow: none;
+  // border-top-left-radius: 0px;
+  // border-top-right-radius: 0px;
+  // border-bottom-left-radius: 0px;
+  // border-bottom-right-radius: 0px;
 }
 
 .total_balances {

@@ -227,6 +227,8 @@ class Bills extends React.Component {
             </div>
           )}
         </div>
+
+
         <div style={{ display: `flex`, flexWrap: `wrap`, height: `` }}>
             <div
               style={{
@@ -253,7 +255,7 @@ class Bills extends React.Component {
               className="columnheaders"
             >
             YOU ARE OWED
-        </div>
+          </div>
 
 
             {/* MOSTLY WRITTEN LEFT SIDE that needs margin on the left image */}
