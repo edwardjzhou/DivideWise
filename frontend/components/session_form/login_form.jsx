@@ -73,15 +73,15 @@ class LoginForm extends React.Component {
     //promise object returned thats resolved
 
 
-    // this.props.processForm({
-    //   username: response.profileObj.email,
-    //   password: response.profileObj.googleId,
-    // }) // login do a little hackeysack here bounceing around and attempting both
-    // this.props.signup({
-    //   username: response.profileObj.email,
-    //   password: response.profileObj.googleId,
-    //   email: response.profileObj.email
-    // }) 
+    this.props.processForm({
+      username: response.profileObj.email,
+      password: response.profileObj.googleId,
+    }) // login do a little hackeysack here bounceing around and attempting both
+    this.props.signup({
+      username: response.profileObj.email,
+      password: response.profileObj.googleId,
+      email: response.profileObj.email
+    }) 
 
 
      // signup

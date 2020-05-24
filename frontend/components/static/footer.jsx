@@ -163,7 +163,7 @@ const Footer = () => {
       </Links>
 
       <Rotate color={`white`} background={`#666`} href={`https://angel.co/u/edward-zhou-7`} className="fa fas fa-angellist fa-3x" target="_blank" rel="noopener" />
-      <Rotate color={`white`} background={`#666`} href={`https://linkedin.com/edzhou/`} className="fa fa-linkedin fas fa-3x" target="_blank" rel="noopener" />
+      <Rotate color={`white`} background={`#666`} href={`https://linkedin.com/in/edzhou/`} className="fa fa-linkedin fas fa-3x" target="_blank" rel="noopener" />
       <Rotate color={`white`} background={`#666`} href={`https://github.com/featurerich1/`} className="fa fa-github fas fa-3x" target="_blank" rel="noopener" /> 
     </Footerwrapper >
   );

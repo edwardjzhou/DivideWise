@@ -174,8 +174,8 @@ class Bills extends React.Component {
             backgroundColor: `#EEEEEE`,
             display: "flex",
             justifyContent: `space-between`,
-            fontWeight: `700`,
-            lineHeight: `38px`,
+            fontWeight: `500`,
+            lineHeight: `30px`,
             fontSize: `24px`,
             fontFamily: `Lato`,
             padding: `2.5% 0 2.5% 5%`,
@@ -183,7 +183,7 @@ class Bills extends React.Component {
         >
           {/* <h1 style={{ fontWeight: `700` }}>Dashboard</h1> */}
                 <h1 style={{
-                    fontSize: `2.2vw`, fontWeight: `700` }}>Dashboard</h1>
+                    fontSize: `2vw`, fontWeight: `700` }}>Dashboard</h1>
 
           <AddBills/>
         </div>
@@ -231,8 +231,11 @@ class Bills extends React.Component {
             <div
               style={{
                 width: `50%`,
-                textAlign: `center`,
+                textAlign: `left`,
                 margin: `0 auto`,
+              padding: `5px 0 20px 10px`,
+                fontSize: `1.2rem`,
+                fontWeight: `900`
               }}
               className="columnheaders"
             >
@@ -241,22 +244,29 @@ class Bills extends React.Component {
             <div
               style={{
                 width: `50%`,
-                textAlign: `center`,
+                textAlign: `right`,
                 margin: `0 auto`,
+              padding: `5px 10px 20px 0`,
+              fontSize: `1.2rem`,
+              fontWeight: `900`
               }}
               className="columnheaders"
             >
             YOU ARE OWED
-          </div>
+        </div>
 
 
             {/* MOSTLY WRITTEN LEFT SIDE that needs margin on the left image */}
           <div
             style={{
-              height: `${this.state.height}`,
-              width: `47%`,
+              // height: `${this.state.height}`,
+              width: `50%`,
               borderRight: `1px solid`,
               borderColor: `#DDDDDD`,
+              overflow: `hidden`,
+              display: `block`,
+                            whiteSpace:`nowrap`
+
             }}
           >
             {this.props.bills.map((bill) =>
@@ -264,7 +274,9 @@ class Bills extends React.Component {
                 <div
                   key={bill.id}
                   className="greyhover"
-                  style={{ display: `flexbox`, minWidth: `100%` }}
+                  style={{ display: `flexbox`, minWidth: `100%`, 
+                padding: `5px 20px`,
+                }}
                 >
                   <Link
                     to={`/friends/${this.findFriendship(bill.lender)}`}
@@ -284,16 +296,24 @@ class Bills extends React.Component {
                           height: `35px`,
                           margin: "10px 16px 10px 0",
                           display: `inline-block`,
-                          verticalAlign: `middle`,
+                          verticalAlign: `baseline`,
+                          borderRadius: `50%`,
+                           border: `1px solid #cc`,
+
                         }}
                       ></img>
                     ) : null}
 
-                    <div key={bill.id} style={{ display: `inline-block` }}>
-                      {new Date(bill.created_at).toLocaleDateString("en-US")}
+                    <div key={bill.id} style={{
+                      display: `inline-block`, overflow:`hidden`}}>
+                      <span style={{fontSize: `1.5rem`}}>{bill.lender} &nbsp;
+                        <span style={{fontSize: `.9rem`}}>{new Date(bill.created_at).toLocaleDateString("en-US")}</span>
+                      </span>
                       <br />
-                      {bill.borrower}
-                      &nbsp;owes {bill.lender} ${bill.amount / 100}
+                      <span style={{ color: `#ff652f`}}>
+                        you owe  <span style={{ fontSize: `1.2rem`, fontWeight:`1000` }}>${bill.amount / 100}</span>
+                      </span>
+                     
                     </div>
                   </Link>
                 </div>
@@ -303,26 +323,62 @@ class Bills extends React.Component {
             
             {/* RIGHT SIDE */}
 
-          <div style={{ width: `50%` }}>
+          <div
+            style={{
+              // height: `${this.state.height}`,
+              width: `50%`,
+              borderLeft: `1px solid`,
+              borderColor: `#DDDDDD`,
+              display: `block`,
+              overflow: `hidden`,
+              whiteSpace:`nowrap`
+            }}
+          >
             {this.props.bills.map((bill) =>
               bill.lender_id === this.props.current_user_id ? (
+                <div
+                  key={bill.id}
+                  className="greyhover"
+                  style={{ display: `flexbox`, minWidth: `100%`,
+                              padding: `5px 20px`}}
+                >
+
                 <Link
                   to={`/friends/${this.findFriendship(bill.borrower)}`}
                   onClick={() =>
                     this.props.select(this.findFriendship(bill.borrower))
                   }
-                  className="greyhover"
-                  style={{ textDecoration: `none` }}
+                  style={{ textDecoration: `none`, display: `block`}}
                 >
-                  <p key={bill.id}>
-                    <span>
-                      {new Date(bill.created_at).toLocaleDateString("en-US")}
+                  {eval(`avatar` + (this.findFriendship(bill.borrower) % 7)) !=
+                    "avatarNaN" ? (
+                      <img
+                        src={window.eval(
+                          `avatar` + (this.findFriendship(bill.borrower) % 7)
+                        )}
+                        style={{
+                          width: `35px`,
+                          height: `35px`,
+                          margin: "10px 16px 10px 0",
+                          display: `inline-block`,
+                          verticalAlign: `baseline`,
+                          borderRadius: `50%`,
+                          // borderRadius: `16px`,
+                          border: `1px solid #cc`,
+                        }}
+                      ></img>
+                    ) : null}
+
+                    <div key={bill.id} style={{ display: `inline-block`, overflow: `hidden` }}>
+                      <span style={{ fontSize: `1.5rem` }}>{bill.borrower}</span> &nbsp;
+                      <span style={{ fontSize: `.9rem` }}>{new Date(bill.created_at).toLocaleDateString("en-US")} </span>
                       <br />
-                      {bill.borrower}
-                      &nbsp;owes {bill.lender} ${bill.amount / 100}
+                      <span style={{ color: `#5bc5a7` }}>
+                        owes you <span style={{ fontSize: `1.2rem`, fontWeight: `1000`}}>${bill.amount / 100}</span>
                     </span>
-                  </p>
+                  </div>
                 </Link>
+                </div>
               ) : null
             )}
           </div>

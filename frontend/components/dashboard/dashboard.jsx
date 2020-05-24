@@ -33,7 +33,7 @@ display: grid;
 // background-color: purple;
 // background-color: ${props => props.primary==0 ? "palevioletred" : "white"};
 grid-template-rows: min(6.5%, 50px) auto;
-grid-template-columns: 33.33% 33.33% 33.33%;
+grid-template-columns: 30% max(40%,400px) 30%;
 min-height: 100vh;
 min-width: 100vw
 `
