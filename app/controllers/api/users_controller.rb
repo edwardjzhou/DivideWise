@@ -12,12 +12,22 @@ class Api::UsersController < ApplicationController
     # before_action :require_login
     # // fetchUsers() in users API util uses this
     def index
+        require 'open-uri'
+        # url='http://www.google.com/'
+        url= "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk2MGE3ZThlODM0MWVkNzUyZjEyYjE4NmZhMTI5NzMxZmUwYjA0YzAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMjM3NjczMjg1NjEtbmRvM2I5bHBrMDNscjlrZmluZDd1cjRzcnNscDNxcnIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMzc2NzMyODU2MS1uZG8zYjlscGswM2xyOWtmaW5kN3VyNHNyc2xwM3Fyci5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwMDI5Mjg3MzMzMjc3NDE4Njc4OCIsImVtYWlsIjoiZWR3YXJkanpob3VAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJKenlhSmdjOEgzRlAyWTBadDlMazV3IiwibmFtZSI6IkVkd2FyZCBaaG91IiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tT1ljYzE5QW8xaVEvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVja3pxYmpwWmJvMTVzbVVNNGdMdmxmTUZyOHp4QS9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoiRWR3YXJkIiwiZmFtaWx5X25hbWUiOiJaaG91IiwibG9jYWxlIjoiZW4iLCJpYXQiOjE1OTAzNTIyNDcsImV4cCI6MTU5MDM1NTg0NywianRpIjoiYmI0YjljZGNkMjI4YWZiZjVhODNmNjk2YzNlYTRhMzEwM2FiYzYxNyJ9.Z6bgc1oZ4DsKbqloX4trflaDtu1T06K-59SzzUKsCRPrJc_a-wVr_dWLO_4hLESwxWGYke1rG8zepAxEEDmh0CSktHwMI4ODrAjXHBGpMyqs0cZLHFYQo490cTwUvfRt5JeTkHq8xEZkHxdX2hJd6et0wKIaMYo43jdidhu-deEriVZDm7iVyfsJlnWddVkR6XMWgyrOmo3hCrrkGttdYyS5Nw_1x1SLDuyijsA3A9v0Q72smgNMIyduKRjbnbEiYsHfajxWdADipsagnfPKDbbKxWMu-iuXF1EeAqRyEZAKb8VSLiHk0to1xs2z96WJIuar_nwBMXLGFVzZ2SXyCA"
+        # url = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk2MGE3ZThlODM0MWVkNzUyZjEyYjE4NmZhMTI5NzMxZmUwYjA0YzAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMjM3NjczMjg1NjEtbmRvM2I5bHBrMDNscjlrZmluZDd1cjRzcnNscDNxcnIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMzc2NzMyODU2MS1uZG8zYjlscGswM2xyOWtmaW5kN3VyNHNyc2xwM3Fyci5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwMDI5Mjg3MzMzMjc3NDE4Njc4OCIsImVtYWlsIjoiZWR3YXJkanpob3VAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiI1S1RxMjJNNThpbVBlamFPWngwTmpnIiwibmFtZSI6IkVkd2FyZCBaaG91IiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tT1ljYzE5QW8xaVEvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVja3pxYmpwWmJvMTVzbVVNNGdMdmxmTUZyOHp4QS9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoiRWR3YXJkIiwiZmFtaWx5X25hbWUiOiJaaG91IiwibG9jYWxlIjoiZW4iLCJpYXQiOjE1OTAxNTA0MDYsImV4cCI6MTU5MDE1NDAwNiwianRpIjoiYTI0MDU0YmI2NTgzYjNjNjlmZTJkNjVhZTU3ZDZiZGMyOTNmNzg4YiJ9.Tp5GFaEzKNzz5T2ShupZnmUZn_XZf4fe06LJ774yDswmg35gKTtJesBBpeIpm0RHipRAvzqxf-xSSkyv52cylHTl4wwPMlaTmEfTjpKm1ANKfLI1TrnJflBB1v_ZV6xV1DaIuwss53IH4AacakN2eHnlp9nzk2obGrhFY80qB5kewHNBAGi4VtE5HspjoeYlhaUtkU-9TnIsnu3pqTBYAsfIovaQUWn9GHGGmk4qfrGKltWM5EyDsL-jYARut1_Vs6jmWE8jY_eWKUt1Dpm5-iav_4WzV273Vge0bkP0vqZiGKrW2UyqPJiw93qMirvxc2CT6OqH3dNKvbN-kyXtwA"
+        @data = URI.parse(url).read
+        # source= open(url).read
+        render json: @data
+        # @users = User.all
+        # render "api/users/index"
 
-               
-        @users = User.all
-        render "api/users/index"
-        # current_user
-        # render json: @current_user
+        # require 'net/http'
+
+        # source = Net::HTTP.get('stackoverflow.com', '/index.html')
+        # p source
+        # p source.to_s 
+        # render json: source.to_s
     end
 
 

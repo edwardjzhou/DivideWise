@@ -64,11 +64,9 @@ import Comments from './comments';
     element.setAttribute('data-collapsed', 'false');
   }
   function handle(e) {
-    // document.getElementById(name).addEventListener('click', function (e) {
-    // var section = document.querySelector('.section.collapsible');
-      
+    // if (e.target !== e.currentTarget) return
+    console.log(e.target, e.currentTarget)
     var section = document.querySelector(`.section.collapsible#comments` + e.currentTarget.attributes.id.value)   //AND is e.currentTarget.attribute.id for ID
-  
     var isCollapsed = section.getAttribute('data-collapsed') === 'true';
 
     if (isCollapsed) {

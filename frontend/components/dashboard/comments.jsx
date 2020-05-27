@@ -41,10 +41,12 @@ function Comments ( props ) {
 
     //style = {{ display: props.isVisible ? `block` : `none` }
     return (
-        <div className="section collapsible" style={{ overflow: `hidden`, transition: `height 0.5s ease-out`, height:`auto` }} id={`comments${props.billId}`}>
-            {/* {JSON.stringify(props.comments)} */}
+        <div className="section collapsible" style={{display: ``, overflow: `hidden`, transition: `height 0.5s ease-out`, height:`auto` }} id={`comments${props.billId}`}>
+            <div style={{ marginLeft: `50%`}}>
             {props.comments.map( (comment) => <CommentItem data = {comment}>  </CommentItem> )}
-            
+                <textarea placeholder="Add a comment" cols="40" rows="2" />
+                <button onSubmit={``}>Post</button>
+            </div>
         </div>
     )
 } 
@@ -79,9 +81,10 @@ const Item = styled.div`
 function CommentItem ( {data} ){
     const {user_id, body, created_at} = data
     return <Item> 
-        
+        <span style={{ float: `right` }}>×</span>
+
         {user_id} 
-        {created_at}
+        {Date(created_at)}
         {body}
     
      </Item>

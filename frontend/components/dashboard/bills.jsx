@@ -1,10 +1,3 @@
-/* eslint-disable react/prop-types */
-// Remember: constructor run -> render runs -> componentDIDMount
-
-// every MAP() function needs a key database id or index id
-// have a listitem = props => const {val} = this.props
-//<li> that is used everytime you map
-
 import React from "react";
 import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
@@ -20,30 +13,24 @@ class Bills extends React.Component {
       owes: null,
       owed: null,
       allin: null,
-    //   height: `100px`,
     };
     this.calculateTotalYouOwe = this.calculateTotalYouOwe.bind(this);
-    // this.getHeight = this.getHeight.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchBills();
     this.calculateTotalYouOwe();
-
-    // console.log(this.state.height)
-    // this.getHeight();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.bills !== this.props.bills) {
-      // console.log('billsz props has changed.')
+      console.log('bills props has changed from inside bills component.')
       this.calculateTotalYouOwe();
     }
   }
 
   componentWillUnmount() {
-    // console.log(5234234);
-    //   componentWillUnmount() reactdom.unmountcompponentatnode
+    console.log(`bills unmount`);
   }
 
   calculateTotalYouOwe() {
@@ -64,11 +51,6 @@ class Bills extends React.Component {
   }
 
   findFriendship(nameOfFriend) {
-    // console.log(this.props.friends.length)
-    // console.log(nameOfFriend)
-    // for (let i = 0; i < this.props.friends.length; i++){
-    //     console.log(this.props.friends[i].friends_name == nameOfFriend)
-    // }
     if (this.props.friends.length == 0) return 1;
     return this.props.friends
       .filter((friend) => {
@@ -154,18 +136,7 @@ class Bills extends React.Component {
       lineHeight: `16px`,
       fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif `
     };
-    // console.log(window.screen.height)
-    // console.log(this.state.height)
-
-    // <div
-    //   // className="column YOU_OWE column_main"
-    //   //you_owe gives it a border
-    //   //column main unfloats it 
-    //   className="YOU_OWE column_main"
-
-    //   style={{ margin: `0px`, padding: `0 0 0 0`, height: `` }}
-    // //this is necesary otherwise theres padding for the Dashboard top gray panel
-    // >
+ 
     return (
       <div className= {this.props.className}>
         <div
@@ -181,9 +152,9 @@ class Bills extends React.Component {
             padding: `2.5% 0 2.5% 5%`,
           }}
         >
-          {/* <h1 style={{ fontWeight: `700` }}>Dashboard</h1> */}
                 <h1 style={{
-                    fontSize: `2vw`, fontWeight: `700` }}>Dashboard</h1>
+                  fontSize: `2vw`, fontWeight: `700` }}>Dashboard
+                </h1>
 
           <AddBills/>
         </div>
@@ -273,19 +244,14 @@ class Bills extends React.Component {
           >
             {this.props.bills.map((bill) =>
               bill.borrower_id === this.props.current_user_id ? (
-                <div
-                  key={bill.id}
-                  className="greyhover"
-                  style={{ display: `flexbox`, minWidth: `100%`, 
-                padding: `5px 20px`,
-                }}
-                >
+
                   <Link
                     to={`/friends/${this.findFriendship(bill.lender)}`}
                     onClick={() =>
                       this.props.select(this.findFriendship(bill.lender))
                     }
-                    style={{ textDecoration: `none`, display: `block` }}
+                    className='greyhover'
+                    style={{ textDecoration: `none`, display: `block`, padding: `5px 10px` }}
                   >
                     {eval(`avatar` + (this.findFriendship(bill.lender) % 7)) !=
                     "avatarNaN" ? (
@@ -318,7 +284,6 @@ class Bills extends React.Component {
                      
                     </div>
                   </Link>
-                </div>
               ) : null
             )}
           </div>
@@ -338,19 +303,15 @@ class Bills extends React.Component {
           >
             {this.props.bills.map((bill) =>
               bill.lender_id === this.props.current_user_id ? (
-                <div
-                  key={bill.id}
-                  className="greyhover"
-                  style={{ display: `flexbox`, minWidth: `100%`,
-                              padding: `5px 20px`}}
-                >
+
 
                 <Link
                   to={`/friends/${this.findFriendship(bill.borrower)}`}
                   onClick={() =>
                     this.props.select(this.findFriendship(bill.borrower))
                   }
-                  style={{ textDecoration: `none`, display: `block`}}
+                  className="greyhover"
+                  style={{ textDecoration: `none`, display: `block`, padding:`5px 10px`}}
                 >
                   {eval(`avatar` + (this.findFriendship(bill.borrower) % 7)) !=
                     "avatarNaN" ? (
@@ -365,7 +326,6 @@ class Bills extends React.Component {
                           display: `inline-block`,
                           verticalAlign: `baseline`,
                           borderRadius: `50%`,
-                          // borderRadius: `16px`,
                           border: `1px solid #cc`,
                         }}
                       ></img>
@@ -380,7 +340,6 @@ class Bills extends React.Component {
                     </span>
                   </div>
                 </Link>
-                </div>
               ) : null
             )}
           </div>
@@ -408,7 +367,3 @@ const mDTP = (dispatch) => {
 };
 
 export default connect(mSTP, mDTP)(Bills);
-
-// something in mdtp is called with the callback with dispatch in it only after that dispatch is called then is map state to props called which is an update
-// that will call componentdidupdate
-// then render is called then child components get a updated prop if they do then they get rerendered
