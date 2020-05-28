@@ -65,7 +65,8 @@ import Comments from './comments';
   }
   function handle(e) {
     // if (e.target !== e.currentTarget) return
-    console.log(e.target, e.currentTarget)
+    console.log(e.target,)
+    console.log(e.currentTarget)
     var section = document.querySelector(`.section.collapsible#comments` + e.currentTarget.attributes.id.value)   //AND is e.currentTarget.attribute.id for ID
     var isCollapsed = section.getAttribute('data-collapsed') === 'true';
 
@@ -196,6 +197,7 @@ class Friendbills extends React.Component {
 // >
   render() {
     return (
+      <>
       <div className={this.props.className}>  
         {this.props.friends[this.props.match.params.friendId] === undefined ? (
           this.renderNoFriend()
@@ -281,91 +283,13 @@ class Friendbills extends React.Component {
                   </div>
                   {/* COMMENTS COMPONENT RENDERED HERE */}
 
-                  <Comments billId={bill.id} isVisible={false || this.state.visibleBills[bill.id]} />
-
-                  {/* COMMENTS COMPONENT RENDERED HERE */}
-
-                  {/* END BILL */}
-
-
-                  {/* PAYMENTS HERE */}
-                  {bill.payments != undefined && bill.payments.length != 0
-                    ? bill.payments.map((payment) => {
-                        return (
-                          <div
-                          key= {`PAYMENT->${payment.id}`}
-                            style={{
-                              position: `relative`,
-                              borderBottom: `1px solid #eee`,
-                              display: `block`,
-                            }}
-                          >
-                            <div
-                              style={{
-                                cursor: `pointer`,
-                                display: `flex`,
-                                padding: `9px 5px 6px 9px`,
-                                position: `relative`,
-                                justifyContent: `space-between`,
-                                marginLeft: ``,
-                                marginRight: `50px`,
-                              }}
-                            >
-
-                              <div style={{ display: `flex` }}>
-                                
-                                <img
-                                  height="19px"
-                                  width="19px"
-                                  style={{ margin: `0 0 0 0` }}
-                                  src={window.payment}
-                                />
-                                &nbsp;
-                                
-                                <div>
-                                  {new Date(
-                                    Object.values(payment)[0].created_at
-                                  ).toLocaleDateString("en-US")}
-                                </div>
-
-                                <div style={{ minWidth: "51px" }}> &nbsp;</div>
-
-                                {Object.values(payment)[0].payer_id ==
-                                this.props.current_user_id
-                                  ? this.props.current_user.username +
-                                    " paid " +
-                                    bill.lender
-                                  : bill.borrower +
-                                    " paid " +
-                                    this.props.current_user.username}
-                                ${Object.values(payment)[0].amount / 100 + " "}
-
-                              </div>
-
-                              <div style={{ display: ``, paddingLeft: `0` }}>
-                                {Object.values(payment)[0].payer_id ==
-                                this.props.current_user_id
-                                  ? "you paid "
-                                  : "you received "}
-                                ${Object.values(payment)[0].amount / 100 + " "}
-                              </div>
-
-                            </div>
-
-                          
-
-                          </div>
-
-                        );
-                      }) 
-
-                    : null}
                 </div>
               );
             })}
           </div>
         )}
       </div>
+      </>
     );
   }
 }

@@ -1,10 +1,3 @@
-// block eles like divs and li  can be made inline with display:inline didnt know that although the ul will still be block i guess
-
-
-//setstate in the <button onClick={ ()=> thios.setstate} 
-//diosplay state in render and setstate in render is smart! enver thought of it
-
-
 // DESIGN DECISION: comments may be updated very fast almost chat-like/2-way-street dependent rather htan just 1 person like all my other fetches so im gonna just fetch new data nonstop
 
 import React from "react";
