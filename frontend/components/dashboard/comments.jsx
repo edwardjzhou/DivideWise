@@ -12,6 +12,9 @@ import styled, { css, keyframes } from "styled-components";
 // from Connect
 // we subscribe to fetchcomments from actions as a prop (it is a thunk action creator function)
 // we subscribe to state.entities.comments as props.comments (it is an object of comment objects)
+function dontHandle (e) {
+    e.stopPropagation()
+}
 
 function Comments ( props ) {
     
@@ -34,7 +37,9 @@ function Comments ( props ) {
 
     //style = {{ display: props.isVisible ? `block` : `none` }
     return (
-        <div className="section collapsible" style={{display: ``, overflow: `hidden`, transition: `height 0.5s ease-out`, height:`auto` }} id={`comments${props.billId}`}>
+        <div className="section collapsible" style={{display: ``, overflow: `hidden`, transition: `height 0.5s ease-out`, height:`auto` }} 
+        id={`comments${props.billId}`}
+        onClick={dontHandle}>
             <div style={{ marginLeft: `50%`}}>
             {props.comments.map( (comment) => <CommentItem data = {comment}>  </CommentItem> )}
                 <textarea placeholder="Add a comment" cols="40" rows="2" />

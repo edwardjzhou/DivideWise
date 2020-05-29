@@ -1,12 +1,3 @@
-//eventpropagation: big parent has a onclick event handler. YOU WANT child to have access to parents. when a child is clicked the event handlers callback has to call e.stoppropgation if you want stop
-//The currentTarget refers to the element the event handler has been attached, as opposed to target, which identifies the element on which the event occurred and which may be its descendant.
-// REASONING: children are dnyamically generated list items or something after docuemnt load
-// parents were there all along thus attahc event listener to parent and its chidlren also get the same thing attached to them kinda
-// but the parent may be a child of someone else so its like a 2 way street -- all of his parents will also get the event sent to them and activate if same event type + has access to a event listener thesmelf
-// can use elementNode. MATCHES('element') to compare html element
-// this.classList.value names of yoru classes
-
-// note to self: forceUpdate only re-renders own component NOT all mounted components
 import React from "react";
 import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
@@ -89,9 +80,9 @@ class Friendbills extends React.Component {
     this.findTheBorrowedBills = this.findTheBorrowedBills.bind(this);
     this.findFriendId = this.findFriendId.bind(this);
     this.iBorrowed = [];
-    
-    this.handleVisibility = this.handleVisibility.bind(this);
-    
+  
+    // this.handleVisibility = this.handleVisibility.bind(this);
+    this.dontHandle = this.dontHandle.bind(this)
   }
 
   componentDidMount() {
@@ -170,31 +161,36 @@ class Friendbills extends React.Component {
     );
   }
 
-  handleVisibility(billId){
-    // experimenting with OBJECT STATE variables
-    // no non null assertions in obejcts??
-    // re: state merging
-    // The merging is shallow, so this.setState({ comments }) leaves this.state.posts intact, but completely replaces this.state.comments.
+  // handleVisibility(billId){
+  //   // experimenting with OBJECT STATE variables
+  //   // no non null assertions in obejcts??
+  //   // re: state merging
+  //   // The merging is shallow, so this.setState({ comments }) leaves this.state.posts intact, but completely replaces this.state.comments.
 
 
-    let newVisibility = !this.state.visibleBills[`${billId}`]
-    // problems with mutating state FOUND OUT best practice is to just use prevState in a CB that returns a new obj {state.property: function of prevstate } 
-    this.setState( (prevState) => ({
-      visibleBills: {                   // state object that we want to update
-        ...prevState.visibleBills,    // keep all other key-value pairs
-        [billId]: newVisibility     // update the value of specific key
-      },
-      // newguy: 5 // can add in new this.state.PROPERTY anytime with setstate
+  //   let newVisibility = !this.state.visibleBills[`${billId}`]
+  //   // problems with mutating state FOUND OUT best practice is to just use prevState in a CB that returns a new obj {state.property: function of prevstate } 
+  //   this.setState( (prevState) => ({
+  //     visibleBills: {                   // state object that we want to update
+  //       ...prevState.visibleBills,    // keep all other key-value pairs
+  //       [billId]: newVisibility     // update the value of specific key
+  //     },
+  //     // newguy: 5 // can add in new this.state.PROPERTY anytime with setstate
 
-    }))
-    // this.setState( { visibleBills: newObject } )
-    console.log(this.state)
-  }
+  //   }))
+  //   // this.setState( { visibleBills: newObject } )
+  //   console.log(this.state)
+  // }
 
 //   <div
 //   className="YOU_OWE column_main"
 //   style={{ margin: `0px`, padding: `0px` }}
 // >
+  dontHandle(e){
+    e.stopPropagation()
+    console.log(`prevent propagation`)
+  }
+  
   render() {
     return (
       <>
@@ -241,7 +237,8 @@ class Friendbills extends React.Component {
                     lineheight: `18px`,
                     color: `#333333`,
                     fontSize: `13px`,
-                    overflow:`hidden`
+                    overflow:`hidden`,
+                    zIndex: `1000`
                   }}
                 >
                   <div
@@ -253,6 +250,7 @@ class Friendbills extends React.Component {
                       justifyContent: `space-between`,
                       marginLeft: `20px`,
                       marginRight: `50px`,
+                      zIndex: `0`
                     }}
                   >
                     <div>
@@ -281,8 +279,87 @@ class Friendbills extends React.Component {
                     </div>
                  
                   </div>
-                  {/* COMMENTS COMPONENT RENDERED HERE */}
 
+
+                  {/* COMMENTS COMPONENT RENDERED HERE */}
+                  <Comments onClick={this.dontHandle} billId={bill.id} />
+                  {/* COMMENTS COMPONENT RENDERED HERE */}
+                {/* END BILL */}
+
+
+                  {/* PAYMENTS HERE */}
+                  {bill.payments != undefined && bill.payments.length != 0
+                    ? bill.payments.map((payment) => {
+                        return (
+                          <div
+                          key= {`PAYMENT->${payment.id}`}
+                          onClick={this.dontHandle}
+                            style={{
+                              position: `relative`,
+                              borderBottom: `1px solid #eee`,
+                              display: `block`,
+                            }}
+                          >
+                            <div
+                              style={{
+                                cursor: `pointer`,
+                                display: `flex`,
+                                padding: `9px 5px 6px 9px`,
+                                position: `relative`,
+                                justifyContent: `space-between`,
+                                marginLeft: ``,
+                                marginRight: `50px`,
+                              }}
+                            >
+
+                              <div style={{ display: `flex` }}>
+                                
+                                <img
+                                  height="19px"
+                                  width="19px"
+                                  style={{ margin: `0 0 0 0` }}
+                                  src={window.payment}
+                                />
+                                &nbsp;
+                                
+                                <div>
+                                  {new Date(
+                                    Object.values(payment)[0].created_at
+                                  ).toLocaleDateString("en-US")}
+                                </div>
+
+                                <div style={{ minWidth: "51px" }}> &nbsp;</div>
+
+                                {Object.values(payment)[0].payer_id ==
+                                this.props.current_user_id
+                                  ? this.props.current_user.username +
+                                    " paid " +
+                                    bill.lender
+                                  : bill.borrower +
+                                    " paid " +
+                                    this.props.current_user.username}
+                                ${Object.values(payment)[0].amount / 100 + " "}
+
+                              </div>
+
+                              <div style={{ display: ``, paddingLeft: `0` }}>
+                                {Object.values(payment)[0].payer_id ==
+                                this.props.current_user_id
+                                  ? "you paid "
+                                  : "you received "}
+                                ${Object.values(payment)[0].amount / 100 + " "}
+                              </div>
+
+                            </div>
+
+                          
+
+                          </div>
+
+                        );
+                      }) 
+
+                    : null}
                 </div>
               );
             })}

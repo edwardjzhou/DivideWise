@@ -1,11 +1,11 @@
 import * as APIUtil from "../util/comment_util";
 
-// export const RECEIVE_BILLS = "RECEIVE_BILLS";
-// export const RECEIVE_BILL = "RECEIVE_BILL";
-// export const REMOVE_BILL = "REMOVE_BILL";
+export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
+export const REMOVE_COMMENT = "REMOVE_COMMENT";
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
-// export const RECEIVE_PAYMENT = "RECEIVE_PAYMENT";
-// export const RECEIVE_PAYMENTS = "RECEIVE_PAYMENTS";
+export const UPLOADING_COMMENT = "UPLOADING_COMMENT";
+export const DOWNLOADING_COMMENTS = "DOWNLOADING_COMMENTS";
+
 
 export const receiveComments = (comments) => {
     return {
