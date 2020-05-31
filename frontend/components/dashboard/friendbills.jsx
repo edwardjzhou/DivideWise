@@ -190,11 +190,11 @@ class Friendbills extends React.Component {
     e.stopPropagation()
     console.log(`prevent propagation`)
   }
-  
+
   render() {
     return (
-      <>
       <div className={this.props.className}>  
+        {/* topbar that's gray with 2 buttons */}
         {this.props.friends[this.props.match.params.friendId] === undefined ? (
           this.renderNoFriend()
         ) : (
@@ -203,7 +203,8 @@ class Friendbills extends React.Component {
             {this.findTheBorrowedBills()}
             <div
               style={{
-                borderBottom: `1px solid #DDDDDD`,
+                // borderBottom: `1px solid #eee`,
+                
                 backgroundColor: `#EEEEEE`,
                 display: "flex",
                 justifyContent: `space-between`,
@@ -215,10 +216,17 @@ class Friendbills extends React.Component {
               }}
             >
               <h1 style={{ fontWeight: `700` }}>{this.friendsName}</h1>
-              <AddBills></AddBills>
+              <AddBills/>
             </div>
+        {/* end topbar that's gray with 2 buttons */}
 
-              {/* START BILLS LIST  */}
+
+
+
+
+
+
+            {/* START BILLS LIST  */}
             {this.iBorrowed.length === 0 ? this.renderNoExpensesYet() : null}
             {this.iBorrowed.map((bill) => {
               return (
@@ -226,7 +234,7 @@ class Friendbills extends React.Component {
                 // ON CLICK SET THE CLICKED ON BILL TO SHOW ITS COMMENTS
                   // onClick = { () => this.handleVisibility(bill.id)}  // i think it creates a new anon function / bill so it would be better if i had a separate method for this
                   // ON CLICK SET THE CLICKED ON BILL TO SHOW ITS COMMENTS
-                  onClick={handle }
+                  onClick={handle}
                   id={`${ bill.id }`}
                   key= {`BILL->${bill.id}`}
                   style={{
@@ -238,7 +246,6 @@ class Friendbills extends React.Component {
                     color: `#333333`,
                     fontSize: `13px`,
                     overflow:`hidden`,
-                    zIndex: `1000`
                   }}
                 >
                   <div
@@ -250,7 +257,6 @@ class Friendbills extends React.Component {
                       justifyContent: `space-between`,
                       marginLeft: `20px`,
                       marginRight: `50px`,
-                      zIndex: `0`
                     }}
                   >
                     <div>
@@ -281,12 +287,10 @@ class Friendbills extends React.Component {
                   </div>
 
 
-                  {/* COMMENTS COMPONENT RENDERED HERE */}
-                  <Comments onClick={this.dontHandle} billId={bill.id} />
-                  {/* COMMENTS COMPONENT RENDERED HERE */}
-                {/* END BILL */}
 
 
+                    {/* commetns and payment wrapper div */}
+                  <div style={{display:`flex`}}>
                   {/* PAYMENTS HERE */}
                   {bill.payments != undefined && bill.payments.length != 0
                     ? bill.payments.map((payment) => {
@@ -295,17 +299,18 @@ class Friendbills extends React.Component {
                           key= {`PAYMENT->${payment.id}`}
                           onClick={this.dontHandle}
                             style={{
-                              position: `relative`,
-                              borderBottom: `1px solid #eee`,
-                              display: `block`,
+                                width: `50%`
+                              // position: `relative`,
+                              // borderBottom: `1px solid #eee`,
+                              // display: `block`,
                             }}
                           >
                             <div
                               style={{
                                 cursor: `pointer`,
-                                display: `flex`,
+                                // display: `flex`,
                                 padding: `9px 5px 6px 9px`,
-                                position: `relative`,
+                                // position: `relative`,
                                 justifyContent: `space-between`,
                                 marginLeft: ``,
                                 marginRight: `50px`,
@@ -328,7 +333,7 @@ class Friendbills extends React.Component {
                                   ).toLocaleDateString("en-US")}
                                 </div>
 
-                                <div style={{ minWidth: "51px" }}> &nbsp;</div>
+                                {/* <div style={{ minWidth: "51px" }}> &nbsp;</div> */}
 
                                 {Object.values(payment)[0].payer_id ==
                                 this.props.current_user_id
@@ -360,29 +365,25 @@ class Friendbills extends React.Component {
                       }) 
 
                     : null}
+                 
+                {/* payments end */}
+
+                  {/* COMMENTS COMPONENT RENDERED HERE */}
+                  <Comments
+                    onClick={this.dontHandle} billId={bill.id} />
+                  {/* COMMENTS COMPONENT RENDERED HERE */}
+                  </div>
                 </div>
               );
             })}
           </div>
         )}
-      </div>
-      </>
+
+        </div>   
     );
   }
 }
 
-{
-  /* {this.findFriendId()} */
-}
-{
-  /* {this.findTheBillsFirst()}   */
-}
-{
-  /* {console.log(this.props.friends)} */
-}
-{
-  /* {console.log(this.props.match.params.friendId)} */
-}
 
 const mSTP = (state) => {
   return {
