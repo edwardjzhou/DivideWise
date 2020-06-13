@@ -28,7 +28,7 @@ class Friends extends React.Component {
       // console.log('friends props has changed.')
       // console.log(this.props.location.pathname)
       this.forceUpdate();
-      return true;
+      // return true;
     }
   }
   //         <div id="friends_bar" className="column">

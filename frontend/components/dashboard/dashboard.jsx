@@ -23,7 +23,7 @@ import RightSidebar from './rightsidebar';
 // and passes to the argument component. confusing but understadnable
 
 //need learn renderprops, refs , context
-//didnt realize string == true was false
+//didnt realize string == true was false  
 // is this presentational OR container? presentaitonal probably no state 
 // any component fetching data is a container (commentlistcontainer). it should send everyhting it fetches like an array you would map over to a (commentlist to map out)
 
@@ -33,7 +33,7 @@ display: grid;
 // background-color: purple;
 // background-color: ${props => props.primary==0 ? "palevioletred" : "white"};
 grid-template-rows: min(6.5%, 50px) auto;
-grid-template-columns: 30% max(40%,400px) 30%;
+grid-template-columns: 30% max(40%,600px) 30%;
 min-height: 100vh;
 min-width: 100vw
 `

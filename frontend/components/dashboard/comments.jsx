@@ -1,41 +1,63 @@
-// DESIGN DECISION: comments may be updated very fast almost chat-like/2-way-street dependent rather htan just 1 person like all my other fetches so im gonna just fetch new data nonstop
+// ALL I NEED IS A BILL ID TO MAKE A COMMENT ENCAPSULATED 
 
 import React from "react";
 import { connect } from "react-redux";
 import { fetchComments, createComment, deleteComment } from "../../actions/comment_actions";
 import styled, { css, keyframes } from "styled-components";
 
+import { Skeleton, Bone } from 'react-loading-skeleton-placeholders'
 
-// Parent Component: friendbills
-// we receive billId as a prop from it
+{/* <Bone height={25}></Bone>
+    <Skeleton skull={true} amount={5}></Skeleton> */}
 
-// from Connect
-// we subscribe to fetchcomments from actions as a prop (it is a thunk action creator function)
-// we subscribe to state.entities.comments as props.comments (it is an object of comment objects)
-function dontHandle (e) {
-    e.stopPropagation()
-}
 
-function Comments ( props ) {
+
+
+class Comments extends React.Component( props ) {
     
-
-    React.useEffect( ()=>{
+    componentDidMount(){
         props.fetchComments(props.billId)
-    }, [props.billId] ) // if stuff in [] hasn't changed then DONT run the useEffect
-    
-    // React.useEffect(() => { 
-        // maybe some handle status change 
-        // like api calls here
-        // also this callback passed to useeffect returns a cleanup callback if you want
-        // return cleanup()=>{}
-        
-        // document.title = `You clicked ${state1} times` });
-    //   if (isOnline === null) {
-    //     return 'Loading...';
-    //   }
-    //   return isOnline ? 'Online' : 'Offline';
+    }
 
-    //style = {{ display: props.isVisible ? `block` : `none` }
+    dontHandle(e) {
+        e.stopPropagation()
+    }
+
+    commentItem({ data }) {
+        const Item = styled.div`
+        border: 1px solid #ccc;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        padding: 6px 8px;
+        background: #fff;
+        margin-bottom: 8px;
+        word-wrap: break-word;
+        `
+        const { user_id, body, created_at } = data
+        return ( <Item>
+            <span style={{ float: `right` }}>×</span>
+
+            {user_id} <br />
+            {Date(created_at)}<br />
+            {body}
+
+        </Item>
+        )
+    }
+
+    render() {
+
+    }
+
+    handleSubmit() {
+        props.createComment(
+            {
+                billId: props.billId
+            }
+        )
+    }
+
     return (
         <div className="section collapsible" style={{display: ``, overflow: `hidden`, transition: `height 0.5s ease-out`, height:`auto` }} 
         id={`comments${props.billId}`}
@@ -44,7 +66,8 @@ function Comments ( props ) {
             <div>
             {props.comments.map( (comment) => <CommentItem data = {comment}>  </CommentItem> )}
                 <textarea placeholder="Add a comment" cols="40" rows="2" />
-                <button onSubmit={``}>Post</button>
+                <button onSubmit={`handleSubmit`}>Post</button>
+     
             </div>
         </div>
     )
@@ -67,25 +90,5 @@ const mDTP = (dispatch) => {
 export default connect(mSTP, mDTP)(Comments)
 
 
-const Item = styled.div`
-    border: 1px solid #ccc;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    padding: 6px 8px;
-    background: #fff;
-    margin-bottom: 8px;
-    word-wrap: break-word;
-`
 
-function CommentItem ( {data} ){
-    const {user_id, body, created_at} = data
-    return <Item> 
-        <span style={{ float: `right` }}>×</span>
 
-        {user_id} 
-        {Date(created_at)}
-        {body}
-    
-     </Item>
-}

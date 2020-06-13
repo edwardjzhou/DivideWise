@@ -4,16 +4,15 @@ export const fetchComments = (billId) =>
         url: `api/bills/${billId}/comments`,
     });
 
-// export const fetchComment = (id) =>
-//     $.ajax({
-//         method: "GET",
-//         url: `api/bill/${id}`,
-//     });
+export const fetchComment = (billId) =>
+    $.ajax({
+        method: "GET",
+        url: `api/bill/${billId}/comments`,
+    });
     
-// export const createComment = (comment) =>
-//     $.ajax({
-//         method: "POST",
-//         url: `api/bills/${comment[bill_id]}/comments`,
-//         data: { comment },
-   
-//     });
+export const createComment = (comment) =>
+    $.ajax({
+        method: "POST",
+        url: `api/bills/${comment[`bill_id`]}/comments`,
+        data: { comment },
+    });

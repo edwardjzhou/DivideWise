@@ -6,6 +6,7 @@ import { openModal } from "../../actions/modal_actions";
 import AddBills from "./addbills";
 import { fetchFriends } from "../../actions/friend_actions";
 import Comments from './comments';
+import Payments from './payments';
 
 
 
@@ -192,7 +193,8 @@ class Friendbills extends React.Component {
   }
 
   render() {
-    return (
+    return ( 
+      // className for styled div classes passed in as props
       <div className={this.props.className}>  
         {/* topbar that's gray with 2 buttons */}
         {this.props.friends[this.props.match.params.friendId] === undefined ? (
@@ -291,87 +293,15 @@ class Friendbills extends React.Component {
 
                     {/* commetns and payment wrapper div */}
                   <div style={{display:`flex`}}>
-                  {/* PAYMENTS HERE */}
-                  {bill.payments != undefined && bill.payments.length != 0
-                    ? bill.payments.map((payment) => {
-                        return (
-                          <div
-                          key= {`PAYMENT->${payment.id}`}
-                          onClick={this.dontHandle}
-                            style={{
-                                width: `50%`
-                              // position: `relative`,
-                              // borderBottom: `1px solid #eee`,
-                              // display: `block`,
-                            }}
-                          >
-                            <div
-                              style={{
-                                cursor: `pointer`,
-                                // display: `flex`,
-                                padding: `9px 5px 6px 9px`,
-                                // position: `relative`,
-                                justifyContent: `space-between`,
-                                marginLeft: ``,
-                                marginRight: `50px`,
-                              }}
-                            >
+                    {/* PAYMENTS HERE */}
+                    <Payments bills={bill}></Payments>
+                  
+                  {/* payments end */}
 
-                              <div style={{ display: `flex` }}>
-                                
-                                <img
-                                  height="19px"
-                                  width="19px"
-                                  style={{ margin: `0 0 0 0` }}
-                                  src={window.payment}
-                                />
-                                &nbsp;
-                                
-                                <div>
-                                  {new Date(
-                                    Object.values(payment)[0].created_at
-                                  ).toLocaleDateString("en-US")}
-                                </div>
-
-                                {/* <div style={{ minWidth: "51px" }}> &nbsp;</div> */}
-
-                                {Object.values(payment)[0].payer_id ==
-                                this.props.current_user_id
-                                  ? this.props.current_user.username +
-                                    " paid " +
-                                    bill.lender
-                                  : bill.borrower +
-                                    " paid " +
-                                    this.props.current_user.username}
-                                ${Object.values(payment)[0].amount / 100 + " "}
-
-                              </div>
-
-                              <div style={{ display: ``, paddingLeft: `0` }}>
-                                {Object.values(payment)[0].payer_id ==
-                                this.props.current_user_id
-                                  ? "you paid "
-                                  : "you received "}
-                                ${Object.values(payment)[0].amount / 100 + " "}
-                              </div>
-
-                            </div>
-
-                          
-
-                          </div>
-
-                        );
-                      }) 
-
-                    : null}
-                 
-                {/* payments end */}
-
-                  {/* COMMENTS COMPONENT RENDERED HERE */}
-                  <Comments
-                    onClick={this.dontHandle} billId={bill.id} />
-                  {/* COMMENTS COMPONENT RENDERED HERE */}
+                    {/* COMMENTS COMPONENT RENDERED HERE */}
+                    <Comments
+                      onClick={this.dontHandle} billId={bill.id} />
+                    {/* COMMENTS COMPONENT RENDERED HERE */}
                   </div>
                 </div>
               );

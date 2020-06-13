@@ -1,7 +1,8 @@
 import merge from "lodash/merge";
 
 import {
-    RECEIVE_COMMENTS
+    RECEIVE_COMMENTS,
+    UPLOADING_COMMENT
 } from "../actions/comment_actions";
 
 const commentsReducer = (state = {}, action) => {
@@ -9,7 +10,11 @@ const commentsReducer = (state = {}, action) => {
     let newState = Object.assign({}, state);
     switch (action.type) {
         case RECEIVE_COMMENTS:
-            return action.comments;
+            return {
+                ...action.comments, ...newState
+            };
+        case UPLOADING_COMMENT:
+
         // case RECEIVE_BILL:
         //     const newBill = { [action.bill.id]: action.bill };
         //     return merge({}, state, newBill);
