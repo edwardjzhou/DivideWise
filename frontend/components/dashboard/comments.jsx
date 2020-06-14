@@ -1,28 +1,26 @@
-// ALL I NEED IS A BILL ID TO MAKE A COMMENT ENCAPSULATED 
 
 import React from "react";
 import { connect } from "react-redux";
 import { fetchComments, createComment, deleteComment } from "../../actions/comment_actions";
 import styled, { css, keyframes } from "styled-components";
 import { Skeleton, Bone } from 'react-loading-skeleton-placeholders'
+import { getUsers } from "../../actions/session_actions";
 
 class Comments extends React.Component {
-    // props are billId and donthandle
     constructor(props) {
         super(props)
-        this.dontHandle = this.dontHandle.bind(this)
+        // ALL I NEED IS A BILL ID TO MAKE A COMMENT ENCAPSULATED 
+        // 1 instance of class Comments per BILL. can have multiple comments at once in that one instance
+        // props are billId 
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     componentDidMount(){
         this.props.fetchComments(this.props.billId)
     }
 
-    dontHandle(e) {
-        e.stopPropagation()
-    }
-
-    commentItem(data ) {
-        const Item = styled.div`
+    commentItem( data ) {
+        const CommentItem = styled.div`
         border: 1px solid #ccc;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
@@ -34,40 +32,52 @@ class Comments extends React.Component {
         `
         const { id, user_id, bill_id, body, created_at } = data
         return (
-            <div>
-                <span style={{ float: `right` }}>×</span>
-
+            <CommentItem>   {/* styled components ARE REFLECTIVE OF data-"" but NOT random boolean attrs*/}
+                <span data-id={id} onClick={this.handleDelete} style={{ float: `right` }}>×</span>
                 {user_id} <br />
-                {Date(created_at)}<br />
+                {getDate(created_at)}<br />
                 {body}
 
-            </div>
+            </CommentItem>
         )
+
+        function getDate(date) {
+            date = new Date(date)
+            let day = date.getDay()
+            return (date.toLocaleString('default', { month: 'long' }) + ' ' + day)          
+
+        }
     }
 
     handleSubmit() {
-        this.props.createComment(
-            {
-                billId: props.billId
-            }
-        )
+        const newComment = {
+                                billId: this.props.billId
+                            }
+        this.props.createComment(newComment)
+
+    }
+    handleDelete(e) {
+        let response = confirm("Are you sure you want to delete this comment?");
+        if (response) this.props.deleteComment(e.target.getAttributes(`data-id`))
     }
 
     render() {
 
         return (
-            <div style={{ display: ``, overflow: ``, height: `auto` }}
-                onClick={this.dontHandle}>
-                {/* <div style={{ marginLeft: `50%`}}> */}
+            <div key={this.props.billId} style={{ ...this.props.style} } >
                 <div>
-                    {/* <Bone height={25}></Bone>
-    <Skeleton skull={true} amount={5}></Skeleton> */}
+                     {/* <Bone height={25} /> */}
 
-                    {this.props.comments.map((comment) => 
-                    this.commentItem(comment) )}
+                    {this.props.comments instanceof Array ? 
+                    this.props.comments.map((comment) => 
+                    this.commentItem(comment) ) : 
+                    <>
+                    {/* [this.props.comments] */}
+                    < Skeleton skull={false} amount={5} /> 
+                    </>}
 
                     <textarea placeholder="Add a comment" cols="40" rows="2" />
-                    <button onClick={this.handleSubmit}>Post</button>
+                    <button className="orangebutton" onClick={this.handleSubmit}>Post</button>
 
                 </div>
             </div>
@@ -77,18 +87,29 @@ class Comments extends React.Component {
    
 
 } 
+//RE:IMPORTING:Do nothing if this module has already been evaluated. Otherwise, transitively evaluate all module dependences of this module and then evaluate this module
 
-const mSTP = (state) => {
+
+
+const mSTP = (state, ownProps) => {  
     return {
-        comments: Object.values(state.entities.comments),  // state.entities.comments is an array with eles pointing to other objects { billId1 : {id: 1,user_id,bill_id, body,}}}
+        comments: state.entities.comments[ownProps.billId],  // state.entities.comments is an object of array with eles pointing to other objects { billId1 : {id: 1,user_id,bill_id, body,}}}
         friends: Object.values(state.entities.friends) // state.entities.friends is an object with each key being a friendship_id. after object.values its an array of objects
     };
 };
+//                               (state) => stateProps                      (state, ownProps) => stateProps
+// mapStateToProps runs when:     store state changes 	                    store state changes or  any field of ownProps is different
+// component re-renders when:      any field of stateProps is different	    any field of stateProps is different or any field of ownProps is different
 
-const mDTP = (dispatch) => {
+// mDTP is run whenever the connected component receives new ownPROPS or re-render from new props from mstp, so it's always up-to-date
+const mDTP = (dispatch, ) => { //ownProps
     return {
+        // getUsers: dispatch(getUsers()), // this automatically runs on any state change?
+        getUsers: () => dispatch(getUsers()),
         fetchComments: (billId) => dispatch(fetchComments(billId)),
-        createComment: (comment) => dispatch(createComment(comment)) 
+        createComment: (comment) => dispatch(createComment(comment)) ,
+        deleteComment: (commentId) => dispatch(deleteComment(commentId)),
+
     };
 };
 

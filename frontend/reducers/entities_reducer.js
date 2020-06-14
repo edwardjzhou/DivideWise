@@ -6,9 +6,9 @@ import payments from "./payments_reducer";
 import comments from './comments_reducer';
 
 export default combineReducers({
-  users: users,
-  bills: bills,
-  friends: friends,
-  payments: payments,
-  comments: comments,
+  users,
+  bills,
+  friends,
+  payments,
+  comments,
 });

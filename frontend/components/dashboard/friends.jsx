@@ -55,6 +55,7 @@ class Friends extends React.Component {
                   display: `block`
                 }}
               >
+              <img src={window.logoURL} height="20px"></img>
                 Dashboard
               </Link>
             ) : (
@@ -68,6 +69,7 @@ class Friends extends React.Component {
                   display:`block`,
                 }}
               >
+                <img src={window.logoURL} height="20px"></img>
                 Dashboard
               </Link>
             )}

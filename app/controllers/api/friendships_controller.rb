@@ -9,7 +9,7 @@ class Api::FriendshipsController < ApplicationController
         elsif @friendship.user_one_id == @friendship.user_two_id 
             render json: ["cant be own friend"]
         elsif @friendship.user_one_id == nil or @friendship.user_two_id==nil
-            render json: ["one of the friends is a nil user"]
+            render json: ["one of the friends is a nil user"], status:422
         elsif @friendship.user_one_id.to_i > @friendship.user_two_id.to_i
             @friendship.user_one_id, @friendship.user_two_id = 
             @friendship.user_two_id, @friendship.user_one_id

@@ -5,7 +5,8 @@
     "env",
     "react",
     "stage-2",
-    "stage-0"
+    "stage-0",
+    "@babel/preset-env"
   ]
 },
 
@@ -14,6 +15,7 @@
     "transform-es2015-arrow-functions",
     "check-es2015-constants",
     "transform-es2015-block-scoping",
-    "@babel/plugin-transform-runtime"
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-object-rest-spread"
   ]
 }

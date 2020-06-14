@@ -44,9 +44,10 @@ import Payments from './payments';
     element.style.height = sectionHeight + 'px';
 
     // when the next css transition finishes (which should be the one we just triggered)
-    element.addEventListener('transitionend', function (e) {
+    element.addEventListener('transitionend', function doesthiswork (e) {
       // remove this event listener so it only gets triggered once
-      element.removeEventListener('transitionend', arguments.callee);
+      // element.removeEventListener('transitionend', arguments.callee);
+      element.removeEventListener('transitionend', doesthiswork);
 
       // remove "height" from the element's inline styles, so it can return to its initial value
       element.style.height = null;
@@ -161,31 +162,6 @@ class Friendbills extends React.Component {
     );
   }
 
-  // handleVisibility(billId){
-  //   // experimenting with OBJECT STATE variables
-  //   // no non null assertions in obejcts??
-  //   // re: state merging
-  //   // The merging is shallow, so this.setState({ comments }) leaves this.state.posts intact, but completely replaces this.state.comments.
-
-
-  //   let newVisibility = !this.state.visibleBills[`${billId}`]
-  //   // problems with mutating state FOUND OUT best practice is to just use prevState in a CB that returns a new obj {state.property: function of prevstate } 
-  //   this.setState( (prevState) => ({
-  //     visibleBills: {                   // state object that we want to update
-  //       ...prevState.visibleBills,    // keep all other key-value pairs
-  //       [billId]: newVisibility     // update the value of specific key
-  //     },
-  //     // newguy: 5 // can add in new this.state.PROPERTY anytime with setstate
-
-  //   }))
-  //   // this.setState( { visibleBills: newObject } )
-  //   console.log(this.state)
-  // }
-
-//   <div
-//   className="YOU_OWE column_main"
-//   style={{ margin: `0px`, padding: `0px` }}
-// >
   dontHandle(e){
     e.stopPropagation()
     console.log(`prevent propagation`)
@@ -296,15 +272,24 @@ class Friendbills extends React.Component {
                   {this.renderBill(bill)}
 
                   {/* commetns and payment wrapper div */}
+
+                  {/* RE FLEX: flex-containers can use width and height; flex-basis controls items' width (w/o direc) w/o affecting absolute */}
+                  {/* flex-direction: row - flex items will align horizontally
+                  justify-content: flex-start - flex items will stack at the start of the line on the main axis
+                  align-items: stretch - flex items will expand to cover the cross-size of the container
+                  flex-wrap: nowrap - flex items are forced to stay in a single line
+                  flex-shrink: 1 - a flex item is allowed to shrink */}
                   <div id={`comments${bill.id}`}
                   onClick={this.dontHandle}
                   data-collapsed
-                  className="section collapsible" style={{ height: `0px`, display: `flex`, transition: `height 0.5s ease-out` }}>
+                  className="section collapsible" style={{ height: `0px`, display: `flex`, flexWrap: `nowrap`, transition: `height 0.5s ease-out` }}>
+                    {/* JUST LEARNED THAT styles on a COMPONENT are NOT applied but just passed down as a prop 
+                      class ane id are still reflective all else things like data-xxx are just props and not REFLECTIVE
+                    */}
+                    <Payments bill={bill} style={{width: `50%`, backgroundColor: `pink`, wordWrap: `break-word`}} current_user_id={this.props.current_user_id} current_user={this.props.current_user} />                        
 
-                    <Payments bill={bill} current_user_id={this.props.current_user_id} current_user={this.props.current_user}  />
 
-
-                    <Comments billId={bill.id} />
+                    <Comments billId={bill.id} style={{width:`50%`}}/>
                   </div>
                  
 

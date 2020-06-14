@@ -1,15 +1,14 @@
 import React from 'react';
-// import LeftMenu from './left_menu'
-//import Modal from './modal'
 import { connect } from 'react-redux';
 import { fetchBills, fetchBill } from '../../actions/bill_actions'
 // import { Link } from 'react-router-dom';
 
 class Payments extends React.Component {
+    // I SHOULD BE MADE DUMB SINCE I DONT CRUD ANY PAYMENTS.
     constructor(props) {
         super(props)
         // given this.props.bill
-
+        // console.log(props)
     }
 
     componentDidMount() {
@@ -19,7 +18,7 @@ class Payments extends React.Component {
         const { bill } = this.props
         return (
             <>
-                <div className="PAYMENTS">         
+                <div className="PAYMENTS" style={ {...this.props.style, ...{}} }>         
                  {JSON.stringify(bill)}
                 </div>
                 {/* {   
@@ -95,7 +94,7 @@ class Payments extends React.Component {
 
 const mSTP = (state) => {
     return {
-        bills: Object.values(state.entities.bills),
+        // bills: Object.values(state.entities.bills),
         //user: Object.values(state.entities.users)[0].username,
         current_user: state.entities.users[state.session.id].username
     }

@@ -37,6 +37,11 @@ class Api::UsersController < ApplicationController
 
         # render json: auth_params
     end
+
+
+
+
+
     #     # render all users last updated_at within 24 hrs for funs
     #     @users = User.order(updated_at: :desc).pluck(:updated_at)
     #     # @users = User.where('updated_at: (Time.now.midnight - 1.day})..Time.now.midnight')

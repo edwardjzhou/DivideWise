@@ -9,8 +9,9 @@ Rails.application.routes.draw do
     post :googleauth, to: "users#googleauth"
     resources :users, only: [:create, :index]
     resource :session, only: [:create, :destroy]
+    resources :payments, only: [:destroy, :update]
     resources :bills do
-      resources :comments, only: [:create, :index, :destroy]
+      resources :comments, only: [:create, :index]
       resources :payments, only: [:create, :index]
     end
     resources :friendships, only: [:create, :destroy, :index]
