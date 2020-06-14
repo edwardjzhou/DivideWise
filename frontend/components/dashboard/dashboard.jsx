@@ -154,7 +154,9 @@ class Dashboard extends React.Component {
         {/* internet says use renderprops here otherwise no way to get props from container component (dashboard.jsx) to a props.children component */}
             {/* 2nd col in 2nd row center section that changes depending on if we're in /#/Dashboard or /#/Friends or not */}
             <Switch>
-              <Route path="/dashboard" component={StyledBills} />
+              <Route path="/dashboard">
+                  <StyledBills/>
+              </Route> 
               <Route path="/friends/:friendId" component={StyledFriendbills} />
               {/* <Route path="/dashboard" render={() => <Bills />} />
               <Route path="/friends/:friendId" render={() => <Friendbills/>} /> */}

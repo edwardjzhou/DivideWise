@@ -246,12 +246,26 @@ span .text-heart {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
+// .filter-green {
+//   filter: invert(38%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+//     brightness(118%) contrast(119%);
+//   //   transform: rotate3d(0, 1, 0, 60deg);
+//   //   transition: transform 10000ms ease-in-out;
+// }
+
+// this is a purple that will go where green was (HOUSE
 .filter-green {
-  filter: invert(38%) sepia(79%) saturate(2476%) hue-rotate(86deg)
-    brightness(118%) contrast(119%);
-  //   transform: rotate3d(0, 1, 0, 60deg);
-  //   transition: transform 10000ms ease-in-out;
+  filter: invert(300%) sepia(100%) saturate(2000%) hue-rotate(260deg)
+    brightness(70%) contrast(180%);
 }
+
+
+
+// this is a weird green which wil go where blue was (PLANE
+.filter-blue { 
+    filter: invert(20%) sepia(120%) saturate(2000%) hue-rotate(140deg)
+    brightness(60%) contrast(139%);
+  }
 
 .filter-red {
   filter: invert(13%) sepia(92%) saturate(5165%) hue-rotate(9deg)
@@ -260,12 +274,12 @@ span .text-heart {
   //   		  transition: transform 10000ms ease-in-out;
 }
 
-.filter-blue {
-  filter: invert(9%) sepia(100%) saturate(6533%) hue-rotate(247deg)
-    brightness(94%) contrast(146%);
-  //   transform: rotate3d(0, 1, 0, 60deg);
-  //   		  transition: transform 10000ms ease-in-out;
-}
+// .filter-blue {
+//   filter: invert(9%) sepia(100%) saturate(6533%) hue-rotate(247deg)
+//     brightness(94%) contrast(146%);
+//   //   transform: rotate3d(0, 1, 0, 60deg);
+//   //   		  transition: transform 10000ms ease-in-out;
+// }
 
 .cellphone {
   position: absolute;

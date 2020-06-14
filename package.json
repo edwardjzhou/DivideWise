@@ -31,6 +31,7 @@
     "react-modal": "^3.11.1",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
+    "react-spinners": "^0.8.3",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
@@ -53,5 +54,4 @@
     "styles-loader": "^2.0.0"
   },
   "repository": "https://github.com/featurerich1/DivideWise.git"
-
 }

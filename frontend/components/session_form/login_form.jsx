@@ -1,9 +1,19 @@
 import React from "react";
 import NavBar from "../static/navbar";
 import { GoogleLogin } from 'react-google-login';
+import { css } from "@emotion/core";
+import HashLoader from "react-spinners/HashLoader";
+// FadeLoader		
+// HashLoader	
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+`;
 
-import { fetchOAUTH, verifyOAUTH } from './oauthsession.js'
-import { signup } from "../../actions/session_actions";
 
 
 
@@ -14,6 +24,7 @@ class LoginForm extends React.Component {
     this.state = {
       username: "",
       password: "",
+      loading: true,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoFill = this.demoFill.bind(this);
@@ -21,107 +32,8 @@ class LoginForm extends React.Component {
   }
 
 
-  //LITTLE PROOF OF CONCEPT: this is unsafe since anyone can figure out the user's googleId 
-// THIS PROBABLY ISNT SECURE IM JUST TESTING
-// i dont want to do devise omniauth2 in rails
-// is there any way i can 
-
-// if this oauth token info confirmed email is in the users database as a username
-// pretend we're in rails and from rails i send a get to the ooauth token info at googleapis.com
-// can i just say we';re confiremd at this point and force change that user's password to nothing for a brief instant for login
-// like can i @user = User.find_by(username: response.profileObj.email) @user.password = jsonwebtoken 
-// then try to log him in 
-
-
-// WHAT IF we let the user login to google and we get this frontend response.profileObj.JWT thing from that putative login
-// we send that to our rails server which makes a get request from google to make sure its real
-// then we find the user from our db with the the email from our rails get and set his pw to the 
-// id_token or jwt token value and let the putative frontend google account guy try to login wiht his jwt id
-
   responseGoogle(response) {
-    // let putativeJWT = null
-    // window.response = response
-    // this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
-    // console.log(response)
-
-    //i tried to get the user to get his own jwt from ajaxing google auth but its cors policy 
-    // so maybe i just set intiial pw of a new account to user's token id ? and i just check with rails that that user token is that email and then set database user pw to that token id
-    // seems relatively secure to me
-
-    // fetchOAUTH(response.tokenId).then(res => {
-    //   putativeJWT = res
-    //   console.log(putativeJWT)
-      // console.log(JSON.parse(putativeJWT))
-
-    // })
-    
-    // const answer = await verifyOAUTH(response.tokenId, response.profileObj.email)
     this.props.edwardAUTH(response.tokenId, response.profileObj.email)
-    // .then(this.props.history.push("/dashboard"))
-
-
-    // export const login = (user) => (dispatch) =>
-    //   APIUtil.login(user).then(
-    //     (user) => dispatch(receiveCurrentUser(user)),
-    //     (err) => dispatch(receiveErrors(err.responseJSON))
-    //   );
-    // export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
-    // console.log(answer)
-      // answer = res
-      // console.log(res)
-   
-
-    // https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow#oauth-2.0-endpoints_2
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('GET',
-    //   'https://www.googleapis.com/drive/v3/about?fields=user&' +
-    //   'access_token=' + params['access_token']);
-    // xhr.onreadystatechange = function (e) {
-    //   console.log(xhr.response);
-    // };
-    // xhr.send(null);
-    
-    //promise object returned thats resolved
-
-
-    // this.props.processForm({
-    //   username: response.profileObj.email,
-    //   password: response.profileObj.googleId,
-    // }) // login do a little hackeysack here bounceing around and attempting both
-    // this.props.signup({
-    //   username: response.profileObj.email,
-    //   password: response.profileObj.googleId,
-    //   email: response.profileObj.email
-    // }) 
-
-
-     // signup
-    // response.profileObj.tokenId do a GET to google website to confirm this guy
-    // then I look up the user by email wiuth a normal login()
-    // if no user then i do a signup with his username: response.profileObj.email and email the same then just give him a session token? 
-    // no jwt no nothing
-    // https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=eyJhiJSUzI1NiIsImtpZCI6Ijk2
-    // {
-      // "iss": "accounts.google.com",
-      //   "azp": ", // my client id
-      //     "aud": "", //my client id
-      //       "sub": "", //google id
-      //         "email": "@gmail.com",
-      //           "email_verified": "true",
-      //             "at_hash": "5Njg",
-      //               "name": "edward",
-      //                 "picture": "",
-      //                   "given_name": "Edward",
-      //                     "family_name": "",
-      //                       "locale": "en",
-      //                         "iat": "same as exp",
-      //                           "exp": "same as iat",
-      //                             "jti": "json web token here",
-      //                               "alg": "RS256",
-      //                                 "kid": "key id header parameter hint",
-      //                                   "typ": "JWT"
-    // }
-
   };
 
   update(field) {
@@ -153,11 +65,10 @@ class LoginForm extends React.Component {
       username: "edward",
       password: "password",
     });
-    setTimeout(() => this.props.processForm(this.state), 1000);
+    setTimeout( this.props.processForm.bind({}, this.state), 200);
   }
 
   render() {
-    // let styles = {transform: 'translate(-50 %, -50 %)'}
     return (
       <div className="login-form-container">
         <NavBar></NavBar>
@@ -170,9 +81,7 @@ class LoginForm extends React.Component {
         )}
         {/* end errors from logging in */}
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          {/* <img src={`${window.logoURL}`} alt="Logo square" className="login_logo" width="600" height="300" /> */}
           <div className="welcome">WELCOME TO DIVIDEWISE</div>
-          {/* Please {this.props.formType} or {this.props.navLink} */}
           <div className="login-form higherup">
             <br />
             <label>
@@ -215,8 +124,8 @@ class LoginForm extends React.Component {
             >
               Demo Log in
             </button>
-            <hr></hr>
-            Or login with Facebook/
+            <hr />
+            Or login with
             <GoogleLogin
               clientId="23767328561-ndo3b9lpk03lr9kfind7ur4srslp3qrr.apps.googleusercontent.com"
               buttonText="Google"
@@ -224,16 +133,30 @@ class LoginForm extends React.Component {
               onFailure={this.responseGoogle}
               cookiePolicy={'single_host_origin'}
                
-            /> IMPORTANT: works but is not secure yet
+            /> 
+        
+  
 
-          </div>
+            <HashLoader
+              css={override}
+              size={150}
+              color={"green"}
+              loading={this.state.loading}
+            /> 
+
+
+      
+
+
+
+          </div>  
         </form>
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 680 91"
-          class="w-full"
+          className="w-full"
           style={{ position: `absolute`, bottom: `0`, left: `0` }}
         >
           <path fill="#ACE4D6" d="M349 76.499L286 113V40z" />

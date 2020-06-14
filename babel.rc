@@ -6,7 +6,8 @@
     "react",
     "stage-2",
     "stage-0",
-    "@babel/preset-env"
+    "@babel/preset-env",
+    "@babel/preset-react"
   ]
 },
 
@@ -16,6 +17,7 @@
     "check-es2015-constants",
     "transform-es2015-block-scoping",
     "@babel/plugin-transform-runtime",
-    "@babel/plugin-proposal-object-rest-spread"
+    "@babel/plugin-proposal-object-rest-spread",
+    "emotion"
   ]
-}
+} 

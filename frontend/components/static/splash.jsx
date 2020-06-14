@@ -106,6 +106,7 @@ class Splash extends React.Component {
                 <span className="w3-animate-fading">
                   <dt
                     className={["text-heart", this.state.classname].join(" ")}
+                    style={{fontFamily: `sans-serif`}}
                   >
                     {this.state.answer}
                   </dt>
