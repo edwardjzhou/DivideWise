@@ -3,73 +3,70 @@ import React from 'react';
 //import Modal from './modal'
 import { connect } from 'react-redux';
 import { fetchBills, fetchBill } from '../../actions/bill_actions'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-class Payment extends React.Component {
+class Payments extends React.Component {
     constructor(props) {
         super(props)
+        // given this.props.bill
+
     }
 
     componentDidMount() {
-        // this.props.fetchBills()
     }
 
     render() {
-        const { bill } = props
+        const { bill } = this.props
         return (
-            {
-                bill.payments != undefined && bill.payments.length != 0
-                    ? bill.payments.map((payment) => {
+            <>
+                <div className="PAYMENTS">         
+                 {JSON.stringify(bill)}
+                </div>
+                {/* {   
+                (bill && bill.payments != undefined && bill.payments.length > 0) 
+                    ? bill.payments.map( (payment) => {
                         return (
                             <div
-                                key={`PAYMENT->${payment.id}`}
-                                onClick={this.dontHandle}
-                                style={{
-                                    width: `50%`
-                                    // position: `relative`,
-                                    // borderBottom: `1px solid #eee`,
-                                    // display: `block`,
-                                }}
-                            >
+                            key={`PAYMENT->${payment.id}`}
+                            onClick={this.dontHandle}
+                            style={{
+                            width: `50%`}}>
                                 <div
-                                    style={{
-                                        cursor: `pointer`,
-                                        // display: `flex`,
-                                        padding: `9px 5px 6px 9px`,
-                                        // position: `relative`,
-                                        justifyContent: `space-between`,
-                                        marginLeft: ``,
-                                        marginRight: `50px`,
-                                    }}
+                                style={{
+                                    cursor: `pointer`,
+                                    padding: `9px 5px 6px 9px`,
+                                    justifyContent: `space-between`,
+                                    marginLeft: ``,
+                                    marginRight: `50px`,
+                                }}
                                 >
 
                                     <div style={{ display: `flex` }}>
 
                                         <img
-                                            height="19px"
-                                            width="19px"
-                                            style={{ margin: `0 0 0 0` }}
-                                            src={window.payment}
+                                        height="19px"
+                                        width="19px"
+                                        style={{ margin: `0 0 0 0` }}
+                                        src={window.payment}
                                         />
-                                &nbsp;
+                                        &nbsp;
 
-                                <div>
-                                            {new Date(
-                                                Object.values(payment)[0].created_at
-                                            ).toLocaleDateString("en-US")}
+                                        <div>
+                                        {new Date(
+                                            Object.values(payment)[0].created_at
+                                        ).toLocaleDateString("en-US")}
                                         </div>
 
-                                        {/* <div style={{ minWidth: "51px" }}> &nbsp;</div> */}
 
                                         {Object.values(payment)[0].payer_id ==
-                                            this.props.current_user_id
-                                            ? this.props.current_user.username +
-                                            " paid " +
-                                            bill.lender
-                                            : bill.borrower +
-                                            " paid " +
-                                            this.props.current_user.username}
-                                ${Object.values(payment)[0].amount / 100 + " "}
+                                        this.props.current_user_id
+                                        ? this.props.current_user.username +
+                                        " paid " +
+                                        bill.lender
+                                        : bill.borrower +
+                                        " paid " +
+                                        this.props.current_user.username}
+                                        ${Object.values(payment)[0].amount / 100 + " "}
 
                                     </div>
 
@@ -78,24 +75,23 @@ class Payment extends React.Component {
                                             this.props.current_user_id
                                             ? "you paid "
                                             : "you received "}
-                                ${Object.values(payment)[0].amount / 100 + " "}
+                                         ${Object.values(payment)[0].amount / 100 + " "}
                                     </div>
 
                                 </div>
-
-
 
                             </div>
 
                         );
                     })
-
                     : null
-            }
+                } */}
+            </>
         );
     }
 
 }
+
 
 const mSTP = (state) => {
     return {
@@ -111,4 +107,4 @@ const mDTP = (dispatch) => {
     }
 }
 
-export default connect(mSTP, mDTP)(Dashboard)
+export default connect(mSTP, mDTP)(Payments)

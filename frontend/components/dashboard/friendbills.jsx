@@ -55,11 +55,10 @@ import Payments from './payments';
     // mark the section as "currently not collapsed"
     element.setAttribute('data-collapsed', 'false');
   }
+
   function handle(e) {
-    // if (e.target !== e.currentTarget) return
-    console.log(e.target,)
-    console.log(e.currentTarget)
-    var section = document.querySelector(`.section.collapsible#comments` + e.currentTarget.attributes.id.value)   //AND is e.currentTarget.attribute.id for ID
+
+    var section = document.querySelector(`.section.collapsible#comments` + e.currentTarget.attributes.id.value)   
     var isCollapsed = section.getAttribute('data-collapsed') === 'true';
 
     if (isCollapsed) {
@@ -192,6 +191,54 @@ class Friendbills extends React.Component {
     console.log(`prevent propagation`)
   }
 
+  renderBill(bill){
+    return(
+    <div
+      style={{
+        cursor: `pointer`,
+        display: `flex`,
+        padding: `9px 5px 6px 10px`,
+        position: `relative`,
+        justifyContent: `space-between`,
+        marginLeft: `20px`,
+        marginRight: `50px`,
+      }}
+    >
+
+      <div>
+        {new Date(bill.created_at).toLocaleDateString("en-US") +
+          " "}
+        <img
+          src={window.check}
+          style={{
+            width: `35px`,
+            height: `35px`,
+            margin: "10px 16px 10px 0",
+            display: `inline-block`,
+            verticalAlign: `middle`,
+          }}
+        ></img>
+
+        <div className="friendbills">{bill.description}</div>
+      </div>
+
+      <div style={{ display: `inline-block`, paddingLeft: `0` }}>
+
+        <div>
+          {bill.lender_id == this.props.current_user_id
+            ? "you lent " + bill.borrower
+            : bill.lender + " lent you"}{" "}
+        </div>
+
+        <div>${bill.amount / 100}
+        </div>
+
+      </div>
+
+    </div>
+    )
+  }
+
   render() {
     return ( 
       // className for styled div classes passed in as props
@@ -204,9 +251,7 @@ class Friendbills extends React.Component {
             {this.findFriendId()}
             {this.findTheBorrowedBills()}
             <div
-              style={{
-                // borderBottom: `1px solid #eee`,
-                
+              style={{        
                 backgroundColor: `#EEEEEE`,
                 display: "flex",
                 justifyContent: `space-between`,
@@ -215,13 +260,13 @@ class Friendbills extends React.Component {
                 fontSize: `24px`,
                 fontFamily: `Lato`,
                 padding: `2.5% 0 2.5% 5%`,
-              }}
-            >
+              }}>
+            
               <h1 style={{ fontWeight: `700` }}>{this.friendsName}</h1>
               <AddBills/>
             </div>
-        {/* end topbar that's gray with 2 buttons */}
-
+              {/* end topbar that's gray with 2 buttons */}
+              {/* 2 open divs */}
 
 
 
@@ -233,9 +278,6 @@ class Friendbills extends React.Component {
             {this.iBorrowed.map((bill) => {
               return (
                 <div
-                // ON CLICK SET THE CLICKED ON BILL TO SHOW ITS COMMENTS
-                  // onClick = { () => this.handleVisibility(bill.id)}  // i think it creates a new anon function / bill so it would be better if i had a separate method for this
-                  // ON CLICK SET THE CLICKED ON BILL TO SHOW ITS COMMENTS
                   onClick={handle}
                   id={`${ bill.id }`}
                   key= {`BILL->${bill.id}`}
@@ -250,68 +292,40 @@ class Friendbills extends React.Component {
                     overflow:`hidden`,
                   }}
                 >
-                  <div
-                    style={{
-                      cursor: `pointer`,
-                      display: `flex`,
-                      padding: `9px 5px 6px 10px`,
-                      position: `relative`,
-                      justifyContent: `space-between`,
-                      marginLeft: `20px`,
-                      marginRight: `50px`,
-                    }}
-                  >
-                    <div>
-                      {new Date(bill.created_at).toLocaleDateString("en-US") +
-                        " "}
-                      <img
-                        src={window.check}
-                        style={{
-                          width: `35px`,
-                          height: `35px`,
-                          margin: "10px 16px 10px 0",
-                          display: `inline-block`,
-                          verticalAlign: `middle`,
-                        }}
-                      ></img>
 
-                      <div className="friendbills">{bill.description}</div>
-                    </div>
-                    <div style={{ display: `inline-block`, paddingLeft: `0` }}>
-                      <div>
-                        {bill.lender_id == this.props.current_user_id
-                          ? "you lent " + bill.borrower
-                          : bill.lender + " lent you"}{" "}
-                      </div>
-                      <div>${bill.amount / 100}</div>
-                    </div>
+                  {this.renderBill(bill)}
+
+                  {/* commetns and payment wrapper div */}
+                  <div id={`comments${bill.id}`}
+                  onClick={this.dontHandle}
+                  data-collapsed
+                  className="section collapsible" style={{ height: `0px`, display: `flex`, transition: `height 0.5s ease-out` }}>
+
+                    <Payments bill={bill} current_user_id={this.props.current_user_id} current_user={this.props.current_user}  />
+
+
+                    <Comments billId={bill.id} />
+                  </div>
                  
-                  </div>
 
 
 
-
-                    {/* commetns and payment wrapper div */}
-                  <div style={{display:`flex`}}>
-                    {/* PAYMENTS HERE */}
-                    <Payments bills={bill}></Payments>
-                  
-                  {/* payments end */}
-
-                    {/* COMMENTS COMPONENT RENDERED HERE */}
-                    <Comments
-                      onClick={this.dontHandle} billId={bill.id} />
-                    {/* COMMENTS COMPONENT RENDERED HERE */}
-                  </div>
                 </div>
               );
+
             })}
+            {/*  END BILLS */}
+
+
+          {/* END friends */}
           </div>
         )}
 
-        </div>   
+      </div>   
+      
     );
   }
+
 }
 
 

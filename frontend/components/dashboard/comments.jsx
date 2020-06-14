@@ -4,26 +4,24 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchComments, createComment, deleteComment } from "../../actions/comment_actions";
 import styled, { css, keyframes } from "styled-components";
-
 import { Skeleton, Bone } from 'react-loading-skeleton-placeholders'
 
-{/* <Bone height={25}></Bone>
-    <Skeleton skull={true} amount={5}></Skeleton> */}
+class Comments extends React.Component {
+    // props are billId and donthandle
+    constructor(props) {
+        super(props)
+        this.dontHandle = this.dontHandle.bind(this)
+    }
 
-
-
-
-class Comments extends React.Component( props ) {
-    
     componentDidMount(){
-        props.fetchComments(props.billId)
+        this.props.fetchComments(this.props.billId)
     }
 
     dontHandle(e) {
         e.stopPropagation()
     }
 
-    commentItem({ data }) {
+    commentItem(data ) {
         const Item = styled.div`
         border: 1px solid #ccc;
         -webkit-border-radius: 5px;
@@ -34,43 +32,50 @@ class Comments extends React.Component( props ) {
         margin-bottom: 8px;
         word-wrap: break-word;
         `
-        const { user_id, body, created_at } = data
-        return ( <Item>
-            <span style={{ float: `right` }}>×</span>
+        const { id, user_id, bill_id, body, created_at } = data
+        return (
+            <div>
+                <span style={{ float: `right` }}>×</span>
 
-            {user_id} <br />
-            {Date(created_at)}<br />
-            {body}
+                {user_id} <br />
+                {Date(created_at)}<br />
+                {body}
 
-        </Item>
+            </div>
         )
     }
 
-    render() {
-
-    }
-
     handleSubmit() {
-        props.createComment(
+        this.props.createComment(
             {
                 billId: props.billId
             }
         )
     }
 
-    return (
-        <div className="section collapsible" style={{display: ``, overflow: `hidden`, transition: `height 0.5s ease-out`, height:`auto` }} 
-        id={`comments${props.billId}`}
-        onClick={dontHandle}>
-            {/* <div style={{ marginLeft: `50%`}}> */}
-            <div>
-            {props.comments.map( (comment) => <CommentItem data = {comment}>  </CommentItem> )}
-                <textarea placeholder="Add a comment" cols="40" rows="2" />
-                <button onSubmit={`handleSubmit`}>Post</button>
-     
+    render() {
+
+        return (
+            <div style={{ display: ``, overflow: ``, height: `auto` }}
+                onClick={this.dontHandle}>
+                {/* <div style={{ marginLeft: `50%`}}> */}
+                <div>
+                    {/* <Bone height={25}></Bone>
+    <Skeleton skull={true} amount={5}></Skeleton> */}
+
+                    {this.props.comments.map((comment) => 
+                    this.commentItem(comment) )}
+
+                    <textarea placeholder="Add a comment" cols="40" rows="2" />
+                    <button onClick={this.handleSubmit}>Post</button>
+
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+
+   
+
 } 
 
 const mSTP = (state) => {
