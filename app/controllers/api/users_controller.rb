@@ -16,26 +16,81 @@ class Api::UsersController < ApplicationController
         # url= "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=ey"
         # @data = URI.parse(url).read
         # render json: @data
-
+        # require 'net/http'
+             # p req
+        # url = URI.parse(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=`)
+        # p url.to_s
+       
         @users = User.all
         render "api/users/index"
 
     end
 
+       # require 'net/http'
 
+        # this gets {user: {id_token=> huge thing, email=> edwardjzhou@gmail.com} }  well enough       
+        
+        # url = URI.parse(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{id_token}`)
+        # req = Net::HTTP::Get.new(url.to_s)
+        # res = Net::HTTP.start(url.host, url.port) {|http| http.request(req)}
+        # puts res.body
+        # render json: res
+
+        # render json: auth_params
+
+        # as soon as you type in user= User.new(), User models after_initilaize kciks in to give u a token. thes econd you type in user.password = 5 it gives it a password_digest
+        # login calls User.reset-sesion_token which saves the User object
     def googleauth
-        require 'net/http'
         id_token = auth_params[:id_token]
         email = auth_params[:email]
 
-        
-        url = URI.parse(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{id_token}`)
-        req = Net::HTTP::Get.new(url.to_s)
-        res = Net::HTTP.start(url.host, url.port) {|http| http.request(req)}
-        puts res.body
-        render json: res
+        require 'curb'
+        http = Curl.get("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{id_token}")
+        # puts http.body_str
+        # puts http.body_str[:iat]
+        # puts http.body_str[:email]
+        # puts http.body_str[:exp].to_i
+        # puts http.body_str.exp
+        parsed = JSON.parse(http.body_str)
+        p parsed
+        p parsed["email"]
+        p parsed["iat"].to_i
+        p parsed["exp"].to_i 
+        p email
+        p Time.now.utc.to_i
+        p parsed["iat"].to_i 
+        p Time.now.utc.to_i > parsed["iat"].to_i 
+        p Time.now.utc.to_i < parsed["exp"].to_i
+        p parsed["email"] == email
+        # p parsed["iat"]
+        # p Time.now.utc.to_i > http.body_str["iat"].to_i
+        # p Time.now.utc.to_i < http.body_str["exp"].to_i
+        # p http.body_str["exp"].to_i #0 
+        # p Time.now.utc.to_i #number
+        # p http.body_str["email"] == email#false/
+        # p email
+        # p http.body_str["email"]
+        if Time.now.utc.to_i >= parsed["iat"].to_i && Time.now.utc.to_i < parsed["exp"].to_i && parsed["email"] == email
+            puts 'hes good so lets set password of that user with email as his username to something only he would know -- like his id_token? '
+            puts ' and he can try logging in with it -- ill just do it for him since he JUST GAVE IT TO ME'
+            @user = User.where("LOWER(username) = LOWER(?)", email).first
+            if @user
+                @user.password=(id_token)
+                login(@user) #resets token and saves to db with loud fail
+                render "api/users/show"
+            else
+                @user = User.new(username: email, password: id_token, email:email)
+                if @user.save #the second you tryt to save model validations are run
+                    login(@user)
+                    render "api/users/show"
+                else
+                    render json: @user.errors.full_messages, status:422
+                end
+            end
 
-        # render json: auth_params
+        else 
+            render json: ['thats not a google account'], status: 402 #payment required
+        end
     end
 
 

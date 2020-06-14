@@ -25,10 +25,11 @@ class SignupForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     delete user.maxHeight;
-    this.props.processForm(user).then(
-      this.props.history.push("/signup")
+    this.props.processForm(user)
+    // .then(
+    //   this.props.history.push("/login")
       // this.renderErrors()
-    );
+    // );
   }
 
   // renderErrors() {

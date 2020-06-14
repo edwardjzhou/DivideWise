@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'curb'
+
 gem 'omniauth-google-oauth2'
 
 gem 'rails_12factor'

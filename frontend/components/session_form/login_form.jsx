@@ -40,9 +40,9 @@ class LoginForm extends React.Component {
 
   responseGoogle(response) {
     // let putativeJWT = null
-    window.response = response
+    // window.response = response
     // this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
-    console.log(response)
+    // console.log(response)
 
     //i tried to get the user to get his own jwt from ajaxing google auth but its cors policy 
     // so maybe i just set intiial pw of a new account to user's token id ? and i just check with rails that that user token is that email and then set database user pw to that token id
@@ -54,11 +54,22 @@ class LoginForm extends React.Component {
       // console.log(JSON.parse(putativeJWT))
 
     // })
-    let answer 
-    verifyOAUTH(response.tokenId, response.profileObj.email).then(res => {
-      answer = res
-      console.log(res)
-    }) 
+    
+    // const answer = await verifyOAUTH(response.tokenId, response.profileObj.email)
+    this.props.edwardAUTH(response.tokenId, response.profileObj.email)
+    // .then(this.props.history.push("/dashboard"))
+
+
+    // export const login = (user) => (dispatch) =>
+    //   APIUtil.login(user).then(
+    //     (user) => dispatch(receiveCurrentUser(user)),
+    //     (err) => dispatch(receiveErrors(err.responseJSON))
+    //   );
+    // export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+    // console.log(answer)
+      // answer = res
+      // console.log(res)
+   
 
     // https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow#oauth-2.0-endpoints_2
     // var xhr = new XMLHttpRequest();
@@ -73,15 +84,15 @@ class LoginForm extends React.Component {
     //promise object returned thats resolved
 
 
-    this.props.processForm({
-      username: response.profileObj.email,
-      password: response.profileObj.googleId,
-    }) // login do a little hackeysack here bounceing around and attempting both
-    this.props.signup({
-      username: response.profileObj.email,
-      password: response.profileObj.googleId,
-      email: response.profileObj.email
-    }) 
+    // this.props.processForm({
+    //   username: response.profileObj.email,
+    //   password: response.profileObj.googleId,
+    // }) // login do a little hackeysack here bounceing around and attempting both
+    // this.props.signup({
+    //   username: response.profileObj.email,
+    //   password: response.profileObj.googleId,
+    //   email: response.profileObj.email
+    // }) 
 
 
      // signup
@@ -142,7 +153,7 @@ class LoginForm extends React.Component {
       username: "edward",
       password: "password",
     });
-    setTimeout(() => this.props.processForm(this.state), 2000);
+    setTimeout(() => this.props.processForm(this.state), 1000);
   }
 
   render() {

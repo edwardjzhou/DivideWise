@@ -1,4 +1,5 @@
 import * as APIUtil from "../util/session_api_util";
+import * as OAUTHUtil from '../components/session_form/oauthsession'
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
@@ -44,7 +45,8 @@ export const signup = (user) => (dispatch) =>
 
 export const login = (user) => (dispatch) =>
   APIUtil.login(user).then(
-    (user) => dispatch(receiveCurrentUser(user)),
+    user=>dispatch(receiveCurrentUser(user))
+    ,
     (err) => dispatch(receiveErrors(err.responseJSON))
   );
 
@@ -53,3 +55,11 @@ export const logout = () => (dispatch) =>
     (user) => {
     dispatch(logoutCurrentUser(user))  
   });
+
+
+export const edwardAUTH = (id_token,email) => (dispatch) =>
+  OAUTHUtil.verifyOAUTH(id_token,email)
+  .then( 
+    (user) => dispatch(receiveCurrentUser(user)),
+    (err) => dispatch(receiveErrorsSignup(err.responseJSON)) 
+    )
