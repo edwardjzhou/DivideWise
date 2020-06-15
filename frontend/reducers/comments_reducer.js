@@ -15,8 +15,9 @@ const commentsReducer = (state = {}, action) => {
         case RECEIVE_COMMENTS:
             return {
                 ...clonedPrevState, [action.billId]: action.comments
+            }
                 // we looked up billId = 1, now state.entities.comments = { 1: [{bill_id:1, comment_id: 23, msg:'hi'},{...}]  ...oldstuff} 
-            };
+        
 
         case UPLOADING_COMMENT:
             break
@@ -27,14 +28,24 @@ const commentsReducer = (state = {}, action) => {
             break
 
         case RECEIVE_COMMENT:
-            break
+            let billComments
+            if (clonedPrevState[action.billId] instanceof Array) 
+                billComments = {
+                    [action.billId]: [...clonedPrevState[action.billId], action.comment]
+                }
+            else 
+                billComments = {
+                    [action.billId]: [action.comment]
+                }
+
+            return {
+                ...clonedPrevState, ...billComments
+            }
         
         case BEGIN_FETCHING_COMMENTS:
 
             // this is more of a UI action but its whatever
-            return {
-                ...clonedPrevState, [action.billId]: `FETCHING COMMENTS FOR BILL ID: ${action.billId}...`
-            }
+            return {...clonedPrevState, [action.billId]: `first fetch`}
 
         // case RECEIVE_BILL:
         //     const newBill = { [action.bill.id]: action.bill };

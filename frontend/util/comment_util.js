@@ -1,24 +1,30 @@
 import $ from 'jquery'
 
-export const fetchComments = (billId) =>
+export const fetchComments = (bill_id) =>
     $.ajax({
         method: "GET",
-        url: `api/bills/${billId}/comments`,
+        url: `api/bills/${bill_id}/comments`,
     });
 
-
-export const createComment = (comment = {}) => // does defaultarg comment={} help? yes in the case of comment = undefined `${comment.bill_id}` wont throw 
+export const createComment = (comment = {}, bill_id) => // does defaultarg comment={} help? yes in the case of comment = undefined `${comment.bill_id}` wont throw and break react
     $.ajax({
         method: "POST",
-        url: `api/bills/${comment[`bill_id`]}/comments`,
-        data: { comment },
+        url: `api/bills/${bill_id}/comments`,
+        data: { comment }, // comment= { body}
     });
 
-export const destroyComment = (commentId) => 
+export const editComment = (comment = {}, comment_id) => 
+    $.ajax({
+        method: "PATCH",
+        url: `api/comments/${comment_id}`,
+        data: { comment }, //comment= {  body }
+    });
+
+export const destroyComment = (comment_id) => 
     $.ajax({
         method: "DELETE",
-        url: `api/comments/${commentId}`,
-        data: {commentId}
+        url: `api/comments/${comment_id}`,
+        data: {comment_id} 
     })
 
 // export const fetchComment = (commentId) =>

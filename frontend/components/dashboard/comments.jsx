@@ -6,13 +6,22 @@ import styled, { css, keyframes } from "styled-components";
 import { Skeleton, Bone } from 'react-loading-skeleton-placeholders'
 import { getUsers } from "../../actions/session_actions";
 
+// messing around with 
+// 1. Refs
+// 2.ownProps in mstp mdtp
+// 3. skeleton for on load and crazy UI actions everywhere
+// 4. ... structure and babel support for it in the reducers instead of Objec.tassign
+// 5. reflectivity of data-id on a html element to be used by listener
+
 class Comments extends React.Component {
     constructor(props) {
         super(props)
         // ALL I NEED IS A BILL ID TO MAKE A COMMENT ENCAPSULATED 
         // 1 instance of class Comments per BILL. can have multiple comments at once in that one instance
         // props are billId 
+        this.textInput = React.createRef()
         this.handleDelete = this.handleDelete.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount(){
@@ -33,8 +42,8 @@ class Comments extends React.Component {
         const { id, user_id, bill_id, body, created_at } = data
         return (
             <CommentItem>   {/* styled components ARE REFLECTIVE OF data-"" but NOT random boolean attrs*/}
-                <span data-id={id} onClick={this.handleDelete} style={{ float: `right` }}>×</span>
-                {user_id} <br />
+                <span data-comment-id={id} onClick={this.handleDelete} style={{ float: `right` }}>×</span>
+                User_ID:{user_id} <br />
                 {getDate(created_at)}<br />
                 {body}
 
@@ -49,17 +58,20 @@ class Comments extends React.Component {
         }
     }
 
-    handleSubmit() {
-        const newComment = {
-                                billId: this.props.billId
-                            }
-        this.props.createComment(newComment)
+    handleSubmit(e) {
+        const newComment =  {
+                                body: this.textInput.current.value
+                            };
 
+        this.props.createComment(newComment); 
+        this.textInput.current.value = ""
     }
+
     handleDelete(e) {
         let response = confirm("Are you sure you want to delete this comment?");
-        if (response) this.props.deleteComment(e.target.getAttributes(`data-id`))
+        if (response) this.props.deleteComment(e.target.getAttributes(`data-comment-id`))
     }
+
 
     render() {
 
@@ -73,10 +85,10 @@ class Comments extends React.Component {
                     this.commentItem(comment) ) : 
                     <>
                     {/* [this.props.comments] */}
-                    < Skeleton skull={false} amount={5} /> 
+                    < Skeleton skull={false} amount={3} /> 
                     </>}
 
-                    <textarea placeholder="Add a comment" cols="40" rows="2" />
+                    <textarea placeholder="Add a comment" cols="40" rows="2" ref={this.textInput}/>
                     <button className="orangebutton" onClick={this.handleSubmit}>Post</button>
 
                 </div>
@@ -102,13 +114,13 @@ const mSTP = (state, ownProps) => {
 // component re-renders when:      any field of stateProps is different	    any field of stateProps is different or any field of ownProps is different
 
 // mDTP is run whenever the connected component receives new ownPROPS or re-render from new props from mstp, so it's always up-to-date
-const mDTP = (dispatch, ) => { //ownProps
+const mDTP = (dispatch, ownProps) => { //ownProps
     return {
         // getUsers: dispatch(getUsers()), // this automatically runs on any state change?
         getUsers: () => dispatch(getUsers()),
         fetchComments: (billId) => dispatch(fetchComments(billId)),
-        createComment: (comment) => dispatch(createComment(comment)) ,
-        deleteComment: (commentId) => dispatch(deleteComment(commentId)),
+        createComment: (comment) => dispatch(createComment(comment, ownProps.billId)) ,
+        deleteComment: (commentId) => dispatch(deleteComment(commentId, ownProps.billId)),
 
     };
 };

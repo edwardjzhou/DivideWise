@@ -150,14 +150,18 @@ class Api::CommentsController < ApplicationController
     def create 
         # p comment_params
         # p params
-        #p params["bill_id"] #this is the route param if you do api/bills/3/comments/
+        #p params["bill_id"] #this is the route param if you do api/bills/***3***/comments/ params[:id] HERE AT END
         #p @current_user
                 # p @comment
 
-        @comment = Comment.new(comment_params)
-        if @comment.user_id != @current_user.id
-            render json: ["cannot create comments for others"], status:422
-        elsif !Bill.BillIdsOfUser(@current_user).include? @comment.bill_id 
+        @comment = Comment.new(comment_params) #just body => body
+        
+        @comment.bill_id = params[:bill_id]
+        @comment.user_id = @current_user.id
+        # p @comment
+        # if @comment.user_id != @current_user.id
+        #     render json: ["cannot create comments for others"], status:422
+        if !Bill.BillIdsOfUser(@current_user).include? @comment.bill_id 
             render json: ["cannot create comments on bills you're not in"], status:422
         elsif @comment.save
             render json: @comment
@@ -278,7 +282,9 @@ class Api::CommentsController < ApplicationController
     private
     def comment_params 
         # params.require(:comment).permit!
-        params.require(:comment).permit(:user_id, :bill_id, :body) 
+        # params.require(:comment).permit(:user_id, :bill_id, :body) 
+        params.require(:comment).permit(:body) 
+
         #Parameters: {"comment"=>{"FROMBODYOFAJAXbill_id"=>"1", "user_id"=>"1", "body"=>"hey"}, "FROMURLbill_id"=>"3"}
 
     end

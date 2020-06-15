@@ -15,10 +15,11 @@ export const receiveComments = (comments, billId) => {
     };
 };
 
-export const receiveComment = (comment) => {
+export const receiveComment = (comment, billId) => {
     return {
-        type: RECEIVE_COMMENTS,
+        type: RECEIVE_COMMENT,
         comment,
+        billId
     };
 };
 
@@ -30,10 +31,11 @@ export const beginFetchingComments = (billId) => {
     }
 }
 
-export const removeComment = (commentId) => {
+export const removeComment = (comment_id, bill_id) => {
     return {
         type: REMOVE_COMMENT,
-        commentId
+        comment_id,
+        bill_id
     }
 }
 
@@ -41,18 +43,18 @@ export const removeComment = (commentId) => {
 
 // BEGIN THUNK ACTION CREATORS
 
-export const deleteComment = function(commentId) {
+export const deleteComment = function(commentId, bill_id) {
     return function (dispatch) {
         APIUtil.destroyComment(commentId).then( 
-            (commentId) => dispatch(removeComment(commentId)),
-            // (err) => dispatch()
+            (commentId) => dispatch(removeComment(commentId, bill_id)),
+            (err) => alert(err)
         )
     }
 }
 
-export const createComment = (comment) => (dispatch) => {
-    APIUtil.createComment(comment).then( 
-        (newComment) => dispatch(receiveComment(newComment))
+export const createComment = (comment, bill_id) => (dispatch) => {
+    APIUtil.createComment(comment, bill_id).then( 
+        (newComment) => dispatch(receiveComment(newComment, bill_id))
         ,
         (err) => dispatch(receiveComment(err))
     )
@@ -62,7 +64,7 @@ export const createComment = (comment) => (dispatch) => {
 // fetchcomments get all comments relating to this one bill and is run on any or many bill componetn being rendered in frinedsbills component
 export const fetchComments = function (billId){ 
         return function (dispatch) {
-            dispatch(beginFetchingComments(billId))
+            // dispatch(beginFetchingComments(billId))
 
             APIUtil.fetchComments(billId).then( (fetchedComments) => 
                     dispatch(receiveComments(fetchedComments, billId)) 
