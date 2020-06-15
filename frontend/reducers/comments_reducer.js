@@ -6,7 +6,7 @@ import {
     BEGIN_FETCHING_COMMENTS,
 } from "../actions/comment_actions";
 
-
+// destructuring arguments in func params: can alias and set defaultparamvalue ({a:c=123,b})=>{console.log(b,c)}
 const commentsReducer = (state = {}, action) => {
     Object.freeze(state);
     const clonedPrevState = Object.assign({}, state);
@@ -23,24 +23,27 @@ const commentsReducer = (state = {}, action) => {
             break
             
         case REMOVE_COMMENT:
-                    //     delete newState[billId];
-        //     return newState;
-            break
+            const newBillComments = [];
+            if (clonedPrevState[action.bill_id] instanceof Array)
+                for (const comment of clonedPrevState[action.bill_id]) {
+                    if (comment.id !== action.comment_id) newBillComments.push(comment) 
+                }
+            return {...clonedPrevState, [action.bill_id]: newBillComments} 
 
         case RECEIVE_COMMENT:
-            let billComments
+            let billComments;
             if (clonedPrevState[action.billId] instanceof Array) 
                 billComments = {
                     [action.billId]: [...clonedPrevState[action.billId], action.comment]
-                }
+                };
             else 
                 billComments = {
                     [action.billId]: [action.comment]
-                }
+                };
 
             return {
                 ...clonedPrevState, ...billComments
-            }
+            };
         
         case BEGIN_FETCHING_COMMENTS:
 

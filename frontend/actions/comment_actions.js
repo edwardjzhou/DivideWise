@@ -46,7 +46,10 @@ export const removeComment = (comment_id, bill_id) => {
 export const deleteComment = function(commentId, bill_id) {
     return function (dispatch) {
         APIUtil.destroyComment(commentId).then( 
-            (commentId) => dispatch(removeComment(commentId, bill_id)),
+            (successfulDestructionMessage) => {
+                alert(successfulDestructionMessage);
+                dispatch(removeComment(parseInt(commentId), bill_id))
+            },
             (err) => alert(err)
         )
     }

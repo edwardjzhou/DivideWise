@@ -69,7 +69,7 @@ class Comments extends React.Component {
 
     handleDelete(e) {
         let response = confirm("Are you sure you want to delete this comment?");
-        if (response) this.props.deleteComment(e.target.getAttributes(`data-comment-id`))
+        if (response) this.props.deleteComment(e.target.getAttribute(`data-comment-id`))
     }
 
 
