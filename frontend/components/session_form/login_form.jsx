@@ -135,7 +135,8 @@ class LoginForm extends React.Component {
               clientId="23767328561-ndo3b9lpk03lr9kfind7ur4srslp3qrr.apps.googleusercontent.com"
               buttonText="Google"
               onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
+              onFailure={()=>alert(`you closed the react-google-login login page`)}
+              // onFailure={this.responseGoogle}
               cookiePolicy={'single_host_origin'}
                
             /> 
@@ -163,7 +164,7 @@ class LoginForm extends React.Component {
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 680 91"
           className="w-full"
-          style={{ position: `absolute`, bottom: `0`, left: `0` }}
+          style={{ position: `absolute`, bottom: `0`, left: `0`, pointerEvents: `none` }}
         >
           <path fill="#ACE4D6" d="M349 76.499L286 113V40z" />
           <path fill="#0C3C32" d="M480 74.5L446 94V55z" />

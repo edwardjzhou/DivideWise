@@ -24,7 +24,6 @@ export const destroyComment = (comment_id) =>
     $.ajax({
         method: "DELETE",
         url: `api/comments/${comment_id}`,
-        // data: {comment_id} 
     })
 
 // export const fetchComment = (commentId) =>
