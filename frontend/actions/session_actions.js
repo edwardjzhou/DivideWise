@@ -6,6 +6,8 @@ export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_SIGNUP_ERRORS = "RECEIVE_SIGNUP_ERRORS";
+export const ATTEMPTING_LOGIN = "ATTEMPTING_LOGIN";
+export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS"
 
 // special thing for finding all users in add friends form
 export const receiveUsers = (users) => ({
@@ -37,29 +39,44 @@ export const receiveErrorsSignup = (errors) => ({
   errors,
 });
 
-export const signup = (user) => (dispatch) =>
+export const attemptingLogin = () => ({type: ATTEMPTING_LOGIN })
+
+export const clearSessionErrors = () => ({type: CLEAR_SESSION_ERRORS})
+//end normal action creators
+
+//thunk action creators
+
+export const signup = (user) => (dispatch) => {
+  dispatch(clearSessionErrors())
   APIUtil.signup(user).then(
     (user) => dispatch(receiveCurrentUser(user)),
     (err) => dispatch(receiveErrorsSignup(err.responseJSON))
   );
+}
 
-export const login = (user) => (dispatch) =>
+export const login = (user) => (dispatch) => {
+  dispatch(clearSessionErrors())
+  dispatch(attemptingLogin());
   APIUtil.login(user).then(
-    user=>dispatch(receiveCurrentUser(user))
-    ,
+    (user) => dispatch(receiveCurrentUser(user)),
     (err) => dispatch(receiveErrors(err.responseJSON))
   );
+}
 
 export const logout = () => (dispatch) =>
   APIUtil.logout().then(
     (user) => {
-    dispatch(logoutCurrentUser(user))  
-  });
+      dispatch(logoutCurrentUser(user))  
+    }
+  );
 
 
-export const edwardAUTH = (id_token,email) => (dispatch) =>
+export const edwardAUTH = (id_token,email) => (dispatch) => {
+  dispatch(clearSessionErrors())
+  dispatch(attemptingLogin());
   OAUTHUtil.verifyOAUTH(id_token,email)
   .then( 
     (user) => dispatch(receiveCurrentUser(user)),
-    (err) => dispatch(receiveErrorsSignup(err.responseJSON)) 
-    )
+    (err) => dispatch(receiveErrors(err.responseJSON)) 
+    );
+};

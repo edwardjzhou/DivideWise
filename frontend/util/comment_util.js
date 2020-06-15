@@ -6,12 +6,7 @@ export const fetchComments = (billId) =>
         url: `api/bills/${billId}/comments`,
     });
 
-// export const fetchComment = (billId) =>
-//     $.ajax({
-//         method: "GET",
-//         url: `api/bill/${billId}/comments`,
-//     });
-    
+
 export const createComment = (comment) =>
     $.ajax({
         method: "POST",
@@ -26,3 +21,8 @@ export const destroyComment = (commentId) =>
         data: {commentId}
     })
 
+// export const fetchComment = (commentId) =>
+//     $.ajax({
+//         method: "GET",
+//         url: `api/bill/${billId}/comments/commentId`,
+//     });

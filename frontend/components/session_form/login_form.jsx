@@ -7,11 +7,12 @@ import HashLoader from "react-spinners/HashLoader";
 // HashLoader	
 const override = css`
   display: block;
-  margin: 0 auto;
+  margin: 0
   border-color: red;
-  transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
 `;
 
 
@@ -24,7 +25,7 @@ class LoginForm extends React.Component {
     this.state = {
       username: "",
       password: "",
-      loading: true,
+      loading: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoFill = this.demoFill.bind(this);
@@ -64,8 +65,12 @@ class LoginForm extends React.Component {
     this.setState({
       username: "edward",
       password: "password",
-    });
-    setTimeout( this.props.processForm.bind({}, this.state), 200);
+      // loading: true,
+    }, ()=> {
+      const { username, password } = this.state;
+      setTimeout(this.props.processForm.bind({}, { username, password }), 0);
+    }
+    );
   }
 
   render() {
@@ -137,12 +142,13 @@ class LoginForm extends React.Component {
         
   
 
-            <HashLoader
+           <HashLoader
               css={override}
               size={150}
               color={"green"}
-              loading={this.state.loading}
-            /> 
+              // loading={this.state.loading}
+              loading={this.props.attempting_login}
+            />
 
 
       
