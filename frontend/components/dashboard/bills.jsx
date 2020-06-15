@@ -272,13 +272,42 @@ class Bills extends React.Component {
                       ></img>
                     ) : null}
 
-                    <div key={bill.id} style={{
-                      display: `inline-block`, overflow:`hidden`}}>
-                      <span style={{fontSize: `1.5rem`}}>{bill.lender} &nbsp;
-                        <span style={{fontSize: `.9rem`}}>{new Date(bill.created_at).toLocaleDateString("en-US")}</span>
+                    <div key={bill.id}   
+                      style={{display: `inline-block`, overflow:`hidden`}}
+                      >
+                    <span style={{ fontSize: `1.5rem`, whiteSpace:`pre`, 
+                    float:`left`,
+                     width: `10rem` 
+                    }} >{bill.lender.padEnd(12)} &nbsp; 
+                        {/* padEnd with " " doesnt work because the empty  pared down by html USE whitespace:pre */}
+                        {/* NOW problem si diff chars have diff sizes  size="20" is only for like input*/}
+                        {/* best way is to gaurantee a size for the span but its inline so width= shoudlnt work */}
+                        {/* SOLUTION:
+                           ul {
+                            list-style-type: none;
+                            padding-left: 0px;
+                          }
+
+                          ul li span {
+                            float: left;
+                            width: 40px;
+                          }
+                          <ul>
+                            <li><span></span> The lazy dog.</li>
+                            <li><span>AND</span> The lazy cat.</li>
+                            <li><span>OR</span> The active goldfish.</li>
+                          </ul> */}
                       </span>
+                      <span style={{ fontSize: `.9rem`, 
+                      float:`left`, 
+                      // width: `50px` 
+                      }}>{new Date(bill.created_at).toLocaleDateString("en-US")}</span>
+
                       <br />
-                      <span style={{ color: `#ff652f`}}>
+                      <span style={{
+                        // clear:`both`,
+                        float:`left`,
+                         color: `#ff652f`}}>
                         you owe  <span style={{ fontSize: `1.2rem`, fontWeight:`1000` }}>${bill.amount / 100}</span>
                       </span>
                      
@@ -332,7 +361,7 @@ class Bills extends React.Component {
                     ) : null}
 
                     <div key={bill.id} style={{ display: `inline-block`, overflow: `hidden` }}>
-                      <span style={{ fontSize: `1.5rem` }}>{bill.borrower}</span> &nbsp;
+                      <span style={{ fontSize: `1.5rem` }}>{bill.borrower.padEnd(12," ")}</span> &nbsp;
                       <span style={{ fontSize: `.9rem` }}>{new Date(bill.created_at).toLocaleDateString("en-US")} </span>
                       <br />
                       <span style={{ color: `#5bc5a7` }}>

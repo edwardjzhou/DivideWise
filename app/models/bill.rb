@@ -17,6 +17,9 @@ class Bill < ApplicationRecord
     foreign_key: :bill_id,
     class_name: 'Payment'
 
+    def Bill.BillIdsOfUser(user)
+        return ((user.borrowings + user.lendings).map {|bill| bill.id} )
+    end
 #  scope :red, -> { where(color: 'red') }
 #   scope :dry_clean_only, -> { joins(:washing_instructions).where('washing_instructions.dry_clean_only = ?', true) }
     # https://api.rubyonrails.org/classes/ActiveRecord/Scoping/Named/ClassMethods.html

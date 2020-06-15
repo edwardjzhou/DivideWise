@@ -148,13 +148,40 @@ class Api::CommentsController < ApplicationController
     before_action :require_login
 
     def create 
+        # p comment_params
+        # p params
+        #p params["bill_id"] #this is the route param if you do api/bills/3/comments/
+        #p @current_user
+                # p @comment
+
         @comment = Comment.new(comment_params)
-        if @comment.save
-            render "api/comments/show"
+        if @comment.user_id != @current_user.id
+            render json: ["cannot create comments for others"], status:422
+        elsif !Bill.BillIdsOfUser(@current_user).include? @comment.bill_id 
+            render json: ["cannot create comments on bills you're not in"], status:422
+        elsif @comment.save
+            render json: @comment
         else
             render json: @comment.errors.full_messages, status:422
         end
     end
+#     asdf=$.ajax({
+#     method: 'POST',
+#     url: 'api/bills/adsf/comments',
+#     data: {comment: { bill_id:3, user_id: 3, body: "hey" }}
+# }).then(res=>console.log(res),res=>console.log(res))
+    # 1. route params are accessed by looking at params
+    # 2. route param can be like random text not just #
+    # 3. querystring at end of post like comments?asdf=5 is accessed by params[:asdf]
+    # 4. $.ajax makes things simpler by auto JSONing your POJO AND doing headers:json 
+    # fetch equiv is 
+    # fetch('api/bills/3/comments',{method:`post`,
+    # headers: {
+    #             'Content-Type': 'application/json'
+    #         },
+    # body:
+    #   JSON.stringify({comment: { bill_id:3, user_id: 4, body: "hey" }})
+    #})
 
     #get (ALL COMMENTS) from (ALL BILLS where currentuser is bill.lender_id or bill_borrower_id)
     #im nested under a bill/bill_id. To get a comment it has to be created by me or be a bill im in 
@@ -169,9 +196,19 @@ class Api::CommentsController < ApplicationController
             WHERE bills.lender_id = #{@current_user.id} OR bills.borrower_id = #{@current_user.id}
             ) AND  #{params[:bill_id]} = comments.bill_id 
         SQL
-        answer = execute_statement(sql)
-            
-        render json: answer
+        
+        # sql = <<-SQL
+        # INSERT INTO link (url, name)
+        # VALUES ('https://www.postgresqltutorial.com','PostgreSQL Tutorial');
+        # answer = execute_statement(sql)
+        # SQL
+
+
+        # sql = <<-SQL
+        # CREATE TABLE test_table_rails
+        # SQL
+        
+        render json: execute_statement(sql)
     end
 
     # def index  
@@ -198,43 +235,74 @@ class Api::CommentsController < ApplicationController
     #     # render "api/comments/index"
     # end
 
-    def show
-        @comment = Comment.find(params[:id])
-        render json: @comment
-    end
+    # def show
+    #     @comment = Comment.find(params[:id])
+    #     render json: @comment
+    # end
 
-    def update
+    def update #this requires a api/comments/:id
+        # p comment_params #Parameters: {"comment"=>{"bill_id"=>"1", "user_id"=>"1", "body"=>"hey"}, "id"=>"1"}
         @comment = Comment.find(params[:id])
-        if current_user.id.to_s != @comment.user_id.to_s
-            render json: ["not a comment you're involved in"]
-        elsif @comment.update(bill_params)
-            render "api/comments/show"
+        if @current_user.id != @comment.user_id
+            render json: ["not a comment authored by you"], status:422
+        elsif @comment.update(body: comment_params[:body])
+            # render "api/comments/show"
+            # sqlrow.update returns true if successful. @comment is updated by update and isnt the old version (confirmed)
+            render json: @comment
         else
             render json: @comment.errors.full_messages, status: 422
         end
     end
 
+#     asdf= $.ajax({
+#     method: 'PATCH',
+#     url: '/api/comments/8',
+#     data: {comment: {bill_id: 1, user_id: 1, bill_id: 1, body: "heydsaf" }}
+# })
+
     def destroy
         @comment = Comment.find(params[:id])
-
-        if current_user.id.to_s != @comment.user_id.to_s
-            render json: ["not a comment authored by you"]
+        if @current_user.id != @comment.user_id #both are gonna be numbers luckily
+            render json: ["not a comment authored by you"], status: 422
         else
-            @comment.destroy!
-            render json: ["Destroyed comment #{@comment.id} about #{@comment.body}"]
+            @comment.destroy! #exclamation mark breaks this witha  404 request it hink so render joson saying success wont even happen
+            render json: ["Destroyed comment #{@comment.id} saying #{@comment.body}"]
         end
     end
+#     asdf= $.ajax({
+#     method: 'DELETE',
+#     url: '/api/comments/8',
+#     data: {comment: {bill_id: 1, user_id: 1, bill_id: 1, body: "heydsaf" }}
+# })
 
     private
     def comment_params 
-        params.require(:comment).permit!
+        # params.require(:comment).permit!
+        params.require(:comment).permit(:user_id, :bill_id, :body) 
+        #Parameters: {"comment"=>{"FROMBODYOFAJAXbill_id"=>"1", "user_id"=>"1", "body"=>"hey"}, "FROMURLbill_id"=>"3"}
+
     end
 
 end
 
 
+# 1. params from the URL routes vs the params being in body
+# 2. what happens if we oversend or udnersend data after require.permit
+# 3. ./ vs / vs nothing in url: 
+# 4. why does fetch need babysitting with JSON.stringify but ajax doesnt
 
 
+# $.ajax({
+#     method: 'POST',
+#     url: '/api/bills/3/comments/1',
+#     data: {comment: {bill_id: 1, user_id: 1, bill_id: 1, body: "hey" }}
+# })
+#   resources :comments, only: [:destroy, :update]
+#     resources :bills do
+#       resources :comments, only: [:create, :index]
+#       resources :payments, only: [:create, :index]
+
+#<Comment id: 1, user_id: 1, bill_id: 1, body: "I will pay you back next week", created_at: "2020-05-15 08:26:39", updated_at: "2020-05-15 08:26:39">,
 # $.ajax({
 #         method: 'POST',
 #         url: '/api/bills',

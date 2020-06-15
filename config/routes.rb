@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :index]
     resource :session, only: [:create, :destroy]
     resources :payments, only: [:destroy, :update]
+    resources :comments, only: [:destroy, :update]
     resources :bills do
       resources :comments, only: [:create, :index]
       resources :payments, only: [:create, :index]

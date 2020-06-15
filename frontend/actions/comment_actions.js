@@ -50,15 +50,25 @@ export const deleteComment = function(commentId) {
     }
 }
 
+export const createComment = (comment) => (dispatch) => {
+    APIUtil.createComment(comment).then( 
+        (newComment) => dispatch(receiveComment(newComment))
+        ,
+        (err) => dispatch(receiveComment(err))
+    )
+}
 
 // thunk action creators with a side effect UI-related dispatch after getting dispatch from the store configged with thunk middleware
-export const fetchComments = function (billId){
+// fetchcomments get all comments relating to this one bill and is run on any or many bill componetn being rendered in frinedsbills component
+export const fetchComments = function (billId){ 
         return function (dispatch) {
             dispatch(beginFetchingComments(billId))
 
-            APIUtil.fetchComments(billId).then( (fetchedComments) => {
+            APIUtil.fetchComments(billId).then( (fetchedComments) => 
                     dispatch(receiveComments(fetchedComments, billId)) 
-                }
+                    ,(err) =>
+                    dispatch(receiveComments(err, billId)) 
+                
             )
         }
 };
