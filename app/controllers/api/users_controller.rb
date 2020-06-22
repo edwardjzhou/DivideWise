@@ -46,48 +46,19 @@ class Api::UsersController < ApplicationController
 
         require 'curb'
         http = Curl.get("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{CGI.escape(id_token)}")
-        # puts http.body_str
-        # puts http.body_str[:iat]
-        # puts http.body_str[:email]
-        # puts http.body_str[:exp].to_i
-        # puts http.body_str.exp
         parsed = JSON.parse(http.body_str)
-        # p parsed
-        # p parsed["email"]
-        # p parsed["iat"].to_i
-        # p parsed["exp"].to_i 
-        # p email
-        # p Time.now.utc.to_i
-        # p parsed["iat"].to_i 
-        # p Time.now.utc.to_i > parsed["iat"].to_i 
-        # p Time.now.utc.to_i < parsed["exp"].to_i
-        # p parsed["email"] == email
-        # p parsed["iat"]
-        # p Time.now.utc.to_i > http.body_str["iat"].to_i
-        # p Time.now.utc.to_i < http.body_str["exp"].to_i
-        # p http.body_str["exp"].to_i #0 
-        # p Time.now.utc.to_i #number
-        # p http.body_str["email"] == email#false/
-        # p email
-        # p http.body_str["email"]
-
         dividewiseGoogleClientKey = "23767328561-ndo3b9lpk03lr9kfind7ur4srslp3qrr.apps.googleusercontent.com"
-
-
         if (Time.now.utc.to_i >= parsed["iat"].to_i and Time.now.utc.to_i < parsed["exp"].to_i and parsed["email"] == email and 
             parsed["iss"] == "accounts.google.com" and parsed["aud"] == dividewiseGoogleClientKey) 
-                    # timing of the token generation is OK and its his email alright
-
-        # i got it from google and yea its dividewise's  key 
             
             @user = User.where("LOWER(username) = LOWER(?)", email).first
             if @user
                 @user.password=(id_token)
-                login(@user) #resets token and saves to db with loud fail
+                login(@user) 
                 render "api/users/show"
             else
                 @user = User.new(username: email, password: id_token, email:email)
-                if @user.save #the second you tryt to save model validations are run
+                if @user.save 
                     login(@user)
                     render "api/users/show"
                 else

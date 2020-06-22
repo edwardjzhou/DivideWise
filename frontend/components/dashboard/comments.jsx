@@ -72,7 +72,9 @@ class Comments extends React.Component {
         if (response) this.props.deleteComment(e.target.getAttribute(`data-comment-id`))
     }
 
-
+    // this.props.comments = [] if there are no comments
+    // this.props.comments = [  {}, {}] if there are comments
+    // this.props.comments = null if we havent loaded comments yet
     render() {
 
         return (
@@ -84,7 +86,6 @@ class Comments extends React.Component {
                     this.props.comments.map((comment) => 
                     this.commentItem(comment) ) : 
                     <>
-                    {/* [this.props.comments] */}
                     < Skeleton skull={false} amount={3} /> 
                     </>}
 
