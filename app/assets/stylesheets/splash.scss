@@ -29,7 +29,6 @@ div .alert-message {
   margin-left: 30%;
   padding: 8px 16px;
 
-
   text-overflow: clip;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -49,8 +48,6 @@ div .alert-message {
   white-space: normal;
   word-spacing: 0px;
   color: rgb(55, 59, 63);
-
-
 }
 
 span .text-heart {
@@ -60,7 +57,6 @@ span .text-heart {
   font-weight: 700;
   line-height: 35px;
   text-align: center;
-  
 
   /* Box */
   height: auto;
@@ -159,7 +155,6 @@ span .text-heart {
   height: 50px;
   margin: 0px;
   // padding: 0px 16px;
-
 }
 
 .tealsignup {
@@ -176,7 +171,6 @@ span .text-heart {
 
   text-transform: none;
   vertical-align: baseline;
-
 
   /* Color & Background */
   background-color: rgb(28, 194, 159);
@@ -259,13 +253,11 @@ span .text-heart {
     brightness(70%) contrast(180%);
 }
 
-
-
 // this is a weird green which wil go where blue was (PLANE
-.filter-blue { 
-    filter: invert(20%) sepia(120%) saturate(2000%) hue-rotate(140deg)
+.filter-blue {
+  filter: invert(20%) sepia(120%) saturate(2000%) hue-rotate(140deg)
     brightness(60%) contrast(139%);
-  }
+}
 
 .filter-red {
   filter: invert(13%) sepia(92%) saturate(5165%) hue-rotate(9deg)

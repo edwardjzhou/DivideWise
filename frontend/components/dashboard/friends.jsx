@@ -5,20 +5,18 @@ import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
 import { Link, withRouter } from "react-router-dom";
 import { openModal, closeModal } from "../../actions/modal_actions";
-import AddFriends from "./addfriends";
+import AddFriends from "./buttons/addfriends";
 import { fetchFriends } from "../../actions/friend_actions";
 import { select } from "../../actions/ui_actions";
 
 class Friends extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
     this.props.fetchFriends();
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -39,101 +37,98 @@ class Friends extends React.Component {
   //   <div id="friends_bar" className="">
   render() {
     return (
-      <div className={this.props.className} style={{marginRight: `10px`}}> 
-
-          <div className="greyhover">
-            {location.href.includes("dashboard") ? (
-              <Link
-                to="/"
-                style={{
-                  color: `#5BC5A7`,
-                  fontSize: `40`,
-                  fontWeight: `bold`,
-                  borderLeft: `8px solid #5BC5A7`,
-                  textDecoration: `none`,
-                  boxSizing: `content-box`,
-                  display: `block`
-                }}
-              >
+      <div className={this.props.className} style={{ marginRight: `10px` }}>
+        <div className="greyhover">
+          {location.href.includes("dashboard") ? (
+            <Link
+              to="/"
+              style={{
+                color: `#5BC5A7`,
+                fontSize: `40`,
+                fontWeight: `bold`,
+                borderLeft: `8px solid #5BC5A7`,
+                textDecoration: `none`,
+                boxSizing: `content-box`,
+                display: `block`,
+              }}
+            >
               <img src={window.logoURL} height="20px"></img>
-                Dashboard
-              </Link>
-            ) : (
-              <Link
-                to="/"
-                style={{
-                  textDecoration: `none`,
-                  color: "gray",
-                  fontSize: "40",
-                  fontWeight: `bold`,
-                  display:`block`,
-                }}
-              >
-                <img src={window.logoURL} height="20px"></img>
-                Dashboard
-              </Link>
-            )}
-          </div>
-
-          <div className="header">
-            {" "}
-            FRIENDS<AddFriends></AddFriends>
-          </div>
-
-
-
-          {this.props.friends.map((friend) =>
-            friend.friends_name !== this.props.current_user ? (
-              // this.props.location.pathname[this.props.location.pathname.split('/').length - 1] !== friend.id ?
-              //this.state.loc.split('/')[location.href.split('/').length-1]
-              this.props.selectedFriendshipid == friend.id &&
-              !this.props.location.pathname.includes("dashboard") &&
-              this.props.location.pathname.split("/")[
-                this.props.location.pathname.split("/").length - 1
-              ] == friend.id ? (
-                //  && this.props.location.pathname[this.props.location.pathname.split('/').length - 1] == friend.id ?
-                //
-                <div className="greyhover" key={`FRIEND->${friend.id}`}>
-                  <Link
-                    to={`/friends/` + friend.id}
-                    className="greyhover"
-                    style={{
-                      textDecoration: `none`,
-                      color: `#5BC5A7`,
-                      // borderLeft: `8px solid #5BC5A7`
-                    }}
-                    onClick={() => this.props.select(friend.id)}
-                  >
-                    <div
-                      style={{ color: `#5bc5a7` }}
-                      className="friendItem showLeft"
-                      tabIndex="-1"
-                      key={friend.id}
-                    >
-                      <img height="25" src={window.user}></img>
-                      {friend.friends_name}{" "}
-                    </div>
-                  </Link>
-                </div>
-              ) : (
-                <div>
-                  <Link
-                    key={`FRIEND->${friend.id}`}
-                    to={`/friends/` + friend.id}
-                    className="greyhover"
-                    style={{ textDecoration: `none` }}
-                    onClick={() => this.props.select(friend.id)}
-                  >
-                    <div className="friendItem" tabIndex="-1" key={friend.id}>
-                      <img height="25" src={window.user}></img>
-                      {friend.friends_name}{" "}
-                    </div>
-                  </Link>
-                </div>
-              )
-            ) : null
+              Dashboard
+            </Link>
+          ) : (
+            <Link
+              to="/"
+              style={{
+                textDecoration: `none`,
+                color: "gray",
+                fontSize: "40",
+                fontWeight: `bold`,
+                display: `block`,
+              }}
+            >
+              <img src={window.logoURL} height="20px"></img>
+              Dashboard
+            </Link>
           )}
-          <br></br>
+        </div>
+
+        <div className="header">
+          {" "}
+          FRIENDS<AddFriends></AddFriends>
+        </div>
+
+        {this.props.friends.map((friend) =>
+          friend.friends_name !== this.props.current_user ? (
+            // this.props.location.pathname[this.props.location.pathname.split('/').length - 1] !== friend.id ?
+            //this.state.loc.split('/')[location.href.split('/').length-1]
+            this.props.selectedFriendshipid == friend.id &&
+            !this.props.location.pathname.includes("dashboard") &&
+            this.props.location.pathname.split("/")[
+              this.props.location.pathname.split("/").length - 1
+            ] == friend.id ? (
+              //  && this.props.location.pathname[this.props.location.pathname.split('/').length - 1] == friend.id ?
+              //
+              <div className="greyhover" key={`FRIEND->${friend.id}`}>
+                <Link
+                  to={`/friends/` + friend.id}
+                  className="greyhover"
+                  style={{
+                    textDecoration: `none`,
+                    color: `#5BC5A7`,
+                    // borderLeft: `8px solid #5BC5A7`
+                  }}
+                  onClick={() => this.props.select(friend.id)}
+                >
+                  <div
+                    style={{ color: `#5bc5a7` }}
+                    className="friendItem showLeft"
+                    tabIndex="-1"
+                    key={friend.id}
+                  >
+                    <img height="25" src={window.user}></img>
+                    {friend.friends_name}{" "}
+                  </div>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link
+                  key={`FRIEND->${friend.id}`}
+                  to={`/friends/` + friend.id}
+                  className="greyhover"
+                  style={{ textDecoration: `none` }}
+                  onClick={() => this.props.select(friend.id)}
+                >
+                  <div className="friendItem" tabIndex="-1" key={friend.id}>
+                    <img height="25" src={window.user}></img>
+                    {friend.friends_name}{" "}
+                  </div>
+                </Link>
+              </div>
+            )
+          ) : null
+        )}
+        <br></br>
         {/* </div> */}
       </div>
     );

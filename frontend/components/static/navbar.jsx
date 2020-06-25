@@ -1,26 +1,20 @@
-import { connect } from "react-redux";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import CardContainer from "./card_container";
 
 const NavBar = () => {
-  // let style = `{color: 'orange', display: flex}`;
 
   return (
     <div
       className="flex-container"
       style={{ boxShadow: `rgba(0, 0, 0, 0.5) 0px 0px 3px 0px` }}
     >
-      {/* <div className="header"> */}
       <NavLink to="/" className="header-link">
-        {/* <h3>dividewise</h3> */}
         <img src={window.logoURL} style={{ height: `60px` }}></img>
       </NavLink>
 
-      {/* <div className="login_links" > */}
       <div id="flexme">
-        {/* {window.location.pathname != "/login" ?  */}
-        <CardContainer></CardContainer>
+        <CardContainer />
         <span
           style={{
             verticalAlign: `50%`,
@@ -39,7 +33,6 @@ const NavBar = () => {
         </button>
       </div>
     </div>
-    // </div>
   );
 };
 export default NavBar;

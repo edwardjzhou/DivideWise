@@ -2,9 +2,9 @@ import React from "react";
 import { closeModal } from "../../actions/modal_actions";
 import { connect } from "react-redux";
 
-import FriendsForm from "../dashboard/friendsform";
-import BillsForm from "../dashboard/billsform";
-import PaymentsForm from "../dashboard/paymentsform";
+import FriendsForm from "../dashboard/forms/friendsform";
+import BillsForm from "../dashboard/forms/billsform";
+import PaymentsForm from "../dashboard/forms/paymentsform";
 
 function Modal({ modal, closeModal }) {
   if (!modal) {

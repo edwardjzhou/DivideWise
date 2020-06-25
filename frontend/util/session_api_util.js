@@ -1,4 +1,4 @@
-import $ from 'jquery'
+import $ from "jquery";
 
 export const login = (user) => {
   return $.ajax({

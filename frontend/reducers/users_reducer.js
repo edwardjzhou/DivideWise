@@ -13,7 +13,7 @@ const usersReducer = (state = {}, action) => {
         [action.currentUser.id]: action.currentUser,
       });
     case RECEIVE_USERS: // everyone but currentuser from index controller of users route
-      return action.users
+      return action.users;
     default:
       return state;
   }

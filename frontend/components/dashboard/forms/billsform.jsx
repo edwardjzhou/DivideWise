@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createBill, fetchBill, fetchBills } from "../../actions/bill_actions";
+import { createBill, fetchBill, fetchBills } from "../../../actions/bill_actions";
 import { Link } from "react-router-dom";
-import { fetchFriends } from "../../actions/friend_actions";
-import { closeModal } from "../../actions/modal_actions";
+import { fetchFriends } from "../../../actions/friend_actions";
+import { closeModal } from "../../../actions/modal_actions";
 
 class BillsForm extends React.Component {
   constructor(props) {

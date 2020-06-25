@@ -13,8 +13,8 @@ class LogoutCard extends Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
 
-  showMenu(event) {
-    event.preventDefault();
+  showMenu(e) {
+    e.preventDefault();
     this.setState({ showMenu: true }, () => {
       document.addEventListener("click", this.closeMenu);
     });
@@ -90,9 +90,7 @@ class LogoutCard extends Component {
             />
           </div>
         ) : null}
-      {/* END MENU DROPPED DOWN */}
-
-
+        {/* END MENU DROPPED DOWN */}
       </div>
     );
   }

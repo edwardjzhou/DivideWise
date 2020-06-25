@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUsers } from "../../actions/session_actions";
-import { createFriend, fetchFriends } from "../../actions/friend_actions";
+import { getUsers } from "../../../actions/session_actions";
+import { createFriend, fetchFriends } from "../../../actions/friend_actions";
 
 class FriendsForm extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class FriendsForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
 
     // this.renderList = this.renderList.bind(this);
     // this.update = this.update.bind(this);
@@ -93,56 +93,46 @@ class FriendsForm extends React.Component {
   //   });
   // }
 
-  handleChange (e){
-    this.setState( {
-      selectedFriend: e.target.value
-    })
+  handleChange(e) {
+    this.setState({
+      selectedFriend: e.target.value,
+    });
   }
 
   render() {
     return (
-
       <div className="addfriend-form centerme">
         {" "}
         <div id="formheader">Add Friends</div>
-
-            Find a <span className="STRONG">friend</span>&nbsp;
-
-
-            <select onChange={this.handleChange } value={this.state.selectedFriend}>
-              <option value={null}>users</option>
-              {this.props.users.map((user) => (
-                <option value={user.id} key={user.id}>
-                  {user.username}
-                </option>
-              ))}
-            </select>
-          <br />
-
-          <img src={window.orangedude} style={{ height: `50px` }}></img>
-          <p>{this.state.selectedFriend}</p>
-        </div>
-
-
-
-
+        Find a <span className="STRONG">friend</span>&nbsp;
+        <select onChange={this.handleChange} value={this.state.selectedFriend}>
+          <option value={null}>users</option>
+          {this.props.users.map((user) => (
+            <option value={user.id} key={user.id}>
+              {user.username}
+            </option>
+          ))}
+        </select>
+        <br />
+        <img src={window.orangedude} style={{ height: `50px` }}></img>
+        <p>{this.state.selectedFriend}</p>
+      </div>
     );
   }
 }
 
-
-      // <div className="addfriend-form">
-      //   <form onSubmit={this.handleSubmit}>
-      //     Add Friend Search for Friends (by username or email)! : &nbsp;
-      //     <input
-      //       type="text"
-      //       value={this.state.searchString}
-      //       onChange={this.onChange.bind(this)}
-      //     />
-      //     {this.renderList()}
-      //     <input type="submit" value="Add Friend" />
-      //   </form>
-      // </div>
+// <div className="addfriend-form">
+//   <form onSubmit={this.handleSubmit}>
+//     Add Friend Search for Friends (by username or email)! : &nbsp;
+//     <input
+//       type="text"
+//       value={this.state.searchString}
+//       onChange={this.onChange.bind(this)}
+//     />
+//     {this.renderList()}
+//     <input type="submit" value="Add Friend" />
+//   </form>
+// </div>
 
 const mSTP = (state) => {
   return {

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
 import { Link } from "react-router-dom";
 import { openModal } from "../../actions/modal_actions";
-import AddBills from "./addbills";
+import AddBills from "./buttons/addbills";
 import { select } from "../../actions/ui_actions";
 
 class Bills extends React.Component {
@@ -24,7 +24,7 @@ class Bills extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.bills !== this.props.bills) {
-      console.log('bills props has changed from inside bills component.')
+      console.log("bills props has changed from inside bills component.");
       this.calculateTotalYouOwe();
     }
   }
@@ -102,7 +102,7 @@ class Bills extends React.Component {
       color: `#5bc5a7`,
       fontSize: `13px`,
       lineHeight: `16px`,
-      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif`
+      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif`,
     };
 
     const redlazy = {
@@ -118,7 +118,7 @@ class Bills extends React.Component {
       color: `#ff652f`,
       fontSize: `13px`,
       lineHeight: `16px`,
-      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif`
+      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif`,
     };
 
     const greenlazy = {
@@ -134,11 +134,11 @@ class Bills extends React.Component {
       textAlign: `center`,
       fontSize: `13px`,
       lineHeight: `16px`,
-      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif `
+      fontFamily: `'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif `,
     };
- 
+
     return (
-      <div className= {this.props.className}>
+      <div className={this.props.className}>
         <div
           style={{
             borderBottom: `1px solid #DDDDDD`,
@@ -152,11 +152,16 @@ class Bills extends React.Component {
             padding: `2.5% 0 2.5% 5%`,
           }}
         >
-                <h1 style={{
-                  fontSize: `2vw`, fontWeight: `700` }}>Dashboard
-                </h1>
+          <h1
+            style={{
+              fontSize: `2vw`,
+              fontWeight: `700`,
+            }}
+          >
+            Dashboard
+          </h1>
 
-          <AddBills/>
+          <AddBills />
         </div>
         <div
           id="total_balances"
@@ -199,37 +204,35 @@ class Bills extends React.Component {
           )}
         </div>
 
-
         <div style={{ display: `flex`, flexWrap: `wrap`, height: `` }}>
-            <div
-              style={{
-                width: `50%`,
-                textAlign: `left`,
-                margin: `0 auto`,
+          <div
+            style={{
+              width: `50%`,
+              textAlign: `left`,
+              margin: `0 auto`,
               padding: `5px 0 20px 10px`,
-                fontSize: `1.2rem`,
-                fontWeight: `900`
-              }}
-              className="columnheaders"
-            >
-              YOU OWE
-            </div>
-            <div
-              style={{
-                width: `50%`,
-                textAlign: `right`,
-                margin: `0 auto`,
+              fontSize: `1.2rem`,
+              fontWeight: `900`,
+            }}
+            className="columnheaders"
+          >
+            YOU OWE
+          </div>
+          <div
+            style={{
+              width: `50%`,
+              textAlign: `right`,
+              margin: `0 auto`,
               padding: `5px 10px 20px 0`,
               fontSize: `1.2rem`,
-              fontWeight: `900`
-              }}
-              className="columnheaders"
-            >
+              fontWeight: `900`,
+            }}
+            className="columnheaders"
+          >
             YOU ARE OWED
           </div>
 
-
-            {/* MOSTLY WRITTEN LEFT SIDE that needs margin on the left image */}
+          {/* MOSTLY WRITTEN LEFT SIDE that needs margin on the left image */}
           <div
             style={{
               // height: `${this.state.height}`,
@@ -238,51 +241,58 @@ class Bills extends React.Component {
               borderColor: `#DDDDDD`,
               overflow: `hidden`,
               display: `block`,
-                            whiteSpace:`nowrap`
-
+              whiteSpace: `nowrap`,
             }}
           >
             {this.props.bills.map((bill) =>
               bill.borrower_id === this.props.current_user_id ? (
+                <Link
+                  to={`/friends/${this.findFriendship(bill.lender)}`}
+                  onClick={() =>
+                    this.props.select(this.findFriendship(bill.lender))
+                  }
+                  className="greyhover"
+                  style={{
+                    textDecoration: `none`,
+                    display: `block`,
+                    padding: `5px 10px`,
+                  }}
+                >
+                  {eval(`avatar` + (this.findFriendship(bill.lender) % 7)) !=
+                  "avatarNaN" ? (
+                    <img
+                      src={window.eval(
+                        `avatar` + (this.findFriendship(bill.lender) % 7)
+                      )}
+                      style={{
+                        width: `35px`,
+                        height: `35px`,
+                        margin: "10px 16px 10px 0",
+                        display: `inline-block`,
+                        verticalAlign: `baseline`,
+                        borderRadius: `50%`,
+                        border: `1px solid #cc`,
+                      }}
+                    ></img>
+                  ) : null}
 
-                  <Link
-                    to={`/friends/${this.findFriendship(bill.lender)}`}
-                    onClick={() =>
-                      this.props.select(this.findFriendship(bill.lender))
-                    }
-                    className='greyhover'
-                    style={{ textDecoration: `none`, display: `block`, padding: `5px 10px` }}
+                  <div
+                    key={bill.id}
+                    style={{ display: `inline-block`, overflow: `hidden` }}
                   >
-                    {eval(`avatar` + (this.findFriendship(bill.lender) % 7)) !=
-                    "avatarNaN" ? (
-                      <img
-                        src={window.eval(
-                          `avatar` + (this.findFriendship(bill.lender) % 7)
-                        )}
-                        style={{
-                          width: `35px`,
-                          height: `35px`,
-                          margin: "10px 16px 10px 0",
-                          display: `inline-block`,
-                          verticalAlign: `baseline`,
-                          borderRadius: `50%`,
-                           border: `1px solid #cc`,
-
-                        }}
-                      ></img>
-                    ) : null}
-
-                    <div key={bill.id}   
-                      style={{display: `inline-block`, overflow:`hidden`}}
-                      >
-                    <span style={{ fontSize: `1.5rem`, whiteSpace:`pre`, 
-                    float:`left`,
-                     width: `10rem` 
-                    }} >{bill.lender.padEnd(12)} &nbsp; 
-                        {/* padEnd with " " doesnt work because the empty  pared down by html USE whitespace:pre */}
-                        {/* NOW problem si diff chars have diff sizes  size="20" is only for like input*/}
-                        {/* best way is to gaurantee a size for the span but its inline so width= shoudlnt work */}
-                        {/* SOLUTION:
+                    <span
+                      style={{
+                        fontSize: `1.5rem`,
+                        whiteSpace: `pre`,
+                        float: `left`,
+                        width: `10rem`,
+                      }}
+                    >
+                      {bill.lender.padEnd(12)} &nbsp;
+                      {/* padEnd with " " doesnt work because the empty  pared down by html USE whitespace:pre */}
+                      {/* NOW problem si diff chars have diff sizes  size="20" is only for like input*/}
+                      {/* best way is to gaurantee a size for the span but its inline so width= shoudlnt work */}
+                      {/* SOLUTION:
                            ul {
                             list-style-type: none;
                             padding-left: 0px;
@@ -297,27 +307,37 @@ class Bills extends React.Component {
                             <li><span>AND</span> The lazy cat.</li>
                             <li><span>OR</span> The active goldfish.</li>
                           </ul> */}
-                      </span>
-                      <span style={{ fontSize: `.9rem`, 
-                      float:`left`, 
-                      // width: `50px` 
-                      }}>{new Date(bill.created_at).toLocaleDateString("en-US")}</span>
+                    </span>
+                    <span
+                      style={{
+                        fontSize: `.9rem`,
+                        float: `left`,
+                        // width: `50px`
+                      }}
+                    >
+                      {new Date(bill.created_at).toLocaleDateString("en-US")}
+                    </span>
 
-                      <br />
-                      <span style={{
+                    <br />
+                    <span
+                      style={{
                         // clear:`both`,
-                        float:`left`,
-                         color: `#ff652f`}}>
-                        you owe  <span style={{ fontSize: `1.2rem`, fontWeight:`1000` }}>${bill.amount / 100}</span>
+                        float: `left`,
+                        color: `#ff652f`,
+                      }}
+                    >
+                      you owe{" "}
+                      <span style={{ fontSize: `1.2rem`, fontWeight: `1000` }}>
+                        ${bill.amount / 100}
                       </span>
-                     
-                    </div>
-                  </Link>
+                    </span>
+                  </div>
+                </Link>
               ) : null
             )}
           </div>
-            
-            {/* RIGHT SIDE */}
+
+          {/* RIGHT SIDE */}
 
           <div
             style={{
@@ -327,45 +347,58 @@ class Bills extends React.Component {
               borderColor: `#DDDDDD`,
               display: `block`,
               overflow: `hidden`,
-              whiteSpace:`nowrap`
+              whiteSpace: `nowrap`,
             }}
           >
             {this.props.bills.map((bill) =>
               bill.lender_id === this.props.current_user_id ? (
-
-
                 <Link
                   to={`/friends/${this.findFriendship(bill.borrower)}`}
                   onClick={() =>
                     this.props.select(this.findFriendship(bill.borrower))
                   }
                   className="greyhover"
-                  style={{ textDecoration: `none`, display: `block`, padding:`5px 10px`}}
+                  style={{
+                    textDecoration: `none`,
+                    display: `block`,
+                    padding: `5px 10px`,
+                  }}
                 >
                   {eval(`avatar` + (this.findFriendship(bill.borrower) % 7)) !=
-                    "avatarNaN" ? (
-                      <img
-                        src={window.eval(
-                          `avatar` + (this.findFriendship(bill.borrower) % 7)
-                        )}
-                        style={{
-                          width: `35px`,
-                          height: `35px`,
-                          margin: "10px 16px 10px 0",
-                          display: `inline-block`,
-                          verticalAlign: `baseline`,
-                          borderRadius: `50%`,
-                          border: `1px solid #cc`,
-                        }}
-                      ></img>
-                    ) : null}
+                  "avatarNaN" ? (
+                    <img
+                      src={window.eval(
+                        `avatar` + (this.findFriendship(bill.borrower) % 7)
+                      )}
+                      style={{
+                        width: `35px`,
+                        height: `35px`,
+                        margin: "10px 16px 10px 0",
+                        display: `inline-block`,
+                        verticalAlign: `baseline`,
+                        borderRadius: `50%`,
+                        border: `1px solid #cc`,
+                      }}
+                    ></img>
+                  ) : null}
 
-                    <div key={bill.id} style={{ display: `inline-block`, overflow: `hidden` }}>
-                      <span style={{ fontSize: `1.5rem` }}>{bill.borrower.padEnd(12," ")}</span> &nbsp;
-                      <span style={{ fontSize: `.9rem` }}>{new Date(bill.created_at).toLocaleDateString("en-US")} </span>
-                      <br />
-                      <span style={{ color: `#5bc5a7` }}>
-                        owes you <span style={{ fontSize: `1.2rem`, fontWeight: `1000`}}>${bill.amount / 100}</span>
+                  <div
+                    key={bill.id}
+                    style={{ display: `inline-block`, overflow: `hidden` }}
+                  >
+                    <span style={{ fontSize: `1.5rem` }}>
+                      {bill.borrower.padEnd(12, " ")}
+                    </span>{" "}
+                    &nbsp;
+                    <span style={{ fontSize: `.9rem` }}>
+                      {new Date(bill.created_at).toLocaleDateString("en-US")}{" "}
+                    </span>
+                    <br />
+                    <span style={{ color: `#5bc5a7` }}>
+                      owes you{" "}
+                      <span style={{ fontSize: `1.2rem`, fontWeight: `1000` }}>
+                        ${bill.amount / 100}
+                      </span>
                     </span>
                   </div>
                 </Link>

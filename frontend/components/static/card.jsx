@@ -71,8 +71,12 @@ class Card extends Component {
             ref={(element) => {
               this.dropdownMenu = element;
             }}
-            style={{ backgroundColor: `rgb(238,238,238)`, borderBottomLeftRadius: `5px`,
-             borderBottomRightRadius: `5px`, boxShadow: `0 1px 4px rgba(0, 0, 0, 0.4)`}}
+            style={{
+              backgroundColor: `rgb(238,238,238)`,
+              borderBottomLeftRadius: `5px`,
+              borderBottomRightRadius: `5px`,
+              boxShadow: `0 1px 4px rgba(0, 0, 0, 0.4)`,
+            }}
           >
             <form onSubmit={this.handleSubmit} className="login-form-box2">
               <div className="login-form2">
@@ -84,7 +88,7 @@ class Card extends Component {
                   value={this.state.username}
                   onChange={this.update("username")}
                   className="login-input"
-                  style= {{margin:`5px`}}
+                  style={{ margin: `5px` }}
                 />
                 <br />
 
@@ -98,18 +102,16 @@ class Card extends Component {
                 />
                 <br />
                 <input
-                  style={{ transform: `scale(0.75)`, margin: `0 0 0 0`, backgroundColor: `#48BE9D` }}
+                  style={{
+                    transform: `scale(0.75)`,
+                    margin: `0 0 0 0`,
+                    backgroundColor: `#48BE9D`,
+                  }}
                   className="session-submit orangebutton"
                   type="submit"
-                  value={`Log in to Dividewise`} //this.props.formType +
+                  value={`Log in to Dividewise`} 
                 />
-                {/* <ul>
-                                            {this.props.errors.map((error, i) => (
-                                            <li key={`error-${i}`}>
-                                                {error}
-                                            </li>
-                                            ))}
-                                        </ul> */}
+
               </div>
             </form>
           </div>

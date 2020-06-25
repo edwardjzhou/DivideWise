@@ -1,4 +1,4 @@
-import $ from 'jquery'
+import $ from "jquery";
 export const fetchBills = () =>
   $.ajax({
     method: "GET",
@@ -10,7 +10,7 @@ export const fetchBill = (id) =>
     method: "GET",
     url: `api/bill/${id}`,
   });
-  
+
 export const createBill = (bill) =>
   $.ajax({
     method: "POST",
@@ -23,8 +23,7 @@ export const createPayment = (payment, bill_id) =>
     method: "POST",
     url: `api/bills/${bill_id}/payments`,
     data: { payment },
-    // contentType: false,
-    // processData: false
+
   });
 export const fetchPayments = () =>
   $.ajax({
@@ -37,6 +36,5 @@ export const createComment = (comment) =>
     method: "POST",
     url: `api/bills/${comment[bill_id]}/comments`,
     data: { comment },
-    // contentType: false,
-    // processData: false
+
   });

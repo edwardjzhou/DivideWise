@@ -1,10 +1,10 @@
 import React from "react";
 import NavBar from "../static/navbar";
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from "react-google-login";
 import { css } from "@emotion/core";
 import HashLoader from "react-spinners/HashLoader";
-// FadeLoader		
-// HashLoader	
+// FadeLoader
+// HashLoader
 const override = css`
   display: block;
   margin: 0
@@ -14,10 +14,6 @@ const override = css`
   position: absolute;
   transform: translate(-50%, -50%);
 `;
-
-
-
-
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -29,13 +25,12 @@ class LoginForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoFill = this.demoFill.bind(this);
-    this.responseGoogle = this.responseGoogle.bind(this)
+    this.responseGoogle = this.responseGoogle.bind(this);
   }
 
-
   responseGoogle(response) {
-    this.props.edwardAUTH(response.tokenId, response.profileObj.email)
-  };
+    this.props.edwardAUTH(response.tokenId, response.profileObj.email);
+  }
 
   update(field) {
     return (e) =>
@@ -61,15 +56,17 @@ class LoginForm extends React.Component {
   }
 
   demoFill(e) {
-    e.preventDefault()
-    this.setState({
-      username: "edward",
-      password: "password",
-      // loading: true,
-    }, ()=> {
-      const { username, password } = this.state;
-      setTimeout(this.props.processForm.bind({}, { username, password }), 0);
-    }
+    e.preventDefault();
+    this.setState(
+      {
+        username: "edward",
+        password: "password",
+        // loading: true,
+      },
+      () => {
+        const { username, password } = this.state;
+        setTimeout(this.props.processForm.bind({}, { username, password }), 0);
+      }
     );
   }
 
@@ -101,9 +98,7 @@ class LoginForm extends React.Component {
                 style={{ fontSize: "24px" }}
               />
             </label>
-
-            <br/>
-
+            <br />
             <label>
               Password:
               <br />
@@ -116,10 +111,8 @@ class LoginForm extends React.Component {
                 style={{ fontSize: "24px" }}
               />
             </label>
-
             <br />
             <br />
-
             <input className="orangebutton" type="submit" value="Log in" />
             {/* {this.props.formType} */} &nbsp;
             <button
@@ -135,28 +128,20 @@ class LoginForm extends React.Component {
               clientId="23767328561-ndo3b9lpk03lr9kfind7ur4srslp3qrr.apps.googleusercontent.com"
               buttonText="Google"
               onSuccess={this.responseGoogle}
-              onFailure={()=>alert(`you closed the react-google-login login page`)}
+              onFailure={() =>
+                alert(`you closed the react-google-login login page`)
+              }
               // onFailure={this.responseGoogle}
-              cookiePolicy={'single_host_origin'}
-               
-            /> 
-        
-  
-
-           <HashLoader
+              cookiePolicy={"single_host_origin"}
+            />
+            <HashLoader
               css={override}
               size={150}
               color={"green"}
               // loading={this.state.loading}
               loading={this.props.attempting_login}
             />
-
-
-      
-
-
-
-          </div>  
+          </div>
         </form>
 
         <svg
@@ -164,11 +149,19 @@ class LoginForm extends React.Component {
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 680 91"
           className="w-full"
-          style={{ position: `absolute`, bottom: `0`, left: `0`, pointerEvents: `none` }}
+          style={{
+            position: `absolute`,
+            bottom: `0`,
+            left: `0`,
+            pointerEvents: `none`,
+          }}
         >
           <path fill="#ACE4D6" d="M349 76.499L286 113V40z" />
           <path fill="#0C3C32" d="M480 74.5L446 94V55z" />
-          <path fill="#1CC29F" d="M223 76.5l63 36.5V40zm182 1.999L446 102V55z" />
+          <path
+            fill="#1CC29F"
+            d="M223 76.5l63 36.5V40zm182 1.999L446 102V55z"
+          />
           <path fill="#137863" d="M169 48v82l71-41z" />
           <path fill="#1CC29F" d="M121 75.499L169 103V48z" />
           <path fill="#373B3F" d="M456 101h-96V46z" />

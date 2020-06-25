@@ -25,31 +25,17 @@ class SignupForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     delete user.maxHeight;
-    this.props.processForm(user)
-    // .then(
-    //   this.props.history.push("/login")
-      // this.renderErrors()
-    // );
+    this.props.processForm(user);
+    // this.props.history.push("/dashboard")
   }
 
-  // renderErrors() {
-  //     return (
-  //         <ul>
-  //             {this.props.errors.map((error, i) => (
-  //                 <li key={`error-${i}`}>
-  //                     {error}
-  //                 </li>
-  //             ))}
-  //         </ul>
-  //     );
-  // }
+
 
   maxFormHeight() {
     this.setState({ maxHeight: 300 });
   }
 
   render() {
-    // let styles = {'max-height': this.state.maxHeight+'px'}
     const maxHeight = { maxHeight: this.state.maxHeight };
 
     return (
@@ -130,15 +116,7 @@ class SignupForm extends React.Component {
                 <br />
                 <br />
                 <input id="orangebutton" type="submit" value="Sign me up!" />
-                <ul>
-                  {/* {this.props.errors.map((error, i) => (
-                                    <li key={`error-${i}`}>
-                                        {error}
-                                    </li>
-                                ))} */}
 
-                  {/* {this.props.errors} */}
-                </ul>
               </div>
             </div>
           </form>
