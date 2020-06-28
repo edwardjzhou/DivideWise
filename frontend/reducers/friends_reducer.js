@@ -3,6 +3,7 @@ import merge from "lodash/merge";
 import {
   RECEIVE_FRIENDS,
   RECEIVE_FRIEND,
+
 } from "../actions/friend_actions";
 
 const friendsReducer = (state = {}, action) => {
@@ -15,6 +16,7 @@ const friendsReducer = (state = {}, action) => {
       const { friend } = action
       const newFriend = { [friend.id]: friend };
       return merge({}, state, newFriend);
+
     default:
       return state;
   }

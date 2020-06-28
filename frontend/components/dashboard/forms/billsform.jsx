@@ -125,11 +125,19 @@ class BillsForm extends React.Component {
       this.state.amount != null &&
       !isNaN(this.state.amount)
     ) {
-      return <input className="greenbutton" type="submit" value="Save"></input>;
+      return (
+        <input
+          className="greenbutton"
+          style={{ width: `75px` }}
+          type="submit"
+          value="Save"
+        ></input>
+      );
     } else {
       return (
         <input
           className="greenbutton disabled"
+          style={{width: `75px`}}
           type="submit"
           value="Save"
           disabled="true"
@@ -200,10 +208,11 @@ class BillsForm extends React.Component {
                 type="text"
                 style={{
                   height: `50%`,
-                  width: `83%`,
+                  // width: `83%`,
+                  width: `200px`,
                   padding: `0px 0px 0px 0px`,
                   display: `block`,
-                  fontSize: `25px`,
+                  fontSize: `22px`,
                   boxShadow: `none`,
                   border: `none`,
                   borderBottom: `1px dashed #CCCCCC`,
@@ -282,6 +291,7 @@ class BillsForm extends React.Component {
               margin: `1vh`,
               display: `flex`,
               justifyContent: `flex-end`,
+              marginBottom: `1vw`
             }}
           >
             <button className="cancel" onClick={this.props.closeModal}>

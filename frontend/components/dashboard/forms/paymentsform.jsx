@@ -89,11 +89,13 @@ class PaymentsForm extends React.Component {
 
   render() {
     return (
-      <div className="addfriend-form centerme">
+      <div style={{textAlign:`center`}}>
+       {/* <div className="addfriend-form centerme"> */}
         {" "}
         <div id="formheader">Settle up</div>
         <form onSubmit={this.handleSubmit}>
-          <span style={{ left: `10px`, position: `absolute` }}>
+          {/* <span style={{ left: `10px`, position: `absolute` }}> */}
+          <span>
             Find a bill <span className="STRONG">YOU</span> are in&nbsp;
             <select onChange={this.selectedBill.bind(this)}>
               <option value={null}>Choose a bill</option>
@@ -106,7 +108,6 @@ class PaymentsForm extends React.Component {
             </select>
           </span>
           <br />
-          {/* {[1, 2, 3]} */}
 
           <img src={window.orangedude} style={{ height: `50px` }}></img>
           <img src={window.arrow} style={{ height: `50px` }}></img>

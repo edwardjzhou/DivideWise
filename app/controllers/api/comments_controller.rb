@@ -236,7 +236,7 @@ class Api::CommentsController < ApplicationController
             render json: ["not a comment authored by you"], status: 422
         else
             @comment.destroy! #exclamation mark breaks this witha  404 request it hink so render joson saying success wont even happen
-            render json: ["Destroyed comment #{@comment.id} saying #{@comment.body}"]
+            render json: ["Destroyed comment #{@comment.id} saying #{@comment.body}"], status: 200
         end
     end
 #     asdf= $.ajax({

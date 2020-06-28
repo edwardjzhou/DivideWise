@@ -8,7 +8,9 @@ import PaymentsForm from "../dashboard/forms/paymentsform";
 import styled from 'styled-components';
 
 const StyledModalChild = styled.div`
-  width: 40%;
+  width: min(30%, 400px);
+  height: min(40%, 450px);
+  z-index: 99999;
   position: fixed;
   top: 40%;
   left: 50%;
@@ -20,6 +22,7 @@ const StyledModalChild = styled.div`
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  background-color: white;
   list-style-type: none;
   list-style: none;
 `
@@ -66,9 +69,11 @@ function Modal({ modal, closeModal }) {
         <a
           style={{
             float: "right",
-            fontSize: `25px`,
+            fontSize: `22px`,
             color: `white`,
-            margin: `0 5px 0 0`,
+            margin: `0 5px 5px 0`,
+            zIndex: 999999,
+            cursor: `pointer`,
           }}
           onClick={closeModal}
         >

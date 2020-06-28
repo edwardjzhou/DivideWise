@@ -6,7 +6,7 @@ class Friendship < ApplicationRecord
     validates :user_one_id, numericality: { less_than: :user_two_id } # User_one has to be smaller than User_two
     validates :user_one_id, :user_two_id, presence: true, allow_blank: false 
     validates :user_one_id, :uniqueness => { :scope => :user_two_id } #Is there already a friendship with same users?
-    validate :users_exist? #Do these 2 users exist?
+    # validate :users_exist?#, :on => :save #Do these 2 users exist?
 
     belongs_to :user_one,
     foreign_key: :user_one_id,
@@ -21,9 +21,9 @@ class Friendship < ApplicationRecord
 
 
 
-    def users_exist?
-        User.exists?(self.user_one_id) and User.exists?(self.user_two_id)
-    end
+    # def users_exist?
+        # errors.add(:hey,"The user you're adding isn't a user") unless User.exists?(self.user_one_id) and User.exists?(self.user_two_id)
+    # end
     
     # validates :friend, :presence => true, :unless => :friend_is_self
     # validates [:user_one_id, :user_two_id], uniqueness: { scope: [:user_two_id, :user_one_id],

@@ -9,11 +9,11 @@ class FriendsForm extends React.Component {
     this.state = {
       selectedFriend: null,
       // searchString: "",
+      successString: " ",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
   }
 
   componentDidMount() {
@@ -45,7 +45,8 @@ class FriendsForm extends React.Component {
       user_one_id: user_one_id,
       user_two_id: user_two_id,
     });
-    this.props.fetchFriends();
+
+    // this.props.fetchFriends();
     // }
     // , 50)
   }
@@ -96,44 +97,98 @@ class FriendsForm extends React.Component {
       selectedFriend: e.target.value,
     });
   }
+  
+  allowSubmit() {
+    if (
+      this.state.selectedFriend != null && !isNaN(this.state.selectedFriend)
+ 
+    ) {
+      return (
+        <input
+          style={{ width: `75px` }}
+          className="greenbutton"
+          type="submit"
+          value="Save"
+        ></input>
+      );
+    } else {
+      return (
+        <input
+          style= {{width: `75px`}}
+          className="greenbutton disabled"
+          type="submit"
+          value="Save"
+          disabled="true"
+        ></input>
+      );
+    }
+  }
+
+  // componentWillReceiveProps(newProps){
+
+  // }
+
+  componentDidUpdate(prevProps, prevState){
+    if (prevProps.friends.length < this.props.friends.length) {
+      this.setState({successString: "Successfully added new friend!"})
+    }
+  }
 
   render() {
     return (
-      <div className="addfriend-form centerme">
-        {" "}
+      // <div className="addfriend-form centerme">
+      <div style={{ textAlign: `center` }}>
         <div id="formheader">Add Friends</div>
-        Find a <span className="STRONG">friend</span>&nbsp;
-        <select onChange={this.handleChange} value={this.state.selectedFriend}>
-          <option value={null}>users</option>
-          {this.props.users.map((user) => (
-            <option value={user.id} key={user.id}>
-              {user.username}
-            </option>
-          ))}
-        </select>
-        <br />
-        <img src={window.orangedude} style={{ height: `50px` }}></img>
-        <p>{this.state.selectedFriend}</p>
+        {this.props.error.length
+          ? this.props.error.map((err) => {
+              if (err.includes("has already been taken"))
+                err = "that friendship already existed!";
+              return (
+                <p key={err} style={{ color: `red`, fontSize: `30px` }}>
+                  {" "}
+                  {err}{" "}
+                </p>
+              );
+            })
+          : null}
+        <label>
+          Find a <span className="STRONG">friend</span>&nbsp;
+          <form onSubmit={this.handleSubmit}>
+            <select
+              onChange={this.handleChange}
+              value={this.state.selectedFriend}
+            >
+              <option value={null}>FIND A FRIEND</option>
+              {this.props.users.map((user) => (
+                <option value={user.id} key={user.id}>
+                  {user.username}
+                </option>
+              ))}
+            </select>
+
+            <br />
+            <span> {this.state.successString}</span>
+
+            <img src={window.orangedude} style={{ height: `50px` }} />
+            {/* <p>{this.state.selectedFriend}</p> */}
+            <br />
+            <div style={{bottom: `15px`, right: `15px`, position: `absolute`}}>
+              <button className="cancel" onClick={this.props.closeModal}>
+                Cancel
+              </button>
+              {this.allowSubmit()}
+            </div>
+          </form>
+        </label>
       </div>
     );
   }
 }
 
-// <div className="addfriend-form">
-//   <form onSubmit={this.handleSubmit}>
-//     Add Friend Search for Friends (by username or email)! : &nbsp;
-//     <input
-//       type="text"
-//       value={this.state.searchString}
-//       onChange={this.onChange.bind(this)}
-//     />
-//     {this.renderList()}
-//     <input type="submit" value="Add Friend" />
-//   </form>
-// </div>
 
 const mSTP = (state) => {
   return {
+    error: state.errors.friend,
     friends: Object.values(state.entities.friends),
     current_user: state.entities.users[state.session.id],
     current_user_id: state.entities.users[state.session.id].id,

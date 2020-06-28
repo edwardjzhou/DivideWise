@@ -27,10 +27,10 @@
 }
 
 
-
-// :focus {
-//   outline: 0;
-//   outline-color: 0;
-//   outline-style: 0;
-//   outline-width: 0;
-// }
+// prevent BLUE BORDER on CLICKED links
+:focus {
+  outline: 0;
+  outline-color: 0;
+  outline-style: 0;
+  outline-width: 0;
+}

@@ -8,7 +8,7 @@ import configureStore from "./store/store";
 document.addEventListener("DOMContentLoaded", () => {
   let store;
   if (window.currentUser) {
-    //currentUser is bootstrapped by rails from root.html.erb
+    //currentUser is bootstrapped by rails views from root.html.erb testing for a user cookie into a window variable
     const preloadedState = {
       entities: {
         users: { [window.currentUser.id]: window.currentUser },
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const root = document.getElementById("root");
-  window.getState = store.getState;
+  // window.getState = store.getState;
   // window.dispatch = store.dispatch;
   // window.login = login;
   // window.signup = signup;

@@ -147,11 +147,12 @@ class Friendbills extends React.Component {
         }}
       >
         <img style={{ display: `inline-block` }} src={window.sorry}></img>
-
+        <div>
           <h2 style={{ textOverflow: `initial`, fontWeight: `700` }}>
             You have not added any expenses yet
           </h2>
           <p>To add a new expense, click the orange “Add an expense” button.</p>
+        </div>
       </div>
     );
   }
