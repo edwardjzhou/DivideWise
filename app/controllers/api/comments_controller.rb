@@ -1,28 +1,3 @@
-# message passing and messages: key to concurrency and OOP and used in objective C
-#channel is a model for interprocess comms and synchronization by using messages; GOlang
-#function machines: classical inheritance dressing down by gang of four => rise of compositional functions, IS A TYPE OF vs HAS
-#reactionary: javascript too spaghetti => over functionalized react/redux with pureness of compositonal functions and function machines with 1 director of truth
-
-#at its core promises deal with futurity. futurity auto brings uncertainty so have to give 2 cbs 
-# but is the thing running inside the promise on the event loop though or the callstack? no guide explicitly explains properly  or is only running the success/fail cb on the event loop
-#assume: NOt a lot of people actually fully understand this concept
-# if main() is the one who called the promise.then.then or Promise.all or whatever then IFF when main() is at the top of the callstack can that promise run a callback? or can main not close out
-
-# css with mixins and variables = sass
-# but still too difficult to manage to styled components inside the actual component file is best? how is it reusable though -- its literally inline with a littel better functional closure global modularity
-# styled.div`` dont get it
-
-# providers/ consumers of API request/response; a consumer would be my frontend and a provider would be my rails
-# event emitters/listeners like js eventlisteners or even websockets? 
-
-#javascript never can get pointers/addresses for securitys sake? all pass by value except arrays nad objects
-#objects can have properties set with getter/setter or undeletable with defineproperty
-
-# obj = {} inside = {} best way to mess with the insides of a nested object is to just define the reference as const current to ensure you have it by reference
-
-#best way to build up a table
-# left joins left joins left joins ?
-# or union join 
 
 # INSERT INTO Customers (CustomerName, City, Country)
 # VALUES ('Cardinal', 'Stavanger', 'Norway');
@@ -39,15 +14,6 @@
 # test giving a child a function as a prop that changes parents prop to it
 
 
-# params = ActionController::Parameters.new({
-# irb(main):005:2*   person: {
-# irb(main):006:3*     name: "Francesco",
-# irb(main):007:3*     age:  22,
-# irb(main):008:3*     role: "admin"
-# irb(main):009:3>   }
-# irb(main):010:2> })
-# note: GRAVES SYMBOLS DONT WORK IN RUBY FOR HASHES AT LEAST
-# params[`person`][]
 
 #example: does a record exisT?
 # IF [NOT] EXISTS ( SELECT 1 FROM MyTable WHERE ... )

@@ -14,8 +14,6 @@ class FriendsForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    // this.renderList = this.renderList.bind(this);
-    // this.update = this.update.bind(this);
   }
 
   componentDidMount() {

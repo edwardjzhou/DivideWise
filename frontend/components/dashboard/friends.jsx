@@ -1,3 +1,12 @@
+/* 1. fix modal forms with weird transparency and sizing 
+2. fix triangles in login being too tall
+3. fix firefox messing up the top navbar inside daashboard by setting a height
+4. fix caret not extending to the top and bottom with the link to logout button dropdonw
+5. fix accordion animation dorpodnw of payments/comments breaking 
+6. fix payments made formatting
+7. fix left margin being green upon being the selected friendship popping out
+*/
+
 import React from "react";
 // import LeftMenu from './left_menu'
 //import Modal from './modal'
@@ -23,28 +32,24 @@ class Friends extends React.Component {
       prevProps.friends !== this.props.friends ||
       prevProps.selectedFriendshipid !== this.props.selectedFriendshipid
     ) {
-      // console.log('friends props has changed.')
-      // console.log(this.props.location.pathname)
+
       this.forceUpdate();
-      // return true;
     }
   }
-  //         <div id="friends_bar" className="column">
 
-  // <div>
-  //   {console.log(this.props.selectedFriendshipid)}
-  //   {console.log(this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1])}
-  //   <div id="friends_bar" className="">
   render() {
     return (
-      <div className={this.props.className} style={{ marginRight: `10px` }}>
+      <div
+        className={this.props.className}
+        style={{ marginRight: `10px`, marginTop: `10px` }}
+      >
         <div className="greyhover">
           {location.href.includes("dashboard") ? (
             <Link
               to="/"
               style={{
                 color: `#5BC5A7`,
-                fontSize: `40`,
+                fontSize: `1.1rem`,
                 fontWeight: `bold`,
                 borderLeft: `8px solid #5BC5A7`,
                 textDecoration: `none`,
@@ -61,9 +66,10 @@ class Friends extends React.Component {
               style={{
                 textDecoration: `none`,
                 color: "gray",
-                fontSize: "40",
+                fontSize: "1.1rem",
                 fontWeight: `bold`,
                 display: `block`,
+                borderLeft: `8px solid white`,
               }}
             >
               <img src={window.logoURL} height="20px"></img>
@@ -73,21 +79,16 @@ class Friends extends React.Component {
         </div>
 
         <div className="header">
-          {" "}
           FRIENDS<AddFriends></AddFriends>
         </div>
 
         {this.props.friends.map((friend) =>
           friend.friends_name !== this.props.current_user ? (
-            // this.props.location.pathname[this.props.location.pathname.split('/').length - 1] !== friend.id ?
-            //this.state.loc.split('/')[location.href.split('/').length-1]
             this.props.selectedFriendshipid == friend.id &&
             !this.props.location.pathname.includes("dashboard") &&
             this.props.location.pathname.split("/")[
               this.props.location.pathname.split("/").length - 1
             ] == friend.id ? (
-              //  && this.props.location.pathname[this.props.location.pathname.split('/').length - 1] == friend.id ?
-              //
               <div className="greyhover" key={`FRIEND->${friend.id}`}>
                 <Link
                   to={`/friends/` + friend.id}
@@ -95,13 +96,12 @@ class Friends extends React.Component {
                   style={{
                     textDecoration: `none`,
                     color: `#5BC5A7`,
-                    // borderLeft: `8px solid #5BC5A7`
                   }}
                   onClick={() => this.props.select(friend.id)}
                 >
                   <div
-                    style={{ color: `#5bc5a7` }}
-                    className="friendItem showLeft"
+                    style={{ color: `#5bc5a7`, opacity: `.8` }}
+                    className="friendItem showLeftGreen"
                     tabIndex="-1"
                     key={friend.id}
                   >
@@ -119,8 +119,17 @@ class Friends extends React.Component {
                   style={{ textDecoration: `none` }}
                   onClick={() => this.props.select(friend.id)}
                 >
-                  <div className="friendItem" tabIndex="-1" key={friend.id}>
-                    <img height="25" src={window.user}></img>
+                  <div
+                    style={{ color: `black`, opacity: `.8` }}
+                    className="friendItem showLeftWhite"
+                    tabIndex="-1"
+                    key={friend.id}
+                  >
+                    <img
+                      height="25"
+                      style={{ opacity: `.6` }}
+                      src={window.user}
+                    ></img>
                     {friend.friends_name}{" "}
                   </div>
                 </Link>
@@ -128,7 +137,7 @@ class Friends extends React.Component {
             )
           ) : null
         )}
-        <br></br>
+        <br />
         {/* </div> */}
       </div>
     );

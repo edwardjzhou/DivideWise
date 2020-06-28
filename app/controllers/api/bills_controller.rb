@@ -1,20 +1,3 @@
-# I've been told controllers should be cleaner/skinnier and all the verifying shoudl take place in model classes
-# but model classes have no access to current_user which is set in app controller
-
-# But you can still create scope like that, just pass the parameter to it from the controller:
-
-# scope :instanceprojects, lambda { |user|
-#     where("projects.instance_id = ?", user.instance_id)
-# } 
-# Now you can call it in the controller:
-
-# Model.instanceprojects(current_user)
-
-
-
-# also Ive been told not to mess with the session object so how do we figure out who the current_user is
-# because my desired function finds friends that are a fucntion of current_user, anmely they are current_user's freinds
-
 
 # you want the whole record/row to be invalid so add error to :base
 # class Person < ApplicationRecord
@@ -39,16 +22,6 @@
 # person.errors.full_messages
 #  # => ["Name cannot contain the characters !@#%*()_-+="]
 
-
-# In development, the default behavior is for the class to be reloaded on each request,
-#  thereby resetting your class variable. In production, however, the class is initialized once and so the class variable will persist across multiple requests and multiple sessions.
-# TBfiguredout: but the controller objects are still destroyed after 1 request right???
-
-# You should move to a proper caching technique as soon as you can. 
-# You cannot, obviously, persist the value beyond the reloading of the class when the application is restarted. 
-# Furthermore, if the web server is multi-threaded (as it is likely to be), 
-# it may be running multiple instances of the application on different threads which do not share the class variables, potentially creating inconsistencies between requests.
-# Puma is a Rack-based web server with both Sinatra and Rails integration. It was designed specifically for concurrent applications, and supports full multi-threading when run on a fully-threaded Ruby interpreter.
 class Api::BillsController < ApplicationController
     before_action :require_login # THIS RUNS inherited current_user setting a @current_user
 

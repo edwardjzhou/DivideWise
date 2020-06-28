@@ -11,19 +11,26 @@
   margin: 5px 0 0 5px;
 }
 
-.friendItem:focus {
-  color: #5bc5a7;
+// .friendItem:focus {
+//   color: #5bc5a7;
+//   border-left: 8px solid #5bc5a7;
+// }
+
+.showLeftGreen {
   border-left: 8px solid #5bc5a7;
-  // outline: 1px solid blue;
+  box-sizing: border-box;
 }
 
-.showLeft {
-  border-left: 8px solid #5bc5a7;
+.showLeftWhite {
+  border-left: 8px solid white;
+  box-sizing: border-box;
 }
 
-:focus {
-  outline: 0;
-  outline-color: 0;
-  outline-style: 0;
-  outline-width: 0;
-}
+
+
+// :focus {
+//   outline: 0;
+//   outline-color: 0;
+//   outline-style: 0;
+//   outline-width: 0;
+// }

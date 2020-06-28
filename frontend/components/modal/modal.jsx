@@ -5,6 +5,40 @@ import { connect } from "react-redux";
 import FriendsForm from "../dashboard/forms/friendsform";
 import BillsForm from "../dashboard/forms/billsform";
 import PaymentsForm from "../dashboard/forms/paymentsform";
+import styled from 'styled-components';
+
+const StyledModalChild = styled.div`
+  width: 40%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-overflow: clip;
+  word-wrap: normal;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  list-style-type: none;
+  list-style: none;
+`
+
+const StyledModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  // opacity:0;
+  // -webkit-transition: opacity 400ms ease-in;
+  // -moz-transition: opacity 400ms ease-in;
+  // transition: opacity 400ms ease-in;
+  // pointer-events: none;
+`
+
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
@@ -24,9 +58,11 @@ function Modal({ modal, closeModal }) {
     default:
       return null;
   }
+
+  
   return (
-    <div className="modal-background" onClick={closeModal}>
-      <div className="modal-child" onClick={(e) => e.stopPropagation()}>
+    <StyledModalBackground onClick={closeModal}>
+      <StyledModalChild onClick={(e) => e.stopPropagation()} >
         <a
           style={{
             float: "right",
@@ -39,8 +75,8 @@ function Modal({ modal, closeModal }) {
           X
         </a>
         {component}
-      </div>
-    </div>
+      </StyledModalChild>
+    </StyledModalBackground>
   );
 }
 

@@ -468,9 +468,10 @@ class Splash extends React.Component {
             style={Object.assign({ backgroundColor: "gray" }, sectionStyle)}
           >
             <h3>Track balances</h3>
-            <p>Keep track of shared expenses, balances, and who owes who.</p>
+            <p>Keep track of shared expenses,</p>
+            <p> balances, and who owes who.</p>
             <img
-              height="500"
+              height="476px"
               src={window.elephantx}
               className="cellphone"
             ></img>
@@ -481,12 +482,11 @@ class Splash extends React.Component {
             style={Object.assign({ backgroundColor: "teal" }, sectionStyle)}
           >
             <h3>Organize expenses</h3>
-            <p>
-              Split expenses with any group: trips, housemates, friends, and
-              family.
-            </p>
+            <p> Split expenses with any group: trips, housemates,</p>
+            <p>friends, and family.</p>
+
             <img
-              height="500"
+              height="476px"
               src={window.elephanty}
               className="cellphone"
             ></img>
@@ -499,9 +499,10 @@ class Splash extends React.Component {
             style={Object.assign({ backgroundColor: "orange" }, sectionStyle)}
           >
             <h3>Add expenses easily</h3>
-            <p>Quickly add expenses on the go before you forget who paid.</p>
+            <p>Quickly add expenses on the go </p>
+            <p>before you forget who paid.</p>
             <img
-              height="500"
+              height="476px"
               src={window.elephantz}
               className="cellphone"
             ></img>
@@ -512,9 +513,10 @@ class Splash extends React.Component {
             style={Object.assign({ backgroundColor: "gray" }, sectionStyle)}
           >
             <h3>Pay friends back</h3>
-            <p> with a friend and record any cash or online payment.</p>
+            <p> Settle up with a friend and record any </p>
+            <p> cash or online payment.</p>
             <img
-              height="500"
+              height="476px"
               src={window.elephanta}
               className="cellphone"
             ></img>

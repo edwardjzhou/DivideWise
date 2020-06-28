@@ -3,8 +3,8 @@ import NavBar from "../static/navbar";
 import { GoogleLogin } from "react-google-login";
 import { css } from "@emotion/core";
 import HashLoader from "react-spinners/HashLoader";
-// FadeLoader
-// HashLoader
+
+
 const override = css`
   display: block;
   margin: 0
@@ -14,6 +14,8 @@ const override = css`
   position: absolute;
   transform: translate(-50%, -50%);
 `;
+
+
 
 class LoginForm extends React.Component {
   constructor(props) {

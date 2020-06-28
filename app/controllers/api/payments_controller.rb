@@ -32,7 +32,6 @@ class Api::PaymentsController < ApplicationController
             payment = Payment.find_by(bill_id:billid)
             @payments.push(payment) if payment != nil
          end
-        # render json: answer
         render "api/payments/index"
         
     end

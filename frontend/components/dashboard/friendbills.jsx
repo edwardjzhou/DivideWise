@@ -79,7 +79,6 @@ class Friendbills extends React.Component {
     this.findFriendId = this.findFriendId.bind(this);
     this.iBorrowed = [];
 
-    // this.handleVisibility = this.handleVisibility.bind(this);
     this.dontHandle = this.dontHandle.bind(this);
   }
 
@@ -274,9 +273,6 @@ class Friendbills extends React.Component {
                       transition: `height 0.5s ease-out`,
                     }}
                   >
-                    {/* JUST LEARNED THAT styles on a COMPONENT are NOT applied but just passed down as a prop 
-                      class ane id are still reflective all else things like data-xxx are just props and not REFLECTIVE
-                    */}
                     <Payments
                       bill={bill}
                       style={{

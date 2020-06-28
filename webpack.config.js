@@ -17,7 +17,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           query: {
-            presets: ["@babel/env", "@babel/react"], // recommended presets vs installing a ton of plugins-- still confused of what is best
+            presets: ["@babel/env", "@babel/react"], 
           },
         },
       },

@@ -6,13 +6,15 @@ import Friendbills from "./friendbills";
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-rows: min(6.5%, 50px) auto;
+  grid-template-rows: 51px auto;
   grid-template-columns: 30% max(40%, 600px) 30%;
   min-height: 100vh;
   min-width: 100vw;
 `;
 
 export const DashboardNavbar = styled.div`
+  max-height: 51px;
+  height: 51px;
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 1;
