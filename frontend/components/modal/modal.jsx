@@ -8,8 +8,10 @@ import PaymentsForm from "../dashboard/forms/paymentsform";
 import styled from 'styled-components';
 
 const StyledModalChild = styled.div`
-  width: min(30%, 400px);
-  height: min(40%, 450px);
+  // width: min(30%, 400px);
+  // height: min(40%, 450px);
+  width: 400px;
+  height: 450px;
   z-index: 99999;
   position: fixed;
   top: 40%;

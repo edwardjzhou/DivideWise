@@ -9,11 +9,15 @@ import Comments from "./comments/comments";
 import Payments from "./payments";
 
 function collapseSection(element) {
-  // get the height of the element's inner content, regardless of its actual size
-  var sectionHeight = element.scrollHeight;
+  // var old_element = element
+  // var new_element = old_element.cloneNode(true);
+  // old_element.parentNode.replaceChild(new_element, old_element);
+  console.log('collapse')
+  console.log(element.functionStorage)
+  element.removeEventListener("transitionend",element.functionStorage)
 
-  // temporarily disable all css transitions
-  var elementTransition = element.style.transition;
+  let sectionHeight = element.scrollHeight;
+  let elementTransition = element.style.transition;
   element.style.transition = "";
 
   // on the next frame (as soon as the previous style change has taken effect),
@@ -28,30 +32,32 @@ function collapseSection(element) {
     requestAnimationFrame(function () {
       element.style.height = 0 + "px";
     });
+
   });
 
   // mark the section as "currently collapsed"
-  element.setAttribute("data-collapsed", "true");
+  element.setAttribute("data-collapsed", "true"); 
+
 }
 
-function expandSection(element) {
-  // get the height of the element's inner content, regardless of its actual size
-  var sectionHeight = element.scrollHeight;
+/*
+a pernicious bug: 
+when you expand a minimized dropdown but
+then stop it before it finishes i guess transitionend event never gets emitted
+*/
 
-  // have the element transition to the height of its inner content
+function expandSection(element) {
+  let sectionHeight = element.scrollHeight;
+
   element.style.height = sectionHeight + "px";
 
-  // when the next css transition finishes (which should be the one we just triggered)
-  element.addEventListener("transitionend", function doesthiswork(e) {
-    // remove this event listener so it only gets triggered once
-    // element.removeEventListener('transitionend', arguments.callee);
-    element.removeEventListener("transitionend", doesthiswork);
-
-    // remove "height" from the element's inline styles, so it can return to its initial value
+  function finishTransition() {
+    element.removeEventListener("transitionend", finishTransition);
     element.style.height = null;
-  });
+  }
 
-  // mark the section as "currently not collapsed"
+  element.functionStorage = finishTransition;
+  element.addEventListener("transitionend", finishTransition);
   element.setAttribute("data-collapsed", "false");
 }
 
@@ -59,6 +65,8 @@ function handle(e) {
   var section = document.querySelector(
     `.section.collapsible#comments` + e.currentTarget.attributes.id.value
   );
+
+
   var isCollapsed = section.getAttribute("data-collapsed") === "true";
 
   if (isCollapsed) {

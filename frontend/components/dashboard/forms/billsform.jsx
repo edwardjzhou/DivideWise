@@ -148,7 +148,8 @@ class BillsForm extends React.Component {
 
   render() {
     return (
-      <div className="addfriend-form">
+      <div style={{minHeight:`400px`, minWidth:`360px`}}>
+       {/* <div className="addfriend-form"> */}
         {" "}
         <div id="formheader">Add an Expense</div>
         <form onSubmit={this.handleSubmit}>
