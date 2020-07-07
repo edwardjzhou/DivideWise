@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import FriendsForm from "../dashboard/forms/friendsform";
 import BillsForm from "../dashboard/forms/billsform";
 import PaymentsForm from "../dashboard/forms/paymentsform";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledModalChild = styled.div`
   // width: min(30%, 400px);
@@ -27,7 +27,7 @@ const StyledModalChild = styled.div`
   background-color: white;
   list-style-type: none;
   list-style: none;
-`
+`;
 
 const StyledModalBackground = styled.div`
   position: fixed;
@@ -42,8 +42,7 @@ const StyledModalBackground = styled.div`
   // -moz-transition: opacity 400ms ease-in;
   // transition: opacity 400ms ease-in;
   // pointer-events: none;
-`
-
+`;
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
@@ -64,10 +63,9 @@ function Modal({ modal, closeModal }) {
       return null;
   }
 
-  
   return (
     <StyledModalBackground onClick={closeModal}>
-      <StyledModalChild onClick={(e) => e.stopPropagation()} >
+      <StyledModalChild onClick={(e) => e.stopPropagation()}>
         <a
           style={{
             float: "right",

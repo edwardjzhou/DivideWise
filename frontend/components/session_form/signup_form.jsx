@@ -29,8 +29,6 @@ class SignupForm extends React.Component {
     // this.props.history.push("/dashboard")
   }
 
-
-
   maxFormHeight() {
     this.setState({ maxHeight: 300 });
   }
@@ -116,7 +114,6 @@ class SignupForm extends React.Component {
                 <br />
                 <br />
                 <input id="orangebutton" type="submit" value="Sign me up!" />
-
               </div>
             </div>
           </form>

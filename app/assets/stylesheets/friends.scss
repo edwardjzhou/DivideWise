@@ -5,16 +5,11 @@
   background-color: #eeeeee;
   color: #999999;
   height: 18px;
-  width: 157px;
+  width: 170px;
   border-top: 1px solid #e9e9e9;
   display: block;
-  margin: 5px 0 0 5px;
+  margin: 5px 0 0 8px;
 }
-
-// .friendItem:focus {
-//   color: #5bc5a7;
-//   border-left: 8px solid #5bc5a7;
-// }
 
 .showLeftGreen {
   border-left: 8px solid #5bc5a7;
@@ -25,7 +20,6 @@
   border-left: 8px solid white;
   box-sizing: border-box;
 }
-
 
 // prevent BLUE BORDER on CLICKED links
 :focus {

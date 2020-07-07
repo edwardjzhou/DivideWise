@@ -13,7 +13,7 @@ const AddFriends = ({ openModal }) => {
 };
 
 const mapStateToProps = ({ session }) => ({
-  currentUser: session.currentUser, 
+  currentUser: session.currentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

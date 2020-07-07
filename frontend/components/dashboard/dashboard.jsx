@@ -5,8 +5,14 @@ import { NavLink, Link, Route, Switch } from "react-router-dom";
 import LogoutCard from "./dashboardlogoutcard";
 import { fetchBills } from "../../actions/bill_actions";
 import { logout } from "../../actions/session_actions";
-import { Grid, DashboardNavbar, StyledFriends, StyledBills, StyledFriendbills, ThirdColumn } from "./styledDashboard"
-
+import {
+  Grid,
+  DashboardNavbar,
+  StyledFriends,
+  StyledBills,
+  StyledFriendbills,
+  ThirdColumn,
+} from "./styledDashboard";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -37,7 +43,6 @@ class Dashboard extends React.Component {
               <StyledBills />
             </Route>
             <Route path="/friends/:friendId" component={StyledFriendbills} />
-
           </Switch>
 
           {/* third column in 2nd row */}

@@ -4,7 +4,6 @@ import { GoogleLogin } from "react-google-login";
 import { css } from "@emotion/core";
 import HashLoader from "react-spinners/HashLoader";
 
-
 const override = css`
   display: block;
   margin: 0
@@ -14,8 +13,6 @@ const override = css`
   position: absolute;
   transform: translate(-50%, -50%);
 `;
-
-
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -130,8 +127,9 @@ class LoginForm extends React.Component {
               clientId="23767328561-ndo3b9lpk03lr9kfind7ur4srslp3qrr.apps.googleusercontent.com"
               buttonText="Google"
               onSuccess={this.responseGoogle}
-              onFailure={() =>
-                alert(`you closed the react-google-login login page`)
+              onFailure={
+                () => {}
+                // alert(`you closed the react-google-login login page`)
               }
               // onFailure={this.responseGoogle}
               cookiePolicy={"single_host_origin"}

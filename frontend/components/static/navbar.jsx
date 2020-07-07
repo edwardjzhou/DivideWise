@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import CardContainer from "./card_container";
 
 const NavBar = () => {
-
   return (
     <div
       className="flex-container"

@@ -1,8 +1,12 @@
-
 /* 1. fix modal forms top angle curvature and X on bill creation form
 2. fix triangles in login being too tall
 4. fix caret not extending to the top and bottom with the link to logout button dropdonw
 6. fix payments made formatting
+// tbd: 1. fetchusers on main dashboard load
+// 2. fix user_id -> username instead in comments
+// 3. fix payments w flexbox or tables
+// 4. fix dates float on main bills page
+// fix overflow on main friendbills 
 */
 
 import React from "react";
@@ -10,7 +14,6 @@ import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
 
 class Payments extends React.Component {
-
   constructor(props) {
     super(props);
     // given this.props.bill
@@ -20,9 +23,7 @@ class Payments extends React.Component {
 
   renderPaymentItem(payment, bill) {
     return (
-      <div
-        key={`PAYMENT->${Object.entries(payment)[0]}`}
-      >
+      <div key={`PAYMENT->${Object.entries(payment)[0]}`}>
         <div
           style={{
             cursor: `pointer`,
@@ -30,32 +31,26 @@ class Payments extends React.Component {
             // justifyContent: `space-between`,
             marginLeft: ``,
             marginRight: `50px`,
-            display: `flex`
+            display: `flex`,
           }}
         >
-
-            <img
-              height="19px"
-              width="19px"
-              style={{ margin: `0` }}
-              src={window.payment}
-            />
-
-            &nbsp;
-
-            <div>
-              {new Date(
-                Object.values(payment)[0].created_at
-              ).toLocaleDateString("en-US")}
-            </div>
-
-            {Object.values(payment)[0].payer_id == this.props.current_user_id
-              ? this.props.current_user_username + " paid " + bill.lender
-              : bill.borrower + " paid " + this.props.current_user_username}
-            ${Object.values(payment)[0].amount / 100 + " "}
-
+          <img
+            height="19px"
+            width="19px"
+            style={{ margin: `0` }}
+            src={window.payment}
+          />
+          &nbsp;
+          <div>
+            {new Date(Object.values(payment)[0].created_at).toLocaleDateString(
+              "en-US"
+            )}
+          </div>
+          {Object.values(payment)[0].payer_id == this.props.current_user_id
+            ? this.props.current_user_username + " paid " + bill.lender
+            : bill.borrower + " paid " + this.props.current_user_username}
+          ${Object.values(payment)[0].amount / 100 + " "}
         </div>
-
 
         <div style={{ display: ``, paddingLeft: `0` }}>
           {Object.values(payment)[0].payer_id == this.props.current_user_id
@@ -63,23 +58,21 @@ class Payments extends React.Component {
             : "you received "}
           ${Object.values(payment)[0].amount / 100 + " "}
         </div>
-
       </div>
-      
     );
   }
 
   render() {
     const { bill } = this.props;
-    
+    console.log(this.props)
     return (
       <>
-        <div style={{width:`100%`, backgroundColor: `blue`}}>
+        <div style={{ width: `100%`, backgroundColor: `` }}>
           {bill && bill.payments != undefined && bill.payments.length > 0
             ? bill.payments.map((payment) => {
                 return this.renderPaymentItem(payment, bill);
               })
-          : null}
+            : null}
         </div>
       </>
     );

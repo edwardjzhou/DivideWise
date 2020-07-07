@@ -8,7 +8,11 @@ import Payments from "./payments";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
 import { fetchFriends } from "../../actions/friend_actions";
 import { openModal } from "../../actions/modal_actions";
-import { expandSection, handleDropdown, collapseSection } from "../animations/dropdown";
+import {
+  expandSection,
+  handleDropdown,
+  collapseSection,
+} from "../animations/dropdown";
 
 class Friendbills extends React.Component {
   constructor(props, { match }) {
@@ -110,6 +114,7 @@ class Friendbills extends React.Component {
           justifyContent: `space-between`,
           marginLeft: `20px`,
           marginRight: `50px`,
+          borderBottom: `1px solid #eee`,
         }}
       >
         <div>
@@ -179,14 +184,15 @@ class Friendbills extends React.Component {
                   id={`${bill.id}`}
                   key={`BILL->${bill.id}`}
                   style={{
-                    backgroundColor: ``,
-                    position: `relative`,
-                    borderBottom: `1px solid #eee`,
+                    // backgroundColor: ``,
+                    // position: `relative`,
+                    borderBottom: `1.12 px solid #eee`,
                     display: `block`,
                     lineheight: `18px`,
                     color: `#333333`,
                     fontSize: `13px`,
                     overflow: `hidden`,
+                    boxShadow: `inset 0 5px 7px -5px rgba(0,0,0,0.25), inset 0 -3px 7px -5px rgba(0,0,0,0.25)`
                   }}
                 >
                   {this.renderBill(bill)}
@@ -207,16 +213,12 @@ class Friendbills extends React.Component {
                       height: `0px`,
                       display: `flex`,
                       flexWrap: `nowrap`,
-                      transition: `height 0.5s ease-out`,
+                      transition: `height 0.7s ease-out`,
                     }}
                   >
+
                     <Payments
                       bill={bill}
-                      style={{
-                        width: `50%`,
-                        backgroundColor: `pink`,
-                        wordWrap: `break-word`,
-                      }}
                       current_user_id={this.props.current_user_id}
                       current_user={this.props.current_user}
                     />
@@ -254,4 +256,3 @@ const mDTP = (dispatch) => {
 };
 
 export default connect(mSTP, mDTP)(Friendbills);
-

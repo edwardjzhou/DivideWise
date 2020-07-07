@@ -1,7 +1,3 @@
-// tbd: 1. fetchusers on main dashboard load
-// 2. fix user_id -> username instead in comments
-// 3. fix payments w flexbox or tables
-// 4. fix dates float on main bills page
 
 
 import React from "react";
@@ -14,7 +10,7 @@ import {
   deleteComment,
 } from "../../../actions/comment_actions";
 import { getUsers } from "../../../actions/session_actions";
-import { CommentItem } from "./styledComments"
+import { CommentItem } from "./styledComments";
 
 class Comments extends React.Component {
   constructor(props) {
@@ -32,7 +28,7 @@ class Comments extends React.Component {
   commentItem(data) {
     const { id, user_id, bill_id, body, created_at } = data;
     return (
-      <CommentItem key={id} >
+      <CommentItem key={id}>
         <span
           data-comment-id={id}
           onClick={this.handleDelete}
@@ -41,13 +37,11 @@ class Comments extends React.Component {
           ×
         </span>
         User_ID:{user_id} <br />
-        {Date(created_at).split(" ").slice(1,4).join(" ")}
+        {Date(created_at).split(" ").slice(1, 4).join(" ")}
         <br />
         {body}
       </CommentItem>
     );
-
- 
   }
 
   handleSubmit(e) {
@@ -61,7 +55,8 @@ class Comments extends React.Component {
 
   handleDelete(e) {
     let response = confirm("Are you sure you want to delete this comment?");
-    if (response) this.props.deleteComment(e.target.getAttribute(`data-comment-id`));
+    if (response)
+      this.props.deleteComment(e.target.getAttribute(`data-comment-id`));
   }
 
   /* this.props.comments = [] if there are no comments
@@ -69,11 +64,12 @@ class Comments extends React.Component {
   this.props.comments = null if we havent loaded comments yet */
   render() {
     return (
-      <div key={this.props.billId} style={{ ...this.props.style, width: `100%`, padding: `0 10px`}}>
+      <div
+        key={this.props.billId}
+        style={{ ...this.props.style, width: `100%`, padding: `0 10px` }}
+      >
         <div>
           {/* <Bone height={25} /> */}
-
-
 
           {this.props.comments instanceof Array ? (
             this.props.comments.map((comment) => this.commentItem(comment))

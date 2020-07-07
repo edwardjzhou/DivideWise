@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createBill, fetchBill, fetchBills } from "../../../actions/bill_actions";
+import {
+  createBill,
+  fetchBill,
+  fetchBills,
+} from "../../../actions/bill_actions";
 import { Link } from "react-router-dom";
 import { fetchFriends } from "../../../actions/friend_actions";
 import { closeModal } from "../../../actions/modal_actions";
@@ -137,7 +141,7 @@ class BillsForm extends React.Component {
       return (
         <input
           className="greenbutton disabled"
-          style={{width: `75px`}}
+          style={{ width: `75px` }}
           type="submit"
           value="Save"
           disabled="true"
@@ -148,9 +152,8 @@ class BillsForm extends React.Component {
 
   render() {
     return (
-      <div style={{minHeight:`400px`, minWidth:`360px`}}>
-       {/* <div className="addfriend-form"> */}
-        {" "}
+      <div style={{ minHeight: `400px`, minWidth: `360px` }}>
+        {/* <div className="addfriend-form"> */}{" "}
         <div id="formheader">Add an Expense</div>
         <form onSubmit={this.handleSubmit}>
           <div
@@ -292,7 +295,7 @@ class BillsForm extends React.Component {
               margin: `1vh`,
               display: `flex`,
               justifyContent: `flex-end`,
-              marginBottom: `1vw`
+              marginBottom: `1vw`,
             }}
           >
             <button className="cancel" onClick={this.props.closeModal}>

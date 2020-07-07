@@ -28,8 +28,7 @@ class Bills extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-  }
+  componentWillUnmount() {}
 
   calculateTotalYouOwe() {
     let owes = null;
@@ -56,7 +55,6 @@ class Bills extends React.Component {
       })
       .map((friend) => friend.id)[0];
   }
-
 
   render() {
     const red = {
@@ -280,7 +278,6 @@ class Bills extends React.Component {
                       }}
                     >
                       {bill.lender.padEnd(12)} &nbsp;
-
                     </span>
                     <span
                       style={{

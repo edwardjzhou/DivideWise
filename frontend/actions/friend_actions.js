@@ -21,15 +21,15 @@ export const receiveFriend = (friend) => {
 export const receiveFriendCreationError = (err) => {
   return {
     type: RECEIVE_FRIEND_CREATION_ERROR,
-    error: err
-  }
-}
+    error: err,
+  };
+};
 
 export const createFriend = (friend) => (dispatch) =>
-    APIUtil.createFriend(friend).then(
-      (createdFriend) => dispatch(receiveFriend(createdFriend)),
-      (err) => dispatch(receiveFriendCreationError(err.responseJSON) )
-    );
+  APIUtil.createFriend(friend).then(
+    (createdFriend) => dispatch(receiveFriend(createdFriend)),
+    (err) => dispatch(receiveFriendCreationError(err.responseJSON))
+  );
 
 export const fetchFriends = () => (dispatch) =>
   APIUtil.fetchFriends().then((friends) => {

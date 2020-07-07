@@ -15,16 +15,16 @@ const sessionReducer = (state = _nullUser, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      return {...state, id: action.currentUser.id, attempting_login: false};
+      return { ...state, id: action.currentUser.id, attempting_login: false };
     case LOGOUT_CURRENT_USER:
       return Object.assign({}, _nullUser, {
-        message: action.user.username + " has successfully logged off!"
+        message: action.user.username + " has successfully logged off!",
       });
     case CLEAR_SESSION_ERRORS:
       return Object.assign({}, state, { message: null });
     case ATTEMPTING_LOGIN:
       return Object.assign({}, state, { attempting_login: true });
-    case RECEIVE_SESSION_ERRORS: 
+    case RECEIVE_SESSION_ERRORS:
       return Object.assign({}, state, { attempting_login: false });
     default:
       return state;

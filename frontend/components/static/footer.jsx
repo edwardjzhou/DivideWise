@@ -1,6 +1,5 @@
 import React from "react";
-import styled, {  keyframes } from "styled-components";
-
+import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes` 
 	0% {transform:rotate(16deg) scale(1.2);}

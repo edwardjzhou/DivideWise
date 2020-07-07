@@ -23,7 +23,6 @@ export const createPayment = (payment, bill_id) =>
     method: "POST",
     url: `api/bills/${bill_id}/payments`,
     data: { payment },
-
   });
 export const fetchPayments = () =>
   $.ajax({
@@ -36,5 +35,4 @@ export const createComment = (comment) =>
     method: "POST",
     url: `api/bills/${comment[bill_id]}/comments`,
     data: { comment },
-
   });

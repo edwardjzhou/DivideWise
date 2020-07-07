@@ -83,11 +83,9 @@ class PaymentsForm extends React.Component {
     }
   }
 
-
-
   render() {
     return (
-      <div style={{textAlign:`center`}}>
+      <div style={{ textAlign: `center` }}>
         {" "}
         <div id="formheader">Settle up</div>
         <form onSubmit={this.handleSubmit}>

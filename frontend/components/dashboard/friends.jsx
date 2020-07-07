@@ -22,7 +22,6 @@ class Friends extends React.Component {
       prevProps.friends !== this.props.friends ||
       prevProps.selectedFriendshipid !== this.props.selectedFriendshipid
     ) {
-
       this.forceUpdate();
     }
   }
@@ -58,6 +57,7 @@ class Friends extends React.Component {
                 color: "gray",
                 fontSize: "1.1rem",
                 fontWeight: `bold`,
+                boxSizing: `content-box`,
                 display: `block`,
                 borderLeft: `8px solid white`,
               }}
@@ -69,7 +69,8 @@ class Friends extends React.Component {
         </div>
 
         <div className="header">
-          FRIENDS<AddFriends></AddFriends>
+          FRIENDS
+          <AddFriends />
         </div>
 
         {this.props.friends.map((friend) =>
@@ -98,8 +99,8 @@ class Friends extends React.Component {
                     key={friend.id}
                   >
                     <img height="25" src={window.user}></img>
-                      {friend.friends_name.substring(0, 15)}{" "}
-                      {friend.friends_name.length < 17 || "..."}
+                    {friend.friends_name.substring(0, 15)}{" "}
+                    {friend.friends_name.length < 17 || "..."}
                   </div>
                 </Link>
               </div>
@@ -122,8 +123,8 @@ class Friends extends React.Component {
                       style={{ opacity: `.6` }}
                       src={window.user}
                     ></img>
-                    {friend.friends_name.substring(0,15)}{" "}
-                    {friend.friends_name.length < 17 || "..." }
+                    {friend.friends_name.substring(0, 15)}{" "}
+                    {friend.friends_name.length < 17 || "..."}
                   </div>
                 </Link>
               </div>

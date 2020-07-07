@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getUsers } from "../../../actions/session_actions";
 import { createFriend, fetchFriends } from "../../../actions/friend_actions";
+import { closeModal } from "../../../actions/modal_actions";
 
 class FriendsForm extends React.Component {
   constructor(props) {
@@ -97,11 +98,11 @@ class FriendsForm extends React.Component {
       selectedFriend: e.target.value,
     });
   }
-  
+
   allowSubmit() {
     if (
-      this.state.selectedFriend != null && !isNaN(this.state.selectedFriend)
- 
+      this.state.selectedFriend != null &&
+      !isNaN(this.state.selectedFriend)
     ) {
       return (
         <input
@@ -114,7 +115,7 @@ class FriendsForm extends React.Component {
     } else {
       return (
         <input
-          style= {{width: `75px`}}
+          style={{ width: `75px` }}
           className="greenbutton disabled"
           type="submit"
           value="Save"
@@ -125,12 +126,11 @@ class FriendsForm extends React.Component {
   }
 
   // componentWillReceiveProps(newProps){
-
   // }
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.friends.length < this.props.friends.length) {
-      this.setState({successString: "Successfully added new friend!"})
+      this.setState({ successString: "Successfully added new friend!" });
     }
   }
 
@@ -172,7 +172,9 @@ class FriendsForm extends React.Component {
             <img src={window.orangedude} style={{ height: `50px` }} />
             {/* <p>{this.state.selectedFriend}</p> */}
             <br />
-            <div style={{bottom: `15px`, right: `15px`, position: `absolute`}}>
+            <div
+              style={{ bottom: `15px`, right: `15px`, position: `absolute` }}
+            >
               <button className="cancel" onClick={this.props.closeModal}>
                 Cancel
               </button>
@@ -184,7 +186,6 @@ class FriendsForm extends React.Component {
     );
   }
 }
-
 
 const mSTP = (state) => {
   return {
@@ -201,12 +202,12 @@ const mDTP = (dispatch) => {
     createFriend: (friend) => dispatch(createFriend(friend)),
     getUsers: () => dispatch(getUsers()),
     fetchFriends: () => dispatch(fetchFriends()),
+    closeModal: () => dispatch(closeModal()),
   };
 };
 
 export default connect(mSTP, mDTP)(FriendsForm);
 
-//https://levelup.gitconnected.com/debounce-in-javascript-improve-your-applications-performance-5b01855e086
 // function debounce(func, wait, immediate) {
 //   let timeout;
 

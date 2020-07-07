@@ -29,5 +29,4 @@ export const destroyComment = (comment_id) =>
     url: `api/comments/${comment_id}`,
   });
 
-
 // < Comment id: 1, user_id: 1, bill_id: 1, body: "I will pay you back next week", created_at: "2020-05-15 08:26:39", updated_at: "2020-05-15 08:26:39" >,

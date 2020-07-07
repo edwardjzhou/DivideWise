@@ -109,9 +109,8 @@ class Card extends Component {
                   }}
                   className="session-submit orangebutton"
                   type="submit"
-                  value={`Log in to Dividewise`} 
+                  value={`Log in to Dividewise`}
                 />
-
               </div>
             </form>
           </div>
