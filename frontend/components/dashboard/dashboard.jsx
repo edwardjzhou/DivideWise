@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchBills } from "../../actions/bill_actions";
 import { NavLink, Link, Route, Switch } from "react-router-dom";
-import { logout } from "../../actions/session_actions";
-import { Grid, DashboardNavbar, StyledFriends, StyledBills, StyledFriendbills, ThirdColumn} from "./styledDashboard"
+
 import LogoutCard from "./dashboardlogoutcard";
+import { fetchBills } from "../../actions/bill_actions";
+import { logout } from "../../actions/session_actions";
+import { Grid, DashboardNavbar, StyledFriends, StyledBills, StyledFriendbills, ThirdColumn } from "./styledDashboard"
+
 
 class Dashboard extends React.Component {
   constructor(props) {

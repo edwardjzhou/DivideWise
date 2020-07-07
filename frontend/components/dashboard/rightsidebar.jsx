@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
 import { NavLink, Link, Route, Switch } from "react-router-dom";
-import Friends from "./friends";
-import { logout } from "../../actions/session_actions";
 import styled from "styled-components";
 
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";

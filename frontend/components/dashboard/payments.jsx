@@ -1,10 +1,15 @@
+
+/* 1. fix modal forms top angle curvature and X on bill creation form
+2. fix triangles in login being too tall
+4. fix caret not extending to the top and bottom with the link to logout button dropdonw
+6. fix payments made formatting
+*/
+
 import React from "react";
 import { connect } from "react-redux";
 import { fetchBills, fetchBill } from "../../actions/bill_actions";
 
 class Payments extends React.Component {
-  // I SHOULD BE MADE DUMB SINCE I DONT CRUD ANY PAYMENTS.
-  // no state I THINK
 
   constructor(props) {
     super(props);
@@ -16,10 +21,7 @@ class Payments extends React.Component {
   renderPaymentItem(payment, bill) {
     return (
       <div
-        key={`PAYMENT->${payment.id}`}
-        style={{
-          // width: `50%`,
-        }}
+        key={`PAYMENT->${Object.entries(payment)[0]}`}
       >
         <div
           style={{
@@ -48,8 +50,8 @@ class Payments extends React.Component {
             </div>
 
             {Object.values(payment)[0].payer_id == this.props.current_user_id
-              ? this.props.current_user.username + " paid " + bill.lender
-              : bill.borrower + " paid " + this.props.current_user.username}
+              ? this.props.current_user_username + " paid " + bill.lender
+              : bill.borrower + " paid " + this.props.current_user_username}
             ${Object.values(payment)[0].amount / 100 + " "}
 
         </div>
@@ -72,12 +74,12 @@ class Payments extends React.Component {
     
     return (
       <>
-      <div style={{width:`100%`, backgroundColor: `blue`}}>
+        <div style={{width:`100%`, backgroundColor: `blue`}}>
           {bill && bill.payments != undefined && bill.payments.length > 0
             ? bill.payments.map((payment) => {
                 return this.renderPaymentItem(payment, bill);
               })
-            : null}
+          : null}
         </div>
       </>
     );
@@ -86,7 +88,8 @@ class Payments extends React.Component {
 
 const mSTP = (state) => {
   return {
-    current_user_id: state.entities.users[state.session.id].email,
+    current_user_username: state.entities.users[state.session.id].username,
+    current_user_id: state.session.id,
   };
 };
 

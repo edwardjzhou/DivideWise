@@ -1,11 +1,18 @@
+// tbd: 1. fetchusers on main dashboard load
+// 2. fix user_id -> username instead in comments
+// 3. fix payments w flexbox or tables
+// 4. fix dates float on main bills page
+
+
 import React from "react";
 import { connect } from "react-redux";
+import { Skeleton } from "react-loading-skeleton-placeholders";
+
 import {
   fetchComments,
   createComment,
   deleteComment,
 } from "../../../actions/comment_actions";
-import { Skeleton, Bone } from "react-loading-skeleton-placeholders";
 import { getUsers } from "../../../actions/session_actions";
 import { CommentItem } from "./styledComments"
 
@@ -25,7 +32,7 @@ class Comments extends React.Component {
   commentItem(data) {
     const { id, user_id, bill_id, body, created_at } = data;
     return (
-      <CommentItem>
+      <CommentItem key={id} >
         <span
           data-comment-id={id}
           onClick={this.handleDelete}
@@ -34,17 +41,13 @@ class Comments extends React.Component {
           ×
         </span>
         User_ID:{user_id} <br />
-        {getDate(created_at)}
+        {Date(created_at).split(" ").slice(1,4).join(" ")}
         <br />
         {body}
       </CommentItem>
     );
 
-    function getDate(date) {
-      date = new Date(date);
-      let day = date.getDay();
-      return date.toLocaleString("default", { month: "long" }) + " " + day;
-    }
+ 
   }
 
   handleSubmit(e) {
@@ -66,16 +69,18 @@ class Comments extends React.Component {
   this.props.comments = null if we havent loaded comments yet */
   render() {
     return (
-      <div key={this.props.billId} style={{ ...this.props.style }}>
+      <div key={this.props.billId} style={{ ...this.props.style, width: `100%`, padding: `0 10px`}}>
         <div>
           {/* <Bone height={25} /> */}
+
+
 
           {this.props.comments instanceof Array ? (
             this.props.comments.map((comment) => this.commentItem(comment))
           ) : (
-            <>
+            <div>
               <Skeleton skull={false} amount={3} />
-            </>
+            </div>
           )}
 
           <textarea
@@ -84,6 +89,7 @@ class Comments extends React.Component {
             rows="2"
             ref={this.textInput}
           />
+          <br />
           <button className="orangebutton" onClick={this.handleSubmit}>
             Post
           </button>
@@ -99,11 +105,7 @@ const mSTP = (state, ownProps) => {
     friends: Object.values(state.entities.friends), // state.entities.friends is an object with each key being a friendship_id. after object.values its an array of objects
   };
 };
-//                               (state) => stateProps                      (state, ownProps) => stateProps
-// mapStateToProps runs when:     store state changes 	                    store state changes or  any field of ownProps is different
-// component re-renders when:      any field of stateProps is different	    any field of stateProps is different or any field of ownProps is different
 
-// mDTP is run whenever the connected component receives new ownPROPS or re-render from new props from mstp, so it's always up-to-date
 const mDTP = (dispatch, ownProps) => {
   return {
     getUsers: () => dispatch(getUsers()),

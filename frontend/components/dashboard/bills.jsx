@@ -24,13 +24,11 @@ class Bills extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.bills !== this.props.bills) {
-      console.log("bills props has changed from inside bills component.");
       this.calculateTotalYouOwe();
     }
   }
 
   componentWillUnmount() {
-    console.log(`bills unmount`);
   }
 
   calculateTotalYouOwe() {
@@ -59,15 +57,8 @@ class Bills extends React.Component {
       .map((friend) => friend.id)[0];
   }
 
-  // getHeight() {
-  //   console.log(this.state.height);
-  //   this.setState({
-  //     height: $(document).height() + "px",
-  //   });
-  // }
 
   render() {
-    // this.getHeight()
     const red = {
       borderStyle: `solid`,
       width: `30%`,
@@ -168,7 +159,6 @@ class Bills extends React.Component {
           style={{
             backgroundColor: `#EEEEEE`,
             display: `block`,
-            height: ``,
           }}
         >
           {this.state.allin < 0 ? (
@@ -257,6 +247,7 @@ class Bills extends React.Component {
                     display: `block`,
                     padding: `5px 10px`,
                   }}
+                  key={bill.id}
                 >
                   {eval(`avatar` + (this.findFriendship(bill.lender) % 7)) !=
                   "avatarNaN" ? (
@@ -289,30 +280,12 @@ class Bills extends React.Component {
                       }}
                     >
                       {bill.lender.padEnd(12)} &nbsp;
-                      {/* padEnd with " " doesnt work because the empty  pared down by html USE whitespace:pre */}
-                      {/* NOW problem si diff chars have diff sizes  size="20" is only for like input*/}
-                      {/* best way is to gaurantee a size for the span but its inline so width= shoudlnt work */}
-                      {/* SOLUTION:
-                           ul {
-                            list-style-type: none;
-                            padding-left: 0px;
-                          }
 
-                          ul li span {
-                            float: left;
-                            width: 40px;
-                          }
-                          <ul>
-                            <li><span></span> The lazy dog.</li>
-                            <li><span>AND</span> The lazy cat.</li>
-                            <li><span>OR</span> The active goldfish.</li>
-                          </ul> */}
                     </span>
                     <span
                       style={{
                         fontSize: `.9rem`,
                         float: `left`,
-                        // width: `50px`
                       }}
                     >
                       {new Date(bill.created_at).toLocaleDateString("en-US")}
@@ -341,7 +314,6 @@ class Bills extends React.Component {
 
           <div
             style={{
-              // height: `${this.state.height}`,
               width: `50%`,
               borderLeft: `1px solid`,
               borderColor: `#DDDDDD`,
@@ -363,6 +335,7 @@ class Bills extends React.Component {
                     display: `block`,
                     padding: `5px 10px`,
                   }}
+                  key={bill.id}
                 >
                   {eval(`avatar` + (this.findFriendship(bill.borrower) % 7)) !=
                   "avatarNaN" ? (

@@ -83,23 +83,18 @@ class PaymentsForm extends React.Component {
     }
   }
 
-  // componentDidMount(){
-  //     this.props.fetchBills()
-  // }
+
 
   render() {
     return (
       <div style={{textAlign:`center`}}>
-       {/* <div className="addfriend-form centerme"> */}
         {" "}
         <div id="formheader">Settle up</div>
         <form onSubmit={this.handleSubmit}>
-          {/* <span style={{ left: `10px`, position: `absolute` }}> */}
           <span>
             Find a bill <span className="STRONG">YOU</span> are in&nbsp;
             <select onChange={this.selectedBill.bind(this)}>
               <option value={null}>Choose a bill</option>
-              {/* {console.log(this.props.bills)} */}
               {this.props.bills.map((bill) => (
                 <option value={bill.id} key={bill.id}>
                   {bill.lender} lent ${bill.amount / 100} to {bill.borrower}

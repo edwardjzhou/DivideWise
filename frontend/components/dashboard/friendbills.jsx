@@ -1,81 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchBills, fetchBill } from "../../actions/bill_actions";
 import { Link, match } from "react-router-dom";
-import { openModal } from "../../actions/modal_actions";
+
 import AddBills from "./buttons/addbills";
-import { fetchFriends } from "../../actions/friend_actions";
 import Comments from "./comments/comments";
 import Payments from "./payments";
-
-function collapseSection(element) {
-  // var old_element = element
-  // var new_element = old_element.cloneNode(true);
-  // old_element.parentNode.replaceChild(new_element, old_element);
-  console.log('collapse')
-  console.log(element.functionStorage)
-  element.removeEventListener("transitionend",element.functionStorage)
-
-  let sectionHeight = element.scrollHeight;
-  let elementTransition = element.style.transition;
-  element.style.transition = "";
-
-  // on the next frame (as soon as the previous style change has taken effect),
-  // explicitly set the element's height to its current pixel height, so we
-  // aren't transitioning out of 'auto'
-  requestAnimationFrame(function () {
-    element.style.height = sectionHeight + "px";
-    element.style.transition = elementTransition;
-
-    // on the next frame (as soon as the previous style change has taken effect),
-    // have the element transition to height: 0
-    requestAnimationFrame(function () {
-      element.style.height = 0 + "px";
-    });
-
-  });
-
-  // mark the section as "currently collapsed"
-  element.setAttribute("data-collapsed", "true"); 
-
-}
-
-/*
-a pernicious bug: 
-when you expand a minimized dropdown but
-then stop it before it finishes i guess transitionend event never gets emitted
-*/
-
-function expandSection(element) {
-  let sectionHeight = element.scrollHeight;
-
-  element.style.height = sectionHeight + "px";
-
-  function finishTransition() {
-    element.removeEventListener("transitionend", finishTransition);
-    element.style.height = null;
-  }
-
-  element.functionStorage = finishTransition;
-  element.addEventListener("transitionend", finishTransition);
-  element.setAttribute("data-collapsed", "false");
-}
-
-function handle(e) {
-  var section = document.querySelector(
-    `.section.collapsible#comments` + e.currentTarget.attributes.id.value
-  );
-
-
-  var isCollapsed = section.getAttribute("data-collapsed") === "true";
-
-  if (isCollapsed) {
-    expandSection(section);
-    section.setAttribute("data-collapsed", "false");
-  } else {
-    collapseSection(section);
-  }
-}
+import { fetchBills, fetchBill } from "../../actions/bill_actions";
+import { fetchFriends } from "../../actions/friend_actions";
+import { openModal } from "../../actions/modal_actions";
+import { expandSection, handleDropdown, collapseSection } from "../animations/dropdown";
 
 class Friendbills extends React.Component {
   constructor(props, { match }) {
@@ -86,8 +19,7 @@ class Friendbills extends React.Component {
     this.findTheBorrowedBills = this.findTheBorrowedBills.bind(this);
     this.findFriendId = this.findFriendId.bind(this);
     this.iBorrowed = [];
-
-    this.dontHandle = this.dontHandle.bind(this);
+    this.dontHandleDropdown = this.dontHandleDropdown.bind(this);
   }
 
   componentDidMount() {
@@ -101,7 +33,6 @@ class Friendbills extends React.Component {
       this.forceUpdate();
     }
   }
-  //componentwillreceiveprops can make sure if props are different i can make it NOT render
 
   findFriendId() {
     if (
@@ -137,7 +68,6 @@ class Friendbills extends React.Component {
   renderNoFriend() {
     return (
       <div>
-        {/* <div>"This isn't a valid friendship page or there is trouble fetching friends lists from server" </div> */}
         Whoops – you don't have permission to view this friend or group! Make
         sure you're logged into the correct Dividewise account. Sorry! :(
       </div>
@@ -165,9 +95,8 @@ class Friendbills extends React.Component {
     );
   }
 
-  dontHandle(e) {
+  dontHandleDropdown(e) {
     e.stopPropagation();
-    console.log(`prevent propagation`);
   }
 
   renderBill(bill) {
@@ -246,7 +175,7 @@ class Friendbills extends React.Component {
             {this.iBorrowed.map((bill) => {
               return (
                 <div
-                  onClick={handle}
+                  onClick={handleDropdown}
                   id={`${bill.id}`}
                   key={`BILL->${bill.id}`}
                   style={{
@@ -262,9 +191,8 @@ class Friendbills extends React.Component {
                 >
                   {this.renderBill(bill)}
 
-                  {/* commetns and payment wrapper div */}
+                  {/* comments and payment wrapper div */}
 
-                  {/* RE FLEX: flex-containers can use width and height; flex-basis controls items' width (w/o direc) w/o affecting absolute */}
                   {/* flex-direction: row - flex items will align horizontally
                   justify-content: flex-start - flex items will stack at the start of the line on the main axis
                   align-items: stretch - flex items will expand to cover the cross-size of the container
@@ -272,7 +200,7 @@ class Friendbills extends React.Component {
                   flex-shrink: 1 - a flex item is allowed to shrink */}
                   <div
                     id={`comments${bill.id}`}
-                    onClick={this.dontHandle}
+                    onClick={this.dontHandleDropdown}
                     data-collapsed
                     className="section collapsible"
                     style={{
@@ -326,3 +254,4 @@ const mDTP = (dispatch) => {
 };
 
 export default connect(mSTP, mDTP)(Friendbills);
+

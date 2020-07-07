@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-// from https://blog.campvanilla.com/reactjs-dropdown-menus-b6e06ae3a8fe
 class LogoutCard extends Component {
   constructor(props) {
     super(props);

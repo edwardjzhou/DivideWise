@@ -1,18 +1,8 @@
-/* 1. fix modal forms with weird transparency and sizing 
-2. fix triangles in login being too tall
-3. fix firefox messing up the top navbar inside daashboard by setting a height
-4. fix caret not extending to the top and bottom with the link to logout button dropdonw
-5. fix accordion animation dorpodnw of payments/comments breaking 
-6. fix payments made formatting
-7. fix left margin being green upon being the selected friendship popping out
-*/
-
 import React from "react";
-// import LeftMenu from './left_menu'
-//import Modal from './modal'
 import { connect } from "react-redux";
-import { fetchBills, fetchBill } from "../../actions/bill_actions";
 import { Link, withRouter } from "react-router-dom";
+
+import { fetchBills, fetchBill } from "../../actions/bill_actions";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import AddFriends from "./buttons/addfriends";
 import { fetchFriends } from "../../actions/friend_actions";
@@ -96,6 +86,8 @@ class Friends extends React.Component {
                   style={{
                     textDecoration: `none`,
                     color: `#5BC5A7`,
+                    // overflowX: `hidden`,
+                    // textOverflow: `ellipsis`
                   }}
                   onClick={() => this.props.select(friend.id)}
                 >
@@ -106,14 +98,14 @@ class Friends extends React.Component {
                     key={friend.id}
                   >
                     <img height="25" src={window.user}></img>
-                    {friend.friends_name}{" "}
+                      {friend.friends_name.substring(0, 15)}{" "}
+                      {friend.friends_name.length < 17 || "..."}
                   </div>
                 </Link>
               </div>
             ) : (
-              <div>
+              <div key={`FRIEND->${friend.id}`}>
                 <Link
-                  key={`FRIEND->${friend.id}`}
                   to={`/friends/` + friend.id}
                   className="greyhover"
                   style={{ textDecoration: `none` }}
@@ -130,7 +122,8 @@ class Friends extends React.Component {
                       style={{ opacity: `.6` }}
                       src={window.user}
                     ></img>
-                    {friend.friends_name}{" "}
+                    {friend.friends_name.substring(0,15)}{" "}
+                    {friend.friends_name.length < 17 || "..." }
                   </div>
                 </Link>
               </div>
@@ -138,7 +131,6 @@ class Friends extends React.Component {
           ) : null
         )}
         <br />
-        {/* </div> */}
       </div>
     );
   }
@@ -147,7 +139,6 @@ class Friends extends React.Component {
 const mSTP = (state) => {
   return {
     friends: Object.values(state.entities.friends),
-    //user: Object.values(state.entities.users)[0].username,
     current_user: state.entities.users[state.session.id].username,
     selectedFriendshipid: Object.values(state.ui.friendSelectReducer)[0],
   };

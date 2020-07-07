@@ -13,7 +13,7 @@ const AddFriends = ({ openModal }) => {
 };
 
 const mapStateToProps = ({ session }) => ({
-  currentUser: session.currentUser, //guaranteed by being logged in. we have to be logged in to click this modal
+  currentUser: session.currentUser, 
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -4,7 +4,6 @@ import { withRouter, match } from "react-router-dom";
 import { openModal } from "../../../actions/modal_actions";
 
 const AddBills = ({ currentUser, openModal, match }) => {
-  // width: `auto`, position: `relative`,
   const sessionLinks = () => (
     <div
       style={{
