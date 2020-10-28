@@ -32,10 +32,38 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe("pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG");
 
+
+
+import ReactGA from "react-ga"; //reactgoogle analytics installed
+const trackingId = "G-8QT9KFY4YF"
+ReactGA.initialize(trackingId);
+
+
+ReactGA.event({
+  category: "Sign Up",
+  action: "User pressed the big blue sign up button",
+});
+
+import { createBrowserHistory } from "history"; // history installed
+const history = createBrowserHistory();
+
+history.listen((location) => {
+  ReactGA.set({ page: location.pathname }); // Update the user's current page
+  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+});
+import { Router } from 'react-router-dom';
+
+
+
+
+
 class App extends React.Component {
   render() {
     return (
       <>
+
+        <Router history={history}>
+
         <Elements stripe={stripePromise}>
           <Modal />
           <Switch>
@@ -46,6 +74,9 @@ class App extends React.Component {
             <AuthRoute path="/" component={Splash} />
           </Switch>
         </Elements>
+
+        </Router>
+
       </>
     );
   }

@@ -44,7 +44,6 @@ export const DashboardNavbar = styled.div`
   text-overflow: clip;
   word-wrap: normal;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 3px 0px;
-  z-index: 100;
 `;
 
 export const StyledFriends = styled(Friends)`

@@ -51,7 +51,7 @@ class Api::UsersController < ApplicationController
             end
 
         else 
-            render json: ['thats not a google account'], status: 402 #payment required
+            render json: ["that's not a google account"], status: 402 #payment required
         end
     end
 
